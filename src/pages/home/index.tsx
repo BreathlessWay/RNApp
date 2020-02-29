@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { FlatList, View, Text, Image, ActivityIndicator } from 'react-native';
+import { inject, observer } from 'mobx-react';
 
 import { request } from '@utils/request';
 
-import { FileListType } from './film.d';
+import { Store } from '@/stores';
+import HomeStore from '@stores/home';
+import { FileListType } from '@stores/home/film';
 
 import Style from './style';
 
-const HomePage = () => {
+export type HomePagePropType = {
+	homeStore: HomeStore;
+};
 
+const HomePage: FC<HomePagePropType> = props => {
 	const [list, setList] = useState<FileListType>([]);
-
-	const [loading, setLoading] = useState<boolean>(false);
+	const { loading, setLoading } = props.homeStore;
 
 	const getData = async () => {
 		try {
@@ -53,4 +58,6 @@ const HomePage = () => {
 	);
 };
 
-export default HomePage;
+export default (inject((store: Store) => ({
+	homeStore: store.homeStore,
+}))(observer(HomePage)) as unknown) as FC;

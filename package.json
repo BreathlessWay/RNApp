@@ -1,60 +1,63 @@
 {
-  "name": "RNApp",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "tree": "echo '```' > tree.md && tree >> tree.md -I 'node_modules|__tests__|android|ios' -F",
-    "react-devtools": "react-devtools"
-  },
-  "dependencies": {
-    "qs": "^6.9.1",
-    "react": "16.9.0",
-    "react-native": "0.61.5"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/runtime": "^7.6.2",
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
-    "@react-native-community/eslint-config": "^0.0.5",
-    "@types/jest": "^24.0.24",
-    "@types/qs": "^6.9.1",
-    "@types/react-native": "^0.60.25",
-    "@types/react-test-renderer": "16.9.1",
-    "@typescript-eslint/eslint-plugin": "^2.12.0",
-    "@typescript-eslint/parser": "^2.12.0",
-    "babel-jest": "^24.9.0",
-    "babel-plugin-transform-remove-console": "^6.9.4",
-    "eslint": "^6.5.1",
-    "husky": "^4.2.3",
-    "jest": "^24.9.0",
-    "metro-react-native-babel-preset": "^0.56.0",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1",
-    "react-devtools": "3.4.2",
-    "react-test-renderer": "16.9.0",
-    "typescript": "^3.8.3"
-  },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "pretty-quick --staged"
-    }
-  }
+	"name": "RNApp",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"android": "react-native run-android",
+		"ios": "react-native run-ios",
+		"start": "react-native start",
+		"test": "jest",
+		"lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+		"tree": "echo '```' > tree.md && tree >> tree.md -I 'node_modules|__tests__|android|ios' -F",
+		"react-devtools": "react-devtools"
+	},
+	"dependencies": {
+		"@babel/plugin-proposal-decorators": "^7.8.3",
+		"mobx": "^5.15.4",
+		"mobx-react": "^6.1.8",
+		"qs": "^6.9.1",
+		"react": "16.9.0",
+		"react-native": "0.61.5"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.6.2",
+		"@babel/runtime": "^7.6.2",
+		"@commitlint/cli": "^8.2.0",
+		"@commitlint/config-conventional": "^8.2.0",
+		"@react-native-community/eslint-config": "^0.0.5",
+		"@types/jest": "^24.0.24",
+		"@types/qs": "^6.9.1",
+		"@types/react-native": "^0.60.25",
+		"@types/react-test-renderer": "16.9.1",
+		"@typescript-eslint/eslint-plugin": "^2.12.0",
+		"@typescript-eslint/parser": "^2.12.0",
+		"babel-jest": "^24.9.0",
+		"babel-plugin-transform-remove-console": "^6.9.4",
+		"eslint": "^6.5.1",
+		"husky": "^4.2.3",
+		"jest": "^24.9.0",
+		"metro-react-native-babel-preset": "^0.56.0",
+		"prettier": "^1.19.1",
+		"pretty-quick": "^2.0.1",
+		"react-devtools": "3.4.2",
+		"react-test-renderer": "16.9.0",
+		"typescript": "^3.8.3"
+	},
+	"jest": {
+		"preset": "react-native",
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"jsx",
+			"json",
+			"node"
+		]
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+			"pre-commit": "pretty-quick --staged"
+		}
+	}
 }
