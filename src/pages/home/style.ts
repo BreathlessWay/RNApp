@@ -1,4 +1,4 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
 	list: {
@@ -10,7 +10,10 @@ export default StyleSheet.create({
 		marginBottom: 20,
 	},
 	image: {
-		width: 53,
+		// Screen and window dimensions are different on android
+		// window: reports width/height without the soft menu bar
+		// screen: reports entire screen's width/height
+		width: Dimensions.get('window').width * 0.3,
 		height: Platform.OS === 'ios' ? 81 : 53,
 	},
 	intro: {
