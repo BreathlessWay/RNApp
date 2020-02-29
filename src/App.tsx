@@ -32,15 +32,15 @@ declare var global: { HermesInternal: null | {} };
 
 const App = () => {
 	console.log(ss);
-	const a = { b: '!!!' }
+	const a = { b: '!!!' };
 	return (
 		<>
-			<StatusBar barStyle="dark-content"/>
+			<StatusBar barStyle="dark-content" />
 			<SafeAreaView>
 				<ScrollView
 					contentInsetAdjustmentBehavior="automatic"
 					style={styles.scrollView}>
-					<Header/>
+					<Header />
 					{global.HermesInternal == null ? null : (
 						<View style={styles.engine}>
 							<Text style={styles.footer}>Engine: Hermes</Text>
@@ -48,7 +48,7 @@ const App = () => {
 					)}
 					<View style={styles.body}>
 						<View style={styles.sectionContainer}>
-							<Text style={styles.sectionTitle}>Step</Text>
+							<Text style={styles.sectionTitle}>Step {a?.b ?? 1}</Text>
 							<Text style={styles.sectionDescription}>
 								Edit <Text style={styles.highlight}>App.tsx</Text> to change
 								this screen and then come back to see yo大声点是ur edits.
@@ -57,13 +57,13 @@ const App = () => {
 						<View style={styles.sectionContainer}>
 							<Text style={styles.sectionTitle}>See Your Changes</Text>
 							<Text style={styles.sectionDescription}>
-								<ReloadInstructions/>
+								<ReloadInstructions />
 							</Text>
 						</View>
 						<View style={styles.sectionContainer}>
 							<Text style={styles.sectionTitle}>Debug</Text>
 							<Text style={styles.sectionDescription}>
-								<DebugInstructions/>
+								<DebugInstructions />
 							</Text>
 						</View>
 						<View style={styles.sectionContainer}>
@@ -72,7 +72,7 @@ const App = () => {
 								Read the docs to discover what to do next:
 							</Text>
 						</View>
-						<LearnMoreLinks/>
+						<LearnMoreLinks />
 					</View>
 				</ScrollView>
 			</SafeAreaView>
