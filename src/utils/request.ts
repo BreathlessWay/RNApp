@@ -7,7 +7,7 @@ export enum EMethod {
 	'PUT' = 'PUT',
 }
 
-const baseUrl = '';
+const baseUrl = 'https://raw.githubusercontent.com';
 
 export const request = async ({
 	url,
@@ -16,14 +16,15 @@ export const request = async ({
 	headers,
 }: {
 	url: string;
-	method: EMethod;
+	method?: EMethod;
 	body?: BodyInit_;
 	headers?: Headers;
 }) => {
 	try {
-		let _url = baseUrl + url;
+		let _url = baseUrl + url,
+			_method = method || EMethod.GET;
 		const options: any = {
-			method,
+			method: _method,
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
@@ -33,13 +34,12 @@ export const request = async ({
 		};
 		if (body) {
 			const _body = Qs.stringify(body);
-			if (method === EMethod.GET) {
+			if (_method === EMethod.GET) {
 				_url = `${_url}?${_body}`;
 			} else {
 				options.body = _body;
 			}
 		}
-
 		const response = await fetch(_url, options);
 		return response.json();
 	} catch (e) {
