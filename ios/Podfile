@@ -34,7 +34,6 @@ target 'RNApp' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
   target 'RNAppTests' do
     inherit! :search_paths

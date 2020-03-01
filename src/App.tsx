@@ -14,6 +14,7 @@ import 'react-native-gesture-handler';
 
 import { EScreenName, RootStackParamList } from '@/types/index.d';
 
+console.log('__DEV__', __DEV__);
 // 关闭黄屏
 console.disableYellowBox = true;
 
