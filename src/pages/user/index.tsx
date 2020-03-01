@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 
 import { View, Text, TouchableHighlight, Button } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { request } from '@utils/request';
 
@@ -13,13 +14,13 @@ import { EScreenName, RootStackParamList } from '@/types/index.d';
 
 import Style from './style';
 
-export type UserPagePropType = {
-	navigation: StackNavigationProp<RootStackParamList, EScreenName.User>;
-	route: RouteProp<RootStackParamList, EScreenName.User>;
-};
+export type UserPagePropType = {};
 
-const UserPage: FC<UserPagePropType> = props => {
-	const { navigation, route } = props;
+const UserPage: FC<UserPagePropType> = () => {
+	const navigation = useNavigation<
+		StackNavigationProp<RootStackParamList, EScreenName.User>
+	>();
+	const route = useRoute<RouteProp<RootStackParamList, EScreenName.User>>();
 
 	useEffect(() => {
 		const unsubscribe = navigation.addListener('focus', () => {
