@@ -21,13 +21,7 @@ const RootRoutePage = () => {
 			<NavigationContainer>
 				<Navigator initialRouteName={EScreenName.Welcome} headerMode="none">
 					<Screen name={EScreenName.Welcome} component={WelcomeScreen} />
-					<Screen
-						name={EScreenName.Switch}
-						component={SwitchRoutePage}
-						initialParams={{
-							theme: '#fff',
-						}}
-					/>
+					<Screen name={EScreenName.Switch} component={SwitchRoutePage} />
 				</Navigator>
 			</NavigationContainer>
 		</SafeAreaProvider>

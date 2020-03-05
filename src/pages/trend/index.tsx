@@ -14,9 +14,9 @@ import { EScreenName, RootStackParamList } from '@routes/route.d';
 
 import Style from './style';
 
-export type UserPagePropType = {};
+export type UserPagePropType = Pick<Store, 'appStore'>;
 
-const UserPage: FC<UserPagePropType> = () => {
+const UserPage: FC<UserPagePropType> = props => {
 	const navigation = useNavigation<
 		BottomTabNavigationProp<RootStackParamList, EScreenName.Trend>
 	>();
@@ -39,7 +39,9 @@ const UserPage: FC<UserPagePropType> = () => {
 		return unsubscribe;
 	}, [navigation]);
 
-	const handlePress = () => {};
+	const handlePress = () => {
+		props.appStore.setTheme('#000');
+	};
 
 	return (
 		<CommonSafeTopComponent>
@@ -50,8 +52,8 @@ const UserPage: FC<UserPagePropType> = () => {
 	);
 };
 
-const UserScreen = (inject((store: Store) => store)(
-	observer(UserPage),
-) as unknown) as FC;
+const UserScreen = (inject((store: Store) => ({
+	appStore: store.appStore,
+}))(observer(UserPage)) as unknown) as FC;
 
 export default UserScreen;

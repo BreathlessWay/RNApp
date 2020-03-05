@@ -1,4 +1,5 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
+import { inject, observer } from 'mobx-react';
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import IonIcon from 'react-native-vector-icons/Ionicons';
@@ -9,11 +10,11 @@ import TrendScreen from '@pages/trend';
 import FavoriteScreen from '@pages/favorite';
 import MeScreen from '@pages/me';
 
-import { useRoute } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import { EScreenName, RootStackParamList } from './route.d';
-import { RouteProp } from '@react-navigation/native';
+import { Store } from '@/stores';
+import AppStore from '@stores/app';
 
 // 当使用导航时自带了SafeAreaView
 const { Navigator, Screen } = createMaterialBottomTabNavigator<
@@ -22,9 +23,10 @@ const { Navigator, Screen } = createMaterialBottomTabNavigator<
 
 const IconSize = 22;
 
-const SwitchRoutePage = () => {
-	const route = useRoute<RouteProp<RootStackParamList, EScreenName.Switch>>();
-	const { theme } = route.params;
+export type SwitchRoutePagePropType = Pick<Store, 'appStore'>;
+
+const SwitchRoutePage: FC<SwitchRoutePagePropType> = props => {
+	const { theme } = props.appStore;
 
 	const screenList = [
 		{
@@ -91,6 +93,8 @@ const SwitchRoutePage = () => {
 	);
 };
 
-const SwitchRouteScreen = (SwitchRoutePage as unknown) as FC;
+const SwitchRouteScreen = (inject((store: Store) => ({
+	appStore: store.appStore,
+}))(observer(SwitchRoutePage)) as unknown) as FC;
 
 export default SwitchRouteScreen;
