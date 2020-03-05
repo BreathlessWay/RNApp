@@ -1,6 +1,6 @@
 import { action, observable } from 'mobx';
 
-export default class HomeStore {
+export default class HotStore {
 	@observable
 	loading = false;
 

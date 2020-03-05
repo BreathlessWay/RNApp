@@ -1,7 +1,7 @@
-import HomeStore from '@stores/home';
+import HotStore from '@stores/hot';
 
 export class Store {
-	readonly homeStore = new HomeStore();
+	readonly hotStore = new HotStore();
 }
 
 export default new Store();
