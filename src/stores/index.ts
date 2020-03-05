@@ -4,4 +4,6 @@ export class Store {
 	readonly popularStore = new PopularStore();
 }
 
-export default new Store();
+const store = new Store();
+
+export default store;

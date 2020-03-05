@@ -10,6 +10,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { EScreenName, RootStackParamList } from './route.d';
 
+import '@config/hydrate';
+
 // 当使用导航时自带了SafeAreaView
 const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
 

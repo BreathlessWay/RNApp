@@ -36,3 +36,4 @@
      </array>
      ```
    - 重新`run ios`
+6. 用 mobx-persist 进行 hydrate 的 store 必须要有 persist，不然会报错

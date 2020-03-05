@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 
+import { Text } from 'react-native';
+
 import PopularScreen from '@pages/popular';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useSafeArea } from 'react-native-safe-area-context';
 
 import { RootStackParamList } from '@routes/route.d';
-import { Text } from 'react-native';
 
 const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
@@ -28,6 +29,13 @@ const PopularTabRoutePage = () => {
 		<Navigator
 			tabBarOptions={{
 				scrollEnabled: true,
+				style: {
+					backgroundColor: '#678',
+				},
+				indicatorStyle: {
+					height: 2,
+					backgroundColor: '#fff',
+				},
 			}}
 			style={{
 				paddingTop: insets.top,
@@ -38,7 +46,15 @@ const PopularTabRoutePage = () => {
 					name={tab as any}
 					component={PopularScreen}
 					options={{
-						tabBarLabel: () => <Text>{tab}</Text>,
+						tabBarLabel: () => (
+							<Text
+								style={{
+									fontSize: 13,
+									marginHorizontal: 6,
+								}}>
+								{tab}
+							</Text>
+						),
 					}}
 				/>
 			))}
