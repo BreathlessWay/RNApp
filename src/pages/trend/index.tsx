@@ -33,16 +33,18 @@ const UserPage: FC<UserPagePropType> = () => {
 	useEffect(() => {
 		const unsubscribe = navigation.addListener('tabPress', e => {
 			// e.preventDefault()
-			console.log(1);
+			console.log(e);
 		});
 
 		return unsubscribe;
 	}, [navigation]);
 
+	const handlePress = () => {};
+
 	return (
 		<CommonSafeTopComponent>
 			<View>
-				<Text>User页面</Text>
+				<Text onPress={handlePress}>修改主题色</Text>
 			</View>
 		</CommonSafeTopComponent>
 	);

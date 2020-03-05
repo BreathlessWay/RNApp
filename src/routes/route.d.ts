@@ -14,7 +14,9 @@ export enum EScreenName {
 export type RootStackParamList = {
 	[EScreenName.Welcome]: undefined;
 
-	[EScreenName.Switch]: undefined;
+	[EScreenName.Switch]: {
+		theme?: string;
+	};
 	[EScreenName.Trend]: Record<any, any>;
 	[EScreenName.Me]: undefined;
 	[EScreenName.Favorite]: undefined;
