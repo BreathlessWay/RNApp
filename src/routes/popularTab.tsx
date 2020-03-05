@@ -1,40 +1,47 @@
 import React, { FC } from 'react';
 
 import PopularScreen from '@pages/popular';
-import DetailScreen from '@pages/detail';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useSafeArea } from 'react-native-safe-area-context';
 
-import { EScreenName, RootStackParamList } from '@routes/route.d';
+import { RootStackParamList } from '@routes/route.d';
+import { Text } from 'react-native';
 
 const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
 >();
+
+const tabs = [
+	'JavaScript',
+	'Typescript',
+	'Node',
+	'Vue',
+	'React',
+	'React Native',
+];
 
 const PopularTabRoutePage = () => {
 	const insets = useSafeArea();
 
 	return (
 		<Navigator
-			initialRouteName={EScreenName.PopularIndex}
+			tabBarOptions={{
+				scrollEnabled: true,
+			}}
 			style={{
 				paddingTop: insets.top,
 			}}>
-			<Screen
-				name={EScreenName.PopularIndex}
-				component={PopularScreen}
-				options={{
-					tabBarLabel: '1',
-				}}
-			/>
-			<Screen
-				name={EScreenName.PopularDetail}
-				component={DetailScreen}
-				options={{
-					tabBarLabel: '2',
-				}}
-			/>
+			{tabs.map((tab, index) => (
+				<Screen
+					key={index}
+					name={tab as any}
+					component={PopularScreen}
+					options={{
+						tabBarLabel: () => <Text>{tab}</Text>,
+					}}
+				/>
+			))}
 		</Navigator>
 	);
 };
