@@ -4,8 +4,11 @@ export enum EScreenName {
 	Switch = 'Switch',
 	Me = 'Me',
 	Favorite = 'Favorite',
-	Popular = 'Popular',
 	Trend = 'Trend',
+
+	Popular = 'Popular',
+	PopularIndex = 'PopularIndex',
+	PopularDetail = 'PopularDetail',
 }
 
 export type RootStackParamList = {
@@ -15,5 +18,8 @@ export type RootStackParamList = {
 	[EScreenName.Trend]: Record<any, any>;
 	[EScreenName.Me]: undefined;
 	[EScreenName.Favorite]: undefined;
+
 	[EScreenName.Popular]: undefined;
+	[EScreenName.PopularIndex]: undefined;
+	[EScreenName.PopularDetail]: undefined;
 };

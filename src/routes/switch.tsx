@@ -4,12 +4,12 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-
+import PopularTabRouteScreen from './popularTab';
 import TrendScreen from '@pages/trend';
-import PopularScreen from '@pages/popular';
 import FavoriteScreen from '@pages/favorite';
 import MeScreen from '@pages/me';
+
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import { EScreenName, RootStackParamList } from './route.d';
 
@@ -18,21 +18,25 @@ const { Navigator, Screen } = createMaterialBottomTabNavigator<
 	RootStackParamList
 >();
 
+const IconSize = 22;
+
 const SwitchRoutePage = () => {
 	return (
 		<Navigator
 			initialRouteName={EScreenName.Popular}
 			// 针对选中的tab的label的显隐的配置
 			labeled={true}
-			activeColor="#fff">
+			// 针对所有tab是否显示label,以及切换tab动效
+			// shifting={false}
+		>
 			<Screen
 				name={EScreenName.Popular}
-				component={PopularScreen}
+				component={PopularTabRouteScreen}
 				options={{
 					title: '最热',
 					tabBarColor: 'red',
 					tabBarIcon: ({ focused, color }) => (
-						<MaterialIcon name="whatshot" color={color} size={26} />
+						<MaterialIcon name="whatshot" color={color} size={IconSize} />
 					),
 				}}
 			/>
@@ -43,7 +47,7 @@ const SwitchRoutePage = () => {
 					title: '趋势',
 					tabBarColor: 'blue',
 					tabBarIcon: ({ focused, color }) => (
-						<IonIcon name="md-trending-up" color={color} size={26} />
+						<IonIcon name="md-trending-up" color={color} size={IconSize} />
 					),
 				}}
 			/>
@@ -54,7 +58,7 @@ const SwitchRoutePage = () => {
 					title: '收藏',
 					tabBarColor: 'orange',
 					tabBarIcon: ({ focused, color }) => (
-						<MaterialIcon name="favorite" color={color} size={26} />
+						<MaterialIcon name="favorite" color={color} size={IconSize} />
 					),
 				}}
 			/>
@@ -65,7 +69,7 @@ const SwitchRoutePage = () => {
 					title: '我',
 					tabBarColor: 'purple',
 					tabBarIcon: ({ focused, color }) => (
-						<Entypo name="user" color={color} size={26} />
+						<Entypo name="user" color={color} size={IconSize} />
 					),
 				}}
 			/>

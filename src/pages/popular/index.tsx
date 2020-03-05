@@ -10,8 +10,6 @@ import {
 } from 'react-native';
 import { inject, observer } from 'mobx-react';
 
-import CommonSafeTopComponent from '@components/common/CommonSafeTopComponent';
-
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RouteProp } from '@react-navigation/native';
 import { FileListType } from '@stores/popular/film';
@@ -58,38 +56,31 @@ const PopularPage: FC<PopularPagePropType> = props => {
 	};
 
 	const handlePress = () => {
-		navigation.jumpTo(EScreenName.Trend);
+		navigation.jumpTo(EScreenName.PopularDetail);
 	};
 
-	return (
-		<CommonSafeTopComponent>
-			{loading ? (
-				<ActivityIndicator />
-			) : (
-				<FlatList
-					style={Style.list}
-					data={list}
-					renderItem={({ item }) => (
-						<View style={Style.item}>
-							<Image
-								source={{ uri: item.posters.thumbnail }}
-								style={Style.image}
-							/>
-							<View style={Style.intro}>
-								<Text style={Style.title}>{item.title}</Text>
-								<Text style={Style.year}>{item.year}</Text>
-								<Button
-									title={route.name + ' | ' + route.key}
-									onPress={handlePress}
-								/>
-							</View>
-						</View>
-					)}
-					// 用于为给定的item生成一个不重复的key
-					keyExtractor={item => item.id}
-				/>
+	return loading ? (
+		<ActivityIndicator />
+	) : (
+		<FlatList
+			style={Style.list}
+			data={list}
+			renderItem={({ item }) => (
+				<View style={Style.item}>
+					<Image source={{ uri: item.posters.thumbnail }} style={Style.image} />
+					<View style={Style.intro}>
+						<Text style={Style.title}>{item.title}</Text>
+						<Text style={Style.year}>{item.year}</Text>
+						<Button
+							title={route.name + ' | ' + route.key}
+							onPress={handlePress}
+						/>
+					</View>
+				</View>
 			)}
-		</CommonSafeTopComponent>
+			// 用于为给定的item生成一个不重复的key
+			keyExtractor={item => item.id}
+		/>
 	);
 };
 
