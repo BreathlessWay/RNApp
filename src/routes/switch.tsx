@@ -1,17 +1,14 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import {
-	useNavigation,
-	CompositeNavigationProp,
-} from '@react-navigation/native';
 
 import HotScreen from '@pages/hot';
 import TrendScreen from '@pages/trend';
+import PopularScreen from '@pages/popular';
+import FavoriteScreen from '@pages/favorite';
+import MeScreen from '@pages/me';
 
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { EScreenName, RootStackParamList } from './route.d';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 // 当使用导航时自带了SafeAreaView
 const { Navigator, Screen } = createMaterialBottomTabNavigator<
@@ -19,26 +16,13 @@ const { Navigator, Screen } = createMaterialBottomTabNavigator<
 >();
 
 const SwitchRoutePage = () => {
-	const navigation = useNavigation<
-		BottomTabNavigationProp<RootStackParamList, EScreenName.Welcome>
-	>();
-
-	useEffect(() => {
-		const unsubscribe = navigation.addListener('tabPress', e => {
-			console.log(1);
-			e.preventDefault();
-		});
-
-		return unsubscribe;
-	}, [navigation]);
-
 	return (
-		<Navigator initialRouteName={EScreenName.Hot}>
+		<Navigator initialRouteName={EScreenName.Popular}>
 			<Screen
-				name={EScreenName.Hot}
-				component={HotScreen}
+				name={EScreenName.Popular}
+				component={PopularScreen}
 				options={{
-					title: '热门',
+					title: '流行',
 				}}
 			/>
 			<Screen
@@ -46,6 +30,20 @@ const SwitchRoutePage = () => {
 				component={TrendScreen}
 				options={{
 					title: '趋势',
+				}}
+			/>
+			<Screen
+				name={EScreenName.Favorite}
+				component={FavoriteScreen}
+				options={{
+					title: '关注',
+				}}
+			/>
+			<Screen
+				name={EScreenName.Me}
+				component={MeScreen}
+				options={{
+					title: '我',
 				}}
 			/>
 		</Navigator>

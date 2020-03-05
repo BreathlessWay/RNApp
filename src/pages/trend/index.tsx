@@ -2,12 +2,13 @@ import React, { FC, useEffect } from 'react';
 
 import { View, Text } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import CommonSafeTopComponent from '@components/common/CommonSafeTopComponent';
+
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Store } from '@/stores';
 
-import { StackNavigationProp } from '@react-navigation/stack';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RouteProp } from '@react-navigation/native';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 
@@ -17,26 +18,33 @@ export type UserPagePropType = {};
 
 const UserPage: FC<UserPagePropType> = () => {
 	const navigation = useNavigation<
-		StackNavigationProp<RootStackParamList, EScreenName.Trend>
+		BottomTabNavigationProp<RootStackParamList, EScreenName.Trend>
 	>();
 	const route = useRoute<RouteProp<RootStackParamList, EScreenName.Trend>>();
 
 	useEffect(() => {
 		const unsubscribe = navigation.addListener('focus', () => {
 			console.log('focus');
-			// Screen was focused
-			// Do something
+		});
+
+		return unsubscribe;
+	}, [navigation]);
+
+	useEffect(() => {
+		const unsubscribe = navigation.addListener('tabPress', e => {
+			// e.preventDefault()
+			console.log(1);
 		});
 
 		return unsubscribe;
 	}, [navigation]);
 
 	return (
-		<SafeAreaView>
+		<CommonSafeTopComponent>
 			<View>
 				<Text>User页面</Text>
 			</View>
-		</SafeAreaView>
+		</CommonSafeTopComponent>
 	);
 };
 

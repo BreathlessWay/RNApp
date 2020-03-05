@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import { inject, observer } from 'mobx-react';
 
+import CommonSafeTopComponent from '@components/common/CommonSafeTopComponent';
+
 import { request } from '@utils/request';
 
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
@@ -30,6 +32,7 @@ export type HotPagePropType = {
 
 const HotPage: FC<HotPagePropType> = props => {
 	const [list, setList] = useState<FileListType>([]);
+
 	const {
 		route,
 		navigation,
@@ -55,13 +58,11 @@ const HotPage: FC<HotPagePropType> = props => {
 	};
 
 	const handlePress = () => {
-		navigation.jumpTo(EScreenName.Trend, {
-			_id: 'user',
-		});
+		navigation.jumpTo(EScreenName.Trend);
 	};
 
 	return (
-		<View>
+		<CommonSafeTopComponent>
 			{loading ? (
 				<ActivityIndicator />
 			) : (
@@ -88,7 +89,7 @@ const HotPage: FC<HotPagePropType> = props => {
 					keyExtractor={item => item.id}
 				/>
 			)}
-		</View>
+		</CommonSafeTopComponent>
 	);
 };
 
