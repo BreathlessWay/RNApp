@@ -18,6 +18,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* RNAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RNAppTests.m */; };
 		3EB1FECC55F0097CA4713965 /* libPods-RNApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 386B3D51F9AC934E969AF025 /* libPods-RNApp-tvOS.a */; };
+		67E81C0C241131890023A2EE /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 67E81C0B241131880023A2EE /* Fonts */; };
 		8C9B221846812E33F7B39ADC /* libPods-RNApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A77E069F7FD8F2DFC39D24A9 /* libPods-RNApp-tvOSTests.a */; };
 		ACDA820FDFE6E39B4626235E /* libPods-RNAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA93601D38EFB0294B592812 /* libPods-RNAppTests.a */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		2D02E47B1E0B4A5D006451C7 /* RNApp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RNApp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* RNApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RNApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		386B3D51F9AC934E969AF025 /* libPods-RNApp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNApp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67E81C0B241131880023A2EE /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		A77E069F7FD8F2DFC39D24A9 /* libPods-RNApp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNApp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C745185880A8252A0B55937C /* Pods-RNAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNAppTests.debug.xcconfig"; path = "Target Support Files/Pods-RNAppTests/Pods-RNAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D6DD647FD8BE48A81B5CB45F /* Pods-RNApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-RNApp-tvOSTests/Pods-RNApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,12 +161,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				67E81C0B241131880023A2EE /* Fonts */,
 				13B07FAE1A68108700A75B9A /* RNApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* RNAppTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				AD3D6AC5E49E473862F2ADD4 /* Pods */,
+				9E2B2DEB520246FC82581EFA /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -182,6 +186,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9E2B2DEB520246FC82581EFA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		AD3D6AC5E49E473862F2ADD4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,7 +205,6 @@
 				C745185880A8252A0B55937C /* Pods-RNAppTests.debug.xcconfig */,
 				1B5AF9A46319786839BE9081 /* Pods-RNAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -286,7 +296,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -309,6 +319,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -337,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67E81C0C241131890023A2EE /* Fonts in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);

@@ -3,7 +3,7 @@ module.exports = {
 	plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]],
 	env: {
 		production: {
-			plugins: [['transform-remove-console']],
+			plugins: [['transform-remove-console'], 'react-native-paper/babel'],
 		},
 	},
 };

@@ -12,3 +12,27 @@
    - Screen and window dimensions are different on android
    - window: reports width/height without the soft menu bar
    - screen: reports entire screen's width/height
+5. 使用`react-native-vector-icons`出现`Unrecognized font family 'Material Icons'`
+   - 使用 Xcode 打开项目, 在根目录下右击选择`Add file to <项目名称>`, 找到`node_modules/react-native-vector-icons/Fonts`
+   - 在 xcode 的 Info.plist 文件中,加入
+     ```
+     <key>UIAppFonts</key>
+     <array>
+       <string>AntDesign.ttf</string>
+       <string>Entypo.ttf</string>
+       <string>EvilIcons.ttf</string>
+       <string>Feather.ttf</string>
+       <string>FontAwesome.ttf</string>
+       <string>FontAwesome5_Brands.ttf</string>
+       <string>FontAwesome5_Regular.ttf</string>
+       <string>FontAwesome5_Solid.ttf</string>
+       <string>Foundation.ttf</string>
+       <string>Ionicons.ttf</string>
+       <string>MaterialIcons.ttf</string>
+       <string>MaterialCommunityIcons.ttf</string>
+       <string>SimpleLineIcons.ttf</string>
+       <string>Octicons.ttf</string>
+       <string>Zocial.ttf</string>
+     </array>
+     ```
+   - 重新`run ios`
