@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 
-import { FlatList } from 'react-native';
+import { FlatList, RefreshControl } from 'react-native';
 import { inject, observer } from 'mobx-react';
 
 import PopularListItem from '@components/business/PopularListItem';
@@ -14,6 +14,7 @@ import { Store } from '@/stores';
 import PopularStore from '@stores/popular';
 
 import Style from './style';
+import ListFooterComponent from '@components/common/ListFooterComponent';
 
 export type PopularPageStorePropType = {
 	popularStore: PopularStore;
@@ -28,7 +29,7 @@ export type PopularPagePropType = {
 const PopularPage: FC<PopularPagePropType &
 	PopularPageStorePropType> = props => {
 	const {
-		popularStore: { getData, popular },
+		popularStore: { getData, popular, refreshing, hasMore, loadMore, empty },
 		tab,
 	} = props;
 
@@ -36,12 +37,40 @@ const PopularPage: FC<PopularPagePropType &
 		getData({ refreshing: true, tab });
 	}, []);
 
+	// const handleEndReached = () => {
+	// 	if (empty || !hasMore) {
+	// 		return;
+	// 	}
+	// };
+
+	const handleRefresh = () => {
+		getData({ refreshing: true, tab });
+	};
+
 	return (
 		<FlatList
+			refreshControl={
+				<RefreshControl
+					// iOS
+					title="Loading..."
+					titleColor="green"
+					tintColor="green"
+					// Android
+					colors={['green']}
+					onRefresh={handleRefresh}
+					refreshing={refreshing}
+				/>
+			}
 			data={popular[tab]?.items ?? []}
 			keyExtractor={item => String(item.id)}
 			renderItem={({ item }) => <PopularListItem {...item} />}
-			ListEmptyComponent={<EmptyComponent />}
+			ListEmptyComponent={refreshing ? null : <EmptyComponent />}
+			// ListFooterComponent={
+			// 	empty ? null : (
+			// 		<ListFooterComponent hasMore={hasMore} loadMore={loadMore} />
+			// 	)
+			// }
+			// onEndReached={handleEndReached}
 		/>
 	);
 };

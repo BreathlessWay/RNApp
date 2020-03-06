@@ -48,7 +48,13 @@ export default class PopularStore {
 			runInAction(() => {
 				this.popular[this.tab] = result;
 			});
-		} catch (e) {}
+		} catch (e) {
+		} finally {
+			runInAction(() => {
+				this.refreshing = false;
+				this.loadMore = false;
+			});
+		}
 	}
 
 	@computed
@@ -62,7 +68,7 @@ export default class PopularStore {
 	@computed
 	get empty(): boolean {
 		if (this.popular) {
-			return this.popular[this.tab].total_count === 0;
+			return (this.popular[this.tab]?.total_count ?? 0) === 0;
 		}
 		return true;
 	}
@@ -71,7 +77,7 @@ export default class PopularStore {
 	get hasMore(): boolean {
 		if (this.popular) {
 			return (
-				this.popular[this.tab].total_count > this.pageIndex * this.pageSize
+				this.popular[this.tab]?.total_count > this.pageIndex * this.pageSize
 			);
 		}
 
