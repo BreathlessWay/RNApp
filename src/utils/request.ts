@@ -1,4 +1,5 @@
 import * as Qs from 'qs';
+import { Alert } from 'react-native';
 
 export enum EMethod {
 	GET = 'GET',
@@ -7,22 +8,29 @@ export enum EMethod {
 	'PUT' = 'PUT',
 }
 
-const baseUrl = 'https://raw.githubusercontent.com';
+const baseUrl = 'https://api.github.com/search/repositories';
 
 export const request = async ({
 	url,
 	method,
 	body,
 	headers,
+	customError = false,
 }: {
 	url: string;
 	method?: EMethod;
 	body?: BodyInit_;
 	headers?: Headers;
+	customError?: boolean;
 }) => {
 	try {
-		let _url = baseUrl + url,
+		let _url = url,
 			_method = method || EMethod.GET;
+
+		if (!url.startsWith('http')) {
+			_url = baseUrl + url;
+		}
+
 		const options: any = {
 			method: _method,
 			headers: {
@@ -48,7 +56,9 @@ export const request = async ({
 			throw new Error(JSON.stringify(response));
 		}
 	} catch (e) {
-		console.log(e);
+		if (!customError) {
+			Alert.alert(e.message);
+		}
 		throw e;
 	}
 };

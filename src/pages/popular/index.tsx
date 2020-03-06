@@ -42,14 +42,16 @@ const PopularPage: FC<PopularPagePropType> = props => {
 	}, []);
 
 	const getData = async () => {
+		// `/search/repositories?q=${keyword}`
 		try {
 			setLoading(true);
 			const data = await request({
-				url: '/facebook/react-native/0.51-stable/docs/MoviesExample.json',
+				url:
+					'https://raw.githubusercontent.com/facebook/react-native/0.51-stable/docs/MoviesExample.json',
 			});
 			setList(data.movies);
 		} catch (e) {
-			console.log(e);
+			console.error(e);
 		} finally {
 			setLoading(false);
 		}
