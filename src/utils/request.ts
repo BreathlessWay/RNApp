@@ -49,7 +49,6 @@ export const request = async ({
 				options.body = _body;
 			}
 		}
-		console.log(_url);
 		const response = await fetch(_url, options);
 		if (response.ok) {
 			return response.json();

@@ -46,6 +46,7 @@ const PopularTabRoutePage = () => {
 								style={{
 									fontSize: 13,
 									marginHorizontal: 6,
+									color: '#fff',
 								}}>
 								{tab}
 							</Text>

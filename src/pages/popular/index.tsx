@@ -37,11 +37,13 @@ const PopularPage: FC<PopularPagePropType &
 		getData({ refreshing: true, tab });
 	}, []);
 
-	// const handleEndReached = () => {
-	// 	if (empty || !hasMore) {
-	// 		return;
-	// 	}
-	// };
+	const handleEndReached = () => {
+		console.log('handleEndReached');
+		if (empty || !hasMore || loadMore) {
+			return;
+		}
+		getData({ loadMore: true, tab });
+	};
 
 	const handleRefresh = () => {
 		getData({ refreshing: true, tab });
@@ -65,12 +67,13 @@ const PopularPage: FC<PopularPagePropType &
 			keyExtractor={item => String(item.id)}
 			renderItem={({ item }) => <PopularListItem {...item} />}
 			ListEmptyComponent={refreshing ? null : <EmptyComponent />}
-			// ListFooterComponent={
-			// 	empty ? null : (
-			// 		<ListFooterComponent hasMore={hasMore} loadMore={loadMore} />
-			// 	)
-			// }
-			// onEndReached={handleEndReached}
+			ListFooterComponent={
+				empty ? null : (
+					<ListFooterComponent hasMore={hasMore} loadMore={loadMore} />
+				)
+			}
+			onEndReached={handleEndReached}
+			onEndReachedThreshold={0.5}
 		/>
 	);
 };

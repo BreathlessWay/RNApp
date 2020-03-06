@@ -42,11 +42,19 @@ export default class PopularStore {
 			if (refreshing) {
 				this.pageIndex = 1;
 			}
+			if (loadMore) {
+				this.pageIndex++;
+			}
 			const result = await fetchData({
 				url: `/search/repositories?${this.params}`,
 			});
 			runInAction(() => {
-				this.popular[this.tab] = result;
+				const _items = this.popular[this.tab]?.items ?? [];
+				this.popular[this.tab] = {
+					total_count: result.total_count,
+					incomplete_results: result.incomplete_results,
+					items: _items.concat(result.items),
+				};
 			});
 		} catch (e) {
 		} finally {
@@ -62,6 +70,7 @@ export default class PopularStore {
 		return Qs.stringify({
 			q: this.tab,
 			sort: 'stars', // stars, forks, or help-wanted-issues
+			page: this.pageIndex,
 		});
 	}
 
@@ -81,6 +90,6 @@ export default class PopularStore {
 			);
 		}
 
-		return true;
+		return false;
 	}
 }
