@@ -1,6 +1,5 @@
 import { Alert, AsyncStorage } from 'react-native';
 
-import * as Qs from 'qs';
 import { request } from '@utils/request';
 
 import { MAX_EXPIRE_CACHE } from '@config/constant';
@@ -35,40 +34,47 @@ export const wrapData = (data: any): DataType => {
 };
 
 export const saveData = async ({ url, value }: { url: string; value: any }) => {
-	await AsyncStorage.setItem(url, Qs.stringify(wrapData(value)));
+	await AsyncStorage.setItem(url, JSON.stringify(wrapData(value)));
 };
 
-export const fetchLocalData = async (url: string): Promise<DataType | null> => {
-	const data = await AsyncStorage.getItem(url);
-	if (data) {
-		return Qs.parse(data);
+export const fetchLocalData = async ({
+	url,
+}: {
+	url: string;
+}): Promise<DataType | null> => {
+	const result = await AsyncStorage.getItem(url);
+	if (result) {
+		return JSON.parse(result);
 	} else {
 		return null;
 	}
 };
 
-export const fetchNetData = async (url: string) => {
+export const fetchNetData = async ({ url }: { url: string }) => {
+	console.log('from net');
 	try {
-		const data = await request({ url });
-		await saveData(data);
-		return data;
+		const result = await request({ url });
+		await saveData({ url, value: result });
+		return result;
 	} catch (e) {
 		Alert.alert(e.message);
 	}
 };
 
-export const fetchData = async (url: string) => {
-	let data;
+export const fetchData = async ({ url }: { url: string }) => {
+	let result;
 	try {
-		data = await fetchLocalData(url);
-		if (data && validData(data.timestamp)) {
+		result = await fetchLocalData({ url });
+		if (result && validData(result.timestamp)) {
+			console.log('from cache');
+			result = result.data;
 		} else {
-			data = await fetchNetData(url);
+			result = await fetchNetData({ url });
 		}
 	} catch (e) {
 		console.error(e);
-		data = await fetchNetData(url);
+		result = await fetchNetData({ url });
 	}
 
-	return data;
+	return result;
 };

@@ -21,6 +21,7 @@ import PopularStore from '@stores/popular';
 import { request } from '@utils/request';
 
 import Style from './style';
+import { fetchData } from '@utils/dataStore';
 
 export type PopularPagePropType = {
 	popularStore: PopularStore;
@@ -45,7 +46,7 @@ const PopularPage: FC<PopularPagePropType> = props => {
 		// `/search/repositories?q=${keyword}`
 		try {
 			setLoading(true);
-			const data = await request({
+			const data = await fetchData({
 				url:
 					'https://raw.githubusercontent.com/facebook/react-native/0.51-stable/docs/MoviesExample.json',
 			});
