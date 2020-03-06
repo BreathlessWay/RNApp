@@ -31,6 +31,7 @@ export const request = async ({
 				// 'Content-Type': 'application/x-www-form-urlencoded',
 				...headers,
 			},
+			credentials: 'include',
 		};
 		if (body) {
 			const _body = Qs.stringify(body);
@@ -41,8 +42,13 @@ export const request = async ({
 			}
 		}
 		const response = await fetch(_url, options);
-		return response.json();
+		if (response.ok) {
+			return response.json();
+		} else {
+			throw new Error(JSON.stringify(response));
+		}
 	} catch (e) {
+		console.log(e);
 		throw e;
 	}
 };

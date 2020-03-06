@@ -37,3 +37,9 @@
      ```
    - 重新`run ios`
 6. 用 mobx-persist 进行 hydrate 的 store 必须要有 persist，不然会报错
+7. fetch 对于 404 或 500 不会 reject，而是 resolve，但是在 resolve 中会标记 ok 为 false，且不会默认携带 cookie，需要配置 credentials
+   - omit: 从不发送 cookies.
+   - same-origin: 只有当 URL 与响应脚本同源才发送 cookies、 HTTP Basic authentication 等验证信息.(浏览器默认值,在旧版本浏览器，例如 safari 11 依旧是 omit，safari 12 已更改)
+   - include: 不论是不是跨域的请求,总是发送请求资源域在本地的 cookies、 HTTP Basic authentication 等验证信息.
+   - 默认值是：同源的时候发送，不同源的时候不发送。并且这个默认值在不同的浏览器中同一浏览器不同版本中都不同，Safari 11 是完全不发送，Safari 12 是现在的默认值。
+8. [react-native-vector-icons 的图标搜索网址](https://oblador.github.io/react-native-vector-icons/)
