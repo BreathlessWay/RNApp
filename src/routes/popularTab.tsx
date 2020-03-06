@@ -9,24 +9,18 @@ import { useSafeArea } from 'react-native-safe-area-context';
 
 import { RootStackParamList } from '@routes/route.d';
 
+import { TABS_LIST } from '@config/constant';
+
 const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
 >();
-
-const tabs = [
-	'JavaScript',
-	'Typescript',
-	'Node',
-	'Vue',
-	'React',
-	'React Native',
-];
 
 const PopularTabRoutePage = () => {
 	const insets = useSafeArea();
 
 	return (
 		<Navigator
+			initialRouteName={TABS_LIST[0] as any}
 			tabBarOptions={{
 				scrollEnabled: true,
 				style: {
@@ -39,12 +33,13 @@ const PopularTabRoutePage = () => {
 			}}
 			style={{
 				paddingTop: insets.top,
-			}}>
-			{tabs.map((tab, index) => (
+			}}
+			lazy={true}>
+			{TABS_LIST.map((tab, index) => (
 				<Screen
 					key={index}
 					name={tab as any}
-					component={PopularScreen}
+					children={props => <PopularScreen {...props} tab={tab} />}
 					options={{
 						tabBarLabel: () => (
 							<Text

@@ -8,7 +8,7 @@ export enum EMethod {
 	'PUT' = 'PUT',
 }
 
-const baseUrl = 'https://api.github.com/search/repositories';
+const baseUrl = 'https://api.github.com';
 
 export const request = async ({
 	url,
@@ -34,7 +34,7 @@ export const request = async ({
 		const options: any = {
 			method: _method,
 			headers: {
-				Accept: 'application/json',
+				Accept: `application/vnd.github.v3+json`,
 				'Content-Type': 'application/json',
 				// 'Content-Type': 'application/x-www-form-urlencoded',
 				...headers,
@@ -49,6 +49,7 @@ export const request = async ({
 				options.body = _body;
 			}
 		}
+		console.log(_url);
 		const response = await fetch(_url, options);
 		if (response.ok) {
 			return response.json();
