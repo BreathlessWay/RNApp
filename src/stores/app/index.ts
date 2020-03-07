@@ -1,7 +1,9 @@
 import { action, observable } from 'mobx';
 import { persist } from 'mobx-persist';
 
-import { NavigationProp, NavigationState } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { RootStackParamList } from '@routes/route.d';
 
 export default class AppStore {
 	@persist
@@ -9,22 +11,10 @@ export default class AppStore {
 	theme = '#fff';
 
 	@observable
-	stackNavigation: NavigationProp<
-		Record<string, object | undefined>,
-		string,
-		NavigationState,
-		{},
-		{}
-	> | null = null;
+	stackNavigation: StackNavigationProp<RootStackParamList> | null = null;
 
 	@observable
-	switchNavigation: NavigationProp<
-		Record<string, object | undefined>,
-		string,
-		NavigationState,
-		{},
-		{}
-	> | null = null;
+	switchNavigation: BottomTabNavigationProp<RootStackParamList> | null = null;
 
 	@action.bound
 	setTheme(theme: string) {
@@ -32,28 +22,12 @@ export default class AppStore {
 	}
 
 	@action.bound
-	setStackNavigation(
-		navigation: NavigationProp<
-			Record<string, object | undefined>,
-			string,
-			NavigationState,
-			{},
-			{}
-		>,
-	) {
+	setStackNavigation(navigation: StackNavigationProp<RootStackParamList>) {
 		this.stackNavigation = navigation;
 	}
 
 	@action.bound
-	setSwitchNavigation(
-		navigation: NavigationProp<
-			Record<string, object | undefined>,
-			string,
-			NavigationState,
-			{},
-			{}
-		>,
-	) {
+	setSwitchNavigation(navigation: BottomTabNavigationProp<RootStackParamList>) {
 		this.switchNavigation = navigation;
 	}
 }

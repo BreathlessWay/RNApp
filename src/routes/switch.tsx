@@ -14,6 +14,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { useNavigation } from '@react-navigation/native';
 import { EScreenName, RootStackParamList } from './route.d';
 import { Store } from '@/stores';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 // 当使用导航时自带了SafeAreaView
 const { Navigator, Screen } = createMaterialBottomTabNavigator<
@@ -27,7 +28,7 @@ export type SwitchRoutePagePropType = Pick<Store, 'appStore'>;
 const SwitchRoutePage: FC<SwitchRoutePagePropType> = props => {
 	const { theme, setStackNavigation } = props.appStore;
 
-	const navigation = useNavigation();
+	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
 	useEffect(() => {
 		setStackNavigation(navigation);

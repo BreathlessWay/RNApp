@@ -8,7 +8,7 @@ export enum EScreenName {
 
 	Popular = 'Popular',
 	PopularIndex = 'PopularIndex',
-	PopularDetail = 'PopularDetail',
+	Detail = 'Detail',
 }
 
 export type RootStackParamList = {
@@ -21,7 +21,7 @@ export type RootStackParamList = {
 
 	[EScreenName.Popular]: undefined;
 	[EScreenName.PopularIndex]: undefined;
-	[EScreenName.PopularDetail]: {
+	[EScreenName.Detail]: {
 		id: number;
 	};
 };

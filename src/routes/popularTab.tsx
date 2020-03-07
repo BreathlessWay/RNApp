@@ -14,6 +14,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 
 import { TABS_LIST } from '@config/constant';
+import { CustomHeaderTitle } from '@components/common/NavBarComponent';
 
 const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
@@ -23,16 +24,14 @@ export type PopularTabRoutePagePropType = Pick<Store, 'appStore'>;
 
 const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 	const navigation = useNavigation<
-		BottomTabNavigationProp<RootStackParamList, EScreenName.Popular>
+		BottomTabNavigationProp<RootStackParamList>
 	>();
 
 	const setHeader = () => {
 		props.appStore.stackNavigation?.setOptions({
-			headerTitle: () => (
-				<View>
-					<Text>1</Text>
-				</View>
-			),
+			headerTitle: () => <CustomHeaderTitle title="最热" />,
+			headerLeft: () => null,
+			headerRight: () => null,
 		});
 	};
 

@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import WelcomeScreen from '@pages/welcome';
 import SwitchRoutePage from './switch';
+import DetailScreen from '@pages/detail';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -32,11 +33,15 @@ const RootRoutePage = () => {
 						component={SwitchRoutePage}
 						options={{
 							headerStyle: {
-								backgroundColor: '#3754f3',
+								backgroundColor: '#00d3f3',
 							},
-							headerTitle: () => null,
-							headerRight: () => null,
-							headerLeft: () => null,
+						}}
+					/>
+					<Screen
+						name={EScreenName.Detail}
+						component={DetailScreen}
+						options={{
+							headerShown: false,
 						}}
 					/>
 				</Navigator>

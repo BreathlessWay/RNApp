@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 
 import { View, Text, StatusBar } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import CommonSafeTopComponent from '@components/common/CommonSafeTopComponent';
+import { CustomHeaderTitle } from '@components/common/NavBarComponent';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
 
@@ -22,13 +22,15 @@ const UserPage: FC<UserPagePropType> = props => {
 	>();
 	const route = useRoute<RouteProp<RootStackParamList, EScreenName.Trend>>();
 
-	props.appStore.stackNavigation?.setOptions({
-		headerTitle: () => (
-			<View>
-				<Text>3</Text>
-			</View>
-		),
-	});
+	const setHeader = () => {
+		props.appStore.stackNavigation?.setOptions({
+			headerTitle: () => <CustomHeaderTitle title="趋势" />,
+			headerLeft: () => null,
+			headerRight: () => null,
+		});
+	};
+
+	setHeader();
 
 	useEffect(() => {
 		const unsubscribe = navigation.addListener('focus', () => {
@@ -41,13 +43,7 @@ const UserPage: FC<UserPagePropType> = props => {
 	useEffect(() => {
 		const unsubscribe = navigation.addListener('tabPress', e => {
 			// e.preventDefault()
-			props.appStore.stackNavigation?.setOptions({
-				headerTitle: () => (
-					<View>
-						<Text>3</Text>
-					</View>
-				),
-			});
+			setHeader();
 		});
 
 		return unsubscribe;
@@ -58,12 +54,9 @@ const UserPage: FC<UserPagePropType> = props => {
 	};
 
 	return (
-		<CommonSafeTopComponent>
-			<View>
-				<StatusBar />
-				<Text onPress={handlePress}>修改主题色</Text>
-			</View>
-		</CommonSafeTopComponent>
+		<View>
+			<Text onPress={handlePress}>修改主题色</Text>
+		</View>
 	);
 };
 

@@ -16,7 +16,7 @@ const PopularListItem: FC<PopularItemType> = props => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
 	const handlePress = () => {
-		navigation.navigate(EScreenName.PopularDetail, {
+		navigation.navigate(EScreenName.Detail, {
 			id: props.id,
 		});
 	};
