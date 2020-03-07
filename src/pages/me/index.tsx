@@ -7,7 +7,7 @@ import { Text } from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 
-import { setHeader } from '@components/business/NavHeader';
+import { setHeader, setHeaderParams } from '@components/business/NavHeader';
 
 import { Store } from '@/stores';
 
@@ -20,11 +20,17 @@ const MePage: FC<MePagePropType> = props => {
 		appStore: { stackNavigation },
 	} = props;
 
-	const headerOptions = {
+	const handlePressLeft = () => {};
+
+	const handlePressRight = () => {};
+
+	const headerOptions: setHeaderParams = {
 		navigation: stackNavigation,
 		title: '我的',
-		left: <IonIcon name="ios-arrow-back" size={26} />,
-		right: <Feather name="search" size={22} />,
+		left: <IonIcon name="ios-arrow-back" size={26} color="#fff" />,
+		right: <Feather name="search" size={22} color="#fff" />,
+		onPressLeft: handlePressLeft,
+		onPressRight: handlePressRight,
 	};
 
 	useFocusEffect(

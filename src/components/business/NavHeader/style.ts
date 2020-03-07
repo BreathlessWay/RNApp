@@ -6,6 +6,14 @@ const Style = StyleSheet.create({
 		fontWeight: 'bold',
 		fontSize: 18,
 	},
+	left: {
+		padding: 5,
+		marginLeft: 8,
+	},
+	right: {
+		padding: 5,
+		marginRight: 8,
+	},
 });
 
 export default Style;

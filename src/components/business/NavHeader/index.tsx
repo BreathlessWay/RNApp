@@ -6,6 +6,7 @@ import {
 	TouchableOpacity,
 	GestureResponderEvent,
 	Text,
+	ViewStyle,
 } from 'react-native';
 
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -36,25 +37,43 @@ export const CustomHeaderTitle: FC<CustomHeaderTitlePropType> = props => {
 	);
 };
 
+export type setHeaderParams = {
+	navigation: StackNavigationProp<RootStackParamList> | null;
+	title?: string;
+	left?: JSX.Element;
+	right?: JSX.Element;
+	header?: JSX.Element;
+	onPressLeft?: (event: GestureResponderEvent) => void;
+	onPressRight?: (event: GestureResponderEvent) => void;
+	titleStyle?: TextStyle;
+	leftStyle?: ViewStyle;
+	rightStyle?: ViewStyle;
+};
+
 export const setHeader = ({
 	navigation,
 	title,
 	left,
 	right,
 	header,
+	onPressLeft,
+	onPressRight,
 	titleStyle,
-	handleLeftPress,
-	handleRightPress,
-}: {
-	navigation: StackNavigationProp<RootStackParamList> | null;
-	title?: string;
-	left?: JSX.Element;
-	right?: JSX.Element;
-	header?: JSX.Element;
-	titleStyle?: TextStyle;
-	handleLeftPress?: (event: GestureResponderEvent) => void;
-	handleRightPress?: (event: GestureResponderEvent) => void;
-}) => {
+	leftStyle,
+	rightStyle,
+}: setHeaderParams) => {
+	let _leftStyle = Style.left as ViewStyle;
+
+	if (leftStyle) {
+		_leftStyle = { ...Style.left, ...leftStyle };
+	}
+
+	let _rightStyle = Style.right as ViewStyle;
+
+	if (leftStyle) {
+		_rightStyle = { ...Style.left, ...rightStyle };
+	}
+
 	if (navigation) {
 		navigation.setOptions({
 			headerTitle: () =>
@@ -65,14 +84,14 @@ export const setHeader = ({
 				),
 			headerLeft: () =>
 				left ? (
-					<TouchableOpacity onPress={handleLeftPress}>
-						<View>{left}</View>
+					<TouchableOpacity onPress={onPressLeft}>
+						<View style={_leftStyle}>{left}</View>
 					</TouchableOpacity>
 				) : null,
 			headerRight: () =>
 				right ? (
-					<TouchableOpacity onPress={handleRightPress}>
-						<View>{right}</View>
+					<TouchableOpacity onPress={onPressRight}>
+						<View style={_rightStyle}>{right}</View>
 					</TouchableOpacity>
 				) : null,
 		});
