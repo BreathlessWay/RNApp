@@ -13,12 +13,16 @@ import { EScreenName, RootStackParamList } from '@routes/route.d';
 
 import Style from './style';
 
-const ReposListItem: FC<ReposItemType> = props => {
+export type ReposListItemPropType = {} & ReposItemType;
+
+const ReposListItem: FC<ReposListItemPropType> = props => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
+	const { children, ...rest } = props;
 
 	const handlePress = () => {
 		navigation.navigate(EScreenName.Detail, {
-			id: props.id,
+			item: rest,
 		});
 	};
 

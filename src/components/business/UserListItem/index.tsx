@@ -18,9 +18,11 @@ export type UserListItemPropType = TrendUserItemType;
 const UserListItem: FC<UserListItemPropType> = props => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
+	const { children, ...rest } = props;
+
 	const handlePress = () => {
 		navigation.navigate(EScreenName.Detail, {
-			id: props.id,
+			item: rest,
 		});
 	};
 

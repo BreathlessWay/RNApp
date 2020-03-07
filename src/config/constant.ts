@@ -42,3 +42,5 @@ export const TREND_TABS_LIST = [
 ];
 
 export const HEADER_THEME_COLOR = '#00d3f3';
+
+export const PREFIX_URL = 'https://github.com/';

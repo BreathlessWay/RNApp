@@ -18,9 +18,11 @@ export type TrendingListItemPropType = TrendingItemType;
 const TrendingListItem: FC<TrendingListItemPropType> = props => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
+	const { children, ...rest } = props;
+
 	const handlePress = () => {
 		navigation.navigate(EScreenName.Detail, {
-			id: 1,
+			item: rest,
 		});
 	};
 

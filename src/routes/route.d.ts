@@ -23,6 +23,6 @@ export type RootStackParamList = {
 	[EScreenName.Popular]: undefined;
 	[EScreenName.PopularIndex]: undefined;
 	[EScreenName.Detail]: {
-		id: number;
+		item: any;
 	};
 };
