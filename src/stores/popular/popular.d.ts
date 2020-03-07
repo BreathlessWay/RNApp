@@ -1,4 +1,4 @@
-export type PopularItemType = {
+export type ReposItemType = {
 	id: number;
 	node_id: string;
 	name: string;
@@ -36,7 +36,8 @@ export type PopularItemType = {
 export type PopularListType = {
 	total_count: number;
 	incomplete_results: boolean;
-	items: Array<PopularItemType>;
+	items: Array<ReposItemType>;
+	pageIndex: number;
 };
 
 export type PopularType = {

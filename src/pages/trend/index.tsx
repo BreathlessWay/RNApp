@@ -1,34 +1,34 @@
-import React, { FC, useCallback } from 'react';
-
-import {
-	useNavigation,
-	useRoute,
-	useFocusEffect,
-} from '@react-navigation/native';
-
-import { View, Text } from 'react-native';
+import React, { FC, useCallback, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
+
+import { useFocusEffect } from '@react-navigation/native';
+
+import { FlatList, RefreshControl } from 'react-native';
+
+import ReposListItem from '@components/business/ReposListItem';
+import EmptyComponent from '@components/common/EmptyComponent';
+import ListFooterComponent from '@components/common/ListFooterComponent';
 
 import { setHeader } from '@components/business/NavHeader';
 
 import { Store } from '@/stores';
 
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { RouteProp } from '@react-navigation/native';
-import { EScreenName, RootStackParamList } from '@routes/route.d';
+import { ETrendTab } from '@config/constant';
 
 import Style from './style';
+import TrendListItem from '@components/business/TrendListItem';
 
-export type TrendPagePropType = Pick<Store, 'appStore'>;
+export type TrendPageStorePropType = Pick<Store, 'appStore' | 'trendStore'>;
 
-const TrendPage: FC<TrendPagePropType> = props => {
-	const navigation = useNavigation<
-		BottomTabNavigationProp<RootStackParamList, EScreenName.Trend>
-	>();
-	const route = useRoute<RouteProp<RootStackParamList, EScreenName.Trend>>();
+export type TrendPagePropType = {
+	tab: ETrendTab;
+};
 
+const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 	const {
+		tab,
 		appStore: { stackNavigation },
+		trendStore: { getList, trending, empty, hasMore, loadMore, refreshing },
 	} = props;
 
 	const headerOptions = {
@@ -42,19 +42,53 @@ const TrendPage: FC<TrendPagePropType> = props => {
 		}, [stackNavigation]),
 	);
 
-	const handlePress = () => {
-		props.appStore.setTheme('#000');
+	useEffect(() => {
+		getList({ refreshing: true, tab });
+	}, [tab]);
+
+	const handleEndReached = () => {
+		if (empty || !hasMore || loadMore) {
+			return;
+		}
+		getList({ loadMore: true, tab });
+	};
+
+	const handleRefresh = () => {
+		getList({ refreshing: true, tab });
 	};
 
 	return (
-		<View>
-			<Text onPress={handlePress}>修改主题色</Text>
-		</View>
+		<FlatList
+			refreshControl={
+				<RefreshControl
+					// iOS
+					title="Loading..."
+					titleColor="green"
+					tintColor="green"
+					// Android
+					colors={['green']}
+					onRefresh={handleRefresh}
+					refreshing={refreshing}
+				/>
+			}
+			data={trending[tab]?.list ?? []}
+			keyExtractor={item => String(item.id)}
+			renderItem={({ item }) => <TrendListItem tab={tab} item={item} />}
+			ListEmptyComponent={refreshing ? null : <EmptyComponent />}
+			ListFooterComponent={
+				empty ? null : (
+					<ListFooterComponent hasMore={hasMore} loadMore={loadMore} />
+				)
+			}
+			onEndReached={handleEndReached}
+			onEndReachedThreshold={0.5}
+		/>
 	);
 };
 
 const TrendScreen = (inject((store: Store) => ({
 	appStore: store.appStore,
-}))(observer(TrendPage)) as unknown) as FC;
+	trendStore: store.trendStore,
+}))(observer(TrendPage)) as unknown) as FC<TrendPagePropType>;
 
 export default TrendScreen;

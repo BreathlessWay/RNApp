@@ -4,10 +4,11 @@ export enum EScreenName {
 	Switch = 'Switch',
 	Me = 'Me',
 	Favorite = 'Favorite',
+
 	Trend = 'Trend',
 
 	Popular = 'Popular',
-	PopularIndex = 'PopularIndex',
+
 	Detail = 'Detail',
 }
 

@@ -51,7 +51,7 @@ export const fetchLocalData = async ({
 };
 
 export const fetchNetData = async ({ url }: { url: string }) => {
-	console.log('from net');
+	console.log('from net', url);
 	try {
 		const result = await request({ url });
 		await saveData({ url, value: result });

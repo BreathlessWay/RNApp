@@ -15,7 +15,8 @@ import { Store } from '@/stores';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from '@routes/route.d';
 
-import { POPULAR_TABS_LIST } from '@config/constant';
+import { TREND_TABS_LIST } from '@config/constant';
+import TrendScreen from '@pages/trend';
 
 const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
@@ -23,20 +24,20 @@ const { Navigator, Screen } = createMaterialTopTabNavigator<
 
 export type PopularTabRoutePagePropType = Pick<Store, 'appStore'>;
 
-const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
+const TrendTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 	const navigation = useNavigation<
 		BottomTabNavigationProp<RootStackParamList>
 	>();
 
-	const { stackNavigation, setPopularSwitchNavigation } = props.appStore;
+	const { stackNavigation, setTrendSwitchNavigation } = props.appStore;
 
 	const headerOptions = {
 		navigation: stackNavigation,
-		title: '最热',
+		title: '趋势',
 	};
 
 	useEffect(() => {
-		setPopularSwitchNavigation(navigation);
+		setTrendSwitchNavigation(navigation);
 	}, []);
 
 	useFocusEffect(
@@ -47,7 +48,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 
 	return (
 		<Navigator
-			initialRouteName={POPULAR_TABS_LIST[0] as any}
+			initialRouteName={TREND_TABS_LIST[0].key as any}
 			tabBarOptions={{
 				scrollEnabled: true,
 				style: {
@@ -59,11 +60,11 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 				},
 			}}
 			lazy={true}>
-			{POPULAR_TABS_LIST.map((tab, index) => (
+			{TREND_TABS_LIST.map((tab, index) => (
 				<Screen
 					key={index}
-					name={tab as any}
-					children={props => <PopularScreen {...props} tab={tab} />}
+					name={tab.key as any}
+					children={props => <TrendScreen {...props} tab={tab.key} />}
 					options={{
 						tabBarLabel: () => (
 							<Text
@@ -72,7 +73,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 									marginHorizontal: 6,
 									color: '#fff',
 								}}>
-								{tab}
+								{tab.title}
 							</Text>
 						),
 					}}
@@ -82,8 +83,8 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 	);
 };
 
-const PopularTabRouteScreen = (inject((stores: Store) => ({
+const TrendTabRouteScreen = (inject((stores: Store) => ({
 	appStore: stores.appStore,
-}))(observer(PopularTabRoutePage)) as unknown) as FC;
+}))(observer(TrendTabRoutePage)) as unknown) as FC;
 
-export default PopularTabRouteScreen;
+export default TrendTabRouteScreen;

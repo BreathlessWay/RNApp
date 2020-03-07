@@ -1,6 +1,6 @@
 import { action, computed, observable, runInAction } from 'mobx';
 
-import { PAGE_SIZE, TABS_LIST } from '@config/constant';
+import { PAGE_SIZE, POPULAR_TABS_LIST } from '@config/constant';
 import { PopularType } from '@stores/popular/popular';
 
 import * as Qs from 'qs';
@@ -8,10 +8,7 @@ import { fetchData } from '@utils/dataStore';
 
 export default class PopularStore {
 	@observable
-	tab: string = TABS_LIST[0];
-
-	@observable
-	pageIndex = 1;
+	tab: string = POPULAR_TABS_LIST[0];
 
 	@observable
 	pageSize = PAGE_SIZE;
@@ -39,21 +36,31 @@ export default class PopularStore {
 			this.refreshing = refreshing;
 			this.loadMore = loadMore;
 			this.tab = tab;
+			let pageIndex = this.popular[this.tab]?.pageIndex ?? 1;
 			if (refreshing) {
-				this.pageIndex = 1;
+				pageIndex = 1;
+				this.popular[this.tab] = {} as any;
 			}
 			if (loadMore) {
-				this.pageIndex++;
+				pageIndex++;
 			}
-			const result = await fetchData({
-				url: `/search/repositories?${this.params}`,
+
+			const params = Qs.stringify({
+				q: this.tab,
+				sort: 'stars', // stars, forks, or help-wanted-issues
+				page: pageIndex,
 			});
+			const result = await fetchData({
+				url: `/search/repositories?${params}`,
+			});
+			// 在每个 await 之后，状态修改代码应该被包装成动作
 			runInAction(() => {
 				const _items = this.popular[this.tab]?.items ?? [];
 				this.popular[this.tab] = {
 					total_count: result.total_count,
 					incomplete_results: result.incomplete_results,
 					items: _items.concat(result.items),
+					pageIndex,
 				};
 			});
 		} catch (e) {
@@ -63,15 +70,6 @@ export default class PopularStore {
 				this.loadMore = false;
 			});
 		}
-	}
-
-	@computed
-	get params() {
-		return Qs.stringify({
-			q: this.tab,
-			sort: 'stars', // stars, forks, or help-wanted-issues
-			page: this.pageIndex,
-		});
 	}
 
 	@computed
@@ -85,9 +83,9 @@ export default class PopularStore {
 	@computed
 	get hasMore(): boolean {
 		if (this.popular) {
-			return (
-				this.popular[this.tab]?.total_count > this.pageIndex * this.pageSize
-			);
+			const total_count = this.popular[this.tab]?.total_count ?? 0,
+				pageIndex = this.popular[this.tab]?.pageIndex ?? 1;
+			return total_count > pageIndex * this.pageSize;
 		}
 
 		return false;

@@ -14,7 +14,14 @@ export default class AppStore {
 	stackNavigation: StackNavigationProp<RootStackParamList> | null = null;
 
 	@observable
-	switchNavigation: BottomTabNavigationProp<RootStackParamList> | null = null;
+	popularSwitchNavigation: BottomTabNavigationProp<
+		RootStackParamList
+	> | null = null;
+
+	@observable
+	trendSwitchNavigation: BottomTabNavigationProp<
+		RootStackParamList
+	> | null = null;
 
 	@action.bound
 	setTheme(theme: string) {
@@ -27,7 +34,16 @@ export default class AppStore {
 	}
 
 	@action.bound
-	setSwitchNavigation(navigation: BottomTabNavigationProp<RootStackParamList>) {
-		this.switchNavigation = navigation;
+	setPopularSwitchNavigation(
+		navigation: BottomTabNavigationProp<RootStackParamList>,
+	) {
+		this.popularSwitchNavigation = navigation;
+	}
+
+	@action.bound
+	setTrendSwitchNavigation(
+		navigation: BottomTabNavigationProp<RootStackParamList>,
+	) {
+		this.trendSwitchNavigation = navigation;
 	}
 }

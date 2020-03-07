@@ -5,14 +5,14 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { PopularItemType } from '@stores/popular/popular';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { ReposItemType } from '@stores/popular/popular';
 
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 
 import Style from './style';
-import { StackNavigationProp } from '@react-navigation/stack';
 
-const PopularListItem: FC<PopularItemType> = props => {
+const ReposListItem: FC<ReposItemType> = props => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
 	const handlePress = () => {
@@ -29,13 +29,15 @@ const PopularListItem: FC<PopularItemType> = props => {
 				<Text style={Style.title}>{props.full_name}</Text>
 				<Text style={Style.desc}>{props.description}</Text>
 				<View style={Style.footer}>
-					<View style={Style.column}>
-						<Text>Author:</Text>
-						<Image
-							source={{ uri: props.owner.avatar_url }}
-							style={Style.avatar}
-						/>
-					</View>
+					{props.owner && (
+						<View style={Style.column}>
+							<Text>Author:</Text>
+							<Image
+								source={{ uri: props.owner.avatar_url }}
+								style={Style.avatar}
+							/>
+						</View>
+					)}
 					<View style={Style.column}>
 						<Text>Stars:</Text>
 						<Text>{props.stargazers_count}</Text>
@@ -49,4 +51,4 @@ const PopularListItem: FC<PopularItemType> = props => {
 	);
 };
 
-export default PopularListItem;
+export default ReposListItem;

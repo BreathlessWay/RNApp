@@ -6,7 +6,7 @@ import IonIcon from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 import PopularTabRouteScreen from './popularTab';
-import TrendScreen from '@pages/trend';
+import TrendTabRouteScreen from '@routes/trendTab';
 import FavoriteScreen from '@pages/favorite';
 import MeScreen from '@pages/me';
 
@@ -46,7 +46,7 @@ const SwitchRoutePage: FC<SwitchRoutePagePropType> = props => {
 		},
 		{
 			name: EScreenName.Trend,
-			component: TrendScreen,
+			component: TrendTabRouteScreen,
 			title: '趋势',
 			tabBarColor: '#89ccba',
 			tabBarIcon: ({ focused, color }: { focused: boolean; color: string }) => (

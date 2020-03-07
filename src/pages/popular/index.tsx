@@ -3,7 +3,7 @@ import React, { FC, useEffect } from 'react';
 import { FlatList, RefreshControl, View, Text } from 'react-native';
 import { inject, observer } from 'mobx-react';
 
-import PopularListItem from '@components/business/PopularListItem';
+import ReposListItem from '@components/business/ReposListItem';
 import EmptyComponent from '@components/common/EmptyComponent';
 import ListFooterComponent from '@components/common/ListFooterComponent';
 
@@ -59,7 +59,7 @@ const PopularPage: FC<PopularPagePropType &
 			}
 			data={popular[tab]?.items ?? []}
 			keyExtractor={item => String(item.id)}
-			renderItem={({ item }) => <PopularListItem {...item} />}
+			renderItem={({ item }) => <ReposListItem {...item} />}
 			ListEmptyComponent={refreshing ? null : <EmptyComponent />}
 			ListFooterComponent={
 				empty ? null : (
