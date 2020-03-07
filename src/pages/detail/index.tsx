@@ -34,8 +34,10 @@ const DetailPage: FC = () => {
 		route = useRoute<RouteProp<RootStackParamList, EScreenName.Detail>>();
 
 	const detail: ReposItemType = route.params.item;
-
-	const url = detail.html_url || PREFIX_URL + detail.full_name;
+	let url = detail.html_url || PREFIX_URL + '/' + detail.full_name;
+	if (!url.startsWith('http')) {
+		url = PREFIX_URL + url;
+	}
 
 	const handleStar = () => {};
 
