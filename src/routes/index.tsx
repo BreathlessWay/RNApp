@@ -37,13 +37,7 @@ const RootRoutePage = () => {
 							},
 						}}
 					/>
-					<Screen
-						name={EScreenName.Detail}
-						component={DetailScreen}
-						options={{
-							headerShown: false,
-						}}
-					/>
+					<Screen name={EScreenName.Detail} component={DetailScreen} />
 				</Navigator>
 			</NavigationContainer>
 		</SafeAreaProvider>

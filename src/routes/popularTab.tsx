@@ -1,20 +1,21 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useCallback, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
 import PopularScreen from '@pages/popular';
 
+import { setHeader } from '@components/business/NavHeader';
+
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import { Store } from '@/stores';
 
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { EScreenName, RootStackParamList } from '@routes/route.d';
+import { RootStackParamList } from '@routes/route.d';
 
 import { TABS_LIST } from '@config/constant';
-import { CustomHeaderTitle } from '@components/common/NavBarComponent';
 
 const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
@@ -27,27 +28,22 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 		BottomTabNavigationProp<RootStackParamList>
 	>();
 
-	const setHeader = () => {
-		props.appStore.stackNavigation?.setOptions({
-			headerTitle: () => <CustomHeaderTitle title="最热" />,
-			headerLeft: () => null,
-			headerRight: () => null,
-		});
+	const { stackNavigation, setSwitchNavigation } = props.appStore;
+
+	const headerOptions = {
+		navigation: stackNavigation,
+		title: '最热',
 	};
 
-	setHeader();
-
 	useEffect(() => {
-		props.appStore.setSwitchNavigation(navigation);
+		setSwitchNavigation(navigation);
 	}, []);
 
-	useEffect(() => {
-		const unsubscribe = navigation.addListener('tabPress', e => {
-			// e.preventDefault()
-			setHeader();
-		});
-		return unsubscribe;
-	}, [navigation]);
+	useFocusEffect(
+		useCallback(() => {
+			setHeader(headerOptions);
+		}, [stackNavigation]),
+	);
 
 	return (
 		<Navigator
