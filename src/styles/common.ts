@@ -17,6 +17,14 @@ const CommonStyle = StyleSheet.create({
 		// Android阴影
 		elevation: 2,
 	},
+	tag: {
+		backgroundColor: '#e2e2e2',
+		paddingVertical: 2,
+		paddingHorizontal: 4,
+		marginRight: 5,
+		borderRadius: 3,
+		overflow: 'hidden',
+	},
 });
 
 export default CommonStyle;
