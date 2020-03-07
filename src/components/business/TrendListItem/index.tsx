@@ -19,10 +19,10 @@ const TrendListItem: FC<TrendListItemPropType> = props => {
 			return <UserListItem {...item} />;
 		case ETrendTab.repos:
 			return <ReposListItem {...item} />;
-		case ETrendTab.trendingDaily:
-		case ETrendTab.trendingMonthly:
-		case ETrendTab.trendingWeekly:
+		case ETrendTab.trending:
 			return <TrendingListItem {...item} />;
+		default:
+			return null;
 	}
 };
 

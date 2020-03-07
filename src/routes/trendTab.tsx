@@ -21,14 +21,19 @@ const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
 >();
 
-export type PopularTabRoutePagePropType = Pick<Store, 'appStore'>;
+export type PopularTabRoutePagePropType = Pick<
+	Store,
+	'appStore' | 'trendStore'
+>;
 
 const TrendTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 	const navigation = useNavigation<
 		BottomTabNavigationProp<RootStackParamList>
 	>();
 
-	const { stackNavigation, setTrendSwitchNavigation } = props.appStore;
+	const {
+		appStore: { stackNavigation, setTrendSwitchNavigation },
+	} = props;
 
 	const headerOptions = {
 		navigation: stackNavigation,
@@ -84,6 +89,7 @@ const TrendTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 
 const TrendTabRouteScreen = (inject((stores: Store) => ({
 	appStore: stores.appStore,
+	trendStore: stores.trendStore,
 }))(observer(TrendTabRoutePage)) as unknown) as FC;
 
 export default TrendTabRouteScreen;

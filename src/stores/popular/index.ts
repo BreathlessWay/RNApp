@@ -39,7 +39,6 @@ export default class PopularStore {
 			let pageIndex = this.popular[this.tab]?.pageIndex ?? 1;
 			if (refreshing) {
 				pageIndex = 1;
-				this.popular[this.tab] = {} as any;
 			}
 			if (loadMore) {
 				pageIndex++;
@@ -59,7 +58,7 @@ export default class PopularStore {
 				this.popular[this.tab] = {
 					total_count: result.total_count,
 					incomplete_results: result.incomplete_results,
-					items: _items.concat(result.items),
+					items: refreshing ? result.items : _items.concat(result.items),
 					pageIndex,
 				};
 			});

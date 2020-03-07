@@ -5,6 +5,7 @@ export enum ETrendTab {
 	allUser = 'allUser',
 	chinaUser = 'chinaUser',
 	repos = 'repos',
+	trending = 'trending',
 	trendingDaily = 'trendingDaily',
 	trendingWeekly = 'trendingWeekly',
 	trendingMonthly = 'trendingMonthly',
@@ -36,7 +37,7 @@ export const TREND_TABS_LIST = [
 	},
 	{
 		title: '趋势',
-		key: ETrendTab.trendingDaily,
+		key: ETrendTab.trending,
 	},
 ];
 

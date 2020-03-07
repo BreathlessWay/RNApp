@@ -3,7 +3,6 @@ import { action, computed, observable, runInAction } from 'mobx';
 import { ETrendTab, PAGE_SIZE } from '@config/constant';
 
 import { TrendingType } from './trend.d';
-
 // @ts-ignore
 import users from '@wcj/github-rank/dist/users.json';
 // @ts-ignore
@@ -33,6 +32,14 @@ export default class TrendStore {
 	@observable
 	loadMore = false;
 
+	@observable
+	filter = ETrendTab.trendingDaily;
+
+	@action.bound
+	setFilter(filter: ETrendTab) {
+		this.filter = filter;
+	}
+
 	@action.bound
 	async getList({
 		refreshing,
@@ -48,11 +55,15 @@ export default class TrendStore {
 			this.loadMore = Boolean(loadMore);
 			this.tab = tab;
 
-			let pageIndex = this.trending[this.tab]?.pageIndex ?? 1;
+			let _tab = tab;
+			if (tab === ETrendTab.trending) {
+				_tab = this.filter;
+			}
+
+			let pageIndex = this.trending[_tab]?.pageIndex ?? 1;
 
 			if (refreshing) {
 				pageIndex = 1;
-				this.trending[this.tab] = {} as any;
 			}
 
 			if (loadMore) {
@@ -62,16 +73,16 @@ export default class TrendStore {
 			const params = {
 				pageIndex,
 				pageSize: this.pageSize,
-				tab,
+				tab: _tab,
 			};
 
-			const result = await this.fetchData(params);
+			const result: any = await this.fetchData(params);
 
 			runInAction(() => {
-				const list: Array<any> = this.trending[tab]?.list ?? [];
-				this.trending[tab] = {
+				const list: Array<any> = this.trending[_tab]?.list ?? [];
+				this.trending[_tab] = {
 					pageIndex,
-					list: list.concat(result),
+					list: refreshing ? result : list.concat(result),
 				};
 			});
 		} catch (e) {
@@ -93,7 +104,7 @@ export default class TrendStore {
 		tab: ETrendTab;
 	}) {
 		let json;
-		switch (tab) {
+		switch (this.trendKey) {
 			case ETrendTab.allUser: {
 				json = users;
 				break;
@@ -121,7 +132,6 @@ export default class TrendStore {
 		}
 		const startIndex = (pageIndex - 1) * pageSize + 1,
 			endIndex = pageIndex * pageSize;
-
 		const res = json.slice(startIndex, endIndex);
 
 		return new Promise(resolve => {
@@ -133,7 +143,7 @@ export default class TrendStore {
 
 	@computed
 	get listLength() {
-		return this.trending[this.tab]?.list?.length ?? 0;
+		return this.trending[this.trendKey]?.list?.length ?? 0;
 	}
 
 	@computed
@@ -144,7 +154,7 @@ export default class TrendStore {
 	@computed
 	get hasMore() {
 		let json;
-		switch (this.tab) {
+		switch (this.trendKey) {
 			case ETrendTab.allUser: {
 				json = users;
 				break;
@@ -173,5 +183,38 @@ export default class TrendStore {
 		const { pageSize } = this,
 			pageIndex = this.trending[this.tab]?.pageIndex ?? 0;
 		return pageIndex * pageSize < json.length;
+	}
+
+	@computed
+	get trendFilterTab() {
+		const { filter } = this;
+
+		return [
+			{
+				name: '今天',
+				key: ETrendTab.trendingDaily,
+				active: filter === ETrendTab.trendingDaily,
+			},
+			{
+				name: '本周',
+				key: ETrendTab.trendingWeekly,
+				active: filter === ETrendTab.trendingWeekly,
+			},
+			{
+				name: '本月',
+				key: ETrendTab.trendingMonthly,
+				active: filter === ETrendTab.trendingMonthly,
+			},
+		];
+	}
+
+	@computed
+	get isTrending() {
+		return this.tab === ETrendTab.trending;
+	}
+
+	@computed
+	get trendKey() {
+		return this.isTrending ? this.filter : this.tab;
 	}
 }

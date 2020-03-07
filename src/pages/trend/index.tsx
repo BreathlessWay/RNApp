@@ -1,21 +1,16 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { inject, observer } from 'mobx-react';
 
-import { useFocusEffect } from '@react-navigation/native';
-
-import { FlatList, RefreshControl } from 'react-native';
+import { View, FlatList, RefreshControl } from 'react-native';
 
 import EmptyComponent from '@components/common/EmptyComponent';
 import ListFooterComponent from '@components/common/ListFooterComponent';
 import TrendListItem from '@components/business/TrendListItem';
-
-import { setHeader } from '@components/business/NavHeader';
+import PopupComponent from '@components/common/PopupComponent';
 
 import { Store } from '@/stores';
 
 import { ETrendTab } from '@config/constant';
-
-import Style from './style';
 
 export type TrendPageStorePropType = Pick<Store, 'appStore' | 'trendStore'>;
 
@@ -24,22 +19,22 @@ export type TrendPagePropType = {
 };
 
 const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
+	const ref = useRef<FlatList<any>>();
+
 	const {
 		tab,
-		appStore: { stackNavigation },
-		trendStore: { getList, trending, empty, hasMore, loadMore, refreshing },
+		trendStore: {
+			getList,
+			trending,
+			empty,
+			hasMore,
+			loadMore,
+			refreshing,
+			trendFilterTab,
+			setFilter,
+			filter,
+		},
 	} = props;
-
-	const headerOptions = {
-		navigation: stackNavigation,
-		title: '趋势',
-	};
-
-	useFocusEffect(
-		useCallback(() => {
-			setHeader(headerOptions);
-		}, [stackNavigation]),
-	);
 
 	useEffect(() => {
 		getList({ refreshing: true, tab });
@@ -56,32 +51,50 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 		getList({ refreshing: true, tab });
 	};
 
+	const handleSelect = (key: string) => {
+		ref.current && ref.current.scrollToOffset({ offset: 0 });
+		setFilter(key as ETrendTab);
+		getList({ refreshing: true, tab });
+	};
+
+	let data: any = trending[tab]?.list ?? [];
+
+	if (tab === ETrendTab.trending) {
+		data = trending[filter]?.list ?? [];
+	}
+
 	return (
-		<FlatList
-			refreshControl={
-				<RefreshControl
-					// iOS
-					title="Loading..."
-					titleColor="green"
-					tintColor="green"
-					// Android
-					colors={['green']}
-					onRefresh={handleRefresh}
-					refreshing={refreshing}
-				/>
-			}
-			data={(trending[tab]?.list ?? []) as any}
-			keyExtractor={(item: any) => String(item.id) || String(item.rank)}
-			renderItem={({ item }) => <TrendListItem tab={tab} item={item} />}
-			ListEmptyComponent={refreshing ? null : <EmptyComponent />}
-			ListFooterComponent={
-				empty ? null : (
-					<ListFooterComponent hasMore={hasMore} loadMore={loadMore} />
-				)
-			}
-			onEndReached={handleEndReached}
-			onEndReachedThreshold={0.5}
-		/>
+		<View>
+			{tab === ETrendTab.trending ? (
+				<PopupComponent list={trendFilterTab} onSelect={handleSelect} />
+			) : null}
+			<FlatList
+				ref={ref as any}
+				refreshControl={
+					<RefreshControl
+						// iOS
+						title="Loading..."
+						titleColor="green"
+						tintColor="green"
+						// Android
+						colors={['green']}
+						onRefresh={handleRefresh}
+						refreshing={refreshing}
+					/>
+				}
+				data={data}
+				keyExtractor={(item: any) => String(item.id) || String(item.rank)}
+				renderItem={({ item }) => <TrendListItem tab={tab} item={item} />}
+				ListEmptyComponent={refreshing ? null : <EmptyComponent />}
+				ListFooterComponent={
+					empty ? null : (
+						<ListFooterComponent hasMore={hasMore} loadMore={loadMore} />
+					)
+				}
+				onEndReached={handleEndReached}
+				onEndReachedThreshold={0.5}
+			/>
+		</View>
 	);
 };
 

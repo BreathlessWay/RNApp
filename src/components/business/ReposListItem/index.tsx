@@ -37,10 +37,12 @@ const ReposListItem: FC<ReposItemType> = props => {
 				<View style={Style.footer}>
 					<View style={Style.column}>
 						<Text>Author:</Text>
-						<Image
-							source={{ uri: props.owner?.avatar_url ?? '' }}
-							style={Style.avatar}
-						/>
+						{props.owner && props.owner.avatar_url && (
+							<Image
+								source={{ uri: props.owner.avatar_url }}
+								style={Style.avatar}
+							/>
+						)}
 					</View>
 					<View style={Style.column}>
 						<Text>Stars:</Text>

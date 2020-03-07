@@ -80,4 +80,8 @@ export type TrendingType = {
 		pageIndex: number;
 		list: TrendingListType;
 	};
+	[ETrendTab.trending]: {
+		pageIndex: number;
+		list: TrendingListType;
+	};
 };
