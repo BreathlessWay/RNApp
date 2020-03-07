@@ -22,10 +22,15 @@ const TrendListItem: FC<TrendListItemPropType> = props => {
 				</View>
 			);
 		case ETrendTab.repos:
+			return <ReposListItem {...item} />;
 		case ETrendTab.trendingDaily:
 		case ETrendTab.trendingMonthly:
 		case ETrendTab.trendingWeekly:
-			return <ReposListItem {...item} />;
+			return (
+				<View>
+					<Text>2</Text>
+				</View>
+			);
 	}
 };
 

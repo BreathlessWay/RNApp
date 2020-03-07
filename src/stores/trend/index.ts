@@ -68,7 +68,7 @@ export default class TrendStore {
 			const result = await this.fetchData(params);
 
 			runInAction(() => {
-				const list = this.trending[tab]?.list ?? [];
+				const list: Array<any> = this.trending[tab]?.list ?? [];
 				this.trending[tab] = {
 					pageIndex,
 					list: list.concat(result),

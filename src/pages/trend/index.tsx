@@ -5,9 +5,9 @@ import { useFocusEffect } from '@react-navigation/native';
 
 import { FlatList, RefreshControl } from 'react-native';
 
-import ReposListItem from '@components/business/ReposListItem';
 import EmptyComponent from '@components/common/EmptyComponent';
 import ListFooterComponent from '@components/common/ListFooterComponent';
+import TrendListItem from '@components/business/TrendListItem';
 
 import { setHeader } from '@components/business/NavHeader';
 
@@ -16,7 +16,6 @@ import { Store } from '@/stores';
 import { ETrendTab } from '@config/constant';
 
 import Style from './style';
-import TrendListItem from '@components/business/TrendListItem';
 
 export type TrendPageStorePropType = Pick<Store, 'appStore' | 'trendStore'>;
 
@@ -71,8 +70,8 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 					refreshing={refreshing}
 				/>
 			}
-			data={trending[tab]?.list ?? []}
-			keyExtractor={item => String(item.id)}
+			data={(trending[tab]?.list ?? []) as any}
+			keyExtractor={(item: any) => String(item.id) || String(item.rank)}
 			renderItem={({ item }) => <TrendListItem tab={tab} item={item} />}
 			ListEmptyComponent={refreshing ? null : <EmptyComponent />}
 			ListFooterComponent={
