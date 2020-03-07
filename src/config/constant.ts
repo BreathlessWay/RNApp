@@ -39,3 +39,5 @@ export const TREND_TABS_LIST = [
 		key: ETrendTab.trendingDaily,
 	},
 ];
+
+export const HEADER_THEME_COLOR = '#00d3f3';

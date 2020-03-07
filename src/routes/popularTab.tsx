@@ -1,21 +1,21 @@
 import React, { FC, useCallback, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
 import { Text } from 'react-native';
 
 import PopularScreen from '@pages/popular';
 
 import { setHeader } from '@components/business/NavHeader';
 
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-
 import { Store } from '@/stores';
 
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from '@routes/route.d';
 
-import { POPULAR_TABS_LIST } from '@config/constant';
+import { HEADER_THEME_COLOR, POPULAR_TABS_LIST } from '@config/constant';
 
 const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
@@ -51,7 +51,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 			tabBarOptions={{
 				scrollEnabled: true,
 				style: {
-					backgroundColor: '#00d3f3',
+					backgroundColor: HEADER_THEME_COLOR,
 				},
 				indicatorStyle: {
 					height: 2,

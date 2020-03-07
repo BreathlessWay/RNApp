@@ -11,6 +11,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { EScreenName, RootStackParamList } from './route.d';
 
+import { HEADER_THEME_COLOR } from '@config/constant';
+
 import '@config/hydrate';
 
 // 当使用导航时自带了SafeAreaView
@@ -33,7 +35,7 @@ const RootRoutePage = () => {
 						component={SwitchRoutePage}
 						options={{
 							headerStyle: {
-								backgroundColor: '#00d3f3',
+								backgroundColor: HEADER_THEME_COLOR,
 							},
 						}}
 					/>
