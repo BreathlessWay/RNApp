@@ -43,3 +43,4 @@
    - include: 不论是不是跨域的请求,总是发送请求资源域在本地的 cookies、 HTTP Basic authentication 等验证信息.
    - 默认值是：同源的时候发送，不同源的时候不发送。并且这个默认值在不同的浏览器中同一浏览器不同版本中都不同，Safari 11 是完全不发送，Safari 12 是现在的默认值。
 8. [react-native-vector-icons 的图标搜索网址](https://oblador.github.io/react-native-vector-icons/)
+9. [Toast](https://github.com/crazycodeboy/react-native-easy-toast)

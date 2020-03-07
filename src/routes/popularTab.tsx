@@ -1,13 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { inject, observer } from 'mobx-react';
 
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 import PopularScreen from '@pages/popular';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { useSafeArea } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
-import { RootStackParamList } from '@routes/route.d';
+import { Store } from '@/stores';
+
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { EScreenName, RootStackParamList } from '@routes/route.d';
 
 import { TABS_LIST } from '@config/constant';
 
@@ -15,8 +19,36 @@ const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
 >();
 
-const PopularTabRoutePage = () => {
-	const insets = useSafeArea();
+export type PopularTabRoutePagePropType = Pick<Store, 'appStore'>;
+
+const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
+	const navigation = useNavigation<
+		BottomTabNavigationProp<RootStackParamList, EScreenName.Popular>
+	>();
+
+	const setHeader = () => {
+		props.appStore.stackNavigation?.setOptions({
+			headerTitle: () => (
+				<View>
+					<Text>1</Text>
+				</View>
+			),
+		});
+	};
+
+	setHeader();
+
+	useEffect(() => {
+		props.appStore.setSwitchNavigation(navigation);
+	}, []);
+
+	useEffect(() => {
+		const unsubscribe = navigation.addListener('tabPress', e => {
+			// e.preventDefault()
+			setHeader();
+		});
+		return unsubscribe;
+	}, [navigation]);
 
 	return (
 		<Navigator
@@ -30,9 +62,6 @@ const PopularTabRoutePage = () => {
 					height: 2,
 					backgroundColor: '#fff',
 				},
-			}}
-			style={{
-				paddingTop: insets.top,
 			}}
 			lazy={true}>
 			{TABS_LIST.map((tab, index) => (
@@ -58,6 +87,8 @@ const PopularTabRoutePage = () => {
 	);
 };
 
-const PopularTabRouteScreen = (PopularTabRoutePage as unknown) as FC;
+const PopularTabRouteScreen = (inject((stores: Store) => ({
+	appStore: stores.appStore,
+}))(observer(PopularTabRoutePage)) as unknown) as FC;
 
 export default PopularTabRouteScreen;

@@ -27,6 +27,7 @@
 		"qs": "^6.9.1",
 		"react": "16.9.0",
 		"react-native": "0.61.5",
+		"react-native-easy-toast": "^1.2.0",
 		"react-native-gesture-handler": "^1.6.0",
 		"react-native-paper": "^3.6.0",
 		"react-native-reanimated": "^1.7.0",

@@ -19,9 +19,26 @@ const RootRoutePage = () => {
 	return (
 		<SafeAreaProvider>
 			<NavigationContainer>
-				<Navigator initialRouteName={EScreenName.Welcome} headerMode="none">
-					<Screen name={EScreenName.Welcome} component={WelcomeScreen} />
-					<Screen name={EScreenName.Switch} component={SwitchRoutePage} />
+				<Navigator initialRouteName={EScreenName.Welcome}>
+					<Screen
+						name={EScreenName.Welcome}
+						component={WelcomeScreen}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Screen
+						name={EScreenName.Switch}
+						component={SwitchRoutePage}
+						options={{
+							headerStyle: {
+								backgroundColor: '#3754f3',
+							},
+							headerTitle: () => null,
+							headerRight: () => null,
+							headerLeft: () => null,
+						}}
+					/>
 				</Navigator>
 			</NavigationContainer>
 		</SafeAreaProvider>

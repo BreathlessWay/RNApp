@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import CommonSafeTopComponent from '@components/common/CommonSafeTopComponent';
 
@@ -22,6 +22,14 @@ const UserPage: FC<UserPagePropType> = props => {
 	>();
 	const route = useRoute<RouteProp<RootStackParamList, EScreenName.Trend>>();
 
+	props.appStore.stackNavigation?.setOptions({
+		headerTitle: () => (
+			<View>
+				<Text>3</Text>
+			</View>
+		),
+	});
+
 	useEffect(() => {
 		const unsubscribe = navigation.addListener('focus', () => {
 			console.log('focus');
@@ -33,7 +41,13 @@ const UserPage: FC<UserPagePropType> = props => {
 	useEffect(() => {
 		const unsubscribe = navigation.addListener('tabPress', e => {
 			// e.preventDefault()
-			console.log(e);
+			props.appStore.stackNavigation?.setOptions({
+				headerTitle: () => (
+					<View>
+						<Text>3</Text>
+					</View>
+				),
+			});
 		});
 
 		return unsubscribe;
@@ -46,6 +60,7 @@ const UserPage: FC<UserPagePropType> = props => {
 	return (
 		<CommonSafeTopComponent>
 			<View>
+				<StatusBar />
 				<Text onPress={handlePress}>修改主题色</Text>
 			</View>
 		</CommonSafeTopComponent>

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -11,10 +11,9 @@ import FavoriteScreen from '@pages/favorite';
 import MeScreen from '@pages/me';
 
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-
+import { useNavigation } from '@react-navigation/native';
 import { EScreenName, RootStackParamList } from './route.d';
 import { Store } from '@/stores';
-import AppStore from '@stores/app';
 
 // 当使用导航时自带了SafeAreaView
 const { Navigator, Screen } = createMaterialBottomTabNavigator<
@@ -26,14 +25,20 @@ const IconSize = 22;
 export type SwitchRoutePagePropType = Pick<Store, 'appStore'>;
 
 const SwitchRoutePage: FC<SwitchRoutePagePropType> = props => {
-	const { theme } = props.appStore;
+	const { theme, setStackNavigation } = props.appStore;
+
+	const navigation = useNavigation();
+
+	useEffect(() => {
+		setStackNavigation(navigation);
+	}, []);
 
 	const screenList = [
 		{
 			name: EScreenName.Popular,
 			component: PopularTabRouteScreen,
 			title: '最热',
-			tabBarColor: 'red',
+			tabBarColor: '#7f63ff',
 			tabBarIcon: ({ focused, color }: { focused: boolean; color: string }) => (
 				<MaterialIcon name="whatshot" color={color} size={IconSize} />
 			),
@@ -42,7 +47,7 @@ const SwitchRoutePage: FC<SwitchRoutePagePropType> = props => {
 			name: EScreenName.Trend,
 			component: TrendScreen,
 			title: '趋势',
-			tabBarColor: 'blue',
+			tabBarColor: '#89ccba',
 			tabBarIcon: ({ focused, color }: { focused: boolean; color: string }) => (
 				<IonIcon name="md-trending-up" color={color} size={IconSize} />
 			),
@@ -51,7 +56,7 @@ const SwitchRoutePage: FC<SwitchRoutePagePropType> = props => {
 			name: EScreenName.Favorite,
 			component: FavoriteScreen,
 			title: '收藏',
-			tabBarColor: 'red',
+			tabBarColor: '#eeab62',
 			tabBarIcon: ({ focused, color }: { focused: boolean; color: string }) => (
 				<MaterialIcon name="favorite" color={color} size={IconSize} />
 			),
@@ -60,7 +65,7 @@ const SwitchRoutePage: FC<SwitchRoutePagePropType> = props => {
 			name: EScreenName.Me,
 			component: MeScreen,
 			title: '我',
-			tabBarColor: 'purple',
+			tabBarColor: '#f578ff',
 			tabBarIcon: ({ focused, color }: { focused: boolean; color: string }) => (
 				<Entypo name="user" color={color} size={IconSize} />
 			),

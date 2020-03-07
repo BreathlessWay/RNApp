@@ -1,24 +1,19 @@
 import React, { FC, useEffect } from 'react';
 
-import { FlatList, RefreshControl } from 'react-native';
+import { FlatList, RefreshControl, View, Text } from 'react-native';
 import { inject, observer } from 'mobx-react';
 
 import PopularListItem from '@components/business/PopularListItem';
 import EmptyComponent from '@components/common/EmptyComponent';
+import ListFooterComponent from '@components/common/ListFooterComponent';
 
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RouteProp } from '@react-navigation/native';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 
 import { Store } from '@/stores';
-import PopularStore from '@stores/popular';
 
-import Style from './style';
-import ListFooterComponent from '@components/common/ListFooterComponent';
-
-export type PopularPageStorePropType = {
-	popularStore: PopularStore;
-};
+export type PopularPageStorePropType = Pick<Store, 'popularStore' | 'appStore'>;
 
 export type PopularPagePropType = {
 	navigation: BottomTabNavigationProp<RootStackParamList, EScreenName.Popular>;
@@ -38,7 +33,6 @@ const PopularPage: FC<PopularPagePropType &
 	}, []);
 
 	const handleEndReached = () => {
-		console.log('handleEndReached');
 		if (empty || !hasMore || loadMore) {
 			return;
 		}
@@ -80,6 +74,7 @@ const PopularPage: FC<PopularPagePropType &
 
 const PopularScreen = (inject((store: Store) => ({
 	popularStore: store.popularStore,
+	appStore: store.appStore,
 }))(observer(PopularPage)) as unknown) as FC<PopularPagePropType>;
 
 export default PopularScreen;
