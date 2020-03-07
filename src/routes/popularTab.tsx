@@ -51,7 +51,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 			tabBarOptions={{
 				scrollEnabled: true,
 				style: {
-					backgroundColor: '#678',
+					backgroundColor: '#00d3f3',
 				},
 				indicatorStyle: {
 					height: 2,
