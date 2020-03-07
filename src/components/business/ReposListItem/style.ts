@@ -1,21 +1,9 @@
 import { StyleSheet } from 'react-native';
+import CommonStyle from '@styles/common';
 
 const Style = StyleSheet.create({
 	wrap: {
-		backgroundColor: '#fff',
-		padding: 10,
-		marginHorizontal: 5,
-		marginTop: 10,
-		borderColor: '#ddd',
-		borderWidth: 0.5,
-		borderRadius: 2,
-		// iOS阴影
-		shadowColor: 'gray',
-		shadowOffset: { width: 0.5, height: 0.5 },
-		shadowOpacity: 0.4,
-		shadowRadius: 1,
-		// Android阴影
-		elevation: 2,
+		...CommonStyle.item,
 	},
 	title: {
 		fontSize: 16,

@@ -1,3 +1,7 @@
+### React-Native 的练习项目
+
+修改`/RNApp/index.js`的入口可启动不同的项目，目前只有 Github-trending 项目
+
 > 一些问题
 
 1. import 时的路径别名配置，先在 tsconfig.json 中配置 paths 之后，在需要别名的目录下添加`package.json`文件，添加以下内容

@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import { View, Text } from 'react-native';
 
 import ReposListItem from '@components/business/ReposListItem';
+import UserListItem from '@components/business/UserListItem';
 
 import { ETrendTab } from '@config/constant';
 
@@ -16,11 +17,7 @@ const TrendListItem: FC<TrendListItemPropType> = props => {
 	switch (tab) {
 		case ETrendTab.allUser:
 		case ETrendTab.chinaUser:
-			return (
-				<View>
-					<Text>1</Text>
-				</View>
-			);
+			return <UserListItem {...item} />;
 		case ETrendTab.repos:
 			return <ReposListItem {...item} />;
 		case ETrendTab.trendingDaily:
