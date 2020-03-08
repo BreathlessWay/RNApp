@@ -49,3 +49,6 @@
 8. [react-native-vector-icons 的图标搜索网址](https://oblador.github.io/react-native-vector-icons/)
 9. [Toast](https://github.com/crazycodeboy/react-native-easy-toast)
 10. [react-native 显示 html](https://github.com/jsdf/react-native-htmlview)
+11. [react-native-parallax-scroll-view](https://github.com/i6mi6/react-native-parallax-scroll-view)
+12. React-Native 自带的 Webview 已经被移除了，现在使用[
+    react-native-webview](https://github.com/react-native-community/react-native-webview)代替

@@ -1,0 +1,70 @@
+{
+	"aboutMe": {
+		"Tutorial": {
+			"name": "教程",
+			"icon": "ios-bookmarks",
+			"items": [
+				{
+					"title": "React Native基础教程",
+					"url": "https://m.imooc.com/learn/808"
+				},
+				{
+					"title": "React Native高级实战教程",
+					"url": "https://coding.m.imooc.com/classindex.html?cid=304"
+				}
+			]
+		},
+		"Blog": {
+			"name": "技术博客",
+			"icon": "ios-laptop",
+			"items": [
+				{
+					"title": "个人博客",
+					"url": "http://breathlessway.com/home"
+				},
+				{
+					"title": "GitHub",
+					"url": "https://github.com/BreathlessWay"
+				}
+			]
+		},
+		"Contact": {
+			"name": "联系方式",
+			"icon": "ios-contacts",
+			"items": {
+				"QQ": {
+					"title": "QQ",
+					"account": "731005087"
+				}
+			}
+		},
+		"QQ": {
+			"name": "技术交流群",
+			"icon": "ios-chatbubbles",
+			"items": [
+				{
+					"title": "只有前端才知道的世界",
+					"account": "399719631"
+				}
+			]
+		}
+	},
+	"info": {
+		"html_url": "https://github.com/BreathlessWay",
+		"url": "https://github.com/BreathlessWay/RNApp",
+		"currentRepoUrl": "https://github.com/BreathlessWay/RNApp"
+	},
+	"author": {
+		"name": "BreathlessWay",
+		"description": "专注于前端开发，分享知识，共享快乐。",
+		"avatar": "https://avatars3.githubusercontent.com/u/18589559",
+		"backgroundImg": "https://www.devio.org/io/GitHubPopular/img/for_githubpopular_about_me.jpg",
+		"url": "http://breathlessway.com/home"
+	},
+	"app": {
+		"name": "GitHub Popular",
+		"description": "这是一个用来查看GitHub最受欢迎与最热项目的App,它基于React Native支持Android和iOS双平台。",
+		"avatar": "https://avatars3.githubusercontent.com/u/18589559",
+		"backgroundImg": "https://www.devio.org/io/GitHubPopular/img/for_githubpopular_about_me.jpg"
+	}
+}

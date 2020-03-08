@@ -2,6 +2,7 @@ import OctIcons from 'react-native-vector-icons/Octicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import IonIcons from 'react-native-vector-icons/Ionicons';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
 export const MENU_LIST = {
 	Custom_Language: {
@@ -16,8 +17,8 @@ export const MENU_LIST = {
 	},
 	Custom_Theme: {
 		name: '自定义主题',
-		Icons: IonIcons,
-		icon: 'ios-color-palette',
+		Icons: MaterialCommunityIcons,
+		icon: 'palette-outline',
 	},
 	Custom_Key: {
 		name: '自定义标签',
@@ -36,8 +37,8 @@ export const MENU_LIST = {
 	},
 	About_Author: {
 		name: '关于作者',
-		Icons: OctIcons,
-		icon: 'smiley',
+		Icons: SimpleLineIcons,
+		icon: 'user',
 	},
 	About: {
 		name: '关于',
@@ -51,8 +52,8 @@ export const MENU_LIST = {
 	},
 	Feedback: {
 		name: '反馈',
-		Icons: MaterialIcons,
-		icon: 'feedback',
+		Icons: SimpleLineIcons,
+		icon: 'feed',
 	},
 	Share: {
 		name: '分享',

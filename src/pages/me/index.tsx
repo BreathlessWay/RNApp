@@ -1,10 +1,11 @@
-import React, { FC, ReactNode, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import { useFocusEffect } from '@react-navigation/native';
 
-import { Text, ScrollView, TouchableOpacity, View } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
+import MenuListItem from '@components/business/MenuListItem';
 
 import { setHeader, setHeaderParams } from '@components/business/NavHeader';
 
@@ -13,7 +14,6 @@ import { Store } from '@/stores';
 import { MENU_LIST } from '@config/menu';
 
 import Style from './style';
-import MenuListItem from '@components/business/MenuListItem';
 
 export type MePagePropType = Pick<Store, 'appStore'>;
 
@@ -39,11 +39,9 @@ const MePage: FC<MePagePropType> = props => {
 
 	const handlePressIcon = ({
 		name,
-		Icons,
 		icon,
 	}: {
 		name: string;
-		Icons: ReactNode;
 		icon: string;
 	}) => {};
 
