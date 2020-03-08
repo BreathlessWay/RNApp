@@ -1,16 +1,19 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, ReactNode, useCallback } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import { useFocusEffect } from '@react-navigation/native';
 
-import { Text } from 'react-native';
+import { Text, ScrollView, TouchableOpacity, View } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
 import { setHeader, setHeaderParams } from '@components/business/NavHeader';
 
 import { Store } from '@/stores';
 
+import { MENU_LIST } from '@config/menu';
+
 import Style from './style';
+import MenuListItem from '@components/business/MenuListItem';
 
 export type MePagePropType = Pick<Store, 'appStore'>;
 
@@ -34,7 +37,37 @@ const MePage: FC<MePagePropType> = props => {
 		}, [stackNavigation]),
 	);
 
-	return <Text>MePage</Text>;
+	const handlePressIcon = ({
+		name,
+		Icons,
+		icon,
+	}: {
+		name: string;
+		Icons: ReactNode;
+		icon: string;
+	}) => {};
+
+	return (
+		<ScrollView>
+			<MenuListItem
+				{...MENU_LIST.About}
+				title="GtiHub Popular"
+				iconStyle={Style.iconStyle}
+			/>
+			<MenuListItem {...MENU_LIST.Tutorial} />
+			<Text style={Style.group}>趋势管理</Text>
+			<MenuListItem {...MENU_LIST.Custom_Language} />
+			<MenuListItem {...MENU_LIST.Sort_Language} />
+			<Text style={Style.group}>最热管理</Text>
+			<MenuListItem {...MENU_LIST.Custom_Key} />
+			<MenuListItem {...MENU_LIST.Sort_Key} />
+			<MenuListItem {...MENU_LIST.Remove_Key} />
+			<Text style={Style.group}>设置</Text>
+			<MenuListItem {...MENU_LIST.Custom_Theme} />
+			<MenuListItem {...MENU_LIST.About_Author} />
+			<MenuListItem {...MENU_LIST.Feedback} />
+		</ScrollView>
+	);
 };
 
 const MeScreen = (inject((stores: Store) => ({
