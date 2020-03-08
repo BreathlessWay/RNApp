@@ -1,19 +1,5 @@
 {
 	"aboutMe": {
-		"Tutorial": {
-			"name": "教程",
-			"icon": "ios-bookmarks",
-			"items": [
-				{
-					"title": "React Native基础教程",
-					"url": "https://m.imooc.com/learn/808"
-				},
-				{
-					"title": "React Native高级实战教程",
-					"url": "https://coding.m.imooc.com/classindex.html?cid=304"
-				}
-			]
-		},
 		"Blog": {
 			"name": "技术博客",
 			"icon": "ios-laptop",

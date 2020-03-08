@@ -82,14 +82,9 @@ const MePage: FC<MePagePropType> = props => {
 					})
 				}
 			/>
-			<MenuListItem {...MENU_LIST.Tutorial} hasBorder={false} />
 			<Text style={Style.group}>趋势管理</Text>
 			<MenuListItem {...MENU_LIST.Custom_Language} />
 			<MenuListItem {...MENU_LIST.Sort_Language} hasBorder={false} />
-			<Text style={Style.group}>最热管理</Text>
-			<MenuListItem {...MENU_LIST.Custom_Key} />
-			<MenuListItem {...MENU_LIST.Sort_Key} />
-			<MenuListItem {...MENU_LIST.Remove_Key} hasBorder={false} />
 			<Text style={Style.group}>设置</Text>
 			<MenuListItem {...MENU_LIST.Custom_Theme} />
 			<MenuListItem {...MENU_LIST.About_Author} />

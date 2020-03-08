@@ -96,7 +96,6 @@ const AboutPage = () => {
 						</TouchableOpacity>
 					</View>
 				)}>
-				<MenuListItem {...MENU_LIST.Tutorial} />
 				<MenuListItem {...MENU_LIST.About_Author} />
 				<MenuListItem
 					{...MENU_LIST.Feedback}
