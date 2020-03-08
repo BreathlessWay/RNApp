@@ -1,39 +1,27 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC } from 'react';
 import { inject, observer } from 'mobx-react';
-
-import { useFocusEffect } from '@react-navigation/native';
 
 import { Text } from 'react-native';
 
-import { setHeader } from '@components/business/NavHeader';
-
 import { Store } from '@/stores';
+
+import { EFavoriteTab } from '@config/constant';
 
 import Style from './style';
 
-export type FavoritePagePropType = Pick<Store, 'appStore'>;
+export type FavoritePageStorePropType = Pick<Store, 'favoriteStore'>;
 
-const FavoritePage: FC<FavoritePagePropType> = props => {
-	const {
-		appStore: { stackNavigation },
-	} = props;
+export type FavoritePagePropType = {
+	tab: EFavoriteTab;
+};
 
-	const headerOptions = {
-		navigation: stackNavigation,
-		title: '收藏',
-	};
-
-	useFocusEffect(
-		useCallback(() => {
-			setHeader(headerOptions);
-		}, [stackNavigation]),
-	);
-
+const FavoritePage: FC<FavoritePagePropType &
+	FavoritePageStorePropType> = props => {
 	return <Text>FavoritePage</Text>;
 };
 
 const FavoriteScreen = (inject((stores: Store) => ({
-	appStore: stores.appStore,
-}))(observer(FavoritePage)) as unknown) as FC;
+	favoriteStore: stores.favoriteStore,
+}))(observer(FavoritePage)) as unknown) as FC<FavoritePagePropType>;
 
 export default FavoriteScreen;

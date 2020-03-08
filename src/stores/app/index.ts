@@ -23,6 +23,11 @@ export default class AppStore {
 		RootStackParamList
 	> | null = null;
 
+	@observable
+	favoriteSwitchNavigation: BottomTabNavigationProp<
+		RootStackParamList
+	> | null = null;
+
 	@action.bound
 	setTheme(theme: string) {
 		this.theme = theme;
@@ -45,5 +50,12 @@ export default class AppStore {
 		navigation: BottomTabNavigationProp<RootStackParamList>,
 	) {
 		this.trendSwitchNavigation = navigation;
+	}
+
+	@action.bound
+	setFavoriteSwitchNavigation(
+		navigation: BottomTabNavigationProp<RootStackParamList>,
+	) {
+		this.favoriteSwitchNavigation = navigation;
 	}
 }

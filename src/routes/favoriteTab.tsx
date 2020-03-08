@@ -6,7 +6,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import { Text } from 'react-native';
 
-import TrendScreen from '@pages/trend';
+import FavoriteScreen from '@pages/favorite';
 
 import { setHeader } from '@components/business/NavHeader';
 
@@ -15,30 +15,33 @@ import { Store } from '@/stores';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from '@routes/route.d';
 
-import { HEADER_THEME_COLOR, TREND_TABS_LIST } from '@config/constant';
+import { HEADER_THEME_COLOR, FAVORITE_TABS_LIST } from '@config/constant';
 
 const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
 >();
 
-export type TrendTabRoutePagePropType = Pick<Store, 'appStore' | 'trendStore'>;
+export type FavoriteTabRoutePagePropType = Pick<
+	Store,
+	'appStore' | 'favoriteStore'
+>;
 
-const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
+const FavoriteTabRoutePage: FC<FavoriteTabRoutePagePropType> = props => {
 	const navigation = useNavigation<
 		BottomTabNavigationProp<RootStackParamList>
 	>();
 
 	const {
-		appStore: { stackNavigation, setTrendSwitchNavigation },
+		appStore: { stackNavigation, setFavoriteSwitchNavigation },
 	} = props;
 
 	const headerOptions = {
 		navigation: stackNavigation,
-		title: '趋势',
+		title: '收藏',
 	};
 
 	useEffect(() => {
-		setTrendSwitchNavigation(navigation);
+		setFavoriteSwitchNavigation(navigation);
 	}, []);
 
 	useFocusEffect(
@@ -49,9 +52,8 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 
 	return (
 		<Navigator
-			initialRouteName={TREND_TABS_LIST[0].key as any}
+			initialRouteName={FAVORITE_TABS_LIST[0].key as any}
 			tabBarOptions={{
-				scrollEnabled: true,
 				style: {
 					backgroundColor: HEADER_THEME_COLOR,
 				},
@@ -61,11 +63,11 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 				},
 			}}
 			lazy={true}>
-			{TREND_TABS_LIST.map((tab, index) => (
+			{FAVORITE_TABS_LIST.map((tab, index) => (
 				<Screen
 					key={index}
 					name={tab.key as any}
-					children={props => <TrendScreen {...props} tab={tab.key} />}
+					children={props => <FavoriteScreen {...props} tab={tab.key} />}
 					options={{
 						tabBarLabel: () => (
 							<Text
@@ -84,9 +86,9 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 	);
 };
 
-const TrendTabRouteScreen = (inject((stores: Store) => ({
+const FavoriteTabRouteScreen = (inject((stores: Store) => ({
 	appStore: stores.appStore,
-	trendStore: stores.trendStore,
-}))(observer(TrendTabRoutePage)) as unknown) as FC;
+	favoriteStore: stores.favoriteStore,
+}))(observer(FavoriteTabRoutePage)) as unknown) as FC;
 
-export default TrendTabRouteScreen;
+export default FavoriteTabRouteScreen;

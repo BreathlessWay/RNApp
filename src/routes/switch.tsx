@@ -1,20 +1,22 @@
 import React, { FC, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 
+import { useNavigation } from '@react-navigation/native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 import PopularTabRouteScreen from './popularTab';
 import TrendTabRouteScreen from '@routes/trendTab';
-import FavoriteScreen from '@pages/favorite';
+import FavoriteTabRouteScreen from '@routes/favoriteTab';
 import MeScreen from '@pages/me';
 
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { useNavigation } from '@react-navigation/native';
-import { EScreenName, RootStackParamList } from './route.d';
 import { Store } from '@/stores';
+
 import { StackNavigationProp } from '@react-navigation/stack';
+import { EScreenName, RootStackParamList } from './route.d';
 
 // 当使用导航时自带了SafeAreaView
 const { Navigator, Screen } = createMaterialBottomTabNavigator<
@@ -55,7 +57,7 @@ const SwitchRoutePage: FC<SwitchRoutePagePropType> = props => {
 		},
 		{
 			name: EScreenName.Favorite,
-			component: FavoriteScreen,
+			component: FavoriteTabRouteScreen,
 			title: '收藏',
 			tabBarColor: '#eeab62',
 			tabBarIcon: ({ focused, color }: { focused: boolean; color: string }) => (
