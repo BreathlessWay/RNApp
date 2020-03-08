@@ -16,8 +16,6 @@ import Style, { stickyHeaderHeight } from './style';
 
 import aboutJson from '@config/about.json';
 
-import { MENU_LIST } from '@config/menu';
-
 const AuthorPage = () => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
@@ -55,7 +53,7 @@ const AuthorPage = () => {
 					<Image
 						style={Style.avatar}
 						source={{
-							uri: aboutJson.app.avatar,
+							uri: aboutJson.author.avatar,
 						}}
 					/>
 					<Text style={Style.sectionSpeakerText}>{aboutJson.author.name}</Text>
@@ -73,7 +71,11 @@ const AuthorPage = () => {
 						<IonIcons name={'md-share'} size={20} color="#fff" />
 					</TouchableOpacity>
 				</View>
-			)}></ParallaxScrollView>
+			)}>
+			<View>
+				<Text>TODO</Text>
+			</View>
+		</ParallaxScrollView>
 	);
 };
 

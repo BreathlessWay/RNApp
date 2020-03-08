@@ -15,8 +15,9 @@ const Style = StyleSheet.create({
 	},
 	avatar: {
 		marginBottom: 10,
-		width: 80,
-		height: 80,
+		width: 100,
+		height: 100,
+		borderRadius: 20,
 	},
 	sectionSpeakerText: {
 		color: 'white',
