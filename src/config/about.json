@@ -57,14 +57,14 @@
 	"author": {
 		"name": "BreathlessWay",
 		"description": "专注于前端开发，分享知识，共享快乐。",
-		"avatar": "https://avatars3.githubusercontent.com/u/18589559",
+		"avatar": "http://breathlessway.com/public/upload/c6a04650-5872-11ea-b73f-1d30b609ffb1.png",
 		"backgroundImg": "https://www.devio.org/io/GitHubPopular/img/for_githubpopular_about_me.jpg",
 		"url": "http://breathlessway.com/home"
 	},
 	"app": {
 		"name": "GitHub Popular",
 		"description": "这是一个用来查看GitHub最受欢迎与最热项目的App,它基于React Native支持Android和iOS双平台。",
-		"avatar": "https://avatars3.githubusercontent.com/u/18589559",
+		"avatar": "http://breathlessway.com/public/upload/c6a04650-5872-11ea-b73f-1d30b609ffb1.png",
 		"backgroundImg": "https://www.devio.org/io/GitHubPopular/img/for_githubpopular_about_me.jpg"
 	}
 }

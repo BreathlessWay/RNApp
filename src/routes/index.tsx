@@ -5,6 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import WelcomeScreen from '@pages/welcome';
 import SwitchRoutePage from './switch';
 import DetailScreen from '@pages/detail';
+import AboutScreen from '@pages/about';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -38,6 +39,13 @@ const RootRoutePage = () => {
 					/>
 					<Screen name={EScreenName.Switch} component={SwitchRoutePage} />
 					<Screen name={EScreenName.Detail} component={DetailScreen} />
+					<Screen
+						name={EScreenName.About}
+						component={AboutScreen}
+						options={{
+							headerShown: false,
+						}}
+					/>
 				</Navigator>
 			</NavigationContainer>
 		</SafeAreaProvider>

@@ -65,7 +65,8 @@
 		/* Experimental Options */
 		"experimentalDecorators": true /* Enables experimental support for ES7 decorators. */,
 		"emitDecoratorMetadata": true /* Enables experimental support for emitting type metadata for decorators. */,
-		"skipLibCheck": true /* 忽略所有的声明文件（ *.d.ts）的类型检查。 */
+		"skipLibCheck": true /* 忽略所有的声明文件（ *.d.ts）的类型检查。 */,
+		"resolveJsonModule": true
 	},
 	"exclude": [
 		"node_modules",

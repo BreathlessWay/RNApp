@@ -47,8 +47,8 @@ export const MENU_LIST = {
 	},
 	Tutorial: {
 		name: '教程',
-		Icons: OctIcons,
-		icon: 'bookmark',
+		Icons: MaterialCommunityIcons,
+		icon: 'cast-education',
 	},
 	Feedback: {
 		name: '反馈',

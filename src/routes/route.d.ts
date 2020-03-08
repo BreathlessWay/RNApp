@@ -12,6 +12,8 @@ export enum EScreenName {
 	Popular = 'Popular',
 
 	Detail = 'Detail',
+
+	About = 'About',
 }
 
 export type RootStackParamList = {
@@ -29,4 +31,6 @@ export type RootStackParamList = {
 		type: EDetailType;
 		source?: EFavoriteTab;
 	};
+
+	[EScreenName.About]: undefined;
 };

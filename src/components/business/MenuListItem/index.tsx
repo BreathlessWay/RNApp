@@ -23,6 +23,7 @@ export type MenuListItemPropType = {
 	arrowStyle?: TextStyle;
 	hasBorder?: boolean;
 	hasArrow?: boolean;
+	onPress?: () => void;
 };
 
 const MenuListItem: FC<MenuListItemPropType> = props => {
@@ -37,20 +38,17 @@ const MenuListItem: FC<MenuListItemPropType> = props => {
 		arrowStyle = {},
 		hasBorder = true,
 		hasArrow = true,
+		onPress,
 	} = props;
 
 	const Icons: any = props.Icons;
 
-	const handlePressIcon = ({
-		name,
-		icon,
-	}: {
-		name: string;
-		icon: string;
-	}) => {};
+	const handlePressIcon = () => {
+		onPress && onPress();
+	};
 
 	return (
-		<TouchableOpacity onPress={() => handlePressIcon({ name, icon })}>
+		<TouchableOpacity onPress={handlePressIcon}>
 			<View
 				style={
 					hasBorder
