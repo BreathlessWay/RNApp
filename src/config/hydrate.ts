@@ -10,10 +10,10 @@ const hydrate = create({
 	// default: true
 });
 
-hydrate('appStore', store.appStore).then(() =>
+hydrate('store_appStore', store.appStore).then(() =>
 	console.log('appStore has been hydrated'),
 );
 
-hydrate('favoriteStore', store.favoriteStore).then(() =>
+hydrate('store_favoriteStore', store.favoriteStore).then(() =>
 	console.log('favoriteStore has been hydrated'),
 );

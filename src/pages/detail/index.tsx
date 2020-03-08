@@ -57,7 +57,7 @@ const DetailPage: FC<DetailPagePropType> = props => {
 		isFavorite = popularFavoriteIds.includes(detail.id);
 	}
 	if (source === EFavoriteTab.trending) {
-		isFavorite = trendingFavoriteIds.includes(detail.id);
+		isFavorite = trendingFavoriteIds.includes(detail.full_name);
 	}
 
 	const handleStar = () => {
@@ -97,7 +97,7 @@ const DetailPage: FC<DetailPagePropType> = props => {
 		title: detail.full_name || detail.name,
 		right: (
 			<View style={Style.right}>
-				{type === EDetailType.repos && (
+				{type !== EDetailType.user && (
 					<TouchableOpacity onPress={handleStar}>
 						<FontAwesome
 							name={isFavorite ? 'star' : 'star-o'}

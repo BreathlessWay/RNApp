@@ -6,7 +6,7 @@ import TrendingListItem from '@components/business/TrendingListItem';
 
 import { ReposItemType } from '@stores/popular/popular';
 
-import { EFavoriteTab, ETrendTab } from '@config/constant';
+import { ETrendTab } from '@config/constant';
 
 export type TrendListItemPropType = {
 	tab: ETrendTab;
@@ -22,16 +22,15 @@ const TrendListItem: FC<TrendListItemPropType> = props => {
 		case ETrendTab.chinaUser:
 			return <UserListItem {...item} />;
 		case ETrendTab.repos:
+			return <ReposListItem {...item} />;
+		case ETrendTab.trending:
 			return (
-				<ReposListItem
+				<TrendingListItem
 					{...item}
 					onFavorite={onFavorite}
-					isFavorite={trendingFavoriteIds.includes(item.id)}
-					source={EFavoriteTab.trending}
+					isFavorite={trendingFavoriteIds.includes(item.full_name)}
 				/>
 			);
-		case ETrendTab.trending:
-			return <TrendingListItem {...item} />;
 		default:
 			return null;
 	}

@@ -5,6 +5,11 @@ const Style = StyleSheet.create({
 	wrap: {
 		...CommonStyle.item,
 	},
+	header: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
 	name: {
 		fontSize: 18,
 	},

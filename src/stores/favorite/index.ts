@@ -136,11 +136,11 @@ export default class FavoriteStore {
 			this.trendingFavorite.push(item);
 		} else {
 			this.trendingFavorite = this.trendingFavorite.filter(
-				_ => _.id !== item.id,
+				_ => _.full_name !== item.full_name,
 			);
-			const list = this.favorite[EFavoriteTab.popular].items;
+			const list = this.favorite[EFavoriteTab.trending].items;
 			this.favorite[EFavoriteTab.trending].items = list.filter(
-				_ => _.id !== item.id,
+				_ => _.full_name !== item.full_name,
 			);
 		}
 	}
@@ -152,7 +152,7 @@ export default class FavoriteStore {
 
 	@computed
 	get trendingFavoriteIds() {
-		return this.trendingFavorite.map(item => item.id) || [];
+		return this.trendingFavorite.map(item => item.full_name) || [];
 	}
 
 	@computed

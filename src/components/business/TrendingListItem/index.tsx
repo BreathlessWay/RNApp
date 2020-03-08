@@ -11,30 +11,47 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 import { TrendingItemType } from '@stores/trend/trend';
 
-import { EDetailType } from '@config/constant';
+import { EDetailType, EFavoriteTab } from '@config/constant';
 
 import Style from './style';
 
-export type TrendingListItemPropType = TrendingItemType;
+export type TrendingListItemPropType = TrendingItemType & {
+	isFavorite: boolean;
+	onFavorite: (params: { item: TrendingItemType; isFavorite: boolean }) => void;
+};
 
 const TrendingListItem: FC<TrendingListItemPropType> = props => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
-	const { children, ...rest } = props;
+	const { children, onFavorite, isFavorite, ...rest } = props;
 
 	const handlePress = () => {
 		navigation.navigate(EScreenName.Detail, {
 			item: rest,
 			type: EDetailType.trending,
+			source: EFavoriteTab.trending,
 		});
+	};
+
+	const handleFavorite = () => {
+		onFavorite({ item: rest, isFavorite: !isFavorite });
 	};
 
 	return (
 		<TouchableOpacity onPress={handlePress}>
 			<View style={Style.wrap}>
-				<Text style={{ ...Style.name, ...{ color: props.color } }}>
-					{props.full_name}
-				</Text>
+				<View style={Style.header}>
+					<Text style={{ ...Style.name, ...{ color: props.color } }}>
+						{props.full_name}
+					</Text>
+					<TouchableOpacity onPress={handleFavorite} activeOpacity={1}>
+						<FontAwesome
+							name={isFavorite ? 'star' : 'star-o'}
+							color={'red'}
+							size={20}
+						/>
+					</TouchableOpacity>
+				</View>
 				<View style={Style.tip}>
 					{Boolean(props.language) && (
 						<Text style={Style.language}>{props.language}</Text>

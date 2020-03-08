@@ -14,6 +14,7 @@ import { Store } from '@/stores';
 import { ReposItemType } from '@stores/popular/popular';
 
 import { EFavoriteTab } from '@config/constant';
+import TrendingListItem from '@components/business/TrendingListItem';
 
 export type FavoritePageStorePropType = Pick<Store, 'favoriteStore'>;
 
@@ -89,14 +90,22 @@ const FavoritePage: FC<FavoritePagePropType &
 			}
 			data={favorite[tab]?.items ?? []}
 			keyExtractor={item => String(item.id)}
-			renderItem={({ item }) => (
-				<ReposListItem
-					{...item}
-					onFavorite={handleFavorite}
-					isFavorite={true}
-					source={tab}
-				/>
-			)}
+			renderItem={({ item }: { item: any }) =>
+				tab === EFavoriteTab.popular ? (
+					<ReposListItem
+						{...item}
+						onFavorite={handleFavorite}
+						isFavorite={true}
+						source={tab}
+					/>
+				) : (
+					<TrendingListItem
+						{...item}
+						onFavorite={handleFavorite}
+						isFavorite={true}
+					/>
+				)
+			}
 			ListEmptyComponent={refreshing ? null : <EmptyComponent />}
 			ListFooterComponent={
 				empty ? null : (
