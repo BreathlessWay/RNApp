@@ -104,7 +104,7 @@ export default class TrendStore {
 		tab: ETrendTab;
 	}) {
 		let json;
-		switch (this.trendKey) {
+		switch (tab) {
 			case ETrendTab.allUser: {
 				json = users;
 				break;
@@ -130,7 +130,7 @@ export default class TrendStore {
 				break;
 			}
 		}
-		const startIndex = (pageIndex - 1) * pageSize + 1,
+		const startIndex = (pageIndex - 1) * pageSize,
 			endIndex = pageIndex * pageSize;
 		const res = json.slice(startIndex, endIndex);
 
