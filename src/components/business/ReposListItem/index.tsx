@@ -1,32 +1,41 @@
 import React, { FC } from 'react';
 
+import { useNavigation } from '@react-navigation/native';
+
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import HTMLView from 'react-native-htmlview';
 
-import { useNavigation } from '@react-navigation/native';
-
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ReposItemType } from '@stores/popular/popular';
-
 import { EScreenName, RootStackParamList } from '@routes/route.d';
+
+import { EDetailType, EFavoriteTab } from '@config/constant';
 
 import Style from './style';
 
-export type ReposListItemPropType = {} & ReposItemType;
+export type ReposListItemPropType = {
+	isFavorite: boolean;
+	onFavorite: (params: { item: ReposItemType; isFavorite: boolean }) => void;
+	source: EFavoriteTab;
+} & ReposItemType;
 
 const ReposListItem: FC<ReposListItemPropType> = props => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
-	const { children, ...rest } = props;
+	const { children, isFavorite, onFavorite, source, ...rest } = props;
 
 	const handlePress = () => {
 		navigation.navigate(EScreenName.Detail, {
 			item: rest,
+			source,
+			type: EDetailType.repos,
 		});
 	};
 
-	const handleFavorite = () => {};
+	const handleFavorite = () => {
+		onFavorite({ item: rest, isFavorite: !isFavorite });
+	};
 
 	return (
 		<TouchableOpacity onPress={handlePress}>
@@ -53,7 +62,11 @@ const ReposListItem: FC<ReposListItemPropType> = props => {
 						<Text>{props.stargazers_count}</Text>
 					</View>
 					<TouchableOpacity onPress={handleFavorite} activeOpacity={1}>
-						<FontAwesome name={'star-o'} color={'red'} size={20} />
+						<FontAwesome
+							name={isFavorite ? 'star' : 'star-o'}
+							color={'red'}
+							size={20}
+						/>
 					</TouchableOpacity>
 				</View>
 			</View>

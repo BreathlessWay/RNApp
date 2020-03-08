@@ -11,8 +11,12 @@ import PopupComponent from '@components/common/PopupComponent';
 import { Store } from '@/stores';
 
 import { ETrendTab } from '@config/constant';
+import { ReposItemType } from '@stores/popular/popular';
 
-export type TrendPageStorePropType = Pick<Store, 'appStore' | 'trendStore'>;
+export type TrendPageStorePropType = Pick<
+	Store,
+	'appStore' | 'trendStore' | 'favoriteStore'
+>;
 
 export type TrendPagePropType = {
 	tab: ETrendTab;
@@ -34,6 +38,7 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 			setFilter,
 			filter,
 		},
+		favoriteStore: { setTrendingFavorite, trendingFavoriteIds },
 	} = props;
 
 	useEffect(() => {
@@ -55,6 +60,16 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 		ref.current && ref.current.scrollToOffset({ offset: 0 });
 		setFilter(key as ETrendTab);
 		getList({ refreshing: true, tab });
+	};
+
+	const handleFavorite = ({
+		item,
+		isFavorite,
+	}: {
+		item: ReposItemType;
+		isFavorite: boolean;
+	}) => {
+		setTrendingFavorite({ item, isFavorite });
 	};
 
 	let data: any = trending[tab]?.list ?? [];
@@ -84,7 +99,14 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 				}
 				data={data}
 				keyExtractor={(item: any) => String(item.id) || String(item.rank)}
-				renderItem={({ item }) => <TrendListItem tab={tab} item={item} />}
+				renderItem={({ item }) => (
+					<TrendListItem
+						tab={tab}
+						item={item}
+						onFavorite={handleFavorite}
+						trendingFavoriteIds={trendingFavoriteIds}
+					/>
+				)}
 				ListEmptyComponent={refreshing ? null : <EmptyComponent />}
 				ListFooterComponent={
 					empty ? null : (
@@ -101,6 +123,7 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 const TrendScreen = (inject((store: Store) => ({
 	appStore: store.appStore,
 	trendStore: store.trendStore,
+	favoriteStore: store.favoriteStore,
 }))(observer(TrendPage)) as unknown) as FC<TrendPagePropType>;
 
 export default TrendScreen;

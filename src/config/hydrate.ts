@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import { create } from 'mobx-persist';
 
-import AppStore from '@stores/app';
+import store from '@/stores';
 
 const hydrate = create({
 	storage: AsyncStorage, // or AsyncStorage in react-native.
@@ -10,8 +10,10 @@ const hydrate = create({
 	// default: true
 });
 
-const appStore = new AppStore();
-
-hydrate('appStore', appStore).then(() =>
+hydrate('appStore', store.appStore).then(() =>
 	console.log('appStore has been hydrated'),
+);
+
+hydrate('favoriteStore', store.favoriteStore).then(() =>
+	console.log('favoriteStore has been hydrated'),
 );

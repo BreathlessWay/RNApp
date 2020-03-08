@@ -11,6 +11,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 import { TrendUserItemType } from '@stores/trend/trend';
 
+import { EDetailType } from '@config/constant';
+
 import Style from './style';
 
 export type UserListItemPropType = TrendUserItemType;
@@ -23,6 +25,7 @@ const UserListItem: FC<UserListItemPropType> = props => {
 	const handlePress = () => {
 		navigation.navigate(EScreenName.Detail, {
 			item: rest,
+			type: EDetailType.user,
 		});
 	};
 

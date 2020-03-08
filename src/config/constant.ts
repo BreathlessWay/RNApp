@@ -44,3 +44,25 @@ export const TREND_TABS_LIST = [
 export const HEADER_THEME_COLOR = '#00d3f3';
 
 export const PREFIX_URL = 'https://github.com';
+
+export enum EFavoriteTab {
+	popular = 'popular',
+	trending = 'trending',
+}
+
+export const FAVORITE_TABS_LIST = [
+	{
+		title: '最热',
+		key: EFavoriteTab.popular,
+	},
+	{
+		title: '趋势',
+		key: EFavoriteTab.trending,
+	},
+];
+
+export enum EDetailType {
+	user = 'user',
+	repos = 'repos',
+	trending = 'trending',
+}
