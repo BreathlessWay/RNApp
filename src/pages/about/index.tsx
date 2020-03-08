@@ -19,7 +19,7 @@ import MenuListItem from '@components/business/MenuListItem';
 import { Store } from '@/stores';
 
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '@routes/route.d';
+import { EScreenName, RootStackParamList } from '@routes/route.d';
 
 import Style, { stickyHeaderHeight } from './style';
 
@@ -96,7 +96,10 @@ const AboutPage = () => {
 						</TouchableOpacity>
 					</View>
 				)}>
-				<MenuListItem {...MENU_LIST.About_Author} />
+				<MenuListItem
+					{...MENU_LIST.About_Author}
+					onPress={() => navigation.navigate(EScreenName.Author)}
+				/>
 				<MenuListItem
 					{...MENU_LIST.Feedback}
 					hasBorder={false}

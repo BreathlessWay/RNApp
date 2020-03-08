@@ -87,7 +87,10 @@ const MePage: FC<MePagePropType> = props => {
 			<MenuListItem {...MENU_LIST.Sort_Language} hasBorder={false} />
 			<Text style={Style.group}>设置</Text>
 			<MenuListItem {...MENU_LIST.Custom_Theme} />
-			<MenuListItem {...MENU_LIST.About_Author} />
+			<MenuListItem
+				{...MENU_LIST.About_Author}
+				onPress={() => navigation.navigate(EScreenName.Author)}
+			/>
 			<MenuListItem
 				{...MENU_LIST.Feedback}
 				hasBorder={false}

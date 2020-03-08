@@ -14,6 +14,8 @@ export enum EScreenName {
 	Detail = 'Detail',
 
 	About = 'About',
+
+	Author = 'Author',
 }
 
 export type RootStackParamList = {
@@ -33,4 +35,5 @@ export type RootStackParamList = {
 	};
 
 	[EScreenName.About]: undefined;
+	[EScreenName.Author]: undefined;
 };

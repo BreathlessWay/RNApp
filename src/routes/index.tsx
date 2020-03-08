@@ -6,6 +6,7 @@ import WelcomeScreen from '@pages/welcome';
 import SwitchRoutePage from './switch';
 import DetailScreen from '@pages/detail';
 import AboutScreen from '@pages/about';
+import AuthorScreen from '@pages/author';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -42,6 +43,13 @@ const RootRoutePage = () => {
 					<Screen
 						name={EScreenName.About}
 						component={AboutScreen}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Screen
+						name={EScreenName.Author}
+						component={AuthorScreen}
 						options={{
 							headerShown: false,
 						}}
