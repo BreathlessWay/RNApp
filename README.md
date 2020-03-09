@@ -52,3 +52,5 @@
 11. [react-native-parallax-scroll-view](https://github.com/i6mi6/react-native-parallax-scroll-view)
 12. React-Native 自带的 Webview 已经被移除了，现在使用[
     react-native-webview](https://github.com/react-native-community/react-native-webview)代替
+13. [Homebrew国内镜像](https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git)
+14. 换了机器之后，要先装用brew安装cocoapods，然后link一下
