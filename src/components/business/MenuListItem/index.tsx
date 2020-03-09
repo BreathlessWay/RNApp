@@ -13,8 +13,8 @@ import Style from './style';
 
 export type MenuListItemPropType = {
 	name: string;
-	Icons: ReactNode;
-	icon: string;
+	Icons?: ReactNode;
+	icon?: string;
 	title?: string;
 	wrapStyle?: ViewStyle;
 	iconStyle?: TextStyle;

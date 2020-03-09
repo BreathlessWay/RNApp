@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import IonIcons from 'react-native-vector-icons/Ionicons';
+import OctIcons from 'react-native-vector-icons/Octicons';
 import Toast from 'react-native-easy-toast';
 import MenuListItem from '@components/business/MenuListItem';
 
@@ -99,6 +100,17 @@ const AboutPage = () => {
 				<MenuListItem
 					{...MENU_LIST.About_Author}
 					onPress={() => navigation.navigate(EScreenName.Author)}
+				/>
+				<MenuListItem
+					name="项目地址"
+					Icons={OctIcons}
+					icon="project"
+					onPress={() =>
+						navigation.navigate(EScreenName.WebView, {
+							title: aboutJson.info.name,
+							url: aboutJson.info.url,
+						})
+					}
 				/>
 				<MenuListItem
 					{...MENU_LIST.Feedback}
