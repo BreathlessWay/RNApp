@@ -96,7 +96,7 @@ const MePage: FC<MePagePropType> = props => {
 				hasBorder={false}
 				onPress={handleFeedback}
 			/>
-			<Toast ref={ref as any} position="top" positionValue={300} />
+			<Toast ref={ref as any} position="center" />
 		</ScrollView>
 	);
 };

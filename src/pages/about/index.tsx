@@ -106,7 +106,7 @@ const AboutPage = () => {
 					onPress={handleFeedback}
 				/>
 			</ParallaxScrollView>
-			<Toast ref={ref as any} position="top" positionValue={300} />
+			<Toast ref={ref as any} position="center" />
 		</View>
 	);
 };

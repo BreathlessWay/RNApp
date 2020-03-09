@@ -1,4 +1,5 @@
 import { EDetailType, EFavoriteTab } from '@config/constant';
+import WebViewScreen from '@pages/webview';
 
 export enum EScreenName {
 	Welcome = 'Welcome',
@@ -16,6 +17,8 @@ export enum EScreenName {
 	About = 'About',
 
 	Author = 'Author',
+
+	WebView = 'WebView',
 }
 
 export type RootStackParamList = {
@@ -36,4 +39,8 @@ export type RootStackParamList = {
 
 	[EScreenName.About]: undefined;
 	[EScreenName.Author]: undefined;
+	[EScreenName.WebView]: {
+		url: string;
+		title: string;
+	};
 };

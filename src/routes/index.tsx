@@ -7,6 +7,7 @@ import SwitchRoutePage from './switch';
 import DetailScreen from '@pages/detail';
 import AboutScreen from '@pages/about';
 import AuthorScreen from '@pages/author';
+import WebViewScreen from '@pages/webview';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -54,6 +55,7 @@ const RootRoutePage = () => {
 							headerShown: false,
 						}}
 					/>
+					<Screen name={EScreenName.WebView} component={WebViewScreen} />
 				</Navigator>
 			</NavigationContainer>
 		</SafeAreaProvider>

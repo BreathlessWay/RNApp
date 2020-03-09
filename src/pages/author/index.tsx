@@ -10,11 +10,13 @@ import IonIcons from 'react-native-vector-icons/Ionicons';
 import { Store } from '@/stores';
 
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '@routes/route.d';
+import { EScreenName, RootStackParamList } from '@routes/route.d';
 
 import Style, { stickyHeaderHeight } from './style';
 
 import aboutJson from '@config/about.json';
+import MenuListItem from '@components/business/MenuListItem';
+import { MENU_LIST } from '@config/menu';
 
 const AuthorPage = () => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -73,7 +75,15 @@ const AuthorPage = () => {
 				</View>
 			)}>
 			<View>
-				<Text>TODO</Text>
+				<MenuListItem
+					{...MENU_LIST.About_Author}
+					onPress={() =>
+						navigation.navigate(EScreenName.WebView, {
+							title: aboutJson.author.name,
+							url: '',
+						})
+					}
+				/>
 			</View>
 		</ParallaxScrollView>
 	);
