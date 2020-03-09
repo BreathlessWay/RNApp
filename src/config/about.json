@@ -16,7 +16,7 @@
 		},
 		"Contact": {
 			"name": "联系方式",
-			"icon": "ios-contacts",
+			"icon": "contacts",
 			"items": {
 				"QQ": {
 					"title": "QQ",
@@ -26,7 +26,7 @@
 		},
 		"QQ": {
 			"name": "技术交流群",
-			"icon": "ios-chatbubbles",
+			"icon": "comment-discussion",
 			"items": [
 				{
 					"title": "只有前端才知道的世界",

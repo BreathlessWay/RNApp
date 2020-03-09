@@ -6,17 +6,18 @@ import { useNavigation } from '@react-navigation/native';
 import { View, Text, Image, Dimensions, TouchableOpacity } from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import IonIcons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import OctIcons from 'react-native-vector-icons/Octicons';
+import MenuListItem from '@components/business/MenuListItem';
 
 import { Store } from '@/stores';
 
 import { StackNavigationProp } from '@react-navigation/stack';
-import { EScreenName, RootStackParamList } from '@routes/route.d';
+import { RootStackParamList } from '@routes/route.d';
 
 import Style, { stickyHeaderHeight } from './style';
 
 import aboutJson from '@config/about.json';
-import MenuListItem from '@components/business/MenuListItem';
-import { MENU_LIST } from '@config/menu';
 
 const AuthorPage = () => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -76,13 +77,22 @@ const AuthorPage = () => {
 			)}>
 			<View>
 				<MenuListItem
-					{...MENU_LIST.About_Author}
-					onPress={() =>
-						navigation.navigate(EScreenName.WebView, {
-							title: aboutJson.author.name,
-							url: '',
-						})
-					}
+					name={aboutJson.aboutMe.Blog.name}
+					Icons={IonIcons}
+					icon={aboutJson.aboutMe.Blog.icon}
+					onPress={() => {}}
+				/>
+				<MenuListItem
+					name={aboutJson.aboutMe.Contact.name}
+					Icons={AntDesign}
+					icon={aboutJson.aboutMe.Contact.icon}
+					onPress={() => {}}
+				/>
+				<MenuListItem
+					name={aboutJson.aboutMe.QQ.name}
+					Icons={OctIcons}
+					icon={aboutJson.aboutMe.QQ.icon}
+					onPress={() => {}}
 				/>
 			</View>
 		</ParallaxScrollView>
