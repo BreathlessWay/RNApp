@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { configure } from 'mobx';
 import { Provider } from 'mobx-react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 
 import RootRouteScreen from '@/routes';
@@ -23,7 +24,9 @@ const App = () => {
 
 	return (
 		<Provider {...store}>
-			<RootRouteScreen />
+			<SafeAreaProvider>
+				<RootRouteScreen />
+			</SafeAreaProvider>
 		</Provider>
 	);
 };

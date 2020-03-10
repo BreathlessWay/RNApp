@@ -8,7 +8,7 @@ import { Text } from 'react-native';
 
 import FavoriteScreen from '@pages/favorite';
 
-import { setHeader } from '@components/business/NavHeader';
+import { setHeader, setHeaderParams } from '@components/business/NavHeader';
 
 import { Store } from '@/stores';
 
@@ -16,6 +16,8 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from '@routes/route.d';
 
 import { HEADER_THEME_COLOR, FAVORITE_TABS_LIST } from '@config/constant';
+
+import CommonStyle from '@styles/common';
 
 const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
@@ -35,7 +37,7 @@ const FavoriteTabRoutePage: FC<FavoriteTabRoutePagePropType> = props => {
 		appStore: { stackNavigation, setFavoriteSwitchNavigation },
 	} = props;
 
-	const headerOptions = {
+	const headerOptions: setHeaderParams = {
 		navigation: stackNavigation,
 		title: '收藏',
 	};
@@ -52,15 +54,12 @@ const FavoriteTabRoutePage: FC<FavoriteTabRoutePagePropType> = props => {
 
 	return (
 		<Navigator
-			initialRouteName={FAVORITE_TABS_LIST[0].key as any}
+			initialRouteName={FAVORITE_TABS_LIST[0]?.key as any}
 			tabBarOptions={{
 				style: {
 					backgroundColor: HEADER_THEME_COLOR,
 				},
-				indicatorStyle: {
-					height: 2,
-					backgroundColor: '#fff',
-				},
+				indicatorStyle: CommonStyle.indicator,
 			}}
 			lazy={true}>
 			{FAVORITE_TABS_LIST.map((tab, index) => (
@@ -70,14 +69,7 @@ const FavoriteTabRoutePage: FC<FavoriteTabRoutePagePropType> = props => {
 					children={props => <FavoriteScreen {...props} tab={tab.key} />}
 					options={{
 						tabBarLabel: () => (
-							<Text
-								style={{
-									fontSize: 13,
-									marginHorizontal: 6,
-									color: '#fff',
-								}}>
-								{tab.title}
-							</Text>
+							<Text style={CommonStyle.tabBarLabel}>{tab.title}</Text>
 						),
 					}}
 				/>

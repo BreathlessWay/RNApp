@@ -17,6 +17,8 @@ import { RootStackParamList } from '@routes/route.d';
 
 import { HEADER_THEME_COLOR, TREND_TABS_LIST } from '@config/constant';
 
+import CommonStyle from '@styles/common';
+
 const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
 >();
@@ -49,16 +51,13 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 
 	return (
 		<Navigator
-			initialRouteName={TREND_TABS_LIST[0].key as any}
+			initialRouteName={TREND_TABS_LIST[0]?.key as any}
 			tabBarOptions={{
 				scrollEnabled: true,
 				style: {
 					backgroundColor: HEADER_THEME_COLOR,
 				},
-				indicatorStyle: {
-					height: 2,
-					backgroundColor: '#fff',
-				},
+				indicatorStyle: CommonStyle.indicator,
 			}}
 			lazy={true}>
 			{TREND_TABS_LIST.map((tab, index) => (
@@ -68,14 +67,7 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 					children={props => <TrendScreen {...props} tab={tab.key} />}
 					options={{
 						tabBarLabel: () => (
-							<Text
-								style={{
-									fontSize: 13,
-									marginHorizontal: 6,
-									color: '#fff',
-								}}>
-								{tab.title}
-							</Text>
+							<Text style={CommonStyle.tabBarLabel}>{tab.title}</Text>
 						),
 					}}
 				/>

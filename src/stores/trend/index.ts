@@ -1,8 +1,9 @@
 import { action, computed, observable, runInAction } from 'mobx';
 
+import { TrendingType } from './trend.d';
+
 import { ETrendTab, PAGE_SIZE } from '@config/constant';
 
-import { TrendingType } from './trend.d';
 // @ts-ignore
 import users from '@wcj/github-rank/dist/users.json';
 // @ts-ignore
@@ -103,7 +104,7 @@ export default class TrendStore {
 		pageSize: number;
 		tab: ETrendTab;
 	}) {
-		let json;
+		let json = [];
 		switch (tab) {
 			case ETrendTab.allUser: {
 				json = users;
@@ -114,7 +115,7 @@ export default class TrendStore {
 				break;
 			}
 			case ETrendTab.repos: {
-				json = repos;
+				json = repos as Array<any>;
 				break;
 			}
 			case ETrendTab.trendingDaily: {
@@ -153,7 +154,7 @@ export default class TrendStore {
 
 	@computed
 	get hasMore() {
-		let json;
+		let json = [];
 		switch (this.trendKey) {
 			case ETrendTab.allUser: {
 				json = users;
@@ -164,7 +165,7 @@ export default class TrendStore {
 				break;
 			}
 			case ETrendTab.repos: {
-				json = repos;
+				json = repos as Array<any>;
 				break;
 			}
 			case ETrendTab.trendingDaily: {

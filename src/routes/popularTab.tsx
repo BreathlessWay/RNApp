@@ -17,6 +17,8 @@ import { RootStackParamList } from '@routes/route.d';
 
 import { HEADER_THEME_COLOR, POPULAR_TABS_LIST } from '@config/constant';
 
+import CommonStyle from '@styles/common';
+
 const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
 >();
@@ -53,10 +55,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 				style: {
 					backgroundColor: HEADER_THEME_COLOR,
 				},
-				indicatorStyle: {
-					height: 2,
-					backgroundColor: '#fff',
-				},
+				indicatorStyle: CommonStyle.indicator,
 			}}
 			lazy={true}>
 			{POPULAR_TABS_LIST.map((tab, index) => (
@@ -66,14 +65,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 					children={props => <PopularScreen {...props} tab={tab} />}
 					options={{
 						tabBarLabel: () => (
-							<Text
-								style={{
-									fontSize: 13,
-									marginHorizontal: 6,
-									color: '#fff',
-								}}>
-								{tab}
-							</Text>
+							<Text style={CommonStyle.tabBarLabel}>{tab}</Text>
 						),
 					}}
 				/>

@@ -20,6 +20,16 @@ export const MENU_LIST = {
 		Icons: MaterialCommunityIcons,
 		icon: 'palette-outline',
 	},
+	Sort_Key: {
+		name: '标签排序',
+		Icons: MaterialCommunityIcons,
+		icon: 'sort',
+	},
+	Remove_Key: {
+		name: '移除标签',
+		Icons: OctIcons,
+		icon: 'diff-removed',
+	},
 	About_Author: {
 		name: '关于作者',
 		Icons: SimpleLineIcons,

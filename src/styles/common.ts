@@ -25,6 +25,15 @@ const CommonStyle = StyleSheet.create({
 		borderRadius: 3,
 		overflow: 'hidden',
 	},
+	indicator:{
+		height: 2,
+		backgroundColor: '#fff',
+	},
+	tabBarLabel:{
+		fontSize: 13,
+		marginHorizontal: 6,
+		color: '#fff',
+	}
 });
 
 export default CommonStyle;
