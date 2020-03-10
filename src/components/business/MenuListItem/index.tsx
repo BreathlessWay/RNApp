@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 
 import {
 	TouchableOpacity,
@@ -24,9 +24,12 @@ export type MenuListItemPropType = {
 	hasBorder?: boolean;
 	hasArrow?: boolean;
 	onPress?: () => void;
+	column?: boolean;
 };
 
 const MenuListItem: FC<MenuListItemPropType> = props => {
+	const [upOrDown, setUpOrDown] = useState(false);
+
 	const {
 		name,
 		icon,
@@ -39,16 +42,27 @@ const MenuListItem: FC<MenuListItemPropType> = props => {
 		hasBorder = true,
 		hasArrow = true,
 		onPress,
+		column = false,
 	} = props;
 
 	const Icons: any = props.Icons;
 
 	const handlePressIcon = () => {
+		if (column) {
+			setUpOrDown(!upOrDown);
+		}
 		onPress && onPress();
 	};
 
+	let iconName = 'ios-arrow-forward';
+	if (column) {
+		iconName = upOrDown ? 'ios-arrow-up' : 'ios-arrow-down';
+	}
+
 	return (
-		<TouchableOpacity onPress={handlePressIcon}>
+		<TouchableOpacity
+			onPress={handlePressIcon}
+			activeOpacity={column ? 1 : 0.2}>
 			<View
 				style={
 					hasBorder
@@ -62,10 +76,7 @@ const MenuListItem: FC<MenuListItemPropType> = props => {
 					<Text style={{ ...Style.title, ...titleStyle }}>{title || name}</Text>
 				</View>
 				{hasArrow && (
-					<IonIcons
-						name="ios-arrow-forward"
-						style={{ ...Style.arrow, ...arrowStyle }}
-					/>
+					<IonIcons name={iconName} style={{ ...Style.arrow, ...arrowStyle }} />
 				)}
 			</View>
 		</TouchableOpacity>

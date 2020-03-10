@@ -1,9 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { View, Text, Image, Dimensions, TouchableOpacity } from 'react-native';
+import {
+	View,
+	Text,
+	Image,
+	Dimensions,
+	TouchableOpacity,
+	Clipboard,
+} from 'react-native';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -13,19 +20,41 @@ import MenuListItem from '@components/business/MenuListItem';
 import { Store } from '@/stores';
 
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '@routes/route.d';
+import { EScreenName, RootStackParamList } from '@routes/route.d';
 
 import Style, { stickyHeaderHeight } from './style';
 
 import aboutJson from '@config/about.json';
+import { handlePress } from 'react-native-paper/lib/typescript/src/components/RadioButton/utils';
 
 const AuthorPage = () => {
+	const [showBlog, setShowBlog] = useState(false),
+		[showContact, setShowContact] = useState(false),
+		[showExchange, setShowExchange] = useState(false);
+
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
 	const handleShare = () => {};
 
 	const handleBack = () => {
 		navigation.goBack();
+	};
+
+	const handlePressItem = ({
+		title,
+		value,
+	}: {
+		title: string;
+		value: string;
+	}) => {
+		if (value.startsWith('http')) {
+			navigation.navigate(EScreenName.WebView, {
+				title,
+				url: value,
+			});
+		} else {
+			Clipboard.setString(value);
+		}
 	};
 
 	return (
@@ -80,20 +109,47 @@ const AuthorPage = () => {
 					name={aboutJson.aboutMe.Blog.name}
 					Icons={IonIcons}
 					icon={aboutJson.aboutMe.Blog.icon}
-					onPress={() => {}}
+					onPress={() => setShowBlog(!showBlog)}
+					column={true}
 				/>
+				{showBlog &&
+					aboutJson.aboutMe.Blog.items.map(item => (
+						<MenuListItem
+							name={item.title}
+							wrapStyle={{ paddingLeft: 32 }}
+							onPress={() => handlePressItem(item)}
+						/>
+					))}
 				<MenuListItem
 					name={aboutJson.aboutMe.Contact.name}
 					Icons={AntDesign}
 					icon={aboutJson.aboutMe.Contact.icon}
-					onPress={() => {}}
+					onPress={() => setShowContact(!showContact)}
+					column={true}
 				/>
+				{showContact &&
+					aboutJson.aboutMe.Contact.items.map(item => (
+						<MenuListItem
+							name={item.title + ': ' + item.value}
+							wrapStyle={{ paddingLeft: 32 }}
+							onPress={() => handlePressItem(item)}
+						/>
+					))}
 				<MenuListItem
 					name={aboutJson.aboutMe.QQ.name}
 					Icons={OctIcons}
 					icon={aboutJson.aboutMe.QQ.icon}
-					onPress={() => {}}
+					onPress={() => setShowExchange(!showExchange)}
+					column={true}
 				/>
+				{showExchange &&
+					aboutJson.aboutMe.QQ.items.map(item => (
+						<MenuListItem
+							name={item.title + ': ' + item.value}
+							wrapStyle={{ paddingLeft: 32 }}
+							onPress={() => handlePressItem(item)}
+						/>
+					))}
 			</View>
 		</ParallaxScrollView>
 	);

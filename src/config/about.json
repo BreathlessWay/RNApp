@@ -6,23 +6,23 @@
 			"items": [
 				{
 					"title": "个人博客",
-					"url": "http://breathlessway.com/home"
+					"value": "http://breathlessway.com/home"
 				},
 				{
 					"title": "GitHub",
-					"url": "https://github.com/BreathlessWay"
+					"value": "https://github.com/BreathlessWay"
 				}
 			]
 		},
 		"Contact": {
 			"name": "联系方式",
 			"icon": "contacts",
-			"items": {
-				"QQ": {
+			"items": [
+				{
 					"title": "QQ",
-					"account": "731005087"
+					"value": "731005087"
 				}
-			}
+			]
 		},
 		"QQ": {
 			"name": "技术交流群",
@@ -30,7 +30,7 @@
 			"items": [
 				{
 					"title": "只有前端才知道的世界",
-					"account": "399719631"
+					"value": "399719631"
 				}
 			]
 		}
