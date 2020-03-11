@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { inject, observer } from 'mobx-react';
 
 import WelcomeScreen from '@pages/welcome';
 import DetailScreen from '@pages/detail';
@@ -7,26 +8,30 @@ import AuthorScreen from '@pages/author';
 import WebViewScreen from '@pages/webview';
 import SwitchRoutePage from './switch';
 
+import { Store } from '@/stores';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { EScreenName, RootStackParamList } from './route.d';
-
-import { HEADER_THEME_COLOR } from '@config/constant';
 
 import '@config/hydrate';
 
 // 当使用导航时自带了SafeAreaView
 const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
 
-const RootRoutePage = () => {
+export type RootRoutePagePropType = Pick<Store, 'appStore'>
+
+const RootRoutePage:FC<RootRoutePagePropType> = props => {
+	const {appStore:{theme}} = props
+
 	return (
 		<NavigationContainer>
 			<Navigator
 				initialRouteName={EScreenName.Welcome}
 				screenOptions={{
 					headerStyle: {
-						backgroundColor: HEADER_THEME_COLOR,
+						backgroundColor: theme,
 					},
 				}}>
 				<Screen
@@ -58,6 +63,8 @@ const RootRoutePage = () => {
 	);
 };
 
-const RootRouteScreen = (RootRoutePage as unknown) as FC;
+const RootRouteScreen = (inject((stores: Store) => ({
+	appStore: stores.appStore,
+}))(observer(RootRoutePage)) as unknown) as FC;
 
 export default RootRouteScreen;

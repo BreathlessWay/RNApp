@@ -26,7 +26,7 @@ const MePage: FC<MePagePropType> = props => {
 	>();
 
 	const {
-		appStore: { stackNavigation },
+		appStore: { stackNavigation, theme },
 	} = props;
 
 	const handlePressRight = () => {};
@@ -69,6 +69,7 @@ const MePage: FC<MePagePropType> = props => {
 	return (
 		<ScrollView>
 			<MenuListItem
+				themeColor={theme}
 				{...MENU_LIST.About}
 				title="GtiHub Popular"
 				iconStyle={Style.iconStyle}
@@ -80,18 +81,28 @@ const MePage: FC<MePagePropType> = props => {
 				}
 			/>
 			<Text style={Style.group}>趋势管理</Text>
-			<MenuListItem {...MENU_LIST.Custom_Language} />
-			<MenuListItem {...MENU_LIST.Sort_Language} hasBorder={false} />
-			<Text style={Style.group}>最热管理</Text>
-			<MenuListItem {...MENU_LIST.Sort_Key} />
-			<MenuListItem {...MENU_LIST.Remove_Key} hasBorder={false} />
-			<Text style={Style.group}>设置</Text>
-			<MenuListItem {...MENU_LIST.Custom_Theme} />
+			<MenuListItem {...MENU_LIST.Custom_Language} themeColor={theme} />
 			<MenuListItem
+				{...MENU_LIST.Sort_Language}
+				hasBorder={false}
+				themeColor={theme}
+			/>
+			<Text style={Style.group}>最热管理</Text>
+			<MenuListItem {...MENU_LIST.Sort_Key} themeColor={theme} />
+			<MenuListItem
+				{...MENU_LIST.Remove_Key}
+				hasBorder={false}
+				themeColor={theme}
+			/>
+			<Text style={Style.group}>设置</Text>
+			<MenuListItem {...MENU_LIST.Custom_Theme} themeColor={theme} />
+			<MenuListItem
+				themeColor={theme}
 				{...MENU_LIST.About_Author}
 				onPress={() => navigation.navigate(EScreenName.Author)}
 			/>
 			<MenuListItem
+				themeColor={theme}
 				{...MENU_LIST.Feedback}
 				hasBorder={false}
 				onPress={handleFeedback}

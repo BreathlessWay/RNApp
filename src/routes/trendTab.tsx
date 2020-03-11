@@ -15,7 +15,7 @@ import { Store } from '@/stores';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from '@routes/route.d';
 
-import { HEADER_THEME_COLOR, TREND_TABS_LIST } from '@config/constant';
+import { TREND_TABS_LIST } from '@config/constant';
 
 import CommonStyle from '@styles/common';
 
@@ -31,7 +31,7 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 	>();
 
 	const {
-		appStore: { stackNavigation, setTrendSwitchNavigation },
+		appStore: { stackNavigation, setTrendSwitchNavigation, theme },
 	} = props;
 
 	const headerOptions = {
@@ -55,7 +55,7 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 			tabBarOptions={{
 				scrollEnabled: true,
 				style: {
-					backgroundColor: HEADER_THEME_COLOR,
+					backgroundColor: theme,
 				},
 				indicatorStyle: CommonStyle.indicator,
 			}}

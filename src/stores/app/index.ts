@@ -8,7 +8,7 @@ import { RootStackParamList } from '@routes/route.d';
 export default class AppStore {
 	@persist
 	@observable
-	theme = '#fff';
+	theme = '#883436';
 
 	@observable
 	stackNavigation: StackNavigationProp<RootStackParamList> | null = null;

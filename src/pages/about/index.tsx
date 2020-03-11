@@ -27,7 +27,11 @@ import aboutJson from '@config/about.json';
 
 import { MENU_LIST } from '@config/menu';
 
-const AboutPage = () => {
+export type AboutPagePropType = Pick<Store, 'appStore'>
+
+const AboutPage:FC<AboutPagePropType> = props => {
+	const {appStore:{theme}} = props
+
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
 	const handleShare = () => {};
@@ -97,9 +101,11 @@ const AboutPage = () => {
 				)}>
 				<MenuListItem
 					{...MENU_LIST.About_Author}
+					themeColor={theme}
 					onPress={() => navigation.navigate(EScreenName.Author)}
 				/>
 				<MenuListItem
+					themeColor={theme}
 					name="项目地址"
 					Icons={OctIcons}
 					icon="project"
@@ -111,6 +117,7 @@ const AboutPage = () => {
 					}
 				/>
 				<MenuListItem
+					themeColor={theme}
 					{...MENU_LIST.Feedback}
 					hasBorder={false}
 					onPress={handleFeedback}
@@ -120,7 +127,9 @@ const AboutPage = () => {
 	);
 };
 
-const AboutScreen = (inject((stores: Store) => stores)(
+const AboutScreen = (inject((stores: Store) => ({
+	appStore: stores.appStore
+}))(
 	observer(AboutPage),
 ) as unknown) as FC;
 

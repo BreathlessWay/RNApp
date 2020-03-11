@@ -30,7 +30,9 @@ import aboutJson from '@config/about.json';
 const ITEM_HEIGHT = 59,
 	ANIMATE_TIME = 300;
 
-const AuthorPage = () => {
+export type AuthorPagePropType = Pick<Store, 'appStore'>;
+
+const AuthorPage: FC<AuthorPagePropType> = props => {
 	const [slidAnimBlog] = useState(new Animated.Value(0)),
 		[slidAnimToValueBlog, setSlidAnimToValueBlog] = useState(ITEM_HEIGHT * 2),
 		[slidAnimContact] = useState(new Animated.Value(0)),
@@ -39,6 +41,10 @@ const AuthorPage = () => {
 		[slidAnimToValueExchange, setSlidAnimToValueExchange] = useState(
 			ITEM_HEIGHT,
 		);
+
+	const {
+		appStore: { theme },
+	} = props;
 
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
@@ -118,6 +124,7 @@ const AuthorPage = () => {
 				)}>
 				<View>
 					<MenuListItem
+						themeColor={theme}
 						name={aboutJson.aboutMe.Blog.name}
 						Icons={IonIcons}
 						icon={aboutJson.aboutMe.Blog.icon}
@@ -140,6 +147,7 @@ const AuthorPage = () => {
 					<Animated.View style={{ height: slidAnimBlog }}>
 						{aboutJson.aboutMe.Blog.items.map(item => (
 							<MenuListItem
+								themeColor={theme}
 								name={item.title}
 								wrapStyle={{ paddingLeft: 32 }}
 								onPress={() => handlePressItem(item)}
@@ -147,6 +155,7 @@ const AuthorPage = () => {
 						))}
 					</Animated.View>
 					<MenuListItem
+						themeColor={theme}
 						name={aboutJson.aboutMe.Contact.name}
 						Icons={AntDesign}
 						icon={aboutJson.aboutMe.Contact.icon}
@@ -169,6 +178,7 @@ const AuthorPage = () => {
 					<Animated.View style={{ height: slidAnimContact }}>
 						{aboutJson.aboutMe.Contact.items.map(item => (
 							<MenuListItem
+								themeColor={theme}
 								name={item.title + ': ' + item.value}
 								wrapStyle={{ paddingLeft: 32 }}
 								onPress={() => handlePressItem(item)}
@@ -178,6 +188,7 @@ const AuthorPage = () => {
 					<MenuListItem
 						name={aboutJson.aboutMe.QQ.name}
 						Icons={OctIcons}
+						themeColor={theme}
 						icon={aboutJson.aboutMe.QQ.icon}
 						onPress={() =>
 							Animated.timing(
@@ -198,6 +209,7 @@ const AuthorPage = () => {
 					<Animated.View style={{ height: slidAnimExchange }}>
 						{aboutJson.aboutMe.QQ.items.map(item => (
 							<MenuListItem
+								themeColor={theme}
 								name={item.title + ': ' + item.value}
 								wrapStyle={{ paddingLeft: 32 }}
 								onPress={() => handlePressItem(item)}
@@ -210,8 +222,8 @@ const AuthorPage = () => {
 	);
 };
 
-const AuthorScreen = (inject((stores: Store) => stores)(
-	observer(AuthorPage),
-) as unknown) as FC;
+const AuthorScreen = (inject((stores: Store) => ({
+	appStore: stores.appStore,
+}))(observer(AuthorPage)) as unknown) as FC;
 
 export default AuthorScreen;

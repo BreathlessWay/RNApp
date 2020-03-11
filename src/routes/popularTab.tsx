@@ -15,7 +15,7 @@ import { Store } from '@/stores';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from '@routes/route.d';
 
-import { HEADER_THEME_COLOR, POPULAR_TABS_LIST } from '@config/constant';
+import { POPULAR_TABS_LIST } from '@config/constant';
 
 import CommonStyle from '@styles/common';
 
@@ -30,7 +30,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 		BottomTabNavigationProp<RootStackParamList>
 	>();
 
-	const { stackNavigation, setPopularSwitchNavigation } = props.appStore;
+	const { stackNavigation, setPopularSwitchNavigation , theme} = props.appStore;
 
 	const headerOptions = {
 		navigation: stackNavigation,
@@ -53,7 +53,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 			tabBarOptions={{
 				scrollEnabled: true,
 				style: {
-					backgroundColor: HEADER_THEME_COLOR,
+					backgroundColor: theme,
 				},
 				indicatorStyle: CommonStyle.indicator,
 			}}

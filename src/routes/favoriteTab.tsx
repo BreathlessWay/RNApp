@@ -15,7 +15,7 @@ import { Store } from '@/stores';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from '@routes/route.d';
 
-import { HEADER_THEME_COLOR, FAVORITE_TABS_LIST } from '@config/constant';
+import { FAVORITE_TABS_LIST } from '@config/constant';
 
 import CommonStyle from '@styles/common';
 
@@ -34,7 +34,7 @@ const FavoriteTabRoutePage: FC<FavoriteTabRoutePagePropType> = props => {
 	>();
 
 	const {
-		appStore: { stackNavigation, setFavoriteSwitchNavigation },
+		appStore: { stackNavigation, setFavoriteSwitchNavigation , theme},
 	} = props;
 
 	const headerOptions: setHeaderParams = {
@@ -57,7 +57,7 @@ const FavoriteTabRoutePage: FC<FavoriteTabRoutePagePropType> = props => {
 			initialRouteName={FAVORITE_TABS_LIST[0]?.key as any}
 			tabBarOptions={{
 				style: {
-					backgroundColor: HEADER_THEME_COLOR,
+					backgroundColor: theme,
 				},
 				indicatorStyle: CommonStyle.indicator,
 			}}

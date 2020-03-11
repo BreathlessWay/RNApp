@@ -25,6 +25,7 @@ export type MenuListItemPropType = {
 	hasArrow?: boolean;
 	onPress?: () => void;
 	column?: boolean;
+	themeColor?: string;
 };
 
 const MenuListItem: FC<MenuListItemPropType> = props => {
@@ -43,6 +44,7 @@ const MenuListItem: FC<MenuListItemPropType> = props => {
 		hasArrow = true,
 		onPress,
 		column = false,
+		themeColor,
 	} = props;
 
 	const Icons: any = props.Icons;
@@ -71,12 +73,23 @@ const MenuListItem: FC<MenuListItemPropType> = props => {
 				}>
 				<View style={{ ...Style.left, ...leftStyle }}>
 					{Icons && icon && (
-						<Icons name={icon} style={{ ...Style.icon, ...iconStyle }} />
+						<Icons
+							name={icon}
+							style={{ ...Style.icon, ...iconStyle }}
+							color={themeColor}
+						/>
 					)}
-					<Text style={{ ...Style.title, ...titleStyle }}>{title || name}</Text>
+					<Text
+						style={{ ...Style.title, ...titleStyle, ...{ color: themeColor } }}>
+						{title || name}
+					</Text>
 				</View>
 				{hasArrow && (
-					<IonIcons name={iconName} style={{ ...Style.arrow, ...arrowStyle }} />
+					<IonIcons
+						name={iconName}
+						style={{ ...Style.arrow, ...arrowStyle }}
+						color={themeColor}
+					/>
 				)}
 			</View>
 		</TouchableOpacity>
