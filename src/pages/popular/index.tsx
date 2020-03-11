@@ -1,8 +1,10 @@
 import React, { useRef, FC, useEffect } from 'react';
-
 import { inject, observer } from 'mobx-react';
 
+import { FlatList } from 'react-native';
+
 import ReposListItem from '@components/business/ReposListItem';
+import CommonFlatList from '@components/business/CommonFlatList';
 
 import { Store } from '@/stores';
 
@@ -12,8 +14,6 @@ import { EScreenName, RootStackParamList } from '@routes/route.d';
 import { ReposItemType } from '@stores/popular/popular';
 
 import { EFavoriteTab } from '@config/constant';
-import CommonFlatList from '@components/business/CommonFlatList';
-import { FlatList } from 'react-native';
 
 export type PopularPageStorePropType = Pick<
 	Store,
