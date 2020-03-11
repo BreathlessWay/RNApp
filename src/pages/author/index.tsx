@@ -16,7 +16,7 @@ import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import OctIcons from 'react-native-vector-icons/Octicons';
-import MenuListItem from '@components/business/MenuListItem';
+import MenuListItem from '@components/common/MenuListItem';
 
 import { Store } from '@/stores';
 

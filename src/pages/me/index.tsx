@@ -5,7 +5,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import { Text, ScrollView, Linking } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import MenuListItem from '@components/business/MenuListItem';
+import MenuListItem from '@components/common/MenuListItem';
 
 import { setHeader, setHeaderParams } from '@components/business/NavHeader';
 
@@ -69,6 +69,7 @@ const MePage: FC<MePagePropType> = props => {
 	return (
 		<ScrollView>
 			<MenuListItem
+				hasBorder={false}
 				themeColor={theme}
 				{...MENU_LIST.About}
 				title="GtiHub Popular"
@@ -88,11 +89,11 @@ const MePage: FC<MePagePropType> = props => {
 				themeColor={theme}
 			/>
 			<Text style={Style.group}>最热管理</Text>
-			<MenuListItem {...MENU_LIST.Sort_Key} themeColor={theme} />
+			<MenuListItem {...MENU_LIST.Custom_Key} themeColor={theme} />
 			<MenuListItem
-				{...MENU_LIST.Remove_Key}
-				hasBorder={false}
+				{...MENU_LIST.Sort_Key}
 				themeColor={theme}
+				hasBorder={false}
 			/>
 			<Text style={Style.group}>设置</Text>
 			<MenuListItem {...MENU_LIST.Custom_Theme} themeColor={theme} />
