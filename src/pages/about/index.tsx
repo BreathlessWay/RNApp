@@ -1,44 +1,32 @@
-import React, { FC, useRef } from 'react';
+import React, { FC } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import { useNavigation } from '@react-navigation/native';
 
-import {
-	View,
-	Text,
-	Image,
-	Dimensions,
-	TouchableOpacity,
-	Linking,
-} from 'react-native';
-import ParallaxScrollView from 'react-native-parallax-scroll-view';
-import IonIcons from 'react-native-vector-icons/Ionicons';
+import { Linking } from 'react-native';
 import OctIcons from 'react-native-vector-icons/Octicons';
 import MenuListItem from '@components/common/MenuListItem';
+import CommonParallaxScrollView from '@components/common/CommonParallaxScrollView';
 
 import { Store } from '@/stores';
 
 import { StackNavigationProp } from '@react-navigation/stack';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 
-import Style, { stickyHeaderHeight } from './style';
+import Style from './style';
 
 import aboutJson from '@config/about.json';
 
 import { MENU_LIST } from '@config/menu';
 
-export type AboutPagePropType = Pick<Store, 'appStore'>
+export type AboutPagePropType = Pick<Store, 'appStore'>;
 
-const AboutPage:FC<AboutPagePropType> = props => {
-	const {appStore:{theme}} = props
+const AboutPage: FC<AboutPagePropType> = props => {
+	const {
+		appStore: { theme },
+	} = props;
 
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-
-	const handleShare = () => {};
-
-	const handleBack = () => {
-		navigation.goBack();
-	};
 
 	const handleFeedback = async () => {
 		try {
@@ -52,85 +40,42 @@ const AboutPage:FC<AboutPagePropType> = props => {
 	};
 
 	return (
-		<View style={{ flex: 1 }}>
-			<ParallaxScrollView
-				backgroundColor="#678"
-				contentBackgroundColor="#f3f3f4"
-				parallaxHeaderHeight={350}
-				stickyHeaderHeight={stickyHeaderHeight}
-				backgroundScrollSpeed={10}
-				renderStickyHeader={() => (
-					<View key="sticky-header" style={Style.stickySection}>
-						<Text style={Style.stickySectionText}>{aboutJson.app.name}</Text>
-					</View>
-				)}
-				renderBackground={() => (
-					<View>
-						<Image
-							source={{
-								uri: aboutJson.app.backgroundImg,
-								width: Dimensions.get('window').width,
-								height: 350,
-							}}
-						/>
-					</View>
-				)}
-				renderForeground={() => (
-					<View style={Style.parallaxHeader}>
-						<Image
-							style={Style.avatar}
-							source={{
-								uri: aboutJson.app.avatar,
-							}}
-						/>
-						<Text style={Style.sectionSpeakerText}>{aboutJson.app.name}</Text>
-						<Text style={Style.sectionTitleText}>
-							{aboutJson.app.description}
-						</Text>
-					</View>
-				)}
-				renderFixedHeader={() => (
-					<View style={Style.fixedSection}>
-						<TouchableOpacity onPress={handleBack}>
-							<IonIcons name={'ios-arrow-back'} size={20} color="#fff" />
-						</TouchableOpacity>
-						<TouchableOpacity onPress={handleShare}>
-							<IonIcons name={'md-share'} size={20} color="#fff" />
-						</TouchableOpacity>
-					</View>
-				)}>
-				<MenuListItem
-					{...MENU_LIST.About_Author}
-					themeColor={theme}
-					onPress={() => navigation.navigate(EScreenName.Author)}
-				/>
-				<MenuListItem
-					themeColor={theme}
-					name="项目地址"
-					Icons={OctIcons}
-					icon="project"
-					onPress={() =>
-						navigation.navigate(EScreenName.WebView, {
-							title: aboutJson.info.name,
-							url: aboutJson.info.url,
-						})
-					}
-				/>
-				<MenuListItem
-					themeColor={theme}
-					{...MENU_LIST.Feedback}
-					hasBorder={false}
-					onPress={handleFeedback}
-				/>
-			</ParallaxScrollView>
-		</View>
+		<CommonParallaxScrollView
+			navigation={navigation}
+			title={aboutJson.app.name}
+			imageUrl={aboutJson.app.backgroundImg}
+			name={aboutJson.app.name}
+			avatarUrl={aboutJson.app.avatar}
+			description={aboutJson.app.description}>
+			<MenuListItem
+				{...MENU_LIST.About_Author}
+				themeColor={theme}
+				onPress={() => navigation.navigate(EScreenName.Author)}
+			/>
+			<MenuListItem
+				themeColor={theme}
+				name="项目地址"
+				Icons={OctIcons}
+				icon="project"
+				onPress={() =>
+					navigation.navigate(EScreenName.WebView, {
+						title: aboutJson.info.name,
+						url: aboutJson.info.url,
+					})
+				}
+			/>
+			<MenuListItem
+				themeColor={theme}
+				{...MENU_LIST.Feedback}
+				hasBorder={false}
+				onPress={handleFeedback}
+			/>
+		</CommonParallaxScrollView>
 	);
 };
 
 const AboutScreen = (inject((stores: Store) => ({
-	appStore: stores.appStore
-}))(
-	observer(AboutPage),
-) as unknown) as FC;
+	appStore: stores.appStore,
+}))(observer(AboutPage)) as unknown) as FC;
 
 export default AboutScreen;

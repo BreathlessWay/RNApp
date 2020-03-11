@@ -1,6 +1,21 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
+
+export const stickyHeaderHeight = Platform.select({
+	ios: 86,
+	android: 86,
+});
 
 const Style = StyleSheet.create({
+	stickySection: {
+		height: stickyHeaderHeight,
+		justifyContent: 'flex-end',
+	},
+	stickySectionText: {
+		textAlign: 'center',
+		color: 'white',
+		fontSize: 18,
+		marginVertical: 10,
+	},
 	parallaxHeader: {
 		alignItems: 'center',
 		flex: 1,
@@ -12,6 +27,7 @@ const Style = StyleSheet.create({
 		marginBottom: 10,
 		width: 80,
 		height: 80,
+		borderRadius: 20,
 	},
 	sectionSpeakerText: {
 		color: 'white',
@@ -33,21 +49,6 @@ const Style = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-	},
-	fixedSectionText: {
-		color: '#999',
-		fontSize: 16,
-		textAlign: 'center',
-	},
-	stickySection: {
-		height: stickyHeaderHeight,
-		justifyContent: 'flex-end',
-	},
-	stickySectionText: {
-		textAlign: 'center',
-		color: 'white',
-		fontSize: 18,
-		marginVertical: 10,
 	},
 });
 
