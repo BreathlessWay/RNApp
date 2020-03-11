@@ -16,7 +16,6 @@ import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import OctIcons from 'react-native-vector-icons/Octicons';
-import Toast from 'react-native-easy-toast';
 import MenuListItem from '@components/business/MenuListItem';
 
 import { Store } from '@/stores';
@@ -41,8 +40,6 @@ const AuthorPage = () => {
 			ITEM_HEIGHT,
 		);
 
-	const ref = useRef<Toast>();
-
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
 	const handleShare = () => {};
@@ -65,7 +62,7 @@ const AuthorPage = () => {
 			});
 		} else {
 			Clipboard.setString(value);
-			ref.current?.show('复制成功');
+			global.ref.current?.show('复制成功');
 		}
 	};
 
@@ -209,7 +206,6 @@ const AuthorPage = () => {
 					</Animated.View>
 				</View>
 			</ParallaxScrollView>
-			<Toast ref={ref as any} position="center" />
 		</View>
 	);
 };

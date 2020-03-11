@@ -14,7 +14,6 @@ import {
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import OctIcons from 'react-native-vector-icons/Octicons';
-import Toast from 'react-native-easy-toast';
 import MenuListItem from '@components/business/MenuListItem';
 
 import { Store } from '@/stores';
@@ -29,7 +28,6 @@ import aboutJson from '@config/about.json';
 import { MENU_LIST } from '@config/menu';
 
 const AboutPage = () => {
-	const ref = useRef<Toast>();
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
 	const handleShare = () => {};
@@ -45,7 +43,7 @@ const AboutPage = () => {
 				await Linking.openURL('mailto://731005087@qq.com');
 			}
 		} catch (e) {
-			ref.current && ref.current.show(e.message);
+			global.ref.current && global.ref.current.show(e.message);
 		}
 	};
 
@@ -118,7 +116,6 @@ const AboutPage = () => {
 					onPress={handleFeedback}
 				/>
 			</ParallaxScrollView>
-			<Toast ref={ref as any} position="center" />
 		</View>
 	);
 };

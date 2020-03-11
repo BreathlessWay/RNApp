@@ -1,13 +1,5 @@
-import { Component, ReactNode } from 'react';
-
-namespace NodeJS {
-	interface Global {
-		a: string;
-	}
-}
-
 declare module 'react-native-parallax-scroll-view' {
-	declare class ParallaxScrollView extends Component<
+	declare class ParallaxScrollView extends React.Component<
 		ParallaxScrollViewProps,
 		{}
 	> {}
@@ -50,7 +42,7 @@ declare module 'react-native-easy-toast' {
 		LENGTH_SHORT: number;
 		FOREVER: number;
 	}
-	export default class Toast extends Component<{
+	export default class Toast extends React.Component<{
 		style?: ViewStyle;
 		position?: 'top' | 'center' | 'bottom';
 		positionValue?: number;
@@ -65,5 +57,11 @@ declare module 'react-native-easy-toast' {
 			callback?: () => void,
 		) => void;
 		close: (duration?: number) => void;
+	}
+}
+
+namespace NodeJS {
+	interface Global {
+		ref: MutableRefObject<Toast | undefined>;
 	}
 }

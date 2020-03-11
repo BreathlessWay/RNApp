@@ -3,10 +3,9 @@ import { inject, observer } from 'mobx-react';
 
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-import { Text, ScrollView, Linking, View } from 'react-native';
+import { Text, ScrollView, Linking } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import MenuListItem from '@components/business/MenuListItem';
-import Toast from 'react-native-easy-toast';
 
 import { setHeader, setHeaderParams } from '@components/business/NavHeader';
 
@@ -22,8 +21,6 @@ import Style from './style';
 export type MePagePropType = Pick<Store, 'appStore'>;
 
 const MePage: FC<MePagePropType> = props => {
-	const ref = useRef<Toast>();
-
 	const navigation = useNavigation<
 		BottomTabNavigationProp<RootStackParamList>
 	>();
@@ -65,7 +62,7 @@ const MePage: FC<MePagePropType> = props => {
 				await Linking.openURL('mailto://731005087@qq.com');
 			}
 		} catch (e) {
-			ref.current && ref.current.show(e.message);
+			global.ref.current && global.ref.current.show(e.message);
 		}
 	};
 
@@ -99,7 +96,6 @@ const MePage: FC<MePagePropType> = props => {
 				hasBorder={false}
 				onPress={handleFeedback}
 			/>
-			<Toast ref={ref as any} position="center" />
 		</ScrollView>
 	);
 };

@@ -1,5 +1,7 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 
+import CommonStyle from '@styles/common';
+
 const baseWrap: ViewStyle = {
 	flexDirection: 'row',
 	alignItems: 'center',
@@ -13,9 +15,7 @@ const Style = StyleSheet.create({
 	wrap: baseWrap,
 	wrapBorder: {
 		...baseWrap,
-		borderBottomWidth: 0.5,
-		borderColor: '#ccc',
-		borderStyle: 'solid',
+		...CommonStyle.borderBottom
 	},
 	left: { flexDirection: 'row', alignItems: 'center' },
 	icon: {

@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { MutableRefObject, useEffect, useRef } from 'react';
 
 import { configure } from 'mobx';
 import { Provider } from 'mobx-react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
+import Toast from 'react-native-easy-toast';
 
 import RootRouteScreen from '@/routes';
 
@@ -18,6 +19,8 @@ console.disableYellowBox = true;
 // 当使用导航时自带了SafeAreaView
 
 const App = () => {
+	global.ref = useRef<Toast>();
+
 	useEffect(() => {
 		SplashScreen.hide();
 	}, []);
@@ -26,6 +29,7 @@ const App = () => {
 		<Provider {...store}>
 			<SafeAreaProvider>
 				<RootRouteScreen />
+				<Toast ref={global.ref as any} position="center" />
 			</SafeAreaProvider>
 		</Provider>
 	);
