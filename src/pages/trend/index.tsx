@@ -1,17 +1,17 @@
 import React, { FC, useEffect, useRef } from 'react';
 import { inject, observer } from 'mobx-react';
 
-import { View, FlatList, RefreshControl } from 'react-native';
+import { View, FlatList } from 'react-native';
 
-import EmptyComponent from '@components/common/EmptyComponent';
-import ListFooterComponent from '@components/common/ListFooterComponent';
 import TrendListItem from '@components/business/TrendListItem';
 import PopupComponent from '@components/common/PopupComponent';
+import CommonFlatList from '@components/business/CommonFlatList';
 
 import { Store } from '@/stores';
 
 import { ETrendTab } from '@config/constant';
 import { ReposItemType } from '@stores/popular/popular';
+import { TrendingItemType } from '@stores/trend/trend';
 
 export type TrendPageStorePropType = Pick<
 	Store,
@@ -23,7 +23,7 @@ export type TrendPagePropType = {
 };
 
 const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
-	const ref = useRef<FlatList<any>>();
+	const ref = useRef<FlatList<ReposItemType>>();
 
 	const {
 		tab,
@@ -66,7 +66,7 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 		item,
 		isFavorite,
 	}: {
-		item: ReposItemType;
+		item: TrendingItemType;
 		isFavorite: boolean;
 	}) => {
 		setTrendingFavorite({ item, isFavorite });
@@ -83,23 +83,16 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 			{tab === ETrendTab.trending ? (
 				<PopupComponent list={trendFilterTab} onSelect={handleSelect} />
 			) : null}
-			<FlatList
+			<CommonFlatList
 				ref={ref as any}
-				refreshControl={
-					<RefreshControl
-						// iOS
-						title="Loading..."
-						titleColor="green"
-						tintColor="green"
-						// Android
-						colors={['green']}
-						onRefresh={handleRefresh}
-						refreshing={refreshing}
-					/>
-				}
-				data={data}
-				keyExtractor={(item: any) => String(item.id) || String(item.rank)}
-				renderItem={({ item }) => (
+				list={data}
+				empty={empty}
+				hasMore={hasMore}
+				loadMore={loadMore}
+				refreshing={refreshing}
+				onEndReached={handleEndReached}
+				onRefresh={handleRefresh}
+				renderItem={({ item }: { item: any }) => (
 					<TrendListItem
 						tab={tab}
 						item={item}
@@ -107,14 +100,6 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 						trendingFavoriteIds={trendingFavoriteIds}
 					/>
 				)}
-				ListEmptyComponent={refreshing ? null : <EmptyComponent />}
-				ListFooterComponent={
-					empty ? null : (
-						<ListFooterComponent hasMore={hasMore} loadMore={loadMore} />
-					)
-				}
-				onEndReached={handleEndReached}
-				onEndReachedThreshold={0.5}
 			/>
 		</View>
 	);

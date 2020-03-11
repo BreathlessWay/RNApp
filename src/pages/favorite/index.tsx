@@ -1,20 +1,19 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { createRef, FC, useCallback, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import { useFocusEffect } from '@react-navigation/native';
 
-import { FlatList, RefreshControl } from 'react-native';
-
-import ListFooterComponent from '@components/common/ListFooterComponent';
+import { FlatList } from 'react-native';
 import ReposListItem from '@components/business/ReposListItem';
-import EmptyComponent from '@components/common/EmptyComponent';
+import TrendingListItem from '@components/business/TrendingListItem';
+import CommonFlatList from '@components/business/CommonFlatList';
 
 import { Store } from '@/stores';
 
 import { ReposItemType } from '@stores/popular/popular';
+import { TrendingItemType } from '@stores/trend/trend';
 
 import { EFavoriteTab } from '@config/constant';
-import TrendingListItem from '@components/business/TrendingListItem';
 
 export type FavoritePageStorePropType = Pick<Store, 'favoriteStore'>;
 
@@ -24,6 +23,8 @@ export type FavoritePagePropType = {
 
 const FavoritePage: FC<FavoritePagePropType &
 	FavoritePageStorePropType> = props => {
+	const ref = createRef<FlatList<ReposItemType>>();
+
 	const {
 		favoriteStore: {
 			favorite,
@@ -63,57 +64,43 @@ const FavoritePage: FC<FavoritePagePropType &
 		item,
 		isFavorite,
 	}: {
-		item: ReposItemType;
+		item: ReposItemType | TrendingItemType;
 		isFavorite: boolean;
 	}) => {
 		if (tab === EFavoriteTab.popular) {
-			setPopularFavorite({ item, isFavorite });
+			setPopularFavorite({ item: item as ReposItemType, isFavorite });
 		}
 		if (tab === EFavoriteTab.trending) {
-			setTrendingFavorite({ item, isFavorite });
+			setTrendingFavorite({ item: item as TrendingItemType, isFavorite });
 		}
 	};
 
 	return (
-		<FlatList
-			refreshControl={
-				<RefreshControl
-					// iOS
-					title="Loading..."
-					titleColor="green"
-					tintColor="green"
-					// Android
-					colors={['green']}
-					onRefresh={handleRefresh}
-					refreshing={refreshing}
-				/>
-			}
-			data={favorite[tab]?.items ?? []}
-			keyExtractor={item => String(item.id)}
-			renderItem={({ item }: { item: any }) =>
+		<CommonFlatList
+			ref={ref as any}
+			list={favorite[tab]?.items ?? []}
+			empty={empty}
+			hasMore={hasMore}
+			loadMore={loadMore}
+			refreshing={refreshing}
+			onEndReached={handleEndReached}
+			onRefresh={handleRefresh}
+			renderItem={({ item }) =>
 				tab === EFavoriteTab.popular ? (
 					<ReposListItem
-						{...item}
+						{...(item as ReposItemType)}
 						onFavorite={handleFavorite}
 						isFavorite={true}
 						source={tab}
 					/>
 				) : (
 					<TrendingListItem
-						{...item}
+						{...(item as any)}
 						onFavorite={handleFavorite}
 						isFavorite={true}
 					/>
 				)
 			}
-			ListEmptyComponent={refreshing ? null : <EmptyComponent />}
-			ListFooterComponent={
-				empty ? null : (
-					<ListFooterComponent hasMore={hasMore} loadMore={loadMore} />
-				)
-			}
-			onEndReached={handleEndReached}
-			onEndReachedThreshold={0.5}
 		/>
 	);
 };

@@ -4,15 +4,13 @@ import ReposListItem from '@components/business/ReposListItem';
 import UserListItem from '@components/business/UserListItem';
 import TrendingListItem from '@components/business/TrendingListItem';
 
-import { ReposItemType } from '@stores/popular/popular';
-
 import { ETrendTab } from '@config/constant';
 
 export type TrendListItemPropType = {
 	tab: ETrendTab;
 	item: any;
-	onFavorite: (params: { item: ReposItemType; isFavorite: boolean }) => void;
-	trendingFavoriteIds: Array<number>;
+	onFavorite: (params: { item: any; isFavorite: boolean }) => void;
+	trendingFavoriteIds: Array<string>;
 };
 
 const TrendListItem: FC<TrendListItemPropType> = props => {

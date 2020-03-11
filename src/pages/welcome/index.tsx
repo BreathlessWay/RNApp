@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from 'react';
 
-import { View, Text } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native';
+
+import { View, Text } from 'react-native';
 
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 import { StackNavigationProp } from '@react-navigation/stack';

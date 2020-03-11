@@ -5,6 +5,7 @@ import { ReposItemType } from '@stores/popular/popular';
 import { FavoriteType } from '@stores/favorite/favorite';
 
 import { EFavoriteTab, PAGE_SIZE } from '@config/constant';
+import { TrendingItemType } from '@stores/trend/trend';
 
 export default class FavoriteStore {
 	@persist('list')
@@ -13,7 +14,7 @@ export default class FavoriteStore {
 
 	@persist('list')
 	@observable
-	trendingFavorite: Array<ReposItemType> = [];
+	trendingFavorite: Array<TrendingItemType> = [];
 
 	@observable
 	favorite: FavoriteType = {} as any;
@@ -129,7 +130,7 @@ export default class FavoriteStore {
 		item,
 		isFavorite,
 	}: {
-		item: ReposItemType;
+		item: TrendingItemType;
 		isFavorite: boolean;
 	}) {
 		if (isFavorite) {

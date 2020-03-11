@@ -1,11 +1,8 @@
-import React, { FC, useEffect } from 'react';
+import React, { createRef, FC, useEffect } from 'react';
 
-import { FlatList, RefreshControl } from 'react-native';
 import { inject, observer } from 'mobx-react';
 
 import ReposListItem from '@components/business/ReposListItem';
-import EmptyComponent from '@components/common/EmptyComponent';
-import ListFooterComponent from '@components/common/ListFooterComponent';
 
 import { Store } from '@/stores';
 
@@ -15,6 +12,8 @@ import { EScreenName, RootStackParamList } from '@routes/route.d';
 import { ReposItemType } from '@stores/popular/popular';
 
 import { EFavoriteTab } from '@config/constant';
+import CommonFlatList from '@components/business/CommonFlatList';
+import { FlatList } from 'react-native';
 
 export type PopularPageStorePropType = Pick<
 	Store,
@@ -29,6 +28,8 @@ export type PopularPagePropType = {
 
 const PopularPage: FC<PopularPagePropType &
 	PopularPageStorePropType> = props => {
+	const ref = createRef<FlatList<ReposItemType>>();
+
 	const {
 		popularStore: { getData, popular, refreshing, hasMore, loadMore, empty },
 		tab,
@@ -61,37 +62,25 @@ const PopularPage: FC<PopularPagePropType &
 	};
 
 	return (
-		<FlatList
-			refreshControl={
-				<RefreshControl
-					// iOS
-					title="Loading..."
-					titleColor="green"
-					tintColor="green"
-					// Android
-					colors={['green']}
-					onRefresh={handleRefresh}
-					refreshing={refreshing}
-				/>
-			}
-			data={popular[tab]?.items ?? []}
-			keyExtractor={item => String(item.id)}
-			renderItem={({ item }) => (
-				<ReposListItem
-					{...item}
-					onFavorite={handleFavorite}
-					isFavorite={popularFavoriteIds.includes(item.id)}
-					source={EFavoriteTab.popular}
-				/>
-			)}
-			ListEmptyComponent={refreshing ? null : <EmptyComponent />}
-			ListFooterComponent={
-				empty ? null : (
-					<ListFooterComponent hasMore={hasMore} loadMore={loadMore} />
-				)
-			}
+		<CommonFlatList
+			ref={ref as any}
+			list={popular[tab]?.items ?? []}
+			empty={empty}
+			hasMore={hasMore}
+			loadMore={loadMore}
+			refreshing={refreshing}
 			onEndReached={handleEndReached}
-			onEndReachedThreshold={0.5}
+			onRefresh={handleRefresh}
+			renderItem={({ item }) => {
+				return (
+					<ReposListItem
+						{...(item as ReposItemType)}
+						onFavorite={handleFavorite}
+						isFavorite={popularFavoriteIds.includes(Number(item.id))}
+						source={EFavoriteTab.popular}
+					/>
+				);
+			}}
 		/>
 	);
 };
