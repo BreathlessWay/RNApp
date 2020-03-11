@@ -54,3 +54,4 @@
     react-native-webview](https://github.com/react-native-community/react-native-webview)代替
 13. [Homebrew国内镜像](https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git)
 14. 换了机器之后，要先装用brew安装cocoapods，然后link一下
+15. [The difference is that createRef will always create a new ref. In a class-based component, you would typically put the ref in an instance property during construction (e.g. this.input = createRef()). You don't have this option in a function component. useRef takes care of returning the same ref each time as on the initial rendering.](https://stackoverflow.com/questions/54620698/whats-the-difference-between-useref-and-createref)

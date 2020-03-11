@@ -1,4 +1,4 @@
-import React, { createRef, FC, useCallback, useEffect } from 'react';
+import React, { useRef, FC, useCallback, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import { useFocusEffect } from '@react-navigation/native';
@@ -23,7 +23,7 @@ export type FavoritePagePropType = {
 
 const FavoritePage: FC<FavoritePagePropType &
 	FavoritePageStorePropType> = props => {
-	const ref = createRef<FlatList<ReposItemType>>();
+	const ref = useRef<FlatList<ReposItemType>>();
 
 	const {
 		favoriteStore: {

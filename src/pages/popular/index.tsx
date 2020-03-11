@@ -1,4 +1,4 @@
-import React, { createRef, FC, useEffect } from 'react';
+import React, { useRef, FC, useEffect } from 'react';
 
 import { inject, observer } from 'mobx-react';
 
@@ -28,7 +28,7 @@ export type PopularPagePropType = {
 
 const PopularPage: FC<PopularPagePropType &
 	PopularPageStorePropType> = props => {
-	const ref = createRef<FlatList<ReposItemType>>();
+	const ref = useRef<FlatList<ReposItemType>>();
 
 	const {
 		popularStore: { getData, popular, refreshing, hasMore, loadMore, empty },
