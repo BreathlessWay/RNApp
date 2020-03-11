@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { configure } from 'mobx';
 import { Provider } from 'mobx-react';

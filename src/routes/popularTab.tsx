@@ -30,7 +30,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 		BottomTabNavigationProp<RootStackParamList>
 	>();
 
-	const { stackNavigation, setPopularSwitchNavigation , theme} = props.appStore;
+	const { stackNavigation, setPopularSwitchNavigation, theme } = props.appStore;
 
 	const headerOptions = {
 		navigation: stackNavigation,
@@ -49,7 +49,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 
 	return (
 		<Navigator
-			initialRouteName={POPULAR_TABS_LIST[0] as any}
+			initialRouteName={POPULAR_TABS_LIST[0].title as any}
 			tabBarOptions={{
 				scrollEnabled: true,
 				style: {
@@ -61,11 +61,11 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 			{POPULAR_TABS_LIST.map((tab, index) => (
 				<Screen
 					key={index}
-					name={tab as any}
-					children={props => <PopularScreen {...props} tab={tab} />}
+					name={tab.title as any}
+					children={props => <PopularScreen {...props} tab={tab.query} />}
 					options={{
 						tabBarLabel: () => (
-							<Text style={CommonStyle.tabBarLabel}>{tab}</Text>
+							<Text style={CommonStyle.tabBarLabel}>{tab.title}</Text>
 						),
 					}}
 				/>

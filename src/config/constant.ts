@@ -14,30 +14,78 @@ export enum ETrendTab {
 export const PAGE_SIZE = 10;
 
 export const POPULAR_TABS_LIST = [
-	'JavaScript',
-	'Typescript',
-	'Node',
-	'Vue',
-	'React',
-	'React Native',
+	{
+		title: 'ALl',
+		query: 'all',
+		checked: true,
+	},
+	{
+		title: 'Unknown',
+		query: 'unknown',
+		checked: true,
+	},
+	{
+		title: 'Html',
+		query: 'html',
+		checked: true,
+	},
+	{
+		title: 'CSS',
+		query: 'css',
+		checked: true,
+	},
+	{
+		title: 'JavaScript',
+		query: 'javascript',
+		checked: true,
+	},
+	{
+		title: 'Typescript',
+		query: 'typescript',
+		checked: true,
+	},
+	{
+		title: 'Node',
+		query: 'node',
+		checked: true,
+	},
+	{
+		title: 'Vue',
+		query: 'vue',
+		checked: true,
+	},
+	{
+		title: 'React',
+		query: 'react',
+		checked: true,
+	},
+	{
+		title: 'React Native',
+		query: 'react-native',
+		checked: true,
+	},
 ];
 
 export const TREND_TABS_LIST = [
 	{
 		title: '全部用户',
 		key: ETrendTab.allUser,
+		checked: true,
 	},
 	{
 		title: '国内用户',
 		key: ETrendTab.chinaUser,
+		checked: true,
 	},
 	{
 		title: '项目',
 		key: ETrendTab.repos,
+		checked: true,
 	},
 	{
 		title: '趋势',
 		key: ETrendTab.trending,
+		checked: true,
 	},
 ];
 
