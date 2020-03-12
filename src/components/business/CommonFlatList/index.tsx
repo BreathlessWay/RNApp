@@ -5,7 +5,7 @@ import EmptyComponent from '@components/common/EmptyComponent';
 import ListFooterComponent from '@components/common/ListFooterComponent';
 
 export type CommonFlatListPropType = {
-	list: Array<{ id: string | number; rank?: number }>;
+	list: Array<{ id?: string | number; rank?: number }>;
 	onRefresh: () => void;
 	onEndReached: () => void;
 	refreshing: boolean;
@@ -13,7 +13,7 @@ export type CommonFlatListPropType = {
 	hasMore: boolean;
 	loadMore: boolean;
 	renderItem: (
-		params: ListRenderItemInfo<{ id: string | number }>,
+		params: ListRenderItemInfo<{ id?: string | number }>,
 	) => JSX.Element;
 };
 

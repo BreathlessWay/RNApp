@@ -68,13 +68,13 @@ const DetailPage: FC<DetailPagePropType> = props => {
 	const handleStar = () => {
 		if (source === EFavoriteTab.popular) {
 			setPopularFavorite({
-				itemWrap: detail as ReposItemType,
+				item: detail as ReposItemType,
 				isFavorite: !isFavorite,
 			});
 		}
 		if (source === EFavoriteTab.trending) {
 			setTrendingFavorite({
-				itemWrap: detail as TrendingItemType,
+				item: detail as TrendingItemType,
 				isFavorite: !isFavorite,
 			});
 		}

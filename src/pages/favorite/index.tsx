@@ -68,10 +68,10 @@ const FavoritePage: FC<FavoritePagePropType &
 		isFavorite: boolean;
 	}) => {
 		if (tab === EFavoriteTab.popular) {
-			setPopularFavorite({ itemWrap: item as ReposItemType, isFavorite });
+			setPopularFavorite({ item: item as ReposItemType, isFavorite });
 		}
 		if (tab === EFavoriteTab.trending) {
-			setTrendingFavorite({ itemWrap: item as TrendingItemType, isFavorite });
+			setTrendingFavorite({ item: item as TrendingItemType, isFavorite });
 		}
 	};
 

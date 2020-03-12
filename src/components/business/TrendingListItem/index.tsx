@@ -11,7 +11,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 import { TrendingItemType } from '@stores/trend/trend';
 
-import { EDetailType, EFavoriteTab } from '@config/constant';
+import { EFavoriteTab } from '@config/constant';
 
 import Style from './style';
 
@@ -27,14 +27,13 @@ const TrendingListItem: FC<TrendingListItemPropType> = props => {
 
 	const handlePress = () => {
 		navigation.navigate(EScreenName.Detail, {
-			itemWrap: rest,
-			type: EDetailType.trending,
+			item: rest,
 			source: EFavoriteTab.trending,
 		});
 	};
 
 	const handleFavorite = () => {
-		onFavorite({ itemWrap: rest, isFavorite: !isFavorite });
+		onFavorite({ item: rest, isFavorite: !isFavorite });
 	};
 
 	return (

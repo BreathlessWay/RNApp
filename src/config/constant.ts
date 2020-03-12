@@ -14,6 +14,8 @@ export enum ETrendTab {
 
 export const PAGE_SIZE = 10;
 
+export const MIN_TAB_COUNT = 3;
+
 export const POPULAR_TABS_LIST = [
 	{
 		title: 'ALl',
@@ -122,10 +124,3 @@ export const FAVORITE_TABS_LIST = [
 		key: EFavoriteTab.trending,
 	},
 ];
-
-export enum EDetailType {
-	user = 'user',
-	repos = 'repos',
-	trending = 'trending',
-	kr = '36kr',
-}

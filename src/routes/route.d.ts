@@ -1,5 +1,4 @@
-import { EDetailType, EFavoriteTab } from '@config/constant';
-import WebViewScreen from '@pages/webview';
+import { EFavoriteTab } from '@config/constant';
 
 export enum EScreenName {
 	Welcome = 'Welcome',
@@ -33,8 +32,7 @@ export type RootStackParamList = {
 	[EScreenName.PopularIndex]: undefined;
 	[EScreenName.Detail]: {
 		item: any;
-		type: EDetailType;
-		source?: EFavoriteTab;
+		source: EFavoriteTab;
 	};
 
 	[EScreenName.About]: undefined;

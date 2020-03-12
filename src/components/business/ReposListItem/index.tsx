@@ -10,14 +10,14 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { ReposItemType } from '@stores/popular/popular';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 
-import { EDetailType, EFavoriteTab } from '@config/constant';
+import { EFavoriteTab } from '@config/constant';
 
 import Style from './style';
 
 export type ReposListItemPropType = {
 	isFavorite?: boolean;
 	onFavorite?: (params: { item: ReposItemType; isFavorite: boolean }) => void;
-	source?: EFavoriteTab;
+	source: EFavoriteTab;
 } & ReposItemType;
 
 const ReposListItem: FC<ReposListItemPropType> = props => {
@@ -27,14 +27,13 @@ const ReposListItem: FC<ReposListItemPropType> = props => {
 
 	const handlePress = () => {
 		navigation.navigate(EScreenName.Detail, {
-			itemWrap: rest,
+			item: rest,
 			source,
-			type: EDetailType.repos,
 		});
 	};
 
 	const handleFavorite = () => {
-		onFavorite && onFavorite({ itemWrap: rest, isFavorite: !isFavorite });
+		onFavorite && onFavorite({ item: rest, isFavorite: !isFavorite });
 	};
 
 	return (
