@@ -124,3 +124,8 @@ export const FAVORITE_TABS_LIST = [
 		key: EFavoriteTab.trending,
 	},
 ];
+
+export enum ECustomEditPageSource {
+	language = 'language',
+	key = 'key',
+}

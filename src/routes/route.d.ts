@@ -1,4 +1,4 @@
-import { EFavoriteTab } from '@config/constant';
+import { ECustomEditPageSource, EFavoriteTab } from '@config/constant';
 
 export enum EScreenName {
 	Welcome = 'Welcome',
@@ -18,6 +18,8 @@ export enum EScreenName {
 	Author = 'Author',
 
 	WebView = 'WebView',
+
+	Edit = 'Edit',
 }
 
 export type RootStackParamList = {
@@ -40,5 +42,8 @@ export type RootStackParamList = {
 	[EScreenName.WebView]: {
 		url: string;
 		title: string;
+	};
+	[EScreenName.Edit]: {
+		type: ECustomEditPageSource;
 	};
 };

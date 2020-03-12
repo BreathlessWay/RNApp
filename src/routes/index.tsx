@@ -6,6 +6,7 @@ import DetailScreen from '@pages/detail';
 import AboutScreen from '@pages/about';
 import AuthorScreen from '@pages/author';
 import WebViewScreen from '@pages/webview';
+import CustomEditScreen from '@pages/edit';
 import SwitchRoutePage from './switch';
 
 import { Store } from '@/stores';
@@ -20,10 +21,12 @@ import '@config/hydrate';
 // 当使用导航时自带了SafeAreaView
 const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
 
-export type RootRoutePagePropType = Pick<Store, 'appStore'>
+export type RootRoutePagePropType = Pick<Store, 'appStore'>;
 
-const RootRoutePage:FC<RootRoutePagePropType> = props => {
-	const {appStore:{theme}} = props
+const RootRoutePage: FC<RootRoutePagePropType> = props => {
+	const {
+		appStore: { theme },
+	} = props;
 
 	return (
 		<NavigationContainer>
@@ -58,6 +61,7 @@ const RootRoutePage:FC<RootRoutePagePropType> = props => {
 					}}
 				/>
 				<Screen name={EScreenName.WebView} component={WebViewScreen} />
+				<Screen name={EScreenName.Edit} component={CustomEditScreen} />
 			</Navigator>
 		</NavigationContainer>
 	);
