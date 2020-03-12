@@ -27,14 +27,14 @@ const ReposListItem: FC<ReposListItemPropType> = props => {
 
 	const handlePress = () => {
 		navigation.navigate(EScreenName.Detail, {
-			item: rest,
+			itemWrap: rest,
 			source,
 			type: EDetailType.repos,
 		});
 	};
 
 	const handleFavorite = () => {
-		onFavorite && onFavorite({ item: rest, isFavorite: !isFavorite });
+		onFavorite && onFavorite({ itemWrap: rest, isFavorite: !isFavorite });
 	};
 
 	return (

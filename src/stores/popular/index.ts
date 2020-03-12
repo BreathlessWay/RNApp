@@ -1,14 +1,20 @@
 import { action, computed, observable, runInAction } from 'mobx';
-
-import { PAGE_SIZE, POPULAR_TABS_LIST } from '@config/constant';
-import { PopularType } from '@stores/popular/popular';
+// import { persist } from 'mobx-persist';
 
 import * as Qs from 'qs';
 import { fetchData } from '@utils/dataStore';
 
+import { PopularTabItemType, PopularType } from '@stores/popular/popular';
+
+import { PAGE_SIZE } from '@config/constant';
+
 export default class PopularStore {
+	// @persist('list')
 	@observable
-	tab: string = POPULAR_TABS_LIST[0];
+	tabList: Array<PopularTabItemType> = [];
+
+	@observable
+	tab: string = '';
 
 	@observable
 	pageSize = PAGE_SIZE;
@@ -21,6 +27,17 @@ export default class PopularStore {
 
 	@observable
 	loadMore = false;
+
+	@action.bound
+	initialTab(list: Array<PopularTabItemType>) {
+		if (list && list.length) {
+			const checkedList = list.filter(item => item.checked);
+			if (checkedList && checkedList.length) {
+				this.tabList = checkedList;
+				this.tab = checkedList[0]?.query;
+			}
+		}
+	}
 
 	@action.bound
 	async getData({

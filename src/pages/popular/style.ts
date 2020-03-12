@@ -5,7 +5,7 @@ export default StyleSheet.create({
 		paddingHorizontal: 10,
 		paddingVertical: 20,
 	},
-	item: {
+	itemWrap: {
 		flexDirection: 'row',
 		marginBottom: 20,
 	},

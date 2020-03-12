@@ -16,6 +16,8 @@ import trendingDaily from '@wcj/github-rank/dist/trending-daily.json';
 import trendingWeekly from '@wcj/github-rank/dist/trending-weekly.json';
 // @ts-ignore
 import trendingMonthly from '@wcj/github-rank/dist/trending-monthly.json';
+// @ts-ignore
+import kr from '@wcj/github-rank/dist/36kr.json';
 
 export default class TrendStore {
 	@observable
@@ -130,6 +132,10 @@ export default class TrendStore {
 				json = trendingMonthly;
 				break;
 			}
+			case ETrendTab.kr: {
+				json = kr;
+				break;
+			}
 		}
 		const startIndex = (pageIndex - 1) * pageSize,
 			endIndex = pageIndex * pageSize;
@@ -178,6 +184,10 @@ export default class TrendStore {
 			}
 			case ETrendTab.trendingMonthly: {
 				json = trendingMonthly;
+				break;
+			}
+			case ETrendTab.kr: {
+				json = kr;
 				break;
 			}
 		}

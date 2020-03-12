@@ -21,8 +21,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 import { ReposItemType } from '@stores/popular/popular';
 import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
+import { TrendingItemType } from '@stores/trend/trend';
 
-import { EDetailType, EFavoriteTab, PREFIX_URL } from '@config/constant';
+import { EFavoriteTab, PREFIX_URL } from '@config/constant';
 
 import Style from './style';
 
@@ -44,9 +45,11 @@ const DetailPage: FC<DetailPagePropType> = props => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>(),
 		route = useRoute<RouteProp<RootStackParamList, EScreenName.Detail>>();
 
-	const detail: ReposItemType = route.params.item,
-		{ type, source } = route.params;
-	let url = detail.html_url || PREFIX_URL + '/' + detail.full_name;
+	const detail: ReposItemType | TrendingItemType = route.params.item,
+		{ source } = route.params;
+	let url =
+		(detail as ReposItemType).html_url ||
+		PREFIX_URL + '/' + (detail as TrendingItemType).full_name;
 	if (!url.startsWith('http')) {
 		url = PREFIX_URL + url;
 	}
@@ -54,18 +57,26 @@ const DetailPage: FC<DetailPagePropType> = props => {
 	let isFavorite = false;
 
 	if (source === EFavoriteTab.popular) {
-		isFavorite = popularFavoriteIds.includes(detail.id);
+		isFavorite = popularFavoriteIds.includes((detail as ReposItemType).id);
 	}
 	if (source === EFavoriteTab.trending) {
-		isFavorite = trendingFavoriteIds.includes(detail.full_name);
+		isFavorite = trendingFavoriteIds.includes(
+			(detail as TrendingItemType).full_name,
+		);
 	}
 
 	const handleStar = () => {
 		if (source === EFavoriteTab.popular) {
-			setPopularFavorite({ item: detail, isFavorite: !isFavorite });
+			setPopularFavorite({
+				itemWrap: detail as ReposItemType,
+				isFavorite: !isFavorite,
+			});
 		}
 		if (source === EFavoriteTab.trending) {
-			setTrendingFavorite({ item: detail, isFavorite: !isFavorite });
+			setTrendingFavorite({
+				itemWrap: detail as TrendingItemType,
+				isFavorite: !isFavorite,
+			});
 		}
 	};
 
@@ -94,19 +105,18 @@ const DetailPage: FC<DetailPagePropType> = props => {
 
 	setHeader({
 		navigation,
-		title: detail.full_name || detail.name,
+		title:
+			(detail as TrendingItemType).full_name || (detail as ReposItemType).name,
 		right: (
 			<View style={Style.right}>
-				{type !== EDetailType.user && (
-					<TouchableOpacity onPress={handleStar}>
-						<FontAwesome
-							name={isFavorite ? 'star' : 'star-o'}
-							size={20}
-							color="#fff"
-							style={Style.star}
-						/>
-					</TouchableOpacity>
-				)}
+				<TouchableOpacity onPress={handleStar}>
+					<FontAwesome
+						name={isFavorite ? 'star' : 'star-o'}
+						size={20}
+						color="#fff"
+						style={Style.star}
+					/>
+				</TouchableOpacity>
 				<TouchableOpacity onPress={handleShare}>
 					<IonIcons name={'md-share'} size={20} color="#fff" />
 				</TouchableOpacity>

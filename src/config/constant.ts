@@ -9,6 +9,7 @@ export enum ETrendTab {
 	trendingDaily = 'trendingDaily',
 	trendingWeekly = 'trendingWeekly',
 	trendingMonthly = 'trendingMonthly',
+	kr = '36kr',
 }
 
 export const PAGE_SIZE = 10;
@@ -16,7 +17,7 @@ export const PAGE_SIZE = 10;
 export const POPULAR_TABS_LIST = [
 	{
 		title: 'ALl',
-		query: 'all',
+		query: 'stars:>1',
 		checked: true,
 	},
 	{
@@ -32,37 +33,47 @@ export const POPULAR_TABS_LIST = [
 	{
 		title: 'CSS',
 		query: 'css',
-		checked: true,
+		checked: false,
 	},
 	{
 		title: 'JavaScript',
 		query: 'javascript',
-		checked: true,
+		checked: false,
 	},
 	{
 		title: 'Typescript',
 		query: 'typescript',
-		checked: true,
+		checked: false,
 	},
 	{
 		title: 'Node',
 		query: 'node',
-		checked: true,
+		checked: false,
 	},
 	{
 		title: 'Vue',
 		query: 'vue',
-		checked: true,
+		checked: false,
 	},
 	{
 		title: 'React',
 		query: 'react',
-		checked: true,
+		checked: false,
 	},
 	{
 		title: 'React Native',
 		query: 'react-native',
-		checked: true,
+		checked: false,
+	},
+	{
+		title: 'Dart',
+		query: 'dart',
+		checked: false,
+	},
+	{
+		title: 'Flutter',
+		query: 'flutter',
+		checked: false,
 	},
 ];
 
@@ -85,6 +96,11 @@ export const TREND_TABS_LIST = [
 	{
 		title: '趋势',
 		key: ETrendTab.trending,
+		checked: true,
+	},
+	{
+		title: '36氪',
+		key: ETrendTab.kr,
 		checked: true,
 	},
 ];
@@ -111,4 +127,5 @@ export enum EDetailType {
 	user = 'user',
 	repos = 'repos',
 	trending = 'trending',
+	kr = '36kr',
 }

@@ -30,7 +30,9 @@ export const CustomHeaderTitle: FC<CustomHeaderTitlePropType> = props => {
 
 	return title ? (
 		<View>
-			<Text style={_style}>{title}</Text>
+			<Text style={_style} ellipsizeMode="tail" numberOfLines={1}>
+				{title}
+			</Text>
 		</View>
 	) : (
 		<View>{children}</View>

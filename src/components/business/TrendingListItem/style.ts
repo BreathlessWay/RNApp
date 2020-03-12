@@ -3,7 +3,7 @@ import CommonStyle from '@styles/common';
 
 const Style = StyleSheet.create({
 	wrap: {
-		...CommonStyle.item,
+		...CommonStyle.itemWrap,
 	},
 	header: {
 		flexDirection: 'row',

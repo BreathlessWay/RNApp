@@ -27,14 +27,14 @@ const TrendingListItem: FC<TrendingListItemPropType> = props => {
 
 	const handlePress = () => {
 		navigation.navigate(EScreenName.Detail, {
-			item: rest,
+			itemWrap: rest,
 			type: EDetailType.trending,
 			source: EFavoriteTab.trending,
 		});
 	};
 
 	const handleFavorite = () => {
-		onFavorite({ item: rest, isFavorite: !isFavorite });
+		onFavorite({ itemWrap: rest, isFavorite: !isFavorite });
 	};
 
 	return (

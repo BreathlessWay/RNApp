@@ -5,6 +5,7 @@ const Style = StyleSheet.create({
 		color: '#fff',
 		fontWeight: 'bold',
 		fontSize: 18,
+		paddingHorizontal: 10,
 	},
 	left: {
 		padding: 5,

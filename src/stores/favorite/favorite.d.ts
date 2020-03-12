@@ -1,5 +1,6 @@
 import { EFavoriteTab } from '@config/constant';
 import { ReposItemType } from '@stores/popular/popular';
+import { TrendingItemType } from '@stores/trend/trend';
 
 export type FavoriteType = {
 	[EFavoriteTab.popular]: {
@@ -7,7 +8,7 @@ export type FavoriteType = {
 		pageIndex: number;
 	};
 	[EFavoriteTab.trending]: {
-		items: Array<ReposItemType>;
+		items: Array<TrendingItemType>;
 		pageIndex: number;
 	};
 };

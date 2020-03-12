@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const CommonStyle = StyleSheet.create({
-	item: {
+	itemWrap: {
 		backgroundColor: '#fff',
 		padding: 10,
 		marginHorizontal: 5,

@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import ReposListItem from '@components/business/ReposListItem';
 import UserListItem from '@components/business/UserListItem';
 import TrendingListItem from '@components/business/TrendingListItem';
+import KrListItem from '@components/business/KrListItem';
 
 import { ETrendTab } from '@config/constant';
 
@@ -29,6 +30,8 @@ const TrendListItem: FC<TrendListItemPropType> = props => {
 					isFavorite={trendingFavoriteIds.includes(item.full_name)}
 				/>
 			);
+		case ETrendTab.kr:
+			return <KrListItem {...item} />;
 		default:
 			return null;
 	}

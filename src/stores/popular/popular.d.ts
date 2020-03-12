@@ -43,3 +43,9 @@ export type PopularListType = {
 export type PopularType = {
 	[key: string]: PopularListType;
 };
+
+export type PopularTabItemType = {
+	title: string;
+	query: string;
+	checked: boolean;
+};

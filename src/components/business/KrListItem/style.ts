@@ -7,27 +7,14 @@ const Style = StyleSheet.create({
 	},
 	title: {
 		fontSize: 16,
+		marginRight: 5,
+		color: '#0366d6',
 		marginBottom: 5,
-		color: '#212121',
 	},
 	desc: {
-		fontSize: 16,
+		fontSize: 14,
 		marginBottom: 10,
 		color: '#757575',
-	},
-	footer: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-	},
-	avatar: {
-		width: 22,
-		height: 22,
-		marginLeft: 5,
-	},
-	column: {
-		flexDirection: 'row',
-		alignItems: 'center',
 	},
 });
 

@@ -23,14 +23,20 @@ const { Navigator, Screen } = createMaterialTopTabNavigator<
 	RootStackParamList
 >();
 
-export type PopularTabRoutePagePropType = Pick<Store, 'appStore'>;
+export type PopularTabRoutePagePropType = Pick<
+	Store,
+	'appStore' | 'popularStore'
+>;
 
 const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 	const navigation = useNavigation<
 		BottomTabNavigationProp<RootStackParamList>
 	>();
 
-	const { stackNavigation, setPopularSwitchNavigation, theme } = props.appStore;
+	const {
+		appStore: { stackNavigation, setPopularSwitchNavigation, theme },
+		popularStore: { initialTab, tabList },
+	} = props;
 
 	const headerOptions = {
 		navigation: stackNavigation,
@@ -38,6 +44,9 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 	};
 
 	useEffect(() => {
+		if (!tabList.length) {
+			initialTab(POPULAR_TABS_LIST);
+		}
 		setPopularSwitchNavigation(navigation);
 	}, []);
 
@@ -47,9 +56,9 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 		}, [stackNavigation]),
 	);
 
-	return (
+	return tabList.length ? (
 		<Navigator
-			initialRouteName={POPULAR_TABS_LIST[0].title as any}
+			initialRouteName={tabList[0].title as any}
 			tabBarOptions={{
 				scrollEnabled: true,
 				style: {
@@ -58,7 +67,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 				indicatorStyle: CommonStyle.indicator,
 			}}
 			lazy={true}>
-			{POPULAR_TABS_LIST.map((tab, index) => (
+			{tabList.map((tab, index) => (
 				<Screen
 					key={index}
 					name={tab.title as any}
@@ -71,11 +80,12 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 				/>
 			))}
 		</Navigator>
-	);
+	) : null;
 };
 
 const PopularTabRouteScreen = (inject((stores: Store) => ({
 	appStore: stores.appStore,
+	popularStore: stores.popularStore,
 }))(observer(PopularTabRoutePage)) as unknown) as FC;
 
 export default PopularTabRouteScreen;

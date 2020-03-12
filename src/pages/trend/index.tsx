@@ -69,7 +69,7 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 		item: TrendingItemType;
 		isFavorite: boolean;
 	}) => {
-		setTrendingFavorite({ item, isFavorite });
+		setTrendingFavorite({ item: itemWrap, isFavorite });
 	};
 
 	let data: any = trending[tab]?.list ?? [];

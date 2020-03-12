@@ -58,7 +58,7 @@ const PopularPage: FC<PopularPagePropType &
 		item: ReposItemType;
 		isFavorite: boolean;
 	}) => {
-		setPopularFavorite({ item, isFavorite });
+		setPopularFavorite({ item: itemWrap, isFavorite });
 	};
 
 	return (

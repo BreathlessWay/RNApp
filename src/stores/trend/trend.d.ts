@@ -49,11 +49,55 @@ export type TrendUserItemType = {
 	updated_at: string;
 };
 
+export type KrListItemType = {
+	id: number;
+	project_id: number;
+	column_id: number;
+	post_id: null;
+	is_top: number;
+	pin: number;
+	title: string;
+	catch_title: string;
+	description: string;
+	cover: string;
+	news_url_type: string;
+	news_url: string;
+	user_id: number;
+	published_at: string;
+	created_at: string;
+	updated_at: string;
+	counters: {
+		view_count: number;
+		pv: number;
+		pv_mobile: number;
+		pv_app: number;
+		comment: number;
+	};
+	extraction_tags_arr: [];
+	extraction_tags: '[]';
+	column: {
+		id: number;
+		name: string;
+		bg_color: string;
+		type: string;
+	};
+	db_counters: [];
+	user: {
+		id: number;
+		name: string;
+		avatar_url: string;
+	};
+	news_url_title: string;
+	station_info: null;
+};
+
 export type TrendUserListType = Array<TrendUserItemType>;
 
 export type ReposListType = Array<ReposItemType>;
 
 export type TrendingListType = Array<TrendingItemType>;
+
+export type KrListListType = Array<KrListItemType>;
 
 export type TrendingType = {
 	[ETrendTab.allUser]: {
@@ -83,5 +127,9 @@ export type TrendingType = {
 	[ETrendTab.trending]: {
 		pageIndex: number;
 		list: TrendingListType;
+	};
+	[ETrendTab.kr]: {
+		pageIndex: number;
+		list: KrListListType;
 	};
 };
