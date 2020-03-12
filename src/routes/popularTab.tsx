@@ -35,7 +35,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 
 	const {
 		appStore: { stackNavigation, setPopularSwitchNavigation, theme },
-		popularStore: { initialTab, tabList },
+		popularStore: { initialPopularTab, popularTabList },
 	} = props;
 
 	const headerOptions = {
@@ -44,8 +44,8 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 	};
 
 	useEffect(() => {
-		if (!tabList.length) {
-			initialTab(POPULAR_TABS_LIST);
+		if (!popularTabList.length) {
+			initialPopularTab(POPULAR_TABS_LIST.filter(item => item.checked));
 		}
 		setPopularSwitchNavigation(navigation);
 	}, []);
@@ -56,9 +56,9 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 		}, [stackNavigation]),
 	);
 
-	return tabList.length ? (
+	return popularTabList.length ? (
 		<Navigator
-			initialRouteName={tabList[0].title as any}
+			initialRouteName={popularTabList[0].title as any}
 			tabBarOptions={{
 				scrollEnabled: true,
 				style: {
@@ -67,11 +67,11 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 				indicatorStyle: CommonStyle.indicator,
 			}}
 			lazy={true}>
-			{tabList.map((tab, index) => (
+			{popularTabList.map((tab, index) => (
 				<Screen
 					key={index}
 					name={tab.title as any}
-					children={props => <PopularScreen {...props} tab={tab.query} />}
+					children={props => <PopularScreen {...props} tab={tab.key} />}
 					options={{
 						tabBarLabel: () => (
 							<Text style={CommonStyle.tabBarLabel}>{tab.title}</Text>

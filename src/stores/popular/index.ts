@@ -1,41 +1,28 @@
 import { action, computed, observable, runInAction } from 'mobx';
-// import { persist } from 'mobx-persist';
+import { persist } from 'mobx-persist';
 
 import * as Qs from 'qs';
 import { fetchData } from '@utils/dataStore';
 
-import { PopularTabItemType, PopularType } from '@stores/popular/popular';
-
-import { PAGE_SIZE } from '@config/constant';
+import { PopularListType, PopularType } from '@stores/popular/popular';
+import { TabItemType } from '@/types/tab.d';
 
 export default class PopularStore {
-	// @persist('list')
+	@persist('list')
 	@observable
-	tabList: Array<PopularTabItemType> = [];
+	popularTabList: Array<TabItemType> = [];
 
 	@observable
 	tab: string = '';
 
 	@observable
-	pageSize = PAGE_SIZE;
-
-	@observable
 	popular: PopularType = {};
 
-	@observable
-	refreshing = false;
-
-	@observable
-	loadMore = false;
-
 	@action.bound
-	initialTab(list: Array<PopularTabItemType>) {
+	initialPopularTab(list: Array<TabItemType>) {
 		if (list && list.length) {
-			const checkedList = list.filter(item => item.checked);
-			if (checkedList && checkedList.length) {
-				this.tabList = checkedList;
-				this.tab = checkedList[0]?.query;
-			}
+			this.popularTabList = list;
+			this.tab = list[0]?.key;
 		}
 	}
 
@@ -50,10 +37,14 @@ export default class PopularStore {
 		tab: string;
 	}) {
 		try {
-			this.refreshing = refreshing;
-			this.loadMore = loadMore;
 			this.tab = tab;
 			let pageIndex = this.popular[this.tab]?.pageIndex ?? 1;
+			if (!this.popular[this.tab]) {
+				this.popular[this.tab] = {} as PopularListType;
+			}
+			this.popular[this.tab].refreshing = refreshing;
+			this.popular[this.tab].loadMore = loadMore;
+
 			if (refreshing) {
 				pageIndex = 1;
 			}
@@ -77,13 +68,15 @@ export default class PopularStore {
 					incomplete_results: result.incomplete_results,
 					items: refreshing ? result.items : _items.concat(result.items),
 					pageIndex,
+					refreshing: false,
+					loadMore: false,
 				};
 			});
 		} catch (e) {
 		} finally {
 			runInAction(() => {
-				this.refreshing = false;
-				this.loadMore = false;
+				this.popular[this.tab].refreshing = false;
+				this.popular[this.tab].loadMore = false;
 			});
 		}
 	}
@@ -100,10 +93,21 @@ export default class PopularStore {
 	get hasMore(): boolean {
 		if (this.popular) {
 			const total_count = this.popular[this.tab]?.total_count ?? 0,
-				pageIndex = this.popular[this.tab]?.pageIndex ?? 1;
-			return total_count > pageIndex * this.pageSize;
+				listLength = this.popular[this.tab]?.items?.length ?? 0;
+
+			return total_count > listLength;
 		}
 
 		return false;
+	}
+
+	@computed
+	get refreshing() {
+		return this.popular[this.tab]?.refreshing ?? false;
+	}
+
+	@computed
+	get loadMore() {
+		return this.popular[this.tab]?.loadMore ?? false;
 	}
 }

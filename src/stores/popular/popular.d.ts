@@ -38,14 +38,10 @@ export type PopularListType = {
 	incomplete_results: boolean;
 	items: Array<ReposItemType>;
 	pageIndex: number;
+	refreshing: boolean;
+	loadMore: boolean;
 };
 
 export type PopularType = {
 	[key: string]: PopularListType;
-};
-
-export type PopularTabItemType = {
-	title: string;
-	query: string;
-	checked: boolean;
 };

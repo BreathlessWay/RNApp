@@ -44,6 +44,7 @@ export type RootStackParamList = {
 		title: string;
 	};
 	[EScreenName.Edit]: {
+		title: string;
 		type: ECustomEditPageSource;
 	};
 };

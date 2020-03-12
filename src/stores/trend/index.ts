@@ -1,6 +1,8 @@
 import { action, computed, observable, runInAction } from 'mobx';
+import { persist } from 'mobx-persist';
 
 import { TrendingType } from './trend.d';
+import { TabItemType } from '@/types/tab.d';
 
 import { ETrendTab, PAGE_SIZE } from '@config/constant';
 
@@ -20,6 +22,10 @@ import trendingMonthly from '@wcj/github-rank/dist/trending-monthly.json';
 import kr from '@wcj/github-rank/dist/36kr.json';
 
 export default class TrendStore {
+	// @persist('list')
+	@observable
+	trendTabList: Array<TabItemType> = [];
+
 	@observable
 	trending: TrendingType = {} as any;
 
@@ -37,6 +43,14 @@ export default class TrendStore {
 
 	@observable
 	filter = ETrendTab.trendingDaily;
+
+	@action.bound
+	initialTrendTab(list: Array<TabItemType>) {
+		if (list && list.length) {
+			this.trendTabList = list;
+			this.tab = list[0]?.key as ETrendTab;
+		}
+	}
 
 	@action.bound
 	setFilter(filter: ETrendTab) {

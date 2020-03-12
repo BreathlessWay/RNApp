@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useRef } from 'react';
+import React, { FC, useCallback } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
@@ -15,6 +15,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 
 import { MENU_LIST } from '@config/menu';
+import { ECustomEditPageSource } from '@config/constant';
 
 import Style from './style';
 
@@ -44,17 +45,6 @@ const MePage: FC<MePagePropType> = props => {
 		}, [stackNavigation]),
 	);
 
-	const handlePressIcon = ({ name, icon }: { name: string; icon: string }) => {
-		switch (name) {
-			case '关于': {
-				navigation.navigate(EScreenName.About);
-				break;
-			}
-			default: {
-			}
-		}
-	};
-
 	const handleFeedback = async () => {
 		try {
 			const isSupport = await Linking.canOpenURL('mailto://731005087@qq.com');
@@ -74,22 +64,35 @@ const MePage: FC<MePagePropType> = props => {
 				{...MENU_LIST.About}
 				title="GtiHub Popular"
 				iconStyle={Style.iconStyle}
+				onPress={() => navigation.navigate(EScreenName.About)}
+			/>
+			<Text style={Style.group}>趋势管理</Text>
+			<MenuListItem
+				{...MENU_LIST.Custom_Language}
+				themeColor={theme}
 				onPress={() =>
-					handlePressIcon({
-						name: MENU_LIST.About.name,
-						icon: MENU_LIST.About.icon,
+					navigation.navigate(EScreenName.Edit, {
+						type: ECustomEditPageSource.language,
+						title: MENU_LIST.Custom_Language.name,
 					})
 				}
 			/>
-			<Text style={Style.group}>趋势管理</Text>
-			<MenuListItem {...MENU_LIST.Custom_Language} themeColor={theme} />
 			<MenuListItem
 				{...MENU_LIST.Sort_Language}
 				hasBorder={false}
 				themeColor={theme}
 			/>
 			<Text style={Style.group}>最热管理</Text>
-			<MenuListItem {...MENU_LIST.Custom_Key} themeColor={theme} />
+			<MenuListItem
+				{...MENU_LIST.Custom_Key}
+				themeColor={theme}
+				onPress={() =>
+					navigation.navigate(EScreenName.Edit, {
+						type: ECustomEditPageSource.key,
+						title: MENU_LIST.Custom_Key.name,
+					})
+				}
+			/>
 			<MenuListItem
 				{...MENU_LIST.Sort_Key}
 				themeColor={theme}

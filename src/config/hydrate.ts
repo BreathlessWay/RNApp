@@ -14,6 +14,10 @@ hydrate('store_appStore', store.appStore).then(() =>
 	console.log('appStore has been hydrated'),
 );
 
+hydrate('store_popularStore', store.popularStore).then(() =>
+	console.log('popularStore has been hydrated'),
+);
+
 hydrate('store_favoriteStore', store.favoriteStore).then(() =>
 	console.log('favoriteStore has been hydrated'),
 );

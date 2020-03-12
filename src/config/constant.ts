@@ -18,63 +18,63 @@ export const MIN_TAB_COUNT = 3;
 
 export const POPULAR_TABS_LIST = [
 	{
-		title: 'ALl',
-		query: 'stars:>1',
+		title: 'ALL',
+		key: 'stars:>1',
 		checked: true,
 	},
 	{
 		title: 'Unknown',
-		query: 'unknown',
+		key: 'unknown',
 		checked: true,
 	},
 	{
 		title: 'Html',
-		query: 'html',
+		key: 'html',
 		checked: true,
 	},
 	{
 		title: 'CSS',
-		query: 'css',
+		key: 'css',
 		checked: false,
 	},
 	{
 		title: 'JavaScript',
-		query: 'javascript',
+		key: 'javascript',
 		checked: false,
 	},
 	{
 		title: 'Typescript',
-		query: 'typescript',
+		key: 'typescript',
 		checked: false,
 	},
 	{
 		title: 'Node',
-		query: 'node',
+		key: 'node',
 		checked: false,
 	},
 	{
 		title: 'Vue',
-		query: 'vue',
+		key: 'vue',
 		checked: false,
 	},
 	{
 		title: 'React',
-		query: 'react',
+		key: 'react',
 		checked: false,
 	},
 	{
 		title: 'React Native',
-		query: 'react-native',
+		key: 'react-native',
 		checked: false,
 	},
 	{
 		title: 'Dart',
-		query: 'dart',
+		key: 'dart',
 		checked: false,
 	},
 	{
 		title: 'Flutter',
-		query: 'flutter',
+		key: 'flutter',
 		checked: false,
 	},
 ];

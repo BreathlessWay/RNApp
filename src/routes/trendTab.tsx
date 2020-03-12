@@ -15,7 +15,7 @@ import { Store } from '@/stores';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from '@routes/route.d';
 
-import { TREND_TABS_LIST } from '@config/constant';
+import { ETrendTab, TREND_TABS_LIST } from '@config/constant';
 
 import CommonStyle from '@styles/common';
 
@@ -32,6 +32,7 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 
 	const {
 		appStore: { stackNavigation, setTrendSwitchNavigation, theme },
+		trendStore: { trendTabList, initialTrendTab },
 	} = props;
 
 	const headerOptions = {
@@ -40,6 +41,9 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 	};
 
 	useEffect(() => {
+		if (!trendTabList.length) {
+			initialTrendTab(TREND_TABS_LIST.filter(item => item.checked));
+		}
 		setTrendSwitchNavigation(navigation);
 	}, []);
 
@@ -49,9 +53,9 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 		}, [stackNavigation]),
 	);
 
-	return (
+	return trendTabList.length ? (
 		<Navigator
-			initialRouteName={TREND_TABS_LIST[0]?.key as any}
+			initialRouteName={trendTabList[0]?.key as any}
 			tabBarOptions={{
 				scrollEnabled: true,
 				style: {
@@ -60,11 +64,13 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 				indicatorStyle: CommonStyle.indicator,
 			}}
 			lazy={true}>
-			{TREND_TABS_LIST.map((tab, index) => (
+			{trendTabList.map((tab, index) => (
 				<Screen
 					key={index}
 					name={tab.key as any}
-					children={props => <TrendScreen {...props} tab={tab.key} />}
+					children={props => (
+						<TrendScreen {...props} tab={tab.key as ETrendTab} />
+					)}
 					options={{
 						tabBarLabel: () => (
 							<Text style={CommonStyle.tabBarLabel}>{tab.title}</Text>
@@ -73,7 +79,7 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 				/>
 			))}
 		</Navigator>
-	);
+	) : null;
 };
 
 const TrendTabRouteScreen = (inject((stores: Store) => ({
