@@ -6,6 +6,7 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { View, Text, Alert } from 'react-native';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { DragSortableView } from 'react-native-drag-sort';
 
 import { setHeader } from '@components/business/NavHeader';
 
@@ -17,7 +18,7 @@ import { TabItemType } from '@/types/tab.d';
 
 import { EPageSource } from '@config/constant';
 
-import Style from './style';
+import Style, { itemHeight, itemWidth } from './style';
 
 export type SortPagePropType = Pick<
 	Store,
@@ -92,14 +93,24 @@ const SortPage: FC<SortPagePropType> = props => {
 	});
 
 	return (
-		<>
-			{list.map(item => (
+		<DragSortableView
+			dataSource={list}
+			parentWidth={itemWidth}
+			childrenWidth={itemWidth}
+			childrenHeight={itemHeight}
+			onDataChange={data => {
+				// delete or add data to refresh
+				setIsEdit(true);
+				setList(data);
+			}}
+			keyExtractor={item => item.key} // FlatList作用一样，优化
+			renderItem={item => (
 				<View style={Style.item}>
 					<Text style={{ color: theme }}>{item.title}</Text>
 					<MaterialCommunityIcons name="sort" color={theme} size={18} />
 				</View>
-			))}
-		</>
+			)}
+		/>
 	);
 };
 

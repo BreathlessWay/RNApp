@@ -63,3 +63,7 @@ namespace NodeJS {
 		ref: MutableRefObject<Toast | undefined>;
 	}
 }
+
+declare module 'react-native-sortable-listview' {
+	export default class SortableListView extends React.Component<any, any> {}
+}
