@@ -36,8 +36,6 @@ declare module 'react-native-parallax-scroll-view' {
 }
 
 declare module 'react-native-easy-toast' {
-	import { ViewStyle } from 'react-native';
-
 	export interface DURATION {
 		LENGTH_SHORT: number;
 		FOREVER: number;
