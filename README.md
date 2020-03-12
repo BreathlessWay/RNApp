@@ -52,6 +52,8 @@
 11. [react-native-parallax-scroll-view](https://github.com/i6mi6/react-native-parallax-scroll-view)
 12. React-Native 自带的 Webview 已经被移除了，现在使用[
     react-native-webview](https://github.com/react-native-community/react-native-webview)代替
-13. [Homebrew国内镜像](https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git)
-14. 换了机器之后，要先装用brew安装cocoapods，然后link一下
+13. [Homebrew 国内镜像](https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git)
+14. 换了机器之后，要先装用 brew 安装 cocoapods，然后 link 一下
 15. [The difference is that createRef will always create a new ref. In a class-based component, you would typically put the ref in an instance property during construction (e.g. this.input = createRef()). You don't have this option in a function component. useRef takes care of returning the same ref each time as on the initial rendering.](https://stackoverflow.com/questions/54620698/whats-the-difference-between-useref-and-createref)
+16. [react-native-drag-sort](https://github.com/mochixuan/react-native-drag-sort): react-native 的拖拽组建，需要长按才能触发拖动
+17. TODO: 重新设计数据结构，同步自定义和排序以及展示
