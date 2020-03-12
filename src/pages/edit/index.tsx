@@ -26,7 +26,7 @@ import { EScreenName, RootStackParamList } from '@routes/route.d';
 import { TabItemType } from '@/types/tab.d';
 
 import {
-	ECustomEditPageSource,
+	EPageSource,
 	MIN_TAB_COUNT,
 	POPULAR_TABS_LIST,
 	TREND_TABS_LIST,
@@ -54,7 +54,7 @@ const CustomEditPage: FC<CustomEditPagePropType> = props => {
 	} = props;
 
 	const initialList = () => {
-		if (type === ECustomEditPageSource.language) {
+		if (type === EPageSource.language) {
 			setList(
 				POPULAR_TABS_LIST.map(item => {
 					const checked = popularTabList.find(_ => _.key === item.key);
@@ -66,7 +66,7 @@ const CustomEditPage: FC<CustomEditPagePropType> = props => {
 			);
 		}
 
-		if (type === ECustomEditPageSource.key) {
+		if (type === EPageSource.key) {
 			setList(
 				TREND_TABS_LIST.map(item => {
 					const checked = trendTabList.find(_ => _.key === item.key);
@@ -92,10 +92,10 @@ const CustomEditPage: FC<CustomEditPagePropType> = props => {
 				},
 			]);
 		} else {
-			if (type === ECustomEditPageSource.language) {
+			if (type === EPageSource.language) {
 				initialPopularTab(checkedList);
 			}
-			if (type === ECustomEditPageSource.key) {
+			if (type === EPageSource.key) {
 				initialTrendTab(checkedList);
 			}
 			navigation.goBack();

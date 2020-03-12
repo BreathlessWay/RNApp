@@ -15,7 +15,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 
 import { MENU_LIST } from '@config/menu';
-import { ECustomEditPageSource } from '@config/constant';
+import { EPageSource } from '@config/constant';
 
 import Style from './style';
 
@@ -72,7 +72,7 @@ const MePage: FC<MePagePropType> = props => {
 				themeColor={theme}
 				onPress={() =>
 					navigation.navigate(EScreenName.Edit, {
-						type: ECustomEditPageSource.language,
+						type: EPageSource.language,
 						title: MENU_LIST.Custom_Language.name,
 					})
 				}
@@ -81,6 +81,12 @@ const MePage: FC<MePagePropType> = props => {
 				{...MENU_LIST.Sort_Language}
 				hasBorder={false}
 				themeColor={theme}
+				onPress={() =>
+					navigation.navigate(EScreenName.Sort, {
+						type: EPageSource.language,
+						title: MENU_LIST.Sort_Language.name,
+					})
+				}
 			/>
 			<Text style={Style.group}>最热管理</Text>
 			<MenuListItem
@@ -88,7 +94,7 @@ const MePage: FC<MePagePropType> = props => {
 				themeColor={theme}
 				onPress={() =>
 					navigation.navigate(EScreenName.Edit, {
-						type: ECustomEditPageSource.key,
+						type: EPageSource.key,
 						title: MENU_LIST.Custom_Key.name,
 					})
 				}
@@ -97,6 +103,12 @@ const MePage: FC<MePagePropType> = props => {
 				{...MENU_LIST.Sort_Key}
 				themeColor={theme}
 				hasBorder={false}
+				onPress={() =>
+					navigation.navigate(EScreenName.Sort, {
+						type: EPageSource.key,
+						title: MENU_LIST.Sort_Key.name,
+					})
+				}
 			/>
 			<Text style={Style.group}>设置</Text>
 			<MenuListItem {...MENU_LIST.Custom_Theme} themeColor={theme} />

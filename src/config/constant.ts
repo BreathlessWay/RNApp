@@ -125,7 +125,7 @@ export const FAVORITE_TABS_LIST = [
 	},
 ];
 
-export enum ECustomEditPageSource {
+export enum EPageSource {
 	language = 'language',
 	key = 'key',
 }

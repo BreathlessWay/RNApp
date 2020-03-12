@@ -22,7 +22,7 @@ import trendingMonthly from '@wcj/github-rank/dist/trending-monthly.json';
 import kr from '@wcj/github-rank/dist/36kr.json';
 
 export default class TrendStore {
-	// @persist('list')
+	@persist('list')
 	@observable
 	trendTabList: Array<TabItemType> = [];
 

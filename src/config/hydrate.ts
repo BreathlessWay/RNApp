@@ -18,6 +18,10 @@ hydrate('store_popularStore', store.popularStore).then(() =>
 	console.log('popularStore has been hydrated'),
 );
 
+hydrate('store_trendStore', store.trendStore).then(() =>
+	console.log('trendStore has been hydrated'),
+);
+
 hydrate('store_favoriteStore', store.favoriteStore).then(() =>
 	console.log('favoriteStore has been hydrated'),
 );
