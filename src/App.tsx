@@ -16,8 +16,8 @@ configure({ enforceActions: 'observed' });
 
 // 关闭黄屏
 console.disableYellowBox = true;
-// 当使用导航时自带了SafeAreaView
 
+// 当使用导航时自带了SafeAreaView
 const App = () => {
 	global.ref = useRef<Toast>();
 

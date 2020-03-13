@@ -50,7 +50,7 @@ const CommonFlatList = forwardRef<
 				/>
 			}
 			data={list}
-			keyExtractor={item => String(item.id) || String(item.rank)}
+			keyExtractor={item => String(item.id || item.rank)}
 			renderItem={params => renderItem(params)}
 			ListEmptyComponent={refreshing ? null : <EmptyComponent />}
 			ListFooterComponent={

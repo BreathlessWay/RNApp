@@ -66,6 +66,7 @@ const AuthorPage: FC<AuthorPagePropType> = props => {
 				icon={aboutJson.aboutMe.Blog.icon}>
 				{aboutJson.aboutMe.Blog.items.map(item => (
 					<MenuListItem
+						key={item.value}
 						themeColor={theme}
 						name={item.title}
 						wrapStyle={{ paddingLeft: 32 }}
@@ -81,6 +82,7 @@ const AuthorPage: FC<AuthorPagePropType> = props => {
 				icon={aboutJson.aboutMe.Contact.icon}>
 				{aboutJson.aboutMe.Contact.items.map(item => (
 					<MenuListItem
+						key={item.value}
 						themeColor={theme}
 						name={item.title + ': ' + item.value}
 						wrapStyle={{ paddingLeft: 32 }}
@@ -96,6 +98,7 @@ const AuthorPage: FC<AuthorPagePropType> = props => {
 				icon={aboutJson.aboutMe.QQ.icon}>
 				{aboutJson.aboutMe.QQ.items.map(item => (
 					<MenuListItem
+						key={item.value}
 						themeColor={theme}
 						name={item.title + ': ' + item.value}
 						wrapStyle={{ paddingLeft: 32 }}

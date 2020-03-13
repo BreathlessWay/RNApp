@@ -4,7 +4,6 @@ import { inject, observer } from 'mobx-react';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import { Text, ScrollView, Linking } from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
 import MenuListItem from '@components/common/MenuListItem';
 
 import { setHeader, setHeaderParams } from '@components/business/NavHeader';
@@ -30,13 +29,9 @@ const MePage: FC<MePagePropType> = props => {
 		appStore: { stackNavigation, theme },
 	} = props;
 
-	const handlePressRight = () => {};
-
 	const headerOptions: setHeaderParams = {
 		navigation: stackNavigation,
 		title: '我的',
-		right: <Feather name="search" size={22} color="#fff" />,
-		onPressRight: handlePressRight,
 	};
 
 	useFocusEffect(

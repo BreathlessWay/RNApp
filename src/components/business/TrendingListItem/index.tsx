@@ -41,7 +41,7 @@ const TrendingListItem: FC<TrendingListItemPropType> = props => {
 		<TouchableOpacity onPress={handlePress}>
 			<View style={Style.wrap}>
 				<View style={Style.header}>
-					<Text style={{ ...Style.name, ...{ color: props.color } }}>
+					<Text style={{ ...Style.name, ...{ color: props.color || '#000' } }}>
 						{props.full_name}
 					</Text>
 					<TouchableOpacity onPress={handleFavorite} activeOpacity={1}>

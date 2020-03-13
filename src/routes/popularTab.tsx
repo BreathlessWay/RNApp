@@ -5,7 +5,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import { Text } from 'react-native';
-
+import Feather from 'react-native-vector-icons/Feather';
 import PopularScreen from '@pages/popular';
 
 import { setHeader } from '@components/business/NavHeader';
@@ -13,7 +13,7 @@ import { setHeader } from '@components/business/NavHeader';
 import { Store } from '@/stores';
 
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
-import { RootStackParamList } from '@routes/route.d';
+import { EScreenName, RootStackParamList } from '@routes/route.d';
 
 import { POPULAR_TABS_LIST } from '@config/constant';
 
@@ -38,9 +38,15 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 		popularStore: { initialPopularTab, showTabList },
 	} = props;
 
+	const handlePressRight = () => {
+		navigation.navigate(EScreenName.Search);
+	};
+
 	const headerOptions = {
 		navigation: stackNavigation,
 		title: '最热',
+		right: <Feather name="search" size={22} color="#fff" />,
+		onPressRight: handlePressRight,
 	};
 
 	useEffect(() => {

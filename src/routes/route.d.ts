@@ -24,23 +24,22 @@ export enum EScreenName {
 	Sort = 'Sort',
 
 	Theme = 'Theme',
+
+	Search = 'Search',
 }
 
 export type RootStackParamList = {
 	[EScreenName.Welcome]: undefined;
-
 	[EScreenName.Switch]: undefined;
 	[EScreenName.Trend]: Record<any, any>;
 	[EScreenName.Me]: undefined;
 	[EScreenName.Favorite]: undefined;
-
 	[EScreenName.Popular]: undefined;
 	[EScreenName.PopularIndex]: undefined;
 	[EScreenName.Detail]: {
 		item: any;
 		source: EFavoriteTab;
 	};
-
 	[EScreenName.About]: undefined;
 	[EScreenName.Author]: undefined;
 	[EScreenName.WebView]: {
@@ -56,4 +55,5 @@ export type RootStackParamList = {
 		type: EPageSource;
 	};
 	[EScreenName.Theme]: undefined;
+	[EScreenName.Search]: undefined;
 };

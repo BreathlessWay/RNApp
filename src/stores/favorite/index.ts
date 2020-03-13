@@ -1,7 +1,7 @@
 import { action, computed, observable, runInAction } from 'mobx';
 import { persist } from 'mobx-persist';
 
-import { ReposItemType } from '@stores/popular/popular';
+import { ReposItemType } from '@/types/repos.d';
 import { FavoriteType } from '@stores/favorite/favorite';
 
 import { EFavoriteTab, PAGE_SIZE } from '@config/constant';

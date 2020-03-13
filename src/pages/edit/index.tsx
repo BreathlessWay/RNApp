@@ -134,7 +134,7 @@ const CustomEditPage: FC<CustomEditPagePropType> = props => {
 	return (
 		<ScrollView>
 			{list.map(item => (
-				<View style={Style.item}>
+				<View style={Style.item} key={item.title}>
 					<Text style={{ color: theme }}>{item.title}</Text>
 					<Switch
 						value={item.checked}

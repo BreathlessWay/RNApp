@@ -1,5 +1,5 @@
 import { ETrendTab } from '@config/constant';
-import { ReposItemType } from '@stores/popular/popular';
+import { ReposItemType } from '@/types/repos.d';
 
 export type TrendingItemType = {
 	full_name: string;

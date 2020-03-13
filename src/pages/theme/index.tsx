@@ -47,7 +47,7 @@ const CustomThemePage: FC<CustomThemePagePropType> = props => {
 	return (
 		<ScrollView style={Style.wrap}>
 			{THEME_COLOR.map(color => (
-				<TouchableOpacity onPress={() => handlePress(color)}>
+				<TouchableOpacity onPress={() => handlePress(color)} key={color}>
 					<View style={{ ...Style.item, backgroundColor: color }}>
 						<Text style={Style.name}>{color}</Text>
 						<AntDesign

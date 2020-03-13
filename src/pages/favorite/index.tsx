@@ -10,7 +10,7 @@ import CommonFlatList from '@components/business/CommonFlatList';
 
 import { Store } from '@/stores';
 
-import { ReposItemType } from '@stores/popular/popular';
+import { ReposItemType } from '@/types/repos.d';
 import { TrendingItemType } from '@stores/trend/trend';
 
 import { EFavoriteTab } from '@config/constant';

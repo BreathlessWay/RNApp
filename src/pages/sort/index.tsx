@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Alert, ScrollView } from 'react-native';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { DragSortableView } from 'react-native-drag-sort';
@@ -27,7 +27,8 @@ export type SortPagePropType = Pick<
 
 const SortPage: FC<SortPagePropType> = props => {
 	const [list, setList] = useState<Array<TabItemType>>([]),
-		[isEdit, setIsEdit] = useState(false);
+		[isEdit, setIsEdit] = useState(false),
+		[scrollEnabled, setScrollEnabled] = useState(true);
 
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>(),
 		route = useRoute<RouteProp<RootStackParamList, EScreenName.Sort>>();
@@ -93,29 +94,33 @@ const SortPage: FC<SortPagePropType> = props => {
 	});
 
 	return (
-		<DragSortableView
-			dataSource={list}
-			parentWidth={itemWidth}
-			childrenWidth={itemWidth}
-			childrenHeight={itemHeight}
-			onDataChange={data => {
-				// delete or add data to refresh
-				setIsEdit(true);
-				setList(data);
-			}}
-			keyExtractor={item => item.key} // FlatList作用一样，优化
-			renderItem={(item: TabItemType) => (
-				<View style={{ ...Style.item }}>
-					<View style={Style.title}>
-						<Text style={{ color: theme }}>{item.title}</Text>
-						<Text style={Style.status}>
-							({item.checked ? '显示中' : '已隐藏'})
-						</Text>
+		<ScrollView scrollEnabled={scrollEnabled}>
+			<DragSortableView
+				dataSource={list}
+				parentWidth={itemWidth}
+				childrenWidth={itemWidth}
+				childrenHeight={itemHeight}
+				onDragStart={() => setScrollEnabled(false)}
+				onDragEnd={() => setScrollEnabled(true)}
+				onDataChange={data => {
+					// delete or add data to refresh
+					setIsEdit(true);
+					setList(data);
+				}}
+				keyExtractor={item => item.key} // FlatList作用一样，优化
+				renderItem={(item: TabItemType) => (
+					<View style={{ ...Style.item }}>
+						<View style={Style.title}>
+							<Text style={{ color: theme }}>{item.title}</Text>
+							<Text style={Style.status}>
+								({item.checked ? '显示中' : '已隐藏'})
+							</Text>
+						</View>
+						<MaterialCommunityIcons name="sort" color={theme} size={18} />
 					</View>
-					<MaterialCommunityIcons name="sort" color={theme} size={18} />
-				</View>
-			)}
-		/>
+				)}
+			/>
+		</ScrollView>
 	);
 };
 

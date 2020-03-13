@@ -11,7 +11,7 @@ import { Store } from '@/stores';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RouteProp } from '@react-navigation/native';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
-import { ReposItemType } from '@stores/popular/popular';
+import { ReposItemType } from '@/types/repos.d';
 
 import { EFavoriteTab } from '@config/constant';
 

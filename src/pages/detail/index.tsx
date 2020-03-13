@@ -24,7 +24,7 @@ import { Store } from '@/stores';
 
 import { StackNavigationProp } from '@react-navigation/stack';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
-import { ReposItemType } from '@stores/popular/popular';
+import { ReposItemType } from '@/types/repos.d';
 import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
 import { TrendingItemType } from '@stores/trend/trend';
 

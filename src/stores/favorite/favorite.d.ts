@@ -1,5 +1,5 @@
 import { EFavoriteTab } from '@config/constant';
-import { ReposItemType } from '@stores/popular/popular';
+import { ReposItemType } from '@/types/repos.d';
 import { TrendingItemType } from '@stores/trend/trend';
 
 export type FavoriteType = {
