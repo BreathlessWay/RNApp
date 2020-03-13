@@ -2,13 +2,13 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import { useNavigation } from '@react-navigation/native';
-// SwipeableFlatList
 import {
 	View,
 	Text,
 	TextInput,
 	FlatList,
 	TouchableHighlight,
+	ActivityIndicator,
 } from 'react-native';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -134,18 +134,19 @@ const SearchPage: FC<SearchPagePropType> = props => {
 		onPressRight: handleSearch,
 	});
 
-	console.log({ refreshing });
-
-	return (
+	return refreshing ? (
+		<ActivityIndicator color={theme} style={Style.loading} />
+	) : (
 		<View style={Style.wrap}>
 			<CommonFlatList
+				needRefresh={false}
 				ref={ref as any}
 				theme={theme}
 				list={list}
 				empty={empty}
 				hasMore={hasMore}
 				loadMore={loadMore}
-				refreshing={refreshing}
+				refreshing={false}
 				onEndReached={handleEndReached}
 				onRefresh={handleSearch}
 				renderItem={({ item }) => {

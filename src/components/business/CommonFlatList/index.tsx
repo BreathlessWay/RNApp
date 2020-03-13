@@ -16,6 +16,7 @@ export type CommonFlatListPropType = {
 		params: ListRenderItemInfo<{ id?: string | number }>,
 	) => JSX.Element;
 	theme: string;
+	needRefresh?: boolean;
 };
 
 const CommonFlatList = forwardRef<
@@ -32,22 +33,27 @@ const CommonFlatList = forwardRef<
 		loadMore,
 		onEndReached,
 		theme,
+		needRefresh = true,
 	} = props;
 
 	return (
 		<FlatList
 			ref={ref as any}
 			refreshControl={
-				<RefreshControl
-					// iOS
-					title="Loading..."
-					titleColor={theme}
-					tintColor={theme}
-					// Android
-					colors={[theme]}
-					onRefresh={onRefresh}
-					refreshing={refreshing}
-				/>
+				needRefresh ? (
+					<RefreshControl
+						// iOS
+						title="Loading..."
+						titleColor={theme}
+						tintColor={theme}
+						// Android
+						colors={[theme]}
+						onRefresh={onRefresh}
+						refreshing={refreshing}
+					/>
+				) : (
+					(null as any)
+				)
 			}
 			data={list}
 			keyExtractor={item => String(item.id || item.rank)}

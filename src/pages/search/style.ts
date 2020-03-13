@@ -33,6 +33,11 @@ const Style = StyleSheet.create({
 		color: '#fff',
 		paddingVertical: 10,
 	},
+	loading: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 });
 
 export default Style;
