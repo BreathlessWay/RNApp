@@ -27,6 +27,15 @@ export default class PopularStore {
 	}
 
 	@action.bound
+	addPopularTab(title: string) {
+		this.popularTabList.unshift({
+			title,
+			key: title.toLocaleLowerCase(),
+			checked: true,
+		});
+	}
+
+	@action.bound
 	async getData({
 		refreshing = false,
 		loadMore = false,

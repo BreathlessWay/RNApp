@@ -26,6 +26,8 @@ export enum EScreenName {
 	Theme = 'Theme',
 
 	Search = 'Search',
+
+	Remove = 'Remove',
 }
 
 export type RootStackParamList = {
@@ -56,4 +58,5 @@ export type RootStackParamList = {
 	};
 	[EScreenName.Theme]: undefined;
 	[EScreenName.Search]: undefined;
+	[EScreenName.Remove]: undefined;
 };

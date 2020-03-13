@@ -65,7 +65,7 @@ const CustomEditPage: FC<CustomEditPagePropType> = props => {
 	const handleSave = () => {
 		const checkedList = list.filter(item => item.checked);
 		if (checkedList.length < MIN_TAB_COUNT) {
-			Alert.alert('提示', `最少选择个${MIN_TAB_COUNT}标签`, [
+			Alert.alert('提示', `最少选择${MIN_TAB_COUNT}个标签`, [
 				{
 					text: '确定',
 				},

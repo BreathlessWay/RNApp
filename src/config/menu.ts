@@ -1,4 +1,4 @@
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
@@ -14,6 +14,11 @@ export const MENU_LIST = {
 		name: '语言排序',
 		Icons: FontAwesome5,
 		icon: 'sort-alpha-down',
+	},
+	Remove_Language: {
+		name: '移除语言',
+		Icons: Feather,
+		icon: 'delete',
 	},
 	Custom_Theme: {
 		name: '自定义主题',

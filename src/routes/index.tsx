@@ -10,6 +10,7 @@ import CustomEditScreen from '@pages/edit';
 import SortScreen from '@pages/sort';
 import CustomThemeScreen from '@pages/theme';
 import SearchScreen from '@pages/search';
+import RemoveScreen from '@pages/remove';
 import SwitchRoutePage from './switch';
 
 import { Store } from '@/stores';
@@ -68,6 +69,7 @@ const RootRoutePage: FC<RootRoutePagePropType> = props => {
 				<Screen name={EScreenName.Sort} component={SortScreen} />
 				<Screen name={EScreenName.Theme} component={CustomThemeScreen} />
 				<Screen name={EScreenName.Search} component={SearchScreen} />
+				<Screen name={EScreenName.Remove} component={RemoveScreen} />
 			</Navigator>
 		</NavigationContainer>
 	);

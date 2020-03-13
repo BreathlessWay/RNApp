@@ -74,7 +74,6 @@ const MePage: FC<MePagePropType> = props => {
 			/>
 			<MenuListItem
 				{...MENU_LIST.Sort_Language}
-				hasBorder={false}
 				themeColor={theme}
 				onPress={() =>
 					navigation.navigate(EScreenName.Sort, {
@@ -82,6 +81,12 @@ const MePage: FC<MePagePropType> = props => {
 						title: MENU_LIST.Sort_Language.name,
 					})
 				}
+			/>
+			<MenuListItem
+				{...MENU_LIST.Remove_Language}
+				hasBorder={false}
+				themeColor={theme}
+				onPress={() => navigation.navigate(EScreenName.Remove)}
 			/>
 			<Text style={Style.group}>最热管理</Text>
 			<MenuListItem
