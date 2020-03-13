@@ -7,6 +7,9 @@ import { ReposItemType } from '@/types/repos';
 
 export default class SearchStore {
 	@observable
+	Cancel_Token: Array<number> = [];
+
+	@observable
 	refreshing = false;
 
 	@observable
@@ -25,12 +28,21 @@ export default class SearchStore {
 	pageIndex = 1;
 
 	@action.bound
+	setCancelToken(cancelToken: number) {
+		this.Cancel_Token.push(cancelToken);
+		this.refreshing = false;
+		this.loadMore = false;
+	}
+
+	@action.bound
 	async getData({
 		refreshing = false,
 		loadMore = false,
+		token,
 	}: {
 		refreshing?: boolean;
 		loadMore?: boolean;
+		token?: number;
 	}) {
 		try {
 			this.refreshing = Boolean(refreshing);
@@ -42,17 +54,22 @@ export default class SearchStore {
 			if (loadMore) {
 				this.pageIndex++;
 			}
-
 			const result = await fetchData({
 				url: `/search/repositories?${this.query}`,
 			});
 
-			runInAction(() => {
-				this.refreshing = false;
-				this.loadMore = false;
-				this.list = refreshing ? result.items : this.list.concat(result.items);
-				this.total_count = result.total_count;
-			});
+			if (token && this.Cancel_Token.includes(token)) {
+				this.Cancel_Token = this.Cancel_Token.filter(item => item !== token);
+			} else {
+				runInAction(() => {
+					this.refreshing = false;
+					this.loadMore = false;
+					this.list = refreshing
+						? result.items
+						: this.list.concat(result.items);
+					this.total_count = result.total_count;
+				});
+			}
 		} catch (e) {
 		} finally {
 			runInAction(() => {

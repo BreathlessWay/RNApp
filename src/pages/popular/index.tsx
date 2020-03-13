@@ -42,7 +42,7 @@ const PopularPage: FC<PopularPagePropType &
 	}, []);
 
 	const handleEndReached = () => {
-		if (empty || !hasMore || loadMore) {
+		if (refreshing || empty || !hasMore || loadMore) {
 			return;
 		}
 		getData({ loadMore: true, tab });

@@ -47,7 +47,7 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 	}, [tab]);
 
 	const handleEndReached = () => {
-		if (empty || !hasMore || loadMore) {
+		if (refreshing || empty || !hasMore || loadMore) {
 			return;
 		}
 		getList({ loadMore: true, tab });

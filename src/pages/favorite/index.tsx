@@ -54,7 +54,7 @@ const FavoritePage: FC<FavoritePagePropType &
 	);
 
 	const handleEndReached = () => {
-		if (empty || !hasMore || loadMore) {
+		if (refreshing || empty || !hasMore || loadMore) {
 			return;
 		}
 		getList({ loadMore: true, tab });

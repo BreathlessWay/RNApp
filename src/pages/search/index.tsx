@@ -31,6 +31,8 @@ export type SearchPagePropType = Pick<
 	'appStore' | 'searchStore' | 'popularStore'
 >;
 
+let token: number | null = null;
+
 const SearchPage: FC<SearchPagePropType> = props => {
 	const [add, setAdd] = useState(false);
 
@@ -40,6 +42,7 @@ const SearchPage: FC<SearchPagePropType> = props => {
 	const {
 		appStore: { theme },
 		searchStore: {
+			setCancelToken,
 			keyword,
 			setKeyword,
 			getData,
@@ -65,15 +68,26 @@ const SearchPage: FC<SearchPagePropType> = props => {
 	};
 
 	const handleSearch = () => {
+		if (loadMore) {
+			return;
+		}
 		if (!keyword) {
 			global.ref.current && global.ref.current.show('请输入关键字');
 			return;
 		}
-		setAdd(!alreadyHas());
-		getData({ refreshing: true });
+		if (refreshing) {
+			token && setCancelToken(token);
+		} else {
+			setAdd(!alreadyHas());
+			token = Date.now();
+			getData({ refreshing: true, token });
+		}
 	};
 
 	const handleEndReached = () => {
+		if (refreshing || empty || !hasMore || loadMore) {
+			return;
+		}
 		getData({ loadMore: true });
 	};
 
@@ -112,13 +126,15 @@ const SearchPage: FC<SearchPagePropType> = props => {
 		),
 		right: (
 			<View>
-				<Text style={Style.btn}>搜索</Text>
+				<Text style={Style.btn}>{refreshing ? '取消' : '搜索'}</Text>
 			</View>
 		),
 		left: <IonIcons name={'ios-arrow-back'} size={20} color="#fff" />,
 		onPressLeft: handleBack,
 		onPressRight: handleSearch,
 	});
+
+	console.log({ refreshing });
 
 	return (
 		<View style={Style.wrap}>

@@ -11,9 +11,10 @@ import RootRouteScreen from '@/routes';
 import store from '@stores/index';
 
 import 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-community/async-storage';
 
 configure({ enforceActions: 'observed' });
-
+AsyncStorage.clear();
 // 关闭黄屏
 console.disableYellowBox = true;
 

@@ -61,3 +61,4 @@
 15. [The difference is that createRef will always create a new ref. In a class-based component, you would typically put the ref in an instance property during construction (e.g. this.input = createRef()). You don't have this option in a function component. useRef takes care of returning the same ref each time as on the initial rendering.](https://stackoverflow.com/questions/54620698/whats-the-difference-between-useref-and-createref): useRef 和 createRef 的区别
 16. [react-native-drag-sort](https://github.com/mochixuan/react-native-drag-sort): react-native 的拖拽组建，需要长按才能触发拖动
 17. [AsyncStorage](https://github.com/react-native-community/async-storage): react-native 自带的 AsyncStorage 即将废弃，使用`@react-native-community/async-storage`代替
+18. [react-native-swipeable-lists](https://github.com/nicastelo/react-native-swipeable-lists): react-native 侧滑在 0.61 被移除了，需要安装这个库
