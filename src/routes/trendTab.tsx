@@ -32,7 +32,7 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 
 	const {
 		appStore: { stackNavigation, setTrendSwitchNavigation, theme },
-		trendStore: { trendTabList, initialTrendTab },
+		trendStore: { showTabList, initialTrendTab },
 	} = props;
 
 	const headerOptions = {
@@ -41,7 +41,7 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 	};
 
 	useEffect(() => {
-		if (!trendTabList.length) {
+		if (!showTabList.length) {
 			initialTrendTab(TREND_TABS_LIST);
 		}
 		setTrendSwitchNavigation(navigation);
@@ -53,9 +53,9 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 		}, [stackNavigation]),
 	);
 
-	return trendTabList.length ? (
+	return showTabList.length ? (
 		<Navigator
-			initialRouteName={trendTabList[0]?.key as any}
+			initialRouteName={showTabList[0]?.key as any}
 			tabBarOptions={{
 				scrollEnabled: true,
 				style: {
@@ -64,7 +64,7 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 				indicatorStyle: CommonStyle.indicator,
 			}}
 			lazy={true}>
-			{trendTabList.map((tab, index) => (
+			{showTabList.map((tab, index) => (
 				<Screen
 					key={index}
 					name={tab.key as any}

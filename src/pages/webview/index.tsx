@@ -8,7 +8,7 @@ import {
 	useRoute,
 } from '@react-navigation/native';
 
-import { Alert, BackHandler } from 'react-native';
+import { ActivityIndicator, Alert, BackHandler } from 'react-native';
 import WebView from 'react-native-webview';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
@@ -20,7 +20,11 @@ import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 
-const WebViewPage: FC = () => {
+import Style from './style';
+
+export type WebViewPagePropType = Pick<Store, 'appStore'>;
+
+const WebViewPage: FC<WebViewPagePropType> = props => {
 	const [canGoBack, setCanGoBack] = useState(false),
 		ref = useRef<WebView>();
 
@@ -28,6 +32,10 @@ const WebViewPage: FC = () => {
 		route = useRoute<RouteProp<RootStackParamList, EScreenName.WebView>>();
 
 	const { url, title } = route.params;
+
+	const {
+		appStore: { theme },
+	} = props;
 
 	if (url && url.startsWith('http')) {
 	} else {
@@ -86,6 +94,9 @@ const WebViewPage: FC = () => {
 			source={{ uri: url }}
 			onNavigationStateChange={handleNavigationStateChange}
 			startInLoadingState={true}
+			renderLoading={() => (
+				<ActivityIndicator color={theme} style={Style.loading} />
+			)}
 		/>
 	) : null;
 };

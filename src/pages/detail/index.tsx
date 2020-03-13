@@ -8,7 +8,12 @@ import {
 	useRoute,
 } from '@react-navigation/native';
 
-import { BackHandler, TouchableOpacity, View } from 'react-native';
+import {
+	ActivityIndicator,
+	BackHandler,
+	TouchableOpacity,
+	View,
+} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import { WebView } from 'react-native-webview';
@@ -27,7 +32,7 @@ import { EFavoriteTab, PREFIX_URL } from '@config/constant';
 
 import Style from './style';
 
-export type DetailPagePropType = Pick<Store, 'favoriteStore'>;
+export type DetailPagePropType = Pick<Store, 'appStore' | 'favoriteStore'>;
 
 const DetailPage: FC<DetailPagePropType> = props => {
 	const [canGoBack, setCanGoBack] = useState(false);
@@ -40,6 +45,7 @@ const DetailPage: FC<DetailPagePropType> = props => {
 			setTrendingFavorite,
 			setPopularFavorite,
 		},
+		appStore: { theme },
 	} = props;
 
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>(),
@@ -140,11 +146,15 @@ const DetailPage: FC<DetailPagePropType> = props => {
 			source={{ uri: url }}
 			onNavigationStateChange={handleNavigationStateChange}
 			startInLoadingState={true}
+			renderLoading={() => (
+				<ActivityIndicator color={theme} style={Style.loading} />
+			)}
 		/>
 	);
 };
 
 const DetailScreen = (inject((stores: Store) => ({
+	appStore: stores.appStore,
 	favoriteStore: stores.favoriteStore,
 }))(observer(DetailPage)) as unknown) as FC;
 

@@ -110,4 +110,9 @@ export default class PopularStore {
 	get loadMore() {
 		return this.popular[this.tab]?.loadMore ?? false;
 	}
+
+	@computed
+	get showTabList() {
+		return this.popularTabList.filter(item => item.checked);
+	}
 }

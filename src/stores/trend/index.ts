@@ -242,4 +242,9 @@ export default class TrendStore {
 	get trendKey() {
 		return this.isTrending ? this.filter : this.tab;
 	}
+
+	@computed
+	get showTabList() {
+		return this.trendTabList.filter(item => item.checked);
+	}
 }
