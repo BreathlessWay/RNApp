@@ -34,6 +34,7 @@ const PopularPage: FC<PopularPagePropType &
 		popularStore: { getData, popular, refreshing, hasMore, loadMore, empty },
 		tab,
 		favoriteStore: { setPopularFavorite, popularFavoriteIds },
+		appStore: { theme },
 	} = props;
 
 	useEffect(() => {
@@ -64,6 +65,7 @@ const PopularPage: FC<PopularPagePropType &
 	return (
 		<CommonFlatList
 			ref={ref as any}
+			theme={theme}
 			list={popular[tab]?.items ?? []}
 			empty={empty}
 			hasMore={hasMore}
@@ -78,6 +80,7 @@ const PopularPage: FC<PopularPagePropType &
 						onFavorite={handleFavorite}
 						isFavorite={popularFavoriteIds.includes(Number(item.id))}
 						source={EFavoriteTab.popular}
+						theme={theme}
 					/>
 				);
 			}}

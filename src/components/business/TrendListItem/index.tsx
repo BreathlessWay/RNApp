@@ -12,10 +12,11 @@ export type TrendListItemPropType = {
 	item: any;
 	onFavorite: (params: { item: any; isFavorite: boolean }) => void;
 	trendingFavoriteIds: Array<string>;
+	theme: string;
 };
 
 const TrendListItem: FC<TrendListItemPropType> = props => {
-	const { tab, item, onFavorite, trendingFavoriteIds } = props;
+	const { tab, item, onFavorite, trendingFavoriteIds, theme } = props;
 	switch (tab) {
 		case ETrendTab.allUser:
 		case ETrendTab.chinaUser:
@@ -26,6 +27,7 @@ const TrendListItem: FC<TrendListItemPropType> = props => {
 			return (
 				<TrendingListItem
 					{...item}
+					theme={theme}
 					onFavorite={onFavorite}
 					isFavorite={trendingFavoriteIds.includes(item.full_name)}
 				/>

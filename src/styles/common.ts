@@ -17,6 +17,15 @@ const CommonStyle = StyleSheet.create({
 		// Android阴影
 		elevation: 2,
 	},
+	shadow: {
+		// iOS阴影
+		shadowColor: 'gray',
+		shadowOffset: { width: 0.5, height: 0.5 },
+		shadowOpacity: 0.4,
+		shadowRadius: 1,
+		// Android阴影
+		elevation: 2,
+	},
 	tag: {
 		backgroundColor: '#e2e2e2',
 		paddingVertical: 2,

@@ -18,13 +18,13 @@ export type ReposListItemPropType = {
 	isFavorite?: boolean;
 	onFavorite?: (params: { item: ReposItemType; isFavorite: boolean }) => void;
 	source: EFavoriteTab;
+	theme: string;
 } & ReposItemType;
 
 const ReposListItem: FC<ReposListItemPropType> = props => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
-	const { children, isFavorite, onFavorite, source, ...rest } = props;
-
+	const { children, isFavorite, onFavorite, source, theme, ...rest } = props;
 	const handlePress = () => {
 		navigation.navigate(EScreenName.Detail, {
 			item: rest,
@@ -64,7 +64,7 @@ const ReposListItem: FC<ReposListItemPropType> = props => {
 						<TouchableOpacity onPress={handleFavorite} activeOpacity={1}>
 							<FontAwesome
 								name={isFavorite ? 'star' : 'star-o'}
-								color={'red'}
+								color={theme}
 								size={20}
 							/>
 						</TouchableOpacity>

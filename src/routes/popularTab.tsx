@@ -45,7 +45,7 @@ const PopularTabRoutePage: FC<PopularTabRoutePagePropType> = props => {
 
 	useEffect(() => {
 		if (!popularTabList.length) {
-			initialPopularTab(POPULAR_TABS_LIST.filter(item => item.checked));
+			initialPopularTab(POPULAR_TABS_LIST);
 		}
 		setPopularSwitchNavigation(navigation);
 	}, []);

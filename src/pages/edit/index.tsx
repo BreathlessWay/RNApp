@@ -25,12 +25,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { EScreenName, RootStackParamList } from '@routes/route.d';
 import { TabItemType } from '@/types/tab.d';
 
-import {
-	EPageSource,
-	MIN_TAB_COUNT,
-	POPULAR_TABS_LIST,
-	TREND_TABS_LIST,
-} from '@config/constant';
+import { EPageSource, MIN_TAB_COUNT } from '@config/constant';
 
 import Style from './style';
 
@@ -55,27 +50,11 @@ const CustomEditPage: FC<CustomEditPagePropType> = props => {
 
 	const initialList = () => {
 		if (type === EPageSource.language) {
-			setList(
-				POPULAR_TABS_LIST.map(item => {
-					const checked = popularTabList.find(_ => _.key === item.key);
-					return {
-						...item,
-						checked: Boolean(checked),
-					};
-				}),
-			);
+			setList(JSON.parse(JSON.stringify(popularTabList)));
 		}
 
 		if (type === EPageSource.key) {
-			setList(
-				TREND_TABS_LIST.map(item => {
-					const checked = trendTabList.find(_ => _.key === item.key);
-					return {
-						...item,
-						checked: Boolean(checked),
-					};
-				}),
-			);
+			setList(JSON.parse(JSON.stringify(trendTabList)));
 		}
 	};
 
@@ -93,10 +72,10 @@ const CustomEditPage: FC<CustomEditPagePropType> = props => {
 			]);
 		} else {
 			if (type === EPageSource.language) {
-				initialPopularTab(checkedList);
+				initialPopularTab(list);
 			}
 			if (type === EPageSource.key) {
-				initialTrendTab(checkedList);
+				initialTrendTab(list);
 			}
 			navigation.goBack();
 		}

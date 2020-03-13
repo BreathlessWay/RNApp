@@ -42,7 +42,7 @@ const TrendTabRoutePage: FC<TrendTabRoutePagePropType> = props => {
 
 	useEffect(() => {
 		if (!trendTabList.length) {
-			initialTrendTab(TREND_TABS_LIST.filter(item => item.checked));
+			initialTrendTab(TREND_TABS_LIST);
 		}
 		setTrendSwitchNavigation(navigation);
 	}, []);

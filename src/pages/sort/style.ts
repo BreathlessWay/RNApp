@@ -18,6 +18,15 @@ const Style = StyleSheet.create({
 		justifyContent: 'space-between',
 		...CommonStyle.borderBottom,
 	},
+	title: {
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
+	status: {
+		marginLeft: 5,
+		color: '#999',
+		fontSize: 12,
+	},
 });
 
 export default Style;

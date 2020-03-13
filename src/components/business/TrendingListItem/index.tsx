@@ -18,12 +18,13 @@ import Style from './style';
 export type TrendingListItemPropType = TrendingItemType & {
 	isFavorite: boolean;
 	onFavorite: (params: { item: TrendingItemType; isFavorite: boolean }) => void;
+	theme: string;
 };
 
 const TrendingListItem: FC<TrendingListItemPropType> = props => {
 	const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
-	const { children, onFavorite, isFavorite, ...rest } = props;
+	const { children, onFavorite, isFavorite, theme, ...rest } = props;
 
 	const handlePress = () => {
 		navigation.navigate(EScreenName.Detail, {
@@ -46,7 +47,7 @@ const TrendingListItem: FC<TrendingListItemPropType> = props => {
 					<TouchableOpacity onPress={handleFavorite} activeOpacity={1}>
 						<FontAwesome
 							name={isFavorite ? 'star' : 'star-o'}
-							color={'red'}
+							color={theme}
 							size={20}
 						/>
 					</TouchableOpacity>

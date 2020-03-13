@@ -12,6 +12,7 @@ import { Store } from '@/stores';
 import { ETrendTab } from '@config/constant';
 import { ReposItemType } from '@stores/popular/popular';
 import { TrendingItemType } from '@stores/trend/trend';
+import ReposListItem from '@components/business/ReposListItem';
 
 export type TrendPageStorePropType = Pick<
 	Store,
@@ -39,6 +40,7 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 			filter,
 		},
 		favoriteStore: { setTrendingFavorite, trendingFavoriteIds },
+		appStore: { theme },
 	} = props;
 
 	useEffect(() => {
@@ -85,6 +87,7 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 			) : null}
 			<CommonFlatList
 				ref={ref as any}
+				theme={theme}
 				list={data}
 				empty={empty}
 				hasMore={hasMore}
@@ -96,6 +99,7 @@ const TrendPage: FC<TrendPagePropType & TrendPageStorePropType> = props => {
 					<TrendListItem
 						tab={tab}
 						item={item}
+						theme={theme}
 						onFavorite={handleFavorite}
 						trendingFavoriteIds={trendingFavoriteIds}
 					/>

@@ -15,7 +15,10 @@ import { TrendingItemType } from '@stores/trend/trend';
 
 import { EFavoriteTab } from '@config/constant';
 
-export type FavoritePageStorePropType = Pick<Store, 'favoriteStore'>;
+export type FavoritePageStorePropType = Pick<
+	Store,
+	'appStore' | 'favoriteStore'
+>;
 
 export type FavoritePagePropType = {
 	tab: EFavoriteTab;
@@ -37,6 +40,7 @@ const FavoritePage: FC<FavoritePagePropType &
 			setTrendingFavorite,
 		},
 		tab,
+		appStore: { theme },
 	} = props;
 
 	useEffect(() => {
@@ -78,6 +82,7 @@ const FavoritePage: FC<FavoritePagePropType &
 	return (
 		<CommonFlatList
 			ref={ref as any}
+			theme={theme}
 			list={favorite[tab]?.items ?? []}
 			empty={empty}
 			hasMore={hasMore}
@@ -92,12 +97,14 @@ const FavoritePage: FC<FavoritePagePropType &
 						onFavorite={handleFavorite}
 						isFavorite={true}
 						source={tab}
+						theme={theme}
 					/>
 				) : (
 					<TrendingListItem
 						{...(item as any)}
 						onFavorite={handleFavorite}
 						isFavorite={true}
+						theme={theme}
 					/>
 				)
 			}
@@ -106,6 +113,7 @@ const FavoritePage: FC<FavoritePagePropType &
 };
 
 const FavoriteScreen = (inject((stores: Store) => ({
+	appStore: stores.appStore,
 	favoriteStore: stores.favoriteStore,
 }))(observer(FavoritePage)) as unknown) as FC<FavoritePagePropType>;
 

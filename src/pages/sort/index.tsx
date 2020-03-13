@@ -104,9 +104,14 @@ const SortPage: FC<SortPagePropType> = props => {
 				setList(data);
 			}}
 			keyExtractor={item => item.key} // FlatList作用一样，优化
-			renderItem={item => (
-				<View style={Style.item}>
-					<Text style={{ color: theme }}>{item.title}</Text>
+			renderItem={(item: TabItemType) => (
+				<View style={{ ...Style.item }}>
+					<View style={Style.title}>
+						<Text style={{ color: theme }}>{item.title}</Text>
+						<Text style={Style.status}>
+							({item.checked ? '显示中' : '已隐藏'})
+						</Text>
+					</View>
 					<MaterialCommunityIcons name="sort" color={theme} size={18} />
 				</View>
 			)}
