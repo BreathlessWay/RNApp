@@ -8,6 +8,7 @@ import AuthorScreen from '@pages/author';
 import WebViewScreen from '@pages/webview';
 import CustomEditScreen from '@pages/edit';
 import SortScreen from '@pages/sort';
+import CustomThemeScreen from '@pages/theme';
 import SwitchRoutePage from './switch';
 
 import { Store } from '@/stores';
@@ -64,6 +65,7 @@ const RootRoutePage: FC<RootRoutePagePropType> = props => {
 				<Screen name={EScreenName.WebView} component={WebViewScreen} />
 				<Screen name={EScreenName.Edit} component={CustomEditScreen} />
 				<Screen name={EScreenName.Sort} component={SortScreen} />
+				<Screen name={EScreenName.Theme} component={CustomThemeScreen} />
 			</Navigator>
 		</NavigationContainer>
 	);

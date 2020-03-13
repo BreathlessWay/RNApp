@@ -14,6 +14,7 @@ export type CommonParallaxScrollViewPropType = {
 	avatarUrl: string;
 	description: string;
 	navigation: any;
+	theme: string;
 };
 
 const CommonParallaxScrollView: FC<CommonParallaxScrollViewPropType> = props => {
@@ -25,6 +26,7 @@ const CommonParallaxScrollView: FC<CommonParallaxScrollViewPropType> = props => 
 		avatarUrl,
 		title,
 		description,
+		theme,
 	} = props;
 
 	const handleShare = () => {};
@@ -39,7 +41,7 @@ const CommonParallaxScrollView: FC<CommonParallaxScrollViewPropType> = props => 
 			stickyHeaderHeight={stickyHeaderHeight}
 			backgroundScrollSpeed={10}
 			renderStickyHeader={() => (
-				<View key="sticky-header" style={Style.stickySection}>
+				<View style={{ ...Style.stickySection, backgroundColor: theme }}>
 					<Text style={Style.stickySectionText}>{title}</Text>
 				</View>
 			)}

@@ -51,6 +51,7 @@ const AuthorPage: FC<AuthorPagePropType> = props => {
 
 	return (
 		<CommonParallaxScrollView
+			theme={theme}
 			navigation={navigation}
 			title={aboutJson.author.name}
 			imageUrl={aboutJson.author.backgroundImg}

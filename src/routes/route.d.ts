@@ -22,6 +22,8 @@ export enum EScreenName {
 	Edit = 'Edit',
 
 	Sort = 'Sort',
+
+	Theme = 'Theme',
 }
 
 export type RootStackParamList = {
@@ -53,4 +55,5 @@ export type RootStackParamList = {
 		title: string;
 		type: EPageSource;
 	};
+	[EScreenName.Theme]: undefined;
 };

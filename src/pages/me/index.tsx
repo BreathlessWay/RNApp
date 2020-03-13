@@ -111,7 +111,11 @@ const MePage: FC<MePagePropType> = props => {
 				}
 			/>
 			<Text style={Style.group}>设置</Text>
-			<MenuListItem {...MENU_LIST.Custom_Theme} themeColor={theme} />
+			<MenuListItem
+				{...MENU_LIST.Custom_Theme}
+				themeColor={theme}
+				onPress={() => navigation.navigate(EScreenName.Theme)}
+			/>
 			<MenuListItem
 				themeColor={theme}
 				{...MENU_LIST.About_Author}

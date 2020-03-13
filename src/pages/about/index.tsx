@@ -41,6 +41,7 @@ const AboutPage: FC<AboutPagePropType> = props => {
 
 	return (
 		<CommonParallaxScrollView
+			theme={theme}
 			navigation={navigation}
 			title={aboutJson.app.name}
 			imageUrl={aboutJson.app.backgroundImg}

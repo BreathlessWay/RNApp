@@ -5,10 +5,12 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { RootStackParamList } from '@routes/route.d';
 
+import { THEME_COLOR } from '@config/constant';
+
 export default class AppStore {
 	@persist
 	@observable
-	theme = '#883436';
+	theme = THEME_COLOR[0];
 
 	@observable
 	stackNavigation: StackNavigationProp<RootStackParamList> | null = null;
