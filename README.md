@@ -5,6 +5,11 @@
 > 项目介绍
 
 1. GitHub 趋势的 App，使用 React-Native+Mobx+Hooks+Typescript+React-Navigation 开发
+   ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-popular.png)
+   ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-trend.png)
+   ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-favorite.png)
+   ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-me.png)
+   ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-about.png)
 
 > 一些问题
 
