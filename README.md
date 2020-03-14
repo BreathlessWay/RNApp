@@ -8,7 +8,6 @@
 
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-popular.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-trend.png)
-   ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-favorite.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-me.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-about.png)
 
