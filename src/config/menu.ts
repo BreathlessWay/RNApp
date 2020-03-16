@@ -49,10 +49,5 @@ export const MENU_LIST = {
 		name: '反馈',
 		Icons: SimpleLineIcons,
 		icon: 'feed',
-	},
-	Share: {
-		name: '分享',
-		Icons: IonIcons,
-		icon: 'md-share',
-	},
+	}
 };

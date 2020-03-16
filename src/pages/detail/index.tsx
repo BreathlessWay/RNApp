@@ -86,8 +86,6 @@ const DetailPage: FC<DetailPagePropType> = props => {
 		}
 	};
 
-	const handleShare = () => {};
-
 	const handleBack = () => {
 		if (canGoBack) {
 			ref.current && ref.current.goBack();
@@ -122,9 +120,6 @@ const DetailPage: FC<DetailPagePropType> = props => {
 						color="#fff"
 						style={Style.star}
 					/>
-				</TouchableOpacity>
-				<TouchableOpacity onPress={handleShare}>
-					<IonIcons name={'md-share'} size={20} color="#fff" />
 				</TouchableOpacity>
 			</View>
 		),
