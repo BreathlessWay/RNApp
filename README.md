@@ -10,6 +10,7 @@
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-trend.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-me.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-about.png)
+2. TODO: 豆瓣
 
 > 一些问题
 
