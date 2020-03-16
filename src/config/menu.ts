@@ -50,9 +50,9 @@ export const MENU_LIST = {
 		Icons: SimpleLineIcons,
 		icon: 'feed',
 	},
-	// Share: {
-	// 	name: '分享',
-	// 	Icons: IonIcons,
-	// 	icon: 'md-share',
-	// },
+	Share: {
+		name: '分享',
+		Icons: IonIcons,
+		icon: 'md-share',
+	},
 };

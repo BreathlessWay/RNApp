@@ -73,9 +73,9 @@ const CommonParallaxScrollView: FC<CommonParallaxScrollViewPropType> = props => 
 					<TouchableOpacity onPress={handleBack}>
 						<IonIcons name={'ios-arrow-back'} size={20} color="#fff" />
 					</TouchableOpacity>
-					{/*<TouchableOpacity onPress={handleShare}>*/}
-					{/*	<IonIcons name={'md-share'} size={20} color="#fff" />*/}
-					{/*</TouchableOpacity>*/}
+					<TouchableOpacity onPress={handleShare}>
+						<IonIcons name={'md-share'} size={20} color="#fff" />
+					</TouchableOpacity>
 				</View>
 			)}>
 			{children}
