@@ -86,7 +86,7 @@ const DetailPage: FC<DetailPagePropType> = props => {
 		}
 	};
 
-	const handleShare = () => {};
+	// const handleShare = () => {};
 
 	const handleBack = () => {
 		if (canGoBack) {
@@ -123,9 +123,9 @@ const DetailPage: FC<DetailPagePropType> = props => {
 						style={Style.star}
 					/>
 				</TouchableOpacity>
-				<TouchableOpacity onPress={handleShare}>
-					<IonIcons name={'md-share'} size={20} color="#fff" />
-				</TouchableOpacity>
+				{/*<TouchableOpacity onPress={handleShare}>*/}
+				{/*	<IonIcons name={'md-share'} size={20} color="#fff" />*/}
+				{/*</TouchableOpacity>*/}
 			</View>
 		),
 		left: <IonIcons name={'ios-arrow-back'} size={20} color="#fff" />,

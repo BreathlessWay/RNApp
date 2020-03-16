@@ -10,7 +10,8 @@
 		"lint": "eslint . --ext .js,.jsx,.ts,.tsx",
 		"tree": "echo '```' > tree.md && tree >> tree.md -I 'node_modules|__tests__|android|ios' -F",
 		"devtools": "react-devtools",
-		"link": "cd ios && pod install"
+		"link": "cd ios && pod install",
+		"update-trending": "npm update @wcj/github-rank -D"
 	},
 	"dependencies": {
 		"@babel/plugin-proposal-decorators": "^7.8.3",
@@ -57,7 +58,7 @@
 		"@types/react-test-renderer": "16.9.1",
 		"@typescript-eslint/eslint-plugin": "^2.12.0",
 		"@typescript-eslint/parser": "^2.12.0",
-		"@wcj/github-rank": "^20.3.14",
+		"@wcj/github-rank": "^20.3.16",
 		"babel-jest": "^24.9.0",
 		"babel-plugin-transform-remove-console": "^6.9.4",
 		"eslint": "^6.5.1",
