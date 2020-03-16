@@ -47,8 +47,6 @@ const WebViewPage: FC<WebViewPagePropType> = props => {
 		);
 	}
 
-	const handleShare = () => {};
-
 	const handleBack = () => {
 		if (canGoBack) {
 			ref.current && ref.current.goBack();
@@ -73,10 +71,8 @@ const WebViewPage: FC<WebViewPagePropType> = props => {
 	setHeader({
 		navigation,
 		title,
-		right: <IonIcons name={'md-share'} size={20} color="#fff" />,
 		left: <IonIcons name={'ios-arrow-back'} size={20} color="#fff" />,
 		onPressLeft: handleBack,
-		onPressRight: handleShare,
 	});
 
 	// 安卓物理返回键处理

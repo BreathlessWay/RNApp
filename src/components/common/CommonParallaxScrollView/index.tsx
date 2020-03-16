@@ -29,8 +29,6 @@ const CommonParallaxScrollView: FC<CommonParallaxScrollViewPropType> = props => 
 		theme,
 	} = props;
 
-	const handleShare = () => {};
-
 	const handleBack = () => {
 		navigation.goBack();
 	};
@@ -72,9 +70,6 @@ const CommonParallaxScrollView: FC<CommonParallaxScrollViewPropType> = props => 
 				<View style={Style.fixedSection}>
 					<TouchableOpacity onPress={handleBack}>
 						<IonIcons name={'ios-arrow-back'} size={20} color="#fff" />
-					</TouchableOpacity>
-					<TouchableOpacity onPress={handleShare}>
-						<IonIcons name={'md-share'} size={20} color="#fff" />
 					</TouchableOpacity>
 				</View>
 			)}>

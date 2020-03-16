@@ -10,7 +10,8 @@
 		"lint": "eslint . --ext .js,.jsx,.ts,.tsx",
 		"tree": "echo '```' > tree.md && tree >> tree.md -I 'node_modules|__tests__|android|ios' -F",
 		"devtools": "react-devtools",
-		"link": "cd ios && pod install"
+		"link": "cd ios && pod install",
+		"update-trending": "npm update @wcj/github-rank -D"
 	},
 	"dependencies": {
 		"@babel/plugin-proposal-decorators": "^7.8.3",
