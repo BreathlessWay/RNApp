@@ -10,7 +10,8 @@
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-trend.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-me.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-about.png)
-2. TODO: 豆瓣
+
+2. TODO: 豆瓣（apikey=0df993c66c0c636e29ecbb5344252a4a），使用 React-Native+Hooks+Context+Typescript+React-Navigation 开发
 
 > 一些问题
 
