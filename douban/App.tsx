@@ -1,8 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import Toast from 'react-native-easy-toast';
+
+import { DouBanContext, initialState } from 'douban/stores';
+import { reducer } from 'douban/stores/reducer';
 
 import 'react-native-gesture-handler';
 
@@ -13,14 +16,18 @@ console.disableYellowBox = true;
 const App = () => {
 	global.ref = useRef<Toast>();
 
+	const [state, dispatch] = useReducer(reducer, initialState);
+
 	useEffect(() => {
 		SplashScreen.hide();
 	}, []);
 
 	return (
-		<SafeAreaProvider>
-			<Toast ref={global.ref as any} position="center" />
-		</SafeAreaProvider>
+		<DouBanContext.Provider value={{ state, dispatch }}>
+			<SafeAreaProvider>
+				<Toast ref={global.ref as any} position="center" />
+			</SafeAreaProvider>
+		</DouBanContext.Provider>
 	);
 };
 

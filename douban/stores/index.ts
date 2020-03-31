@@ -1,9 +1,18 @@
-import { createContext } from 'react';
+import { createContext, Dispatch } from 'react';
 
-const Context = createContext({
-	bookStore: null,
-	musicStore: null,
-	movieStore: null,
-});
+import { ActionType } from 'douban/stores/reducer/type';
 
-export default Context;
+import { StateType } from 'douban/stores/type';
+
+export const initialState: StateType = {
+	book: {},
+	music: {},
+	movie: {},
+};
+
+export const DouBanContext = createContext(
+	{} as {
+		state: StateType;
+		dispatch: Dispatch<{ type: ActionType; payload?: Record<string, any> }>;
+	},
+);
