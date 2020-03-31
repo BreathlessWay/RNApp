@@ -9,13 +9,8 @@
 ├── metro.config.js
 ├── package-lock.json
 ├── package.json
-├── screenshort/
-│   ├── rn-github-about.png
-│   ├── rn-github-favorite.png
-│   ├── rn-github-me.png
-│   ├── rn-github-popular.png
-│   └── rn-github-trend.png
-├── src/
+├── tree.md
+├── trending/
 │   ├── App.tsx
 │   ├── components/
 │   │   ├── business/
@@ -147,8 +142,7 @@
 │       ├── dataStore.ts
 │       ├── package.json
 │       └── request.ts
-├── tree.md
 └── tsconfig.json
 
-45 directories, 104 files
+44 directories, 99 files
 ```
