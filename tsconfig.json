@@ -47,7 +47,16 @@
 			"trending/pages/*": ["trending/pages/*"],
 			"trending/config/*": ["trending/config/*"],
 			"trending/components/*": ["trending/components/*"],
-			"trending/routes/*": ["trending/routes/*"]
+			"trending/routes/*": ["trending/routes/*"],
+
+			"douban/*": ["douban/*"],
+			"douban/utils/*": ["douban/utils/*"],
+			"douban/styles/*": ["douban/styles/*"],
+			"douban/stores/*": ["douban/stores/*"],
+			"douban/pages/*": ["douban/pages/*"],
+			"douban/config/*": ["douban/config/*"],
+			"douban/components/*": ["douban/components/*"],
+			"douban/routes/*": ["douban/routes/*"]
 		} /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */,
 		// "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
 		// "typeRoots": [],                       /* List of folders to include type definitions from. */

@@ -11,14 +11,14 @@
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-me.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-about.png)
 
-2. TODO: 豆瓣（apikey=0df993c66c0c636e29ecbb5344252a4a），使用 React-Native+Hooks+Context+Typescript+React-Navigation 开发
+2. TODO: 豆瓣，使用 React-Native+Hooks+Context+Typescript+React-Navigation 开发
 
 > 一些问题
 
 1. import 时的路径别名配置，先在 tsconfig.json 中配置 paths 之后，在需要别名的目录下添加`package.json`文件，添加以下内容
    ```json
    {
-   	"name": "@"
+   	"name": "trending"
    }
    ```
 2. ios9 只能使用 https 的请求，需要[修改配置](https://segmentfault.com/a/1190000002933776)

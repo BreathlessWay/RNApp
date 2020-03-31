@@ -99,6 +99,7 @@ const CustomEditPage: FC<CustomEditPagePropType> = (props) => {
 		} else {
 			navigation.goBack();
 		}
+		return null;
 	};
 
 	const handleChange = (item: TabItemType) => {
