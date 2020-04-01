@@ -3,6 +3,7 @@ import React, { useEffect, useReducer, useRef } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 import Toast from 'react-native-easy-toast';
+import Router from 'douban/routes/router';
 
 import { DouBanContext, initialState } from 'douban/stores';
 import { reducer } from 'douban/stores/reducer';
@@ -25,6 +26,7 @@ const App = () => {
 	return (
 		<DouBanContext.Provider value={{ state, dispatch }}>
 			<SafeAreaProvider>
+				<Router />
 				<Toast ref={global.ref as any} position="center" />
 			</SafeAreaProvider>
 		</DouBanContext.Provider>
