@@ -36,13 +36,13 @@ export const request = async ({
 			credentials: 'include',
 		};
 		if (body) {
-			options.body = JSON.stringify(body);
+			options.body = JSON.stringify({ ...body, apikey: BASIC_API_KEY });
 		}
 
 		if (_method === EMethod.GET) {
 			if (_url.includes('?')) {
 				_url = _url + `&apikey=` + BASIC_API_KEY;
-			}else {
+			} else {
 				_url = _url + `?apikey=` + BASIC_API_KEY;
 			}
 		}
