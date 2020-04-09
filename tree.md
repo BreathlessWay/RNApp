@@ -4,6 +4,57 @@
 ├── app.json
 ├── babel.config.js
 ├── commitlint.config.js
+├── douban/
+│   ├── App.tsx
+│   ├── components/
+│   │   ├── common/
+│   │   └── package.json
+│   ├── config/
+│   │   ├── constant.ts
+│   │   └── package.json
+│   ├── package.json
+│   ├── pages/
+│   │   ├── BookPage/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
+│   │   ├── MoviePage/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
+│   │   ├── MusicPage/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
+│   │   ├── WebViewPage/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
+│   │   └── package.json
+│   ├── routes/
+│   │   ├── package.json
+│   │   ├── router.tsx
+│   │   ├── tab.tsx
+│   │   └── type.ts
+│   ├── stores/
+│   │   ├── index.ts
+│   │   ├── package.json
+│   │   ├── reducer/
+│   │   │   ├── index.ts
+│   │   │   └── type.ts
+│   │   ├── state/
+│   │   │   ├── book/
+│   │   │   │   ├── state.ts
+│   │   │   │   └── type.ts
+│   │   │   ├── movie/
+│   │   │   │   ├── state.ts
+│   │   │   │   └── type.ts
+│   │   │   └── music/
+│   │   │       ├── state.ts
+│   │   │       └── type.ts
+│   │   └── type.ts*
+│   ├── styles/
+│   │   └── package.json
+│   └── utils/
+│       ├── dataStore.ts
+│       ├── package.json
+│       └── request.ts
 ├── global.d.ts
 ├── index.js
 ├── metro.config.js
@@ -144,5 +195,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-44 directories, 99 files
+62 directories, 132 files
 ```

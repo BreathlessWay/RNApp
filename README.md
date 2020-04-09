@@ -1,17 +1,20 @@
 ### React-Native 的练习项目
 
-修改`/RNApp/index.js`的入口可启动不同的项目，目前只有 Github-trending 项目
+修改`/RNApp/index.js`的入口可启动不同的项目
 
-> 项目介绍
+- GitHub Trending： `import App from 'trending/App'`
+- 豆瓣：`import App from 'douban/App'`
 
-1. GitHub 趋势的 App，使用 React-Native+Mobx+Hooks+Typescript+React-Navigation 开发，~~只测试了 iOS~~
+> 项目介绍 ~~因为懒，所以只测试了 iOS~~
+
+1. GitHub 趋势的 App，使用 React-Native+Mobx+Hooks+Typescript+React-Navigation 开发
 
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-popular.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-trend.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-me.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-about.png)
 
-2. 豆瓣 App，使用 React-Native+Hooks+Context+Typescript+React-Navigation 开发，~~只测试了 iOS~~
+2. 豆瓣 App，使用 React-Native+Hooks+Context+Typescript+React-Navigation 开发
 
 > 一些问题
 
