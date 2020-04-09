@@ -10,15 +10,23 @@ import { EScreenName } from 'douban/routes/type';
 
 const { Screen, Navigator } = createStackNavigator();
 
-const Router = () => {
+const RootRouter = () => {
 	return (
 		<NavigationContainer>
 			<Navigator>
-				<Screen name={EScreenName.Home} component={TabRouter} />
-				<Screen name={EScreenName.WebView} component={WebViewPage} />
+				<Screen
+					name={EScreenName.Home}
+					component={TabRouter}
+					initialParams={{ title: '图书' }}
+				/>
+				<Screen
+					name={EScreenName.WebView}
+					component={WebViewPage}
+					initialParams={{ title: 'WebView', url: '' }}
+				/>
 			</Navigator>
 		</NavigationContainer>
 	);
 };
 
-export default Router;
+export default RootRouter;

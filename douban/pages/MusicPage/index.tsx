@@ -4,12 +4,12 @@ import { View, Text } from 'react-native';
 
 import Style from './style';
 
-const BookPage: FC = () => {
+const MusicPage: FC = () => {
 	return (
 		<View>
-			<Text>book</Text>
+			<Text>music</Text>
 		</View>
 	);
 };
 
-export default BookPage;
+export default MusicPage;

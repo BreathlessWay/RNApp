@@ -1,13 +1,16 @@
 import { createContext, Dispatch } from 'react';
 
-import { ActionType } from 'douban/stores/reducer/type';
+import { bookState } from 'douban/stores/state/book/state';
+import { musicState } from 'douban/stores/state/music/state';
+import { movieState } from 'douban/stores/state/movie/state';
 
+import { ActionType } from 'douban/stores/reducer/type';
 import { StateType } from 'douban/stores/type';
 
 export const initialState: StateType = {
-	book: {},
-	music: {},
-	movie: {},
+	book: bookState,
+	music: musicState,
+	movie: movieState,
 };
 
 export const DouBanContext = createContext(

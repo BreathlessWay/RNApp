@@ -8,19 +8,24 @@ export enum EScreenName {
 	Movie = 'Movie',
 
 	WebView = 'WebView',
-
-	About = 'About',
 }
 
 export type RootStackParamList = {
-	[EScreenName.Home]: undefined;
-	[EScreenName.Book]: undefined;
-	[EScreenName.Music]: undefined;
-	[EScreenName.Movie]: undefined;
-	[EScreenName.About]: undefined;
+	[EScreenName.Home]: {
+		title: string;
+	};
+	[EScreenName.Book]: {
+		title: string;
+	};
+	[EScreenName.Music]: {
+		title: string;
+	};
+	[EScreenName.Movie]: {
+		title: string;
+	};
 
 	[EScreenName.WebView]: {
-		url: string;
 		title: string;
+		url: string;
 	};
 };

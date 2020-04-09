@@ -11,7 +11,7 @@
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-me.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-github-about.png)
 
-2. TODO: 豆瓣，使用 React-Native+Hooks+Context+Typescript+React-Navigation 开发
+2. 豆瓣 App，使用 React-Native+Hooks+Context+Typescript+React-Navigation 开发，~~只测试了 iOS~~
 
 > 一些问题
 
