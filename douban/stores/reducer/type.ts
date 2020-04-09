@@ -1,4 +1,5 @@
 export enum ActionType {
-	increment = 'increment',
-	decrement = 'decrement',
+	LOADING_BOOK_LIST_START = 'LOADING_BOOK_LIST_START',
+	LOADING_BOOK_LIST_SUCCESS = 'LOADING_BOOK_LIST_SUCCESS',
+	LOADING_BOOK_LIST_FAIL = 'LOADING_BOOK_LIST_FAIL',
 }
