@@ -12,7 +12,7 @@ const BookPage: FC = () => {
 	const { state, dispatch } = useContext(DouBanContext);
 
 	const {
-		book: { list, empty, hasMore, loadMore, refreshing, q, start },
+		book: { list, empty, hasMore, loadMore, refreshing, q, params },
 	} = state;
 
 	const getData = (payload: {
@@ -21,7 +21,7 @@ const BookPage: FC = () => {
 		q: string;
 		start?: number;
 	}) => {
-		if (state.book.refreshing || state.book.loadMore) return;
+		if (refreshing || loadMore || !hasMore) return;
 		dispatch({ type: ActionType.LOADING_BOOK_LIST_START, payload });
 	};
 

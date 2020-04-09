@@ -3,7 +3,13 @@ export type BookItemType = {};
 export type BookState = {
 	q: string;
 	start: number;
-	count: number;
+
+	params: {
+		q: string;
+		start: number;
+		count: number;
+	};
+
 	list: Array<BookItemType>;
 
 	refreshing: boolean;
