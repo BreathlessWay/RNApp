@@ -24,7 +24,7 @@ export const reducer: Reducer<
 		}
 		case ActionType.LOADING_BOOK_LIST_SUCCESS: {
 			const { list, total, ...rest } = payload,
-				stateList = state.book.list.concat(list),
+				stateList = state.book.refreshing ? list : state.book.list.concat(list),
 				hasMore = stateList.length < total,
 				empty = total === 0;
 			const book = {
@@ -32,7 +32,7 @@ export const reducer: Reducer<
 				...rest,
 				hasMore,
 				empty,
-				list: state.book.list.concat(list),
+				list: stateList,
 			};
 			return { ...state, book };
 		}

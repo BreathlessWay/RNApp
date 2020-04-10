@@ -13,7 +13,13 @@ const { Screen, Navigator } = createStackNavigator();
 const RootRouter = () => {
 	return (
 		<NavigationContainer>
-			<Navigator>
+			<Navigator
+				screenOptions={{
+					headerStyle: {
+						backgroundColor: '#0b7500',
+					},
+					headerTintColor: '#fff',
+				}}>
 				<Screen
 					name={EScreenName.Home}
 					component={TabRouter}

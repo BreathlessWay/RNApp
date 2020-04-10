@@ -10,11 +10,11 @@ export type BookItemComponentPropType = {
 	publisher: string;
 	author: string;
 	price: string;
-	page: string;
+	pages: string;
 };
 
 const BookItemComponent: FC<BookItemComponentPropType> = (props) => {
-	const { image, title, publisher, author, price, page } = props;
+	const { image, title, publisher, author, price, pages } = props;
 	return (
 		<View style={Style.wrap}>
 			<View>
@@ -26,7 +26,9 @@ const BookItemComponent: FC<BookItemComponentPropType> = (props) => {
 			</View>
 			<View style={Style.content}>
 				<View>
-					<Text style={Style.title}>{title}</Text>
+					<Text style={Style.title} numberOfLines={1}>
+						{title}
+					</Text>
 				</View>
 				<View>
 					<Text style={Style.publisher}>出版社：{publisher}</Text>
@@ -34,9 +36,9 @@ const BookItemComponent: FC<BookItemComponentPropType> = (props) => {
 				<View>
 					<Text style={Style.author}>作者：{author}</Text>
 				</View>
-				<View>
+				<View style={Style.bottom}>
 					<Text style={Style.price}>售价：{price}</Text>
-					<Text style={Style.page}>页数：{page}</Text>
+					<Text style={Style.page}>页数：{pages}</Text>
 				</View>
 			</View>
 		</View>
