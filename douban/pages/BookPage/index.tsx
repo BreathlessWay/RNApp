@@ -1,16 +1,25 @@
 import React, { FC, useEffect } from 'react';
 
-import { View, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import { useGetList } from 'douban/services/getList';
-
-import { BookStateType } from 'douban/stores/state/book/type';
-
-import Style from './style';
 import CommonFlatList from 'douban/components/CommonFlatList';
 import BookItemComponent from 'douban/components/BookItemComponent';
 
+import { useGetList } from 'douban/services/getList';
+
+import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
+import { EScreenName, RootStackParamList } from 'douban/routes/type';
+import { BookStateType } from 'douban/stores/state/book/type';
+
+import { BASIC_API_KEY } from 'douban/config/constant';
+
+import Style from './style';
+
 const BookPage: FC = () => {
+	const tabNavigation = useNavigation<
+		MaterialBottomTabNavigationProp<RootStackParamList>
+	>();
+
 	const [state, setList] = useGetList<
 		BookStateType,
 		{ params: { q?: string; start?: number } }
@@ -28,6 +37,13 @@ const BookPage: FC = () => {
 	useEffect(() => {
 		setList({ params: { q: 'javascript' }, refreshing: true });
 	}, []);
+
+	const handlePress = (item: any) => {
+		tabNavigation.navigate(EScreenName.WebView, {
+			title: item.title,
+			url: item.alt,
+		});
+	};
 
 	return (
 		<CommonFlatList
@@ -48,6 +64,7 @@ const BookPage: FC = () => {
 			renderItem={({ item }) => {
 				return (
 					<BookItemComponent
+						onPress={() => handlePress(item)}
 						title={item.title}
 						author={item.author}
 						image={item.image}
