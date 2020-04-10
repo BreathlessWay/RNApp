@@ -11,15 +11,38 @@ export const reducer: Reducer<
 		payload?: Record<string, any>;
 	}
 > = (state, action) => {
-	const { type, payload } = action;
+	const { type, payload = {} } = action;
 	switch (type) {
-		case ActionType.LOADING_BOOK_LIST_START:
-			const book = { ...state.book, ...payload };
+		case ActionType.LOADING_BOOK_LIST_START: {
+			const { params, ...rest } = payload;
+			const book = {
+				...state.book,
+				params: { ...state.book.params, ...params },
+				...rest,
+			};
 			return { ...state, book };
-		case ActionType.LOADING_BOOK_LIST_SUCCESS:
-			return state;
-		case ActionType.LOADING_BOOK_LIST_FAIL:
-			return state;
+		}
+		case ActionType.LOADING_BOOK_LIST_SUCCESS: {
+			const { list, total, ...rest } = payload,
+				stateList = state.book.list.concat(list),
+				hasMore = stateList.length < total,
+				empty = total === 0;
+			const book = {
+				...state.book,
+				...rest,
+				hasMore,
+				empty,
+				list: state.book.list.concat(list),
+			};
+			return { ...state, book };
+		}
+		case ActionType.LOADING_BOOK_LIST_FAIL: {
+			const book = {
+				...state.book,
+				...payload,
+			};
+			return { ...state, book };
+		}
 		default:
 			return state;
 	}

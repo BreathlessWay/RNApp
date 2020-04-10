@@ -1,3 +1,3 @@
-import { MovieState } from './type';
+import { MovieStateType } from './type';
 
-export const movieState: MovieState = {};
+export const movieState: MovieStateType = {};

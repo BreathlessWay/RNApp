@@ -30,9 +30,6 @@ export const request = async ({
 
 		const options: any = {
 			method: _method,
-			headers: {
-				'Content-Type': 'application/json',
-			},
 			credentials: 'include',
 		};
 		if (body) {
@@ -46,7 +43,6 @@ export const request = async ({
 				_url = _url + `?apikey=` + BASIC_API_KEY;
 			}
 		}
-
 		const response = await fetch(_url, options);
 		if (response.ok) {
 			return response.json();

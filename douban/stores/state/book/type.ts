@@ -1,15 +1,13 @@
 export type BookItemType = {};
 
-export type BookState = {
-	q: string;
-	start: number;
-
+export type BookStateType = {
 	params: {
 		q: string;
 		start: number;
 		count: number;
 	};
 
+	total: number;
 	list: Array<BookItemType>;
 
 	refreshing: boolean;

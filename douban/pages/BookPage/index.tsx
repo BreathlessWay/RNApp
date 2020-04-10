@@ -1,37 +1,30 @@
-import React, { FC, useContext, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { View, Text } from 'react-native';
 
-import { DouBanContext } from 'douban/stores';
+import { useGetList } from 'douban/services/getList';
 
-import { ActionType } from 'douban/stores/reducer/type';
+import { BookStateType } from 'douban/stores/state/book/type';
 
 import Style from './style';
 
 const BookPage: FC = () => {
-	const { state, dispatch } = useContext(DouBanContext);
+	const [state, setList] = useGetList<BookStateType, { params: { q: string } }>(
+		{
+			url: '/book/search',
+			key: 'book',
+		},
+	);
 
-	const {
-		book: { list, empty, hasMore, loadMore, refreshing, q, params },
-	} = state;
-
-	const getData = (payload: {
-		loadMore?: boolean;
-		refreshing?: boolean;
-		q: string;
-		start?: number;
-	}) => {
-		if (refreshing || loadMore || !hasMore) return;
-		dispatch({ type: ActionType.LOADING_BOOK_LIST_START, payload });
-	};
+	const { list, refreshing, hasMore, empty, loadMore } = state;
 
 	useEffect(() => {
-		getData({ q: 'aaa', refreshing: true });
+		setList({ params: { q: 'javascript' }, refreshing: true });
 	}, []);
 
 	return (
 		<View>
-			<Text>{q}</Text>
+			<Text>1</Text>
 		</View>
 	);
 };

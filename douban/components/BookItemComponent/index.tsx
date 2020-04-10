@@ -10,7 +10,7 @@ export type BookItemComponentPropType = {
 	publisher: string;
 	author: string;
 	price: string;
-	page: number;
+	page: string;
 };
 
 const BookItemComponent: FC<BookItemComponentPropType> = (props) => {

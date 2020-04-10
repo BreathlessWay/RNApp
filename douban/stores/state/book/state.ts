@@ -1,18 +1,15 @@
-import { BookState } from './type';
+import { BookStateType } from './type';
 
 import { PAGE_SIZE } from 'douban/config/constant';
 
-export const bookState: BookState = {
-	q: 'javascript',
-	start: 0,
-
-	get params() {
-		return {
-			q: bookState.q,
-			start: bookState.start,
-			count: PAGE_SIZE,
-		};
+export const bookState: BookStateType = {
+	params: {
+		q: '',
+		start: 0,
+		count: PAGE_SIZE,
 	},
+
+	total: 0,
 	list: [],
 
 	refreshing: false,

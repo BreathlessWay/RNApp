@@ -1,3 +1,3 @@
-import { MusicState } from './type';
+import { MusicStateType } from './type';
 
-export const musicState: MusicState = {};
+export const musicState: MusicStateType = {};
