@@ -9,9 +9,7 @@ import { useGetList } from 'douban/services/getList';
 
 import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
 import { EScreenName, RootStackParamList } from 'douban/routes/type';
-import { BookStateType } from 'douban/stores/state/book/type';
-
-import { BASIC_API_KEY } from 'douban/config/constant';
+import { BookItemType, BookStateType } from 'douban/stores/state/book/type';
 
 import Style from './style';
 
@@ -32,6 +30,9 @@ const BookPage: FC = () => {
 		list,
 		refreshing,
 		params: { start, count },
+		empty,
+		loadMore,
+		hasMore,
 	} = state;
 
 	useEffect(() => {
@@ -48,6 +49,9 @@ const BookPage: FC = () => {
 	return (
 		<CommonFlatList
 			data={list}
+			empty={empty}
+			loadMore={loadMore}
+			hasMore={hasMore}
 			refreshing={refreshing}
 			onEndReached={() =>
 				setList({
@@ -66,7 +70,7 @@ const BookPage: FC = () => {
 					<BookItemComponent
 						onPress={() => handlePress(item)}
 						title={item.title}
-						author={item.author}
+						author={item.author.join(', ')}
 						image={item.image}
 						pages={item.pages}
 						price={item.price}

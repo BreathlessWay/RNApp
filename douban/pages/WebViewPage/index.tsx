@@ -63,6 +63,7 @@ const WebViewPage: FC<WebViewPagePropType> = () => {
 	useEffect(() => {
 		navigation.setOptions({
 			title,
+			headerBackTitleVisible: false,
 		});
 	}, []);
 

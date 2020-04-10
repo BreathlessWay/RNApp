@@ -16,6 +16,7 @@ export type BookItemComponentPropType = {
 
 const BookItemComponent: FC<BookItemComponentPropType> = (props) => {
 	const { image, title, publisher, author, price, pages, onPress } = props;
+
 	return (
 		<TouchableOpacity onPress={onPress}>
 			<View style={Style.wrap}>

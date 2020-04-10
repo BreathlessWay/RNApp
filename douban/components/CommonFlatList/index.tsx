@@ -11,29 +11,45 @@ import {
 import Style from './style';
 
 export type CommonFlatListPropType = {
-	data: any;
-	renderItem: ListRenderItem<any> | null | undefined;
-	onEndReached: any;
-	onRefresh: any;
+	data: Array<{ id: string; [key: string]: any }>;
+	renderItem: ListRenderItem<{ id: string; [key: string]: any }>;
+	onEndReached: () => void;
+	onRefresh: () => void;
 	refreshing: boolean;
+	empty: boolean;
+	hasMore: boolean;
+	loadMore: boolean;
 };
 
 const CommonFlatList: FC<CommonFlatListPropType> = (props) => {
-	const { data, renderItem, onEndReached, onRefresh, refreshing } = props;
+	const {
+		data,
+		renderItem,
+		onEndReached,
+		onRefresh,
+		refreshing,
+		empty,
+		loadMore,
+		hasMore,
+	} = props;
 
 	return (
 		<FlatList
 			data={data}
 			renderItem={renderItem}
 			ListEmptyComponent={
-				<View>
-					<Text>1</Text>
+				<View style={Style.emptyWrap}>
+					<Text style={Style.emptyContent}>暂无数据</Text>
 				</View>
 			}
 			ListFooterComponent={
-				<View>
-					<Text>1</Text>
-				</View>
+				empty ? null : (
+					<View style={Style.footerWrap}>
+						<Text style={Style.footerContent}>
+							{loadMore ? '加载中...' : hasMore ? '上拉加载更多' : '没有更多了'}
+						</Text>
+					</View>
+				)
 			}
 			keyExtractor={(item) => item.id}
 			onEndReached={onEndReached}
