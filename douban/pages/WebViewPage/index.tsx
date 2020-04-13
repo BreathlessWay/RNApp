@@ -7,15 +7,22 @@ import {
 	useRoute,
 } from '@react-navigation/native';
 
-import { ActivityIndicator, Alert, BackHandler } from 'react-native';
+import {
+	ActivityIndicator,
+	Alert,
+	Text,
+	BackHandler,
+	TouchableOpacity,
+} from 'react-native';
 import WebView from 'react-native-webview';
 
 import { WebViewNavigation } from 'react-native-webview/lib/WebViewTypes';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StackNavigationProp, HeaderBackButton } from '@react-navigation/stack';
 
 import { EScreenName, RootStackParamList } from 'douban/routes/type';
 
 import Style from './style';
+import IonIcons from 'react-native-vector-icons/Ionicons';
 
 export type WebViewPagePropType = {};
 
@@ -63,9 +70,19 @@ const WebViewPage: FC<WebViewPagePropType> = () => {
 	useEffect(() => {
 		navigation.setOptions({
 			title,
-			headerBackTitleVisible: false,
+			headerLeft: (props) => {
+				return (
+					<TouchableOpacity onPress={handleBack} style={Style.back}>
+						<IonIcons
+							name={'ios-arrow-back'}
+							size={26}
+							color={props.tintColor}
+						/>
+					</TouchableOpacity>
+				);
+			},
 		});
-	}, []);
+	}, [canGoBack]);
 
 	// 安卓物理返回键处理
 	useFocusEffect(

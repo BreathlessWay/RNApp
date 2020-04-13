@@ -9,6 +9,9 @@ const Style = StyleSheet.create({
 		bottom: 0,
 		margin: 'auto',
 	},
+	back: {
+		paddingHorizontal: 8,
+	},
 });
 
 export default Style;

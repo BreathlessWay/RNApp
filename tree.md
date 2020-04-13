@@ -7,7 +7,15 @@
 ├── douban/
 │   ├── App.tsx
 │   ├── components/
-│   │   ├── common/
+│   │   ├── BookItemComponent/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
+│   │   ├── BookSearchComponent/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
+│   │   ├── CommonFlatList/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
 │   │   └── package.json
 │   ├── config/
 │   │   ├── constant.ts
@@ -32,6 +40,8 @@
 │   │   ├── router.tsx
 │   │   ├── tab.tsx
 │   │   └── type.ts
+│   ├── services/
+│   │   └── getList.ts
 │   ├── stores/
 │   │   ├── index.ts
 │   │   ├── package.json
@@ -50,6 +60,7 @@
 │   │   │       └── type.ts
 │   │   └── type.ts*
 │   ├── styles/
+│   │   ├── common.ts
 │   │   └── package.json
 │   └── utils/
 │       ├── dataStore.ts
@@ -195,5 +206,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-62 directories, 132 files
+65 directories, 140 files
 ```

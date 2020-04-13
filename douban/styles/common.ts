@@ -2,7 +2,7 @@ export const ShadowStyle = {
 	// iOS阴影
 	shadowColor: 'gray',
 	shadowOffset: { width: 0.5, height: 0.5 },
-	shadowOpacity: 0.4,
+	shadowOpacity: 0.1,
 	shadowRadius: 1,
 	// Android阴影
 	elevation: 2,

@@ -18,6 +18,7 @@ const Style = StyleSheet.create({
 		height: 100,
 	},
 	content: {
+		flex: 1,
 		marginLeft: 10,
 		justifyContent: 'space-around',
 	},

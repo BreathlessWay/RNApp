@@ -31,13 +31,18 @@ const BookItemComponent: FC<BookItemComponentPropType> = (props) => {
 					<View>
 						<Text style={Style.title} numberOfLines={1}>
 							{title}
+							{title}
 						</Text>
 					</View>
 					<View>
-						<Text style={Style.publisher}>出版社：{publisher}</Text>
+						<Text style={Style.publisher} numberOfLines={1}>
+							出版社：{publisher}
+						</Text>
 					</View>
 					<View>
-						<Text style={Style.author}>作者：{author}</Text>
+						<Text style={Style.author} numberOfLines={1}>
+							作者：{author}
+						</Text>
 					</View>
 					<View style={Style.bottom}>
 						<Text style={Style.price}>售价：{price}</Text>
