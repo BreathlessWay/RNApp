@@ -45,9 +45,9 @@ const MusicPage: FC = () => {
 	}, []);
 
 	const handlePress = (item: any) => {
-		tabNavigation.navigate(EScreenName.BookDetail, {
+		tabNavigation.navigate(EScreenName.WebView, {
 			title: item.title,
-			id: item.id,
+			url: item.mobile_link,
 		});
 	};
 
@@ -96,6 +96,7 @@ const MusicPage: FC = () => {
 							author={item.author?.[0]?.name}
 							pubdate={item.attrs?.pubdate}
 							rate={item.rating?.average}
+							onPress={() => handlePress(item)}
 						/>
 					);
 				}}
