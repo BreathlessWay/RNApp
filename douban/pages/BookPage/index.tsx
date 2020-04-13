@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import CommonFlatList from 'douban/components/CommonFlatList';
 import BookItemComponent from 'douban/components/BookItemComponent';
 import BookSearchComponent from 'douban/components/BookSearchComponent';
@@ -56,7 +56,11 @@ const BookPage: FC = () => {
 	};
 
 	const handleSubmit = () => {
-		setList({ params: { q: keyword, start: 0 }, refreshing: true });
+		if (keyword) {
+			setList({ params: { q: keyword, start: 0 }, refreshing: true });
+		} else {
+			Alert.alert('请输入关键词', '', [{ text: '确定' }]);
+		}
 	};
 
 	return (
