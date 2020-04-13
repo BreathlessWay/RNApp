@@ -53,7 +53,6 @@ export function useGetList<T, U>({
 						break;
 					}
 				}
-
 				dispatch({
 					type: ActionType[successType],
 					payload: {

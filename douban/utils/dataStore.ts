@@ -10,7 +10,17 @@ export type DataType = {
 	timestamp: number;
 };
 
-export const validData = (timestamp: number) => {
+export const validData = ({
+	data,
+	timestamp,
+}: {
+	data: any;
+	timestamp: number;
+}) => {
+	if (!data) return false;
+	if (Array.isArray(data) && !data.length) return false;
+	if (typeof data === 'object' && !Object.keys(data)) return false;
+
 	const nowTime = new Date(),
 		targetTime = new Date(timestamp);
 
@@ -66,7 +76,8 @@ export const fetchData = async ({ url }: { url: string }) => {
 	let result;
 	try {
 		result = await fetchLocalData({ url });
-		if (result && validData(result.timestamp)) {
+
+		if (result && validData(result)) {
 			console.log('from cache', url);
 			result = result.data;
 		} else {
@@ -76,6 +87,5 @@ export const fetchData = async ({ url }: { url: string }) => {
 		console.error(e);
 		result = await fetchNetData({ url });
 	}
-
 	return result;
 };

@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Alert, View } from 'react-native';
 import CommonFlatList from 'douban/components/CommonFlatList';
 import SearchComponent from 'douban/components/SearchComponent';
+import MusicItemComponent from 'douban/components/MusicItemComponent';
 
 import { useGetList } from 'douban/services/getList';
 
@@ -26,7 +27,7 @@ const MusicPage: FC = () => {
 		{ params: { q?: string; start?: number } }
 	>({
 		url: '/music/search',
-		key: 'movie',
+		key: 'music',
 	});
 
 	const {
@@ -88,7 +89,15 @@ const MusicPage: FC = () => {
 					})
 				}
 				renderItem={({ item }) => {
-					return <View></View>;
+					return (
+						<MusicItemComponent
+							title={item.title}
+							image={item.image}
+							author={item.author?.[0]?.name}
+							pubdate={item.attrs?.pubdate}
+							rate={item.rating?.average}
+						/>
+					);
 				}}
 			/>
 		</View>

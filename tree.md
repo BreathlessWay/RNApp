@@ -13,6 +13,9 @@
 │   │   ├── CommonFlatList/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
+│   │   ├── MusicItemComponent/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
 │   │   ├── SearchComponent/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
@@ -209,5 +212,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-66 directories, 142 files
+67 directories, 144 files
 ```
