@@ -3,6 +3,8 @@ export enum EScreenName {
 
 	Book = 'Book',
 
+	BookDetail = 'BookDetail',
+
 	Music = 'Music',
 
 	Movie = 'Movie',
@@ -22,6 +24,10 @@ export type RootStackParamList = {
 	};
 	[EScreenName.Movie]: {
 		title: string;
+	};
+	[EScreenName.BookDetail]: {
+		title: string;
+		id: string;
 	};
 
 	[EScreenName.WebView]: {

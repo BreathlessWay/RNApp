@@ -31,7 +31,6 @@ const BookItemComponent: FC<BookItemComponentPropType> = (props) => {
 					<View>
 						<Text style={Style.title} numberOfLines={1}>
 							{title}
-							{title}
 						</Text>
 					</View>
 					<View>

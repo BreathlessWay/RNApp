@@ -22,6 +22,9 @@
 │   │   └── package.json
 │   ├── package.json
 │   ├── pages/
+│   │   ├── BookDetailPage/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
 │   │   ├── BookPage/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
@@ -206,5 +209,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-65 directories, 140 files
+66 directories, 142 files
 ```

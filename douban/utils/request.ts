@@ -43,6 +43,7 @@ export const request = async ({
 				_url = _url + `?apikey=` + BASIC_API_KEY;
 			}
 		}
+
 		const response = await fetch(_url, options);
 		if (response.ok) {
 			return response.json();

@@ -11,7 +11,7 @@ import { useGetList } from 'douban/services/getList';
 
 import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
 import { EScreenName, RootStackParamList } from 'douban/routes/type';
-import { BookStateType } from 'douban/stores/state/book/type';
+import { BookStateType, BookItemType } from 'douban/stores/state/book/type';
 
 import Style from './style';
 
@@ -44,10 +44,10 @@ const BookPage: FC = () => {
 		setList({ params: { q: 'javascript' }, refreshing: true });
 	}, []);
 
-	const handlePress = (item: any) => {
-		tabNavigation.navigate(EScreenName.WebView, {
+	const handlePress = (item: BookItemType) => {
+		tabNavigation.navigate(EScreenName.BookDetail, {
 			title: item.title,
-			url: item.alt,
+			id: item.id,
 		});
 	};
 
@@ -56,7 +56,7 @@ const BookPage: FC = () => {
 	};
 
 	const handleSubmit = () => {
-		if (keyword) {
+		if (keyword && keyword.trim()) {
 			setList({ params: { q: keyword, start: 0 }, refreshing: true });
 		} else {
 			Alert.alert('请输入关键词', '', [{ text: '确定' }]);
@@ -91,7 +91,7 @@ const BookPage: FC = () => {
 				renderItem={({ item }) => {
 					return (
 						<BookItemComponent
-							onPress={() => handlePress(item)}
+							onPress={() => handlePress(item as any)}
 							title={item.title}
 							author={item.author.join(', ')}
 							image={item.image}
