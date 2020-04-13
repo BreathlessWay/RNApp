@@ -1,13 +1,11 @@
 export type MovieStateType = {
-	q: string;
-	start: number;
-
 	params: {
 		q: string;
 		start: number;
 		count: number;
 	};
 
+	total: number;
 	list: Array<any>;
 
 	refreshing: boolean;

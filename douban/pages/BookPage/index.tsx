@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Alert, View } from 'react-native';
 import CommonFlatList from 'douban/components/CommonFlatList';
 import BookItemComponent from 'douban/components/BookItemComponent';
-import BookSearchComponent from 'douban/components/BookSearchComponent';
+import SearchComponent from 'douban/components/SearchComponent';
 
 import { useGetList } from 'douban/services/getList';
 
@@ -33,7 +33,7 @@ const BookPage: FC = () => {
 	const {
 		list,
 		refreshing,
-		params: { q, start, count },
+		params: { start, count },
 		empty,
 		loadMore,
 		hasMore,
@@ -65,7 +65,7 @@ const BookPage: FC = () => {
 
 	return (
 		<View style={Style.wrap}>
-			<BookSearchComponent
+			<SearchComponent
 				value={keyword}
 				onChangeText={handleChangeText}
 				onSubmitEditing={handleSubmit}

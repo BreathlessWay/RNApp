@@ -20,7 +20,7 @@ const BookSearchComponent: FC<BookSearchComponentPropType> = (props) => {
 				<FontAwesome name={'search'} size={14} />
 				<TextInput
 					returnKeyType={'search'}
-					placeholder={'请输入搜索词'}
+					placeholder={'请输入搜索关键词'}
 					clearButtonMode={'while-editing'}
 					style={Style.input}
 					onChangeText={(text) => onChangeText(text)}

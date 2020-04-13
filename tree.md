@@ -10,10 +10,10 @@
 │   │   ├── BookItemComponent/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
-│   │   ├── BookSearchComponent/
+│   │   ├── CommonFlatList/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
-│   │   ├── CommonFlatList/
+│   │   ├── SearchComponent/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
 │   │   └── package.json

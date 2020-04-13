@@ -39,10 +39,25 @@ export function useGetList<T, U>({
 
 		fetchData({ url: `${url}?${params}` })
 			.then((res) => {
+				let list: Array<any> = [];
+				switch (key) {
+					case 'book': {
+						list = res.books ?? [];
+						break;
+					}
+					case 'movie': {
+						break;
+					}
+					case 'music': {
+						list = res.musics ?? [];
+						break;
+					}
+				}
+
 				dispatch({
 					type: ActionType[successType],
 					payload: {
-						list: res.books ?? [],
+						list,
 						total: res.total ?? 0,
 						refreshing: false,
 						loadMore: false,
