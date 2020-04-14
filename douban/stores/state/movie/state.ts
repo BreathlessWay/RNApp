@@ -1,9 +1,11 @@
-import { MovieStateType } from './type';
+import { CurrentMovieListType, MovieStateType } from './type';
 import { PAGE_SIZE } from 'douban/config/constant';
 
 export const movieState: MovieStateType = {
+	type: CurrentMovieListType.Hot,
+
 	params: {
-		q: '',
+		city: '',
 		start: 0,
 		count: PAGE_SIZE,
 	},

@@ -2,15 +2,14 @@ import React, { FC, useEffect, useState } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { Alert, View } from 'react-native';
+import { Alert, View, Text } from 'react-native';
 import CommonFlatList from 'douban/components/CommonFlatList';
-import SearchComponent from 'douban/components/SearchComponent';
 
 import { useGetList } from 'douban/services/getList';
 
 import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
 import { EScreenName, RootStackParamList } from 'douban/routes/type';
-import { MovieStateType } from 'douban/stores/state/movie/type';
+import { MovieItemType, MovieStateType } from 'douban/stores/state/movie/type';
 
 import Style from './style';
 
@@ -25,7 +24,7 @@ const MoviePage: FC = () => {
 		MovieStateType,
 		{ params: { q?: string; start?: number } }
 	>({
-		url: '/movie/search',
+		url: '/movie/top250',
 		key: 'movie',
 	});
 
@@ -43,10 +42,10 @@ const MoviePage: FC = () => {
 		setList({ params: { q: 'javascript' }, refreshing: true });
 	}, []);
 
-	const handlePress = (item: any) => {
-		tabNavigation.navigate(EScreenName.BookDetail, {
+	const handlePress = (item: MovieItemType) => {
+		tabNavigation.navigate(EScreenName.WebView, {
 			title: item.title,
-			id: item.id,
+			url: item.alt,
 		});
 	};
 
@@ -64,11 +63,10 @@ const MoviePage: FC = () => {
 
 	return (
 		<View style={Style.wrap}>
-			<SearchComponent
-				value={keyword}
-				onChangeText={handleChangeText}
-				onSubmitEditing={handleSubmit}
-			/>
+			<View>
+				<Text>当前热映</Text>
+				<Text>TOP250</Text>
+			</View>
 			<CommonFlatList
 				data={list}
 				empty={empty}

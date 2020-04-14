@@ -19,7 +19,12 @@ export function useGetList<T, U>({
 	url,
 	key,
 }: {
-	url: '/book/search' | '/movie/search' | '/music/search';
+	url:
+		| '/book/search'
+		| '/movie/search'
+		| '/music/search'
+		| '/movie/top250'
+		| '/movie/in_theaters';
 	key: 'book' | 'movie' | 'music';
 }): [T, SetListType<U>] {
 	const { state, dispatch } = useContext(DouBanContext);
@@ -46,6 +51,7 @@ export function useGetList<T, U>({
 						break;
 					}
 					case 'movie': {
+						list = res.subjects ?? [];
 						break;
 					}
 					case 'music': {

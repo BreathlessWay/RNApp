@@ -11,7 +11,7 @@ import { useGetList } from 'douban/services/getList';
 
 import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
 import { EScreenName, RootStackParamList } from 'douban/routes/type';
-import { MusicStateType } from 'douban/stores/state/music/type';
+import { MusicItemType, MusicStateType } from 'douban/stores/state/music/type';
 
 import Style from './style';
 
@@ -44,7 +44,7 @@ const MusicPage: FC = () => {
 		setList({ params: { q: '周杰伦' }, refreshing: true });
 	}, []);
 
-	const handlePress = (item: any) => {
+	const handlePress = (item: MusicItemType) => {
 		tabNavigation.navigate(EScreenName.WebView, {
 			title: item.title,
 			url: item.mobile_link,
@@ -96,7 +96,7 @@ const MusicPage: FC = () => {
 							author={item.author?.[0]?.name}
 							pubdate={item.attrs?.pubdate}
 							rate={item.rating?.average}
-							onPress={() => handlePress(item)}
+							onPress={() => handlePress(item as any)}
 						/>
 					);
 				}}
