@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
@@ -10,10 +10,14 @@ import BookPage from 'douban/pages/BookPage';
 import MusicPage from 'douban/pages/MusicPage';
 import MoviePage from 'douban/pages/MoviePage';
 
+import { DouBanContext } from 'douban/stores';
+
 import { StackNavigationProp } from '@react-navigation/stack';
 import { EScreenName, RootStackParamList } from 'douban/routes/type';
 
 import { TAR_BAR_ICON_SIZE } from 'douban/config/constant';
+import { ActionType } from 'douban/stores/reducer/type';
+import { Text } from 'react-native';
 
 const { Screen, Navigator } = createMaterialBottomTabNavigator();
 
@@ -21,7 +25,8 @@ const TabRouter = () => {
 	const stackNavigation = useNavigation<
 			StackNavigationProp<RootStackParamList>
 		>(),
-		route = useRoute<RouteProp<RootStackParamList, EScreenName.Home>>();
+		route = useRoute<RouteProp<RootStackParamList, EScreenName.Home>>(),
+		{ dispatch } = useContext(DouBanContext);
 
 	const screenList = [
 		{
@@ -54,6 +59,10 @@ const TabRouter = () => {
 	];
 
 	useEffect(() => {
+		dispatch({
+			type: ActionType.SET_STACK_NAVIGATION,
+			payload: { stackNavigation },
+		});
 		stackNavigation.setOptions({
 			title: route.params?.title ?? '主页',
 		});
@@ -80,9 +89,20 @@ const TabRouter = () => {
 						}}
 						listeners={{
 							tabPress: () => {
-								stackNavigation.setOptions({
-									title: item.title,
-								});
+								item.name !== EScreenName.Movie &&
+									stackNavigation.setOptions({
+										headerTitle: (props) => (
+											<Text
+												style={{
+													color: props.tintColor,
+													fontSize: 17,
+													fontWeight: '600',
+												}}
+												numberOfLines={1}>
+												{item.title}
+											</Text>
+										),
+									});
 							},
 						}}
 					/>

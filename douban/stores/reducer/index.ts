@@ -3,6 +3,7 @@ import { Reducer } from 'react';
 import { StateType } from 'douban/stores/type';
 
 import { ActionType } from './type';
+import { CurrentMovieListType } from 'douban/stores/state/movie/type';
 
 export const reducer: Reducer<
 	StateType,
@@ -12,7 +13,12 @@ export const reducer: Reducer<
 	}
 > = (state, action) => {
 	const { type, payload = {} } = action;
+
 	switch (type) {
+		case ActionType.SET_STACK_NAVIGATION: {
+			return { ...state, app: { stackNavigation: payload.stackNavigation } };
+		}
+
 		// 书籍
 		case ActionType.LOADING_BOOK_LIST_START: {
 			const { params, ...rest } = payload;
@@ -49,26 +55,69 @@ export const reducer: Reducer<
 			const { params, ...rest } = payload;
 			const movie = {
 				...state.movie,
-				params: { ...state.movie.params, ...params },
+				params,
 				...rest,
 			};
 			return { ...state, movie };
 		}
 		case ActionType.LOADING_MOVIE_LIST_SUCCESS: {
-			const { list, total, ...rest } = payload,
-				stateList = state.movie.refreshing
-					? list
-					: state.movie.list.concat(list),
-				hasMore = stateList.length < total,
-				empty = total === 0;
-			const movie = {
-				...state.movie,
-				...rest,
-				hasMore,
-				empty,
-				list: stateList,
-			};
-			return { ...state, movie };
+			const {
+				type,
+				params: { city },
+			} = state.movie;
+
+			if (type === CurrentMovieListType.Top) {
+				const { list, total, ...rest } = payload,
+					stateList = state.movie.refreshing
+						? list
+						: state.movie.list[CurrentMovieListType.Top].list.concat(list),
+					hasMore = stateList.length < total,
+					empty = total === 0;
+				const _list = {
+					...state.movie.list,
+					[CurrentMovieListType.Top]: {
+						hasMore,
+						empty,
+						total,
+						list: stateList,
+					},
+				};
+				const movie = {
+					...state.movie,
+					...rest,
+					list: _list,
+				};
+				return { ...state, movie };
+			}
+			if (type === CurrentMovieListType.Hot) {
+				const { list, total, ...rest } = payload,
+					stateList = state.movie.refreshing
+						? list
+						: state.movie.list[CurrentMovieListType.Hot][city].list.concat(
+								list,
+						  ),
+					hasMore = stateList.length < total,
+					empty = total === 0;
+				const _list = {
+					[CurrentMovieListType.Top]:
+						state.movie.list[CurrentMovieListType.Top],
+					[CurrentMovieListType.Hot]: {
+						...state.movie.list[CurrentMovieListType.Hot],
+						[city]: {
+							hasMore,
+							empty,
+							total,
+							list: stateList,
+						},
+					},
+				};
+				const movie = {
+					...state.movie,
+					...rest,
+					list: _list,
+				};
+				return { ...state, movie };
+			}
 		}
 		case ActionType.LOADING_MOVIE_LIST_FAIL: {
 			const movie = {

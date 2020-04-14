@@ -48,8 +48,8 @@ export type MovieItemType = {
 };
 
 export enum CurrentMovieListType {
-	Hot,
-	Top,
+	Hot = 'Hot',
+	Top = 'Top',
 }
 
 export type MovieStateType = {
@@ -61,13 +61,25 @@ export type MovieStateType = {
 		count: number;
 	};
 
-	total: number;
-	list: Array<MovieItemType>;
+	list: {
+		[CurrentMovieListType.Hot]: {
+			[key: string]: {
+				empty: boolean;
+				total: number;
+				hasMore: boolean;
+				list: Array<MovieItemType>;
+			};
+		};
+		[CurrentMovieListType.Top]: {
+			empty: boolean;
+			total: number;
+			hasMore: boolean;
+			list: Array<MovieItemType>;
+		};
+	};
 
 	refreshing: boolean;
 	loadMore: boolean;
-	hasMore: boolean;
-	empty: boolean;
 	error: boolean;
 	errMsg: string;
 };

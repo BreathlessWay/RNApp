@@ -10,7 +10,11 @@ const Style = StyleSheet.create({
 		margin: 'auto',
 	},
 	back: {
-		paddingHorizontal: 8,
+		height: 21,
+		width: 13,
+		marginLeft: 8,
+		marginRight: 22,
+		marginVertical: 12,
 	},
 });
 

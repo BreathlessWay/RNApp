@@ -12,7 +12,6 @@ export type SetListType<U> = (
 		params: Record<string, any>;
 		loadMore?: boolean;
 		refreshing?: boolean;
-		url?: string;
 	},
 ) => void;
 
@@ -20,13 +19,8 @@ export function useGetList<T, U>({
 	url,
 	key,
 }: {
-	url?:
-		| '/book/search'
-		| '/movie/search'
-		| '/music/search'
-		| '/movie/top250'
-		| '/movie/in_theaters';
-	key: 'book' | 'movie' | 'music';
+	url: '/book/search' | '/music/search';
+	key: 'book' | 'music';
 }): [T, SetListType<U>] {
 	const { state, dispatch } = useContext(DouBanContext);
 
@@ -39,24 +33,16 @@ export function useGetList<T, U>({
 			successType = `LOADING_${key.toUpperCase()}_LIST_SUCCESS` as ActionType,
 			failType = `LOADING_${key.toUpperCase()}_LIST_FAIL` as ActionType;
 
-		const { url: payloadUrl, ...rest } = payload;
+		dispatch({ type: ActionType[startType], payload: payload });
 
-		dispatch({ type: ActionType[startType], payload: rest });
+		const params = Qs.stringify({ ...state[key].params, ...payload.params });
 
-		const params = Qs.stringify({ ...state[key].params, ...rest.params });
-
-		let _url = url || payloadUrl;
-
-		fetchData({ url: `${_url}?${params}` })
+		fetchData({ url: `${url}?${params}` })
 			.then((res) => {
 				let list: Array<any> = [];
 				switch (key) {
 					case 'book': {
 						list = res.books ?? [];
-						break;
-					}
-					case 'movie': {
-						list = res.subjects ?? [];
 						break;
 					}
 					case 'music': {

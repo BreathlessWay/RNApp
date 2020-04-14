@@ -10,13 +10,18 @@ export const movieState: MovieStateType = {
 		count: PAGE_SIZE,
 	},
 
-	total: 0,
-	list: [],
+	list: {
+		[CurrentMovieListType.Hot]: {},
+		[CurrentMovieListType.Top]: {
+			hasMore: true,
+			empty: true,
+			total: 0,
+			list: [],
+		},
+	},
 
 	refreshing: false,
 	loadMore: false,
-	hasMore: true,
-	empty: true,
 	error: false,
 	errMsg: '',
 };

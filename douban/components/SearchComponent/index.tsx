@@ -17,7 +17,7 @@ const BookSearchComponent: FC<BookSearchComponentPropType> = (props) => {
 	return (
 		<View style={Style.wrap}>
 			<View style={Style.content}>
-				<FontAwesome name={'search'} size={14} />
+				<FontAwesome name={'search'} size={14} color={'#333'} />
 				<TextInput
 					returnKeyType={'search'}
 					placeholder={'请输入搜索关键词'}

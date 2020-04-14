@@ -12,8 +12,8 @@ const Style = StyleSheet.create({
 		borderColor: '#ccc',
 	},
 	image: {
-		width: 80,
-		height: 100,
+		width: 100,
+		height: 120,
 		marginRight: 10,
 	},
 	content: {
@@ -28,12 +28,13 @@ const Style = StyleSheet.create({
 		flexWrap: 'wrap',
 	},
 	tag: {
-		backgroundColor: '#e1e1e1',
-		paddingVertical: 2,
-		paddingHorizontal: 4,
-		borderRadius: 5,
+		fontSize: 12,
+		backgroundColor: '#eee',
 		overflow: 'hidden',
-		marginRight: 6,
+		paddingVertical: 5,
+		paddingHorizontal: 8,
+		borderRadius: 10,
+		marginRight: 10,
 		marginBottom: 5,
 	},
 	rate: {
@@ -44,6 +45,7 @@ const Style = StyleSheet.create({
 	},
 	genres: {
 		...FlexDirectionStyle,
+		flexWrap: 'wrap',
 	},
 });
 
