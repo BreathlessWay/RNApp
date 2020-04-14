@@ -13,6 +13,9 @@
 │   │   ├── CommonFlatList/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
+│   │   ├── MovieItemComponent/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
 │   │   ├── MusicItemComponent/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
@@ -55,6 +58,9 @@
 │   │   │   ├── index.ts
 │   │   │   └── type.ts
 │   │   ├── state/
+│   │   │   ├── app/
+│   │   │   │   ├── state.ts
+│   │   │   │   └── type.ts
 │   │   │   ├── book/
 │   │   │   │   ├── state.ts
 │   │   │   │   └── type.ts
@@ -212,5 +218,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-67 directories, 144 files
+69 directories, 148 files
 ```
