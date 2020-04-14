@@ -2,63 +2,62 @@ import React, { FC, useEffect, useState } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { Alert, View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import CommonFlatList from 'douban/components/CommonFlatList';
 
 import { useGetList } from 'douban/services/getList';
 
 import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
 import { EScreenName, RootStackParamList } from 'douban/routes/type';
-import { MovieItemType, MovieStateType } from 'douban/stores/state/movie/type';
+import {
+	CurrentMovieListType,
+	MovieItemType,
+	MovieStateType,
+} from 'douban/stores/state/movie/type';
+
+import { MOVIE_HOT_CITY } from 'douban/config/constant';
 
 import Style from './style';
+import MovieItemComponent from 'douban/components/MovieItemComponent';
 
 const MoviePage: FC = () => {
-	const [keyword, setKeyword] = useState<string>('');
-
 	const tabNavigation = useNavigation<
 		MaterialBottomTabNavigationProp<RootStackParamList>
 	>();
 
 	const [state, setList] = useGetList<
 		MovieStateType,
-		{ params: { q?: string; start?: number } }
+		{ params: { city?: string; start?: number }; type?: CurrentMovieListType }
 	>({
-		url: '/movie/top250',
 		key: 'movie',
 	});
 
 	const {
+		type,
 		list,
 		refreshing,
-		params: { start, count },
+		params: { start, count, city },
 		empty,
 		loadMore,
 		hasMore,
 	} = state;
 
 	useEffect(() => {
-		setKeyword('javascript');
-		setList({ params: { q: 'javascript' }, refreshing: true });
-	}, []);
+		let params: { city?: string; start: number } = { start: 0 },
+			url = '/movie/top250';
+
+		if (type === CurrentMovieListType.Hot) {
+			params = { city: MOVIE_HOT_CITY[0], start: 0 };
+			url = '/movie/in_theaters';
+		}
+		setList({ params, refreshing: true, type, url });
+	}, [type, city]);
 
 	const handlePress = (item: MovieItemType) => {
 		tabNavigation.navigate(EScreenName.WebView, {
 			title: item.title,
 			url: item.alt,
 		});
-	};
-
-	const handleChangeText = (text: string) => {
-		setKeyword(text);
-	};
-
-	const handleSubmit = () => {
-		if (keyword && keyword.trim()) {
-			setList({ params: { q: keyword, start: 0 }, refreshing: true });
-		} else {
-			Alert.alert('请输入关键词', '', [{ text: '确定' }]);
-		}
 	};
 
 	return (
@@ -86,7 +85,28 @@ const MoviePage: FC = () => {
 					})
 				}
 				renderItem={({ item }) => {
-					return <View></View>;
+					const {
+						casts,
+						genres,
+						images: { medium },
+						title,
+						rating: { average },
+						year,
+					} = item as MovieItemType;
+
+					const _casts = casts.map((cast) => cast.name);
+
+					return (
+						<MovieItemComponent
+							image={medium}
+							title={title}
+							rate={average}
+							year={year}
+							casts={_casts}
+							genres={genres}
+							onPress={() => handlePress(item as any)}
+						/>
+					);
 				}}
 			/>
 		</View>

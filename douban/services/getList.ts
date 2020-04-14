@@ -12,6 +12,7 @@ export type SetListType<U> = (
 		params: Record<string, any>;
 		loadMore?: boolean;
 		refreshing?: boolean;
+		url?: string;
 	},
 ) => void;
 
@@ -19,7 +20,7 @@ export function useGetList<T, U>({
 	url,
 	key,
 }: {
-	url:
+	url?:
 		| '/book/search'
 		| '/movie/search'
 		| '/music/search'
@@ -38,11 +39,15 @@ export function useGetList<T, U>({
 			successType = `LOADING_${key.toUpperCase()}_LIST_SUCCESS` as ActionType,
 			failType = `LOADING_${key.toUpperCase()}_LIST_FAIL` as ActionType;
 
-		dispatch({ type: ActionType[startType], payload });
+		const { url: payloadUrl, ...rest } = payload;
 
-		const params = Qs.stringify({ ...state[key].params, ...payload.params });
+		dispatch({ type: ActionType[startType], payload: rest });
 
-		fetchData({ url: `${url}?${params}` })
+		const params = Qs.stringify({ ...state[key].params, ...rest.params });
+
+		let _url = url || payloadUrl;
+
+		fetchData({ url: `${_url}?${params}` })
 			.then((res) => {
 				let list: Array<any> = [];
 				switch (key) {

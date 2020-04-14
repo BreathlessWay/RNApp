@@ -15,3 +15,6 @@ export const BORDER_WIDTH = 1 / PixelRatio.get();
 
 // page_size
 export const PAGE_SIZE = 10;
+
+// 热映城市
+export const MOVIE_HOT_CITY = ['上海', '北京', ' 广州', '深圳', '泰兴'];

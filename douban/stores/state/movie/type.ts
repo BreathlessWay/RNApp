@@ -1,7 +1,7 @@
 export type MovieItemType = {
 	rating: {
 		max: number;
-		average: number;
+		average: string;
 		details: Record<string, number>;
 		stars: string;
 		min: number;
