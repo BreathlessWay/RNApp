@@ -29,7 +29,6 @@ const MoviePage: FC = () => {
 			MaterialBottomTabNavigationProp<RootStackParamList>
 		>(),
 		{ state, dispatch } = useContext(DouBanContext),
-		[showTypePicker, setShowTypePicker] = useState(false),
 		[showCityPicker, setShowCityPicker] = useState(false);
 
 	const {
@@ -55,6 +54,8 @@ const MoviePage: FC = () => {
 		_empty = list?.[CurrentMovieListType.Top]?.empty ?? true;
 		_hasMore = list?.[CurrentMovieListType.Top]?.hasMore ?? true;
 	}
+
+	const canSubmit = !refreshing && !loadMore;
 
 	const getList = ({
 		queryCity = city,
@@ -124,22 +125,27 @@ const MoviePage: FC = () => {
 	const setHeader = (paramsType: CurrentMovieListType) => {
 		stackNavigation?.setOptions({
 			headerTitle: (props) => (
-				<TouchableOpacity onPress={handlePressTitle}>
-					<Text
-						style={{
-							color: props.tintColor,
-							fontSize: 17,
-							fontWeight: '600',
-						}}
-						numberOfLines={1}>
-						{paramsType === CurrentMovieListType.Top ? 'Top250' : '当前热映'}
-					</Text>
+				<TouchableOpacity onPress={handlePressTitle} activeOpacity={1}>
+					<View style={Style.headerTitle}>
+						<Text
+							style={{
+								color: props.tintColor,
+								fontSize: 17,
+								fontWeight: '600',
+								marginRight: 3,
+							}}
+							numberOfLines={1}>
+							{paramsType === CurrentMovieListType.Top ? 'Top250' : '热映'}
+						</Text>
+						<AntDesign name={'caretdown'} color={props.tintColor} size={12} />
+					</View>
 				</TouchableOpacity>
 			),
 		});
 	};
 
 	const handlePressTitle = () => {
+		if (!canSubmit) return;
 		Alert.alert('你想要查看什么', '', [
 			{
 				text: '查看热映',
@@ -211,7 +217,7 @@ const MoviePage: FC = () => {
 		<View style={Style.wrap}>
 			{type === CurrentMovieListType.Hot && (
 				<TouchableOpacity
-					onPress={() => setShowCityPicker(true)}
+					onPress={() => canSubmit && setShowCityPicker(true)}
 					activeOpacity={1}>
 					<View style={Style.cityColumn}>
 						<Text style={Style.currentCity}>{city}</Text>

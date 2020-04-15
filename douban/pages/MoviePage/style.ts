@@ -7,13 +7,18 @@ const Style = StyleSheet.create({
 		flex: 1,
 		position: 'relative',
 	},
+	headerTitle: {
+		...FlexDirectionStyle,
+	},
 	cityColumn: {
 		...FlexDirectionStyle,
 		...ShadowStyle,
 		backgroundColor: '#efefef',
 		padding: 10,
 	},
-	currentCity: {},
+	currentCity: {
+		marginRight: 3,
+	},
 	mask: {
 		position: 'absolute',
 		top: 0,
