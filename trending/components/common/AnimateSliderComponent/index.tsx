@@ -36,6 +36,8 @@ const AnimateSliderComponent: FC<AnimateSliderComponentPropType> = (props) => {
 						{
 							toValue: toHeight, // 透明度最终变为1，即完全不透明
 							duration: ANIMATE_TIME, // 让动画持续一段时间
+							// 只能使用到只有非布局相关的动画属性上，例如 transform 和 opacity。布局相关的属性，比如说 height 和 position 相关的属性，开启后会报错
+							// useNativeDriver: true  // 开启后所有的动画都会在 Native 线程运行，动画就会变的非常丝滑顺畅。
 						},
 					).start(() => {
 						toHeight ? setToHeight(0) : setToHeight(height);

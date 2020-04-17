@@ -1,9 +1,9 @@
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { request } from 'douban/utils/request';
+import { request } from 'cnode/utils/request';
 
-import { MAX_EXPIRE_CACHE } from 'douban/config/constant';
+import { MAX_EXPIRE_CACHE } from 'cnode/config/constant';
 
 export type DataType = {
 	data: any;

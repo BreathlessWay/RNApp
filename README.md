@@ -79,3 +79,15 @@
 16. [react-native-drag-sort](https://github.com/mochixuan/react-native-drag-sort): react-native 的拖拽组建，需要长按才能触发拖动
 17. [AsyncStorage](https://github.com/react-native-community/async-storage): react-native 自带的 AsyncStorage 即将废弃，使用`@react-native-community/async-storage`代替
 18. [react-native-swipeable-lists](https://github.com/nicastelo/react-native-swipeable-lists): react-native 侧滑在 0.61 被移除了，需要安装这个库
+19. [在线生成阴影样式](https://ethercreative.github.io/react-native-shadow-generator/)
+20. 修改默认启动的服务端口号
+    ```
+    // 修改 metro.config.js
+    module.exports = {
+      ...
+      server: {
+        port: 8082,
+      },
+    }
+    ```
+21. [react-native-camera](https://react-native-community.github.io/react-native-camera/docs/installation.html): react-native 扫描识别二维码

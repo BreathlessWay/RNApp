@@ -1,9 +1,11 @@
 import { Alert } from 'react-native';
 
-import { BASIC_URL, BASIC_API_KEY } from 'douban/config/constant';
+import * as Qs from 'qs';
+
+import { BASIC_URL } from 'cnode/config/constant';
 
 export enum EMethod {
-	'GET' = 'GET',
+	GET = 'GET',
 	'POST' = 'POST',
 	'DELETE' = 'DELETE',
 	'PUT' = 'PUT',
@@ -13,11 +15,13 @@ export const request = async ({
 	url,
 	method,
 	body,
+	headers,
 	customError = false,
 }: {
 	url: string;
 	method?: EMethod;
-	body?: Record<any, string>;
+	body?: BodyInit_;
+	headers?: Headers;
 	customError?: boolean;
 }) => {
 	try {
@@ -30,20 +34,15 @@ export const request = async ({
 
 		const options: any = {
 			method: _method,
+			headers: {
+				'Content-Type': 'application/json',
+				...headers,
+			},
 			credentials: 'include',
 		};
 		if (body) {
-			options.body = JSON.stringify({ ...body, apikey: BASIC_API_KEY });
+			options.body = Qs.stringify(body);
 		}
-
-		if (_method === EMethod.GET) {
-			if (_url.includes('?')) {
-				_url = _url + `&apikey=` + BASIC_API_KEY;
-			} else {
-				_url = _url + `?apikey=` + BASIC_API_KEY;
-			}
-		}
-
 		const response = await fetch(_url, options);
 		if (response.ok) {
 			return response.json();
