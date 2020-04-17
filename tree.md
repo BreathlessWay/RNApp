@@ -3,6 +3,29 @@
 ├── README.md
 ├── app.json
 ├── babel.config.js
+├── cnode/
+│   ├── App.tsx
+│   ├── components/
+│   │   └── package.json
+│   ├── config/
+│   │   ├── constant.ts
+│   │   └── package.json
+│   ├── package.json
+│   ├── pages/
+│   │   └── package.json
+│   ├── routes/
+│   │   └── package.json
+│   ├── services/
+│   │   └── package.json
+│   ├── stores/
+│   │   └── package.json
+│   ├── styles/
+│   │   ├── common.ts
+│   │   └── package.json
+│   └── utils/
+│       ├── dataStore.ts
+│       ├── package.json
+│       └── request.ts
 ├── commitlint.config.js
 ├── douban/
 │   ├── App.tsx
@@ -50,7 +73,8 @@
 │   │   ├── tab.tsx
 │   │   └── type.ts
 │   ├── services/
-│   │   └── getList.ts
+│   │   ├── getList.ts
+│   │   └── package.json
 │   ├── stores/
 │   │   ├── index.ts
 │   │   ├── package.json
@@ -218,5 +242,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-69 directories, 148 files
+78 directories, 163 files
 ```

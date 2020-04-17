@@ -42,7 +42,11 @@
 		"react-native-swipeable-lists": "0.0.1",
 		"react-native-tab-view": "^2.13.0",
 		"react-native-vector-icons": "^6.6.0",
-		"react-native-webview": "^9.0.1"
+		"react-native-webview": "^9.0.1",
+		"react-redux": "^7.2.0",
+		"redux": "^4.0.5",
+		"redux-observable": "^1.2.0",
+		"rxjs": "^6.5.5"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.9.0",
@@ -69,6 +73,7 @@
 		"pretty-quick": "^2.0.1",
 		"react-devtools": "3.4.2",
 		"react-test-renderer": "^16.13.1",
+		"redux-devtools": "^3.5.0",
 		"typescript": "^3.8.3"
 	},
 	"jest": {
