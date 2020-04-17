@@ -46,7 +46,9 @@
 		"react-native-webview": "^9.0.1",
 		"react-redux": "^7.2.0",
 		"redux": "^4.0.5",
+		"redux-actions": "^2.6.5",
 		"redux-observable": "^1.2.0",
+		"reselect": "^4.0.0",
 		"rxjs": "^6.5.5"
 	},
 	"devDependencies": {
@@ -60,7 +62,9 @@
 		"@types/react-native": "^0.61.23",
 		"@types/react-native-htmlview": "^0.12.2",
 		"@types/react-native-vector-icons": "^6.4.5",
+		"@types/react-redux": "^7.1.7",
 		"@types/react-test-renderer": "^16.9.2",
+		"@types/redux-actions": "^2.6.1",
 		"@typescript-eslint/eslint-plugin": "^2.25.0",
 		"@typescript-eslint/parser": "^2.25.0",
 		"@wcj/github-rank": "^20.4.9",
