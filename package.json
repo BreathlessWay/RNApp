@@ -67,7 +67,7 @@
 		"@types/redux-actions": "^2.6.1",
 		"@typescript-eslint/eslint-plugin": "^2.25.0",
 		"@typescript-eslint/parser": "^2.25.0",
-		"@wcj/github-rank": "^20.4.9",
+		"@wcj/github-rank": "^20.4.21",
 		"babel-jest": "^25.1.0",
 		"babel-plugin-transform-remove-console": "^6.9.4",
 		"eslint": "^6.5.1",
@@ -78,7 +78,6 @@
 		"pretty-quick": "^2.0.1",
 		"react-devtools": "3.4.2",
 		"react-test-renderer": "^16.13.1",
-		"redux-devtools": "^3.5.0",
 		"typescript": "^3.8.3"
 	},
 	"jest": {

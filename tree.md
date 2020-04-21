@@ -18,11 +18,20 @@
 │   ├── services/
 │   │   └── package.json
 │   ├── stores/
-│   │   └── package.json
+│   │   ├── actions.ts
+│   │   ├── app/
+│   │   │   ├── action.ts
+│   │   │   ├── reducer.ts
+│   │   │   └── type.ts
+│   │   ├── epics.ts
+│   │   ├── index.ts
+│   │   ├── package.json
+│   │   └── reducers.ts
 │   ├── styles/
 │   │   ├── common.ts
 │   │   └── package.json
 │   └── utils/
+│       ├── createActionThunk.ts
 │       ├── dataStore.ts
 │       ├── package.json
 │       └── request.ts
@@ -242,5 +251,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-78 directories, 163 files
+79 directories, 171 files
 ```
