@@ -92,3 +92,6 @@
     ```
 21. [react-native-camera](https://react-native-community.github.io/react-native-camera/docs/installation.html): react-native 扫描识别二维码
 22. process.env.NODE_ENV 可以在 react-native 项目中获取环境变量
+23. 响应式编程
+    - [redux-observable](https://redux-observable-cn.js.org/)
+    - [rxjs](https://cn.rx.js.org/manual/tutorial.html)

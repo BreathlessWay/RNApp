@@ -3,6 +3,7 @@ import React, { Component, createRef } from 'react';
 import { Provider } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import Toast from 'react-native-easy-toast';
+import Index from 'cnode/pages';
 
 import configureStore from 'cnode/stores';
 
@@ -25,6 +26,7 @@ export default class App extends Component {
 	render() {
 		return (
 			<Provider store={store}>
+				<Index />
 				<Toast ref={global.ref as any} position="center" />
 			</Provider>
 		);

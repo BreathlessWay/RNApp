@@ -4,10 +4,12 @@ import { createEpicMiddleware } from 'redux-observable';
 import reducers from './reducers';
 import rootEpic from './epics';
 
-const epicMiddleware = createEpicMiddleware();
+import { AllAction$Type } from './type';
+
+const epicMiddleware = createEpicMiddleware<AllAction$Type>();
 
 const preloadedState = {
-	app: { counter: 0 },
+	app: {},
 };
 
 const enhancer = compose(applyMiddleware(epicMiddleware));

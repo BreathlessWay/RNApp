@@ -1,5 +1,9 @@
 import { combineEpics } from 'redux-observable';
 
-const rootEpic = combineEpics();
+import { fetchUserEpic } from './app/epic';
+
+import { AllAction$Type } from './type';
+
+const rootEpic = combineEpics<AllAction$Type>(fetchUserEpic);
 
 export default rootEpic;

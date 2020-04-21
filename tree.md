@@ -12,6 +12,7 @@
 │   │   └── package.json
 │   ├── package.json
 │   ├── pages/
+│   │   ├── index.tsx
 │   │   └── package.json
 │   ├── routes/
 │   │   └── package.json
@@ -21,12 +22,14 @@
 │   │   ├── actions.ts
 │   │   ├── app/
 │   │   │   ├── action.ts
+│   │   │   ├── epic.ts
 │   │   │   ├── reducer.ts
 │   │   │   └── type.ts
 │   │   ├── epics.ts
 │   │   ├── index.ts
 │   │   ├── package.json
-│   │   └── reducers.ts
+│   │   ├── reducers.ts
+│   │   └── type.ts
 │   ├── styles/
 │   │   ├── common.ts
 │   │   └── package.json
@@ -251,5 +254,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-79 directories, 171 files
+79 directories, 174 files
 ```
