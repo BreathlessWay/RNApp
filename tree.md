@@ -19,17 +19,17 @@
 │   ├── services/
 │   │   └── package.json
 │   ├── stores/
-│   │   ├── actions.ts
 │   │   ├── app/
 │   │   │   ├── action.ts
 │   │   │   ├── epic.ts
 │   │   │   ├── reducer.ts
 │   │   │   └── type.ts
-│   │   ├── epics.ts
-│   │   ├── index.ts
 │   │   ├── package.json
-│   │   ├── reducers.ts
-│   │   └── type.ts
+│   │   ├── rootActions.ts
+│   │   ├── rootEpics.ts
+│   │   ├── rootReducers.ts
+│   │   ├── rootStore.ts
+│   │   └── rootType.ts
 │   ├── styles/
 │   │   ├── common.ts
 │   │   └── package.json

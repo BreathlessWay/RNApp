@@ -1,26 +1,37 @@
-import { Action, handleActions } from 'redux-actions';
+import { handleActions, Action } from 'redux-actions';
 
-import { AppActionType } from 'cnode/stores/app/type';
+import {
+	AppAction$Type,
+	AppActionType,
+	AppStateType,
+	FetchUserInputActionPayloadType,
+	FetchUserOutputActionPayloadType,
+} from './type';
 
-const reducer = handleActions(
+export const initialAppState = {
+	username: '',
+};
+
+export const appReducer = handleActions<AppStateType, any>(
 	{
-		[AppActionType.FETCH_USER]: (state, action) => {
-			return {
-				...state,
-				a: 1,
-			};
-		},
-		[AppActionType.FETCH_USER_FULFILLED]: (
-			state,
-			action: Action<{ data: any }>,
+		[AppActionType.FETCH_USER]: (
+			state: AppStateType,
+			action: Action<FetchUserInputActionPayloadType>,
 		) => {
 			return {
 				...state,
-				a: 2,
+				username: action.payload.username,
+			};
+		},
+		[AppActionType.FETCH_USER_FULFILLED]: (
+			state: AppStateType,
+			action: Action<FetchUserOutputActionPayloadType>,
+		) => {
+			return {
+				...state,
+				username: action.payload.avatar_url,
 			};
 		},
 	},
-	{} as any,
+	initialAppState,
 );
-
-export default reducer;

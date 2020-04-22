@@ -5,7 +5,7 @@ import SplashScreen from 'react-native-splash-screen';
 import Toast from 'react-native-easy-toast';
 import Index from 'cnode/pages';
 
-import configureStore from 'cnode/stores';
+import configureStore from 'cnode/stores/rootStore';
 
 import 'react-native-gesture-handler';
 

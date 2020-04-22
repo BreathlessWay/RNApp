@@ -1,14 +1,14 @@
 import React, { ComponentClass, Component } from 'react';
 
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import { View, Text } from 'react-native';
 
-import { fetchUser } from 'cnode/stores/app/action';
+import rootActions from 'cnode/stores/rootActions';
 
-import { StateType } from 'cnode/stores/type';
 import { Dispatch } from 'redux';
+import { RootStateType } from 'cnode/stores/rootType';
 
-const mapStateToProps = (state: StateType) => {
+const mapStateToProps = (state: RootStateType) => {
 	return {
 		app: state.app,
 	};
@@ -16,27 +16,30 @@ const mapStateToProps = (state: StateType) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
 	return {
-		fetchUser: (username: string) => dispatch(fetchUser({ username })),
+		fetchUser: (username: string) =>
+			dispatch(rootActions.fetchUser({ username })),
 	};
 };
 
-export type ReduxType = ReturnType<typeof mapStateToProps> &
-	ReturnType<typeof mapDispatchToProps>;
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
-@connect(mapStateToProps, mapDispatchToProps)
-class Index extends Component<ReduxType> {
+export type IndexReduxPropType = ConnectedProps<typeof connector>;
+
+class Index extends Component<IndexReduxPropType> {
 	componentDidMount(): void {
 		this.props.fetchUser('BreathlessWay');
 	}
 
 	render(): React.ReactNode {
-		console.log(this.props.app.a);
+		const {
+			app: { username },
+		} = this.props;
 		return (
-			<View>
-				<Text>1</Text>
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<Text>{username}</Text>
 			</View>
 		);
 	}
 }
 
-export default (Index as unknown) as ComponentClass;
+export default connector(Index);

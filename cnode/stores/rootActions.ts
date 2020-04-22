@@ -1,5 +1,7 @@
 import * as appActions from './app/action';
 
-export default {
+const rootActions = {
 	...appActions,
 };
+
+export default rootActions;

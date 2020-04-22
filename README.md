@@ -95,3 +95,5 @@
 23. 响应式编程
     - [redux-observable](https://redux-observable-cn.js.org/)
     - [rxjs](https://cn.rx.js.org/manual/tutorial.html)
+24. redux 全家桶结合 typescript
+    - [redux+typescript](https://redux.js.org/recipes/usage-with-typescript/#typing-the-usedispatch-hook)
