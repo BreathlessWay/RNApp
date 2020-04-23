@@ -1,6 +1,6 @@
-import { AppAction$Type } from './app/type';
-
 import { rootReducers } from './rootReducers';
+
+import { AppAction$Type } from './app/action';
 
 export type AllAction$Type = AppAction$Type;
 

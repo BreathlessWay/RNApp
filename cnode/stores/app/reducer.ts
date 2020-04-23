@@ -1,31 +1,26 @@
-import { createReducer, PayloadAction } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
+
+import { AppStateType } from './type';
 
 import {
-	AppActionType,
-	AppStateType,
-	FetchUserInputActionPayloadType,
-	FetchUserOutputActionPayloadType,
-} from './type';
-import { fetchUser } from 'cnode/stores/app/action';
+	fetchUser,
+	fetchUserFulfilled,
+	FetchUserInputAction,
+	FetchUserOutputAction,
+} from './action';
 
 export const initialAppState = {
 	username: '',
 };
 
 export const appReducer = createReducer<AppStateType>(initialAppState, {
-	[fetchUser.type]: (
-		state,
-		action: PayloadAction<FetchUserInputActionPayloadType>,
-	) => {
+	[fetchUser.type]: (state, action: FetchUserInputAction) => {
 		return {
 			...state,
 			username: action.payload.username,
 		};
 	},
-	[AppActionType.FETCH_USER_FULFILLED]: (
-		state,
-		action: PayloadAction<FetchUserOutputActionPayloadType>,
-	) => {
+	[fetchUserFulfilled.type]: (state, action: FetchUserOutputAction) => {
 		return {
 			...state,
 			username: action.payload.avatar_url,

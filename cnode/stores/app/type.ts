@@ -14,15 +14,3 @@ export type FetchUserInputActionPayloadType = {
 export type FetchUserOutputActionPayloadType = {
 	avatar_url: string;
 };
-
-export interface FetchUserInputAction {
-	type: AppActionType;
-	payload: FetchUserInputActionPayloadType;
-}
-
-export interface FetchUserOutputAction {
-	type: AppActionType;
-	payload: FetchUserOutputActionPayloadType;
-}
-
-export type AppAction$Type = FetchUserInputAction | FetchUserOutputAction;

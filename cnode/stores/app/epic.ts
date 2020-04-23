@@ -1,26 +1,24 @@
-import { Observable } from 'rxjs';
 import { Epic, ofType } from 'redux-observable';
 
-import { mergeMap, map } from 'rxjs/operators';
+import { map, flatMap } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
 
+import { AppActionType } from './type';
+
 import {
-	AppActionType,
-	FetchUserInputAction,
+	AppAction$Type,
+	fetchUserFulfilled,
 	FetchUserOutputAction,
-} from './type';
-
-import { fetchUserFulfilled } from './action';
-
-export const fetchUserEpic: Epic<
 	FetchUserInputAction,
-	FetchUserOutputAction
-> = (action$) =>
+} from './action';
+
+export const fetchUserEpic: Epic<FetchUserInputAction, any> = (action$) =>
 	action$.pipe(
 		ofType(AppActionType.FETCH_USER),
-		mergeMap((action) =>
-			ajax
-				.getJSON(`https://cnodejs.org/api/v1/user/${action.payload.username}`)
-				.pipe(map((response: any) => fetchUserFulfilled(response))),
+		flatMap((action) =>
+			ajax.getJSON(
+				`https://cnodejs.org/api/v1/user/${action.payload.username}`,
+			),
 		),
-	) as Observable<FetchUserOutputAction>;
+		map((response: any) => fetchUserFulfilled(response)),
+	);
