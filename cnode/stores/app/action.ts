@@ -1,4 +1,4 @@
-import { createAction } from 'redux-actions';
+import { createAction } from '@reduxjs/toolkit';
 
 import {
 	AppActionType,
@@ -6,11 +6,12 @@ import {
 	FetchUserOutputActionPayloadType,
 } from './type';
 
-// 异步的action不能用createAction，因为createAction返回的是一个对象，而不是一个函数
-export const fetchUser = createAction<FetchUserInputActionPayloadType>(
-	AppActionType.FETCH_USER,
-);
+export const fetchUser = createAction<
+	FetchUserInputActionPayloadType,
+	AppActionType
+>(AppActionType.FETCH_USER);
 
 export const fetchUserFulfilled = createAction<
-	FetchUserOutputActionPayloadType
+	FetchUserOutputActionPayloadType,
+	AppActionType
 >(AppActionType.FETCH_USER_FULFILLED);

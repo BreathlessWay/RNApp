@@ -1,11 +1,11 @@
-import React, { ComponentClass, Component } from 'react';
+import React, { Component } from 'react';
 
 import { connect, ConnectedProps } from 'react-redux';
 import { View, Text } from 'react-native';
 
 import rootActions from 'cnode/stores/rootActions';
 
-import { Dispatch } from 'redux';
+import { Dispatch } from '@reduxjs/toolkit';
 import { RootStateType } from 'cnode/stores/rootType';
 
 const mapStateToProps = (state: RootStateType) => {

@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware, compose } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
 import { rootReducers, preloadedState } from './rootReducers';
 import rootEpics from './rootEpics';
@@ -8,12 +8,12 @@ import { AllAction$Type } from './rootType';
 
 const epicMiddleware = createEpicMiddleware<AllAction$Type>();
 
-const enhancer = compose(applyMiddleware(epicMiddleware));
+const rootStore = configureStore({
+	reducer: rootReducers,
+	preloadedState,
+	devTools: process.env.NODE_ENV !== 'production',
+	middleware: [...getDefaultMiddleware(), epicMiddleware],
+});
+epicMiddleware.run(rootEpics as any);
 
-const configureStore = (initialState = preloadedState) => {
-	const store = createStore(rootReducers, initialState, enhancer);
-	epicMiddleware.run(rootEpics as any);
-	return store;
-};
-
-export default configureStore;
+export default rootStore;

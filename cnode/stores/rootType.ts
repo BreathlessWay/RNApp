@@ -1,5 +1,6 @@
 import { AppAction$Type } from './app/type';
-import { rootReducers } from 'cnode/stores/rootReducers';
+
+import { rootReducers } from './rootReducers';
 
 export type AllAction$Type = AppAction$Type;
 
