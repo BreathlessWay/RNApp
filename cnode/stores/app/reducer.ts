@@ -15,7 +15,9 @@ export const initialAppState = {
 	error: '',
 };
 
-export const appReducer = createReducer(initialAppState, {
+export type AppStateType = Readonly<typeof initialAppState>;
+
+export const appReducer = createReducer<AppStateType>(initialAppState, {
 	[fetchUser.type]: (state, action: FetchUserActionType) => {
 		return {
 			...state,
@@ -35,5 +37,3 @@ export const appReducer = createReducer(initialAppState, {
 		};
 	},
 });
-
-export type AppStateType = ReturnType<typeof appReducer>;

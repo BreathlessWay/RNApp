@@ -5,8 +5,8 @@ import { View, Text, Image } from 'react-native';
 
 import rootActions from 'cnode/stores/rootActions';
 
+import { bindActionCreators, Dispatch } from '@reduxjs/toolkit';
 import { RootStateType } from 'cnode/stores/rootType';
-import { RootDispatch } from 'cnode/stores/rootStore';
 
 const mapStateToProps = (state: RootStateType) => {
 	return {
@@ -14,12 +14,13 @@ const mapStateToProps = (state: RootStateType) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch: RootDispatch) => {
-	return {
-		fetchUser: (username: string) =>
-			dispatch(rootActions.fetchUser({ username })),
-	};
-};
+const mapDispatchToProps = (dispatch: Dispatch) =>
+	bindActionCreators(
+		{
+			fetchUser: (username: string) => rootActions.fetchUser({ username }),
+		},
+		dispatch,
+	);
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 

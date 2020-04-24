@@ -16,6 +16,4 @@ const rootStore = configureStore({
 });
 epicMiddleware.run(rootEpics);
 
-export type RootDispatch = typeof rootStore.dispatch;
-
 export default rootStore;
