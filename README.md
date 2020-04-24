@@ -39,12 +39,12 @@
 7. [RxJs](https://rxjs.dev/): 响应式编程框架
    - [redux-observable](https://redux-observable.js.org/): 响应式编程在 redux 中的中间件
 8. [AsyncStorage](https://github.com/react-native-community/async-storage): react-native 自带的 AsyncStorage 即将废弃，使用这个库代替
-9. [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons): React-Native 使用 iconfont 的库
+9. [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons): react-native 使用 iconfont 的库
    - [图标搜索地址](https://oblador.github.io/react-native-vector-icons/)
 10. [react-native-easy-toast](https://github.com/crazycodeboy/react-native-easy-toast): 轻提示
 11. [react-native-htmlview](https://github.com/jsdf/react-native-htmlview): react-native 解析显示 html 文本
 12. [react-native-parallax-scroll-view](https://github.com/i6mi6/react-native-parallax-scroll-view): 下拉图片弹性效果
-13. [react-native-webview](https://github.com/react-native-community/react-native-webview): React-Native 自带的 Webview 已经被移除了，现在使用这个库代替
+13. [react-native-webview](https://github.com/react-native-community/react-native-webview): react-native 自带的 Webview 已经被移除了，现在使用这个库代替
 14. [react-native-drag-sort](https://github.com/mochixuan/react-native-drag-sort): react-native 的拖拽组建，需要长按才能触发拖动
 15. [react-native-swipeable-lists](https://github.com/nicastelo/react-native-swipeable-lists): react-native 侧滑在 0.61 被移除了，需要安装这个库
 16. [react-native-camera](https://react-native-community.github.io/react-native-camera/docs/installation.html): react-native 扫描识别二维码
@@ -109,5 +109,6 @@
     ```
 13. process.env.NODE_ENV 可以在 react-native 项目中获取环境变量
 14. redux 全家桶结合 typescript
-    - [redux+typescript](https://redux.js.org/recipes/usage-with-typescript/#typing-the-usedispatch-hook)
+    - [redux 官方指南](https://redux.js.org/recipes/usage-with-typescript/#typing-the-usedispatch-hook)
+    - [react 和 redux 已经各种中间件配合 typescript](https://github.com/piotrwitek/react-redux-typescript-guide)
     - [redux-observer+typescript](https://github.com/piotrwitek/react-redux-typescript-guide#async-flow-with-redux-observable)
