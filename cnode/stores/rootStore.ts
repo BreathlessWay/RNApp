@@ -4,9 +4,9 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { rootReducers, preloadedState } from './rootReducers';
 import rootEpics from './rootEpics';
 
-import { AllAction$Type, RootStateType } from './rootType';
+import { RootStateType } from './rootType';
 
-const epicMiddleware = createEpicMiddleware<AllAction$Type>();
+const epicMiddleware = createEpicMiddleware();
 
 const rootStore = configureStore({
 	reducer: rootReducers,
@@ -14,7 +14,7 @@ const rootStore = configureStore({
 	devTools: process.env.NODE_ENV !== 'production',
 	middleware: [...getDefaultMiddleware<RootStateType>(), epicMiddleware],
 });
-epicMiddleware.run(rootEpics);
+epicMiddleware.run(rootEpics as any);
 
 export type RootDispatch = typeof rootStore.dispatch;
 

@@ -1,16 +1,7 @@
-export enum AppActionType {
-	FETCH_USER = 'FETCH_USER',
-	FETCH_USER_FULFILLED = 'FETCH_USER_FULFILLED',
-}
-
-export type AppStateType = {
+export type FetchUserActionPayloadType = {
 	username: string;
 };
 
-export type FetchUserInputActionPayloadType = {
-	username: string;
-};
-
-export type FetchUserOutputActionPayloadType = {
+export type FetchUserFulfilledActionPayloadType = {
 	avatar_url: string;
 };

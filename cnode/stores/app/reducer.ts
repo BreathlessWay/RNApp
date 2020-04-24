@@ -1,29 +1,29 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { AppStateType } from './type';
-
 import {
 	fetchUser,
 	fetchUserFulfilled,
-	FetchUserInputAction,
-	FetchUserOutputAction,
+	FetchUserActionType,
+	FetchUserFulfilledActionType,
 } from './action';
 
 export const initialAppState = {
 	username: '',
 };
 
-export const appReducer = createReducer<AppStateType>(initialAppState, {
-	[fetchUser.type]: (state, action: FetchUserInputAction) => {
+export const appReducer = createReducer(initialAppState, {
+	[fetchUser.type]: (state, action: FetchUserActionType) => {
 		return {
 			...state,
 			username: action.payload.username,
 		};
 	},
-	[fetchUserFulfilled.type]: (state, action: FetchUserOutputAction) => {
+	[fetchUserFulfilled.type]: (state, action: FetchUserFulfilledActionType) => {
 		return {
 			...state,
 			username: action.payload.avatar_url,
 		};
 	},
 });
+
+export type AppStateType = ReturnType<typeof appReducer>;

@@ -1,23 +1,20 @@
 import { createAction } from '@reduxjs/toolkit';
 
 import {
-	AppActionType,
-	FetchUserInputActionPayloadType,
-	FetchUserOutputActionPayloadType,
+	FetchUserActionPayloadType,
+	FetchUserFulfilledActionPayloadType,
 } from './type';
 
-export const fetchUser = createAction<
-	FetchUserInputActionPayloadType,
-	AppActionType
->(AppActionType.FETCH_USER);
+export const fetchUser = createAction<FetchUserActionPayloadType>('FETCH_USER');
+
+export type FetchUserActionType = ReturnType<typeof fetchUser>;
 
 export const fetchUserFulfilled = createAction<
-	FetchUserOutputActionPayloadType,
-	AppActionType
->(AppActionType.FETCH_USER_FULFILLED);
+	FetchUserFulfilledActionPayloadType
+>('FETCH_USER_FULFILLED');
 
-export type FetchUserInputAction = ReturnType<typeof fetchUser>;
+export type FetchUserFulfilledActionType = ReturnType<
+	typeof fetchUserFulfilled
+>;
 
-export type FetchUserOutputAction = ReturnType<typeof fetchUserFulfilled>;
-
-export type AppAction$Type = FetchUserInputAction | FetchUserOutputAction;
+export type AppActionType = FetchUserActionType | FetchUserFulfilledActionType;
