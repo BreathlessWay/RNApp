@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect, ConnectedProps } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 
 import rootActions from 'cnode/stores/rootActions';
 
@@ -32,11 +32,17 @@ class Index extends Component<IndexReduxPropType> {
 
 	render(): React.ReactNode {
 		const {
-			app: { username },
+			app: { username, avatar_url },
 		} = this.props;
 		return (
 			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-				<Text>{username}</Text>
+				<View>
+					<Text>{username}</Text>
+					<Image
+						source={{ uri: avatar_url }}
+						style={{ width: 80, height: 80 }}
+					/>
+				</View>
 			</View>
 		);
 	}

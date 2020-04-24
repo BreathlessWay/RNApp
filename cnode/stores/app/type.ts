@@ -5,3 +5,7 @@ export type FetchUserActionPayloadType = {
 export type FetchUserFulfilledActionPayloadType = {
 	avatar_url: string;
 };
+
+export type FetchUserRejectedActionPayloadType = {
+	error: string;
+};

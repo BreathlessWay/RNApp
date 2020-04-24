@@ -3,12 +3,16 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
 	fetchUser,
 	fetchUserFulfilled,
+	fetchUserRejected,
 	FetchUserActionType,
 	FetchUserFulfilledActionType,
+	FetchUserRejectedActionType,
 } from './action';
 
 export const initialAppState = {
 	username: '',
+	avatar_url: '',
+	error: '',
 };
 
 export const appReducer = createReducer(initialAppState, {
@@ -21,7 +25,13 @@ export const appReducer = createReducer(initialAppState, {
 	[fetchUserFulfilled.type]: (state, action: FetchUserFulfilledActionType) => {
 		return {
 			...state,
-			username: action.payload.avatar_url,
+			avatar_url: action.payload.avatar_url,
+		};
+	},
+	[fetchUserRejected.type]: (state, action: FetchUserRejectedActionType) => {
+		return {
+			...state,
+			error: action.payload.error,
 		};
 	},
 });
