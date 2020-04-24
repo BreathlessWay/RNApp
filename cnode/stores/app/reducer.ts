@@ -2,11 +2,13 @@ import { createReducer } from '@reduxjs/toolkit';
 
 import {
 	fetchUser,
+	fetchUserCancel,
 	fetchUserFulfilled,
 	fetchUserRejected,
 	FetchUserActionType,
 	FetchUserFulfilledActionType,
 	FetchUserRejectedActionType,
+	FetchUserCancelActionType,
 } from './action';
 
 export const initialAppState = {
@@ -22,6 +24,12 @@ export const appReducer = createReducer<AppStateType>(initialAppState, {
 		return {
 			...state,
 			username: action.payload.username,
+		};
+	},
+	[fetchUserCancel.type]: (state, action: FetchUserCancelActionType) => {
+		return {
+			...state,
+			username: action.payload.token,
 		};
 	},
 	[fetchUserFulfilled.type]: (state, action: FetchUserFulfilledActionType) => {
