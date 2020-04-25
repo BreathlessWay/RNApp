@@ -23,7 +23,7 @@
 
 3. TODO CNode App，使用 React-Native+Redux+RxJs+Typescript+React-Navigation 开发
 
-> 所有框架/库/组件
+> 所用框架/库/组件
 
 1. [React-Native](https://reactnative.cn/): 框架
 2. [React-Navigation](https://reactnavigation.org/): 路由
@@ -32,11 +32,11 @@
    - [mobx-persist](https://github.com/pinqy520/mobx-persist): mobx 的数据持久化
 4. [Typescript](https://www.typescriptlang.org/): 开发语言
 5. [Hook](https://zh-hans.reactjs.org/docs/hooks-intro.html): react 的 hook
-6. [Redux](https://redux.js.org/): 状态管理
+6. [RxJs](https://rxjs.dev/): 响应式编程框架
+7. [Redux](https://redux.js.org/): 状态管理
    - [Redux-Toolkit](https://redux-toolkit.js.org/): redux 的进一步封装
    - [react-redux](https://react-redux.js.org/): redux 结合 react
    - [Reselect](https://github.com/reduxjs/reselect): 从 redux 中获取数据的计算缓存库
-7. [RxJs](https://rxjs.dev/): 响应式编程框架
    - [redux-observable](https://redux-observable.js.org/): 响应式编程在 redux 中的中间件
 8. [AsyncStorage](https://github.com/react-native-community/async-storage): react-native 自带的 AsyncStorage 即将废弃，使用这个库代替
 9. [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons): react-native 使用 iconfont 的库
