@@ -12,17 +12,29 @@
 │   │   └── package.json
 │   ├── package.json
 │   ├── pages/
+│   │   ├── index.tsx
 │   │   └── package.json
 │   ├── routes/
 │   │   └── package.json
 │   ├── services/
 │   │   └── package.json
 │   ├── stores/
-│   │   └── package.json
+│   │   ├── app/
+│   │   │   ├── action.ts
+│   │   │   ├── epic.ts
+│   │   │   ├── reducer.ts
+│   │   │   └── type.ts
+│   │   ├── package.json
+│   │   ├── rootActions.ts
+│   │   ├── rootEpics.ts
+│   │   ├── rootReducers.ts
+│   │   ├── rootStore.ts
+│   │   └── rootType.ts
 │   ├── styles/
 │   │   ├── common.ts
 │   │   └── package.json
 │   └── utils/
+│       ├── createActionThunk.ts
 │       ├── dataStore.ts
 │       ├── package.json
 │       └── request.ts
@@ -242,5 +254,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-78 directories, 163 files
+79 directories, 174 files
 ```
