@@ -110,5 +110,4 @@
 13. process.env.NODE_ENV 可以在 react-native 项目中获取环境变量
 14. redux 全家桶结合 typescript
     - [redux 官方指南](https://redux.js.org/recipes/usage-with-typescript/#typing-the-usedispatch-hook)
-    - [react 和 redux 已经各种中间件配合 typescript](https://github.com/piotrwitek/react-redux-typescript-guide)
-    - [redux-observer+typescript](https://github.com/piotrwitek/react-redux-typescript-guide#async-flow-with-redux-observable)
+    - [react 和 redux 以及各种中间件结合 typescript](https://github.com/piotrwitek/react-redux-typescript-guide)

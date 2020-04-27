@@ -34,8 +34,6 @@
 │   │   ├── common.ts
 │   │   └── package.json
 │   └── utils/
-│       ├── createActionThunk.ts
-│       ├── dataStore.ts
 │       ├── package.json
 │       └── request.ts
 ├── commitlint.config.js
@@ -254,5 +252,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-79 directories, 174 files
+79 directories, 172 files
 ```
