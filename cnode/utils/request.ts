@@ -1,9 +1,10 @@
-import { ajax, AjaxResponse } from 'rxjs/ajax';
-import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { ajax, AjaxResponse, AjaxRequest } from 'rxjs/ajax';
+import { catchError, filter, pluck } from 'rxjs/operators';
+
+import { Alert } from 'react-native';
 
 import * as Qs from 'qs';
-
-import { AjaxRequest } from 'rxjs/internal/observable/dom/AjaxObservable';
 
 import { BASIC_URL } from 'cnode/config/constant';
 
@@ -19,11 +20,13 @@ export const request = <T>({
 	method,
 	body,
 	headers,
+	customError,
 }: {
 	url: string;
 	method?: EMethod;
 	body?: BodyInit_;
 	headers?: Headers;
+	customError?: boolean;
 }) => {
 	let _url = url,
 		_method = method || EMethod.GET;
@@ -43,5 +46,16 @@ export const request = <T>({
 	if (body) {
 		options.body = Qs.stringify(body);
 	}
-	return ajax(options).pipe(map<AjaxResponse, T>((result) => result.response));
+	return ajax(options).pipe(
+		pluck<AjaxResponse, T>('response'),
+		catchError((err: Error) => {
+			if (customError) {
+				throw err;
+			} else {
+				Alert.alert(err.name, err.message);
+				return of((null as unknown) as T);
+			}
+		}),
+		filter<T>((result) => Boolean(result)),
+	);
 };

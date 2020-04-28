@@ -1,6 +1,5 @@
 import { map, filter, catchError, switchMap, takeUntil } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { ajax } from 'rxjs/ajax';
 
 import {
 	fetchUser,
@@ -29,6 +28,7 @@ export const fetchUserEpic: Epic<
 		switchMap((action) =>
 			request<UserResponseType>({
 				url: `/user/${action.payload.username}`,
+				customError: true,
 			}).pipe(
 				// 如果return一个observable对象，则需要用concatAll平铺
 				// map((response) => {
