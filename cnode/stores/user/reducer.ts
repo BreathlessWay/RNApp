@@ -13,24 +13,20 @@ import {
 	LoginActionType,
 	LoginSuccessActionType,
 	loginFailed,
+	LoginFailedActionType,
+	logout,
 } from './action';
 
-export const initialUserState = {
+import { UserStateType } from './type';
+
+export const initialUserState: UserStateType = {
 	isLogin: false,
 	loading: false,
-	accesstoken: '',
-	username: '',
-	avatar_url: '',
 	error: '',
-	loginname: '',
-	githubUsername: '',
-	create_at: '',
-	score: 0,
-	recent_topics: [],
-	recent_replies: [],
+	accesstoken: '',
+	id: '',
+	userInfo: null,
 };
-
-export type UserStateType = Readonly<typeof initialUserState>;
 
 export const userReducer = createReducer<UserStateType>(initialUserState, {
 	[login.type]: (state, action: LoginActionType) => {
@@ -48,19 +44,33 @@ export const userReducer = createReducer<UserStateType>(initialUserState, {
 			...action.payload,
 		};
 	},
-	[loginFailed.type]: (state, action: LoginSuccessActionType) => {
+	[loginFailed.type]: (state, action: LoginFailedActionType) => {
 		return {
 			...state,
 			loading: false,
 			isLogin: false,
 			accesstoken: '',
 			...action.payload,
+			userInfo: null,
+		};
+	},
+	[logout.type]: () => {
+		return {
+			isLogin: false,
+			loading: false,
+			error: '',
+			accesstoken: '',
+			id: '',
+			userInfo: null,
 		};
 	},
 	[fetchUser.type]: (state, action: FetchUserActionType) => {
 		return {
 			...state,
-			username: action.payload.username,
+			loading: true,
+			isLogin: false,
+			error: '',
+			id: action.payload.id,
 		};
 	},
 	[fetchUserCancel.type]: (state) => {
@@ -71,13 +81,19 @@ export const userReducer = createReducer<UserStateType>(initialUserState, {
 	[fetchUserFulfilled.type]: (state, action: FetchUserFulfilledActionType) => {
 		return {
 			...state,
-			avatar_url: action.payload.avatar_url,
+			loading: false,
+			isLogin: true,
+			userInfo: action.payload,
 		};
 	},
 	[fetchUserRejected.type]: (state, action: FetchUserRejectedActionType) => {
 		return {
 			...state,
+			loading: false,
+			isLogin: false,
+			accesstoken: '',
 			error: action.payload.error,
+			userInfo: null,
 		};
 	},
 });

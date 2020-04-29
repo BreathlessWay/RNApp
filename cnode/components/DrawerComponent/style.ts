@@ -8,7 +8,7 @@ const Style = StyleSheet.create({
 	},
 	loginTip: {
 		fontSize: 20,
-		marginTop: 10,
+		marginTop: 20,
 		color: '#333',
 	},
 });

@@ -34,8 +34,7 @@ export const loginEpic: Epic<UserActionType, UserActionType> = (action$) =>
 				},
 			}).pipe(
 				map((result) => {
-					console.log({ result });
-					return fetchUser({ username: result.loginname });
+					return fetchUser(result);
 				}),
 				catchError((error: Error) => {
 					return of(loginFailed({ error: error.message }));
@@ -53,7 +52,7 @@ export const fetchUserEpic: Epic<
 		filter(fetchUser.match),
 		switchMap((action) =>
 			request<UserResponseType>({
-				url: `/user/${action.payload.username}`,
+				url: `/user/${action.payload.loginname}`,
 				customError: true,
 			}).pipe(
 				// 如果return一个observable对象，则需要用concatAll平铺
@@ -66,13 +65,10 @@ export const fetchUserEpic: Epic<
 				// concatAll(),
 				// map内部使用MapOperator将map的callback转成observable
 				map((result) => {
-					console.log(state$.value.user.username);
-					console.log({ result });
 					// 所以这里直接返回action
 					return fetchUserFulfilled(result.data);
 				}),
 				catchError((error: Error, obs) => {
-					console.log(state$.value.user.username);
 					console.log(error.message, '!!!', error.name);
 					// of: 将普通对象转为observable
 					return of(fetchUserRejected({ error: error.message }));

@@ -9,8 +9,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStateType } from 'cnode/stores/rootType';
 import { RootStackParamList } from 'cnode/routes/type';
 
-import Style from './style';
 import rootActions from 'cnode/stores/rootActions';
+
+import Style from './style';
 
 const mapStateToProps = (state: RootStateType) => {
 	return {
@@ -53,8 +54,8 @@ class ScanPage extends Component<ScanPagePropType, ScanPageStateType> {
 		}
 		this.startAnimation();
 		// mock for 模拟器
-		// this.props.login('86e9accb-82f4-42bf-81a2-0210bc07338d');
-		// this.props.navigation.goBack();
+		this.props.login('86e9accb-82f4-42bf-81a2-0210bc07338d');
+		this.props.navigation.goBack();
 	}
 
 	startAnimation = () => {

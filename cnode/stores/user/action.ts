@@ -8,6 +8,7 @@ import {
 	LoginActionPayloadType,
 	LoginFailedActionPayloadType,
 	LoginSuccessActionPayloadType,
+	LogoutActionPayloadType,
 } from './type';
 
 // login
@@ -28,6 +29,11 @@ export const loginFailed = createAction<LoginFailedActionPayloadType>(
 );
 
 export type LoginFailedActionType = ReturnType<typeof loginFailed>;
+
+// logout
+export const logout = createAction<LogoutActionPayloadType>('LOGOUT');
+
+export type LogoutActionType = ReturnType<typeof logout>;
 
 // fetchUser
 export const fetchUser = createAction<FetchUserActionPayloadType>('FETCH_USER');
@@ -62,6 +68,7 @@ export type UserActionType =
 	| LoginActionType
 	| LoginSuccessActionType
 	| LoginFailedActionType
+	| LogoutActionType
 	| FetchUserActionType
 	| FetchUserFulfilledActionType
 	| FetchUserRejectedActionType

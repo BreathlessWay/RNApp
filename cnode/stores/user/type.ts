@@ -1,3 +1,20 @@
+export type UserStateType = {
+	isLogin: boolean;
+	loading: boolean;
+	error: string;
+	accesstoken: string;
+	id: string;
+	userInfo: {
+		avatar_url: string;
+		loginname: string;
+		githubUsername: string;
+		create_at: string;
+		score: number;
+		recent_topics: Array<any>;
+		recent_replies: Array<any>;
+	} | null;
+};
+
 export type LoginActionPayloadType = {
 	accesstoken: string;
 };
@@ -8,6 +25,8 @@ export type LoginFailedActionPayloadType = {
 	error: string;
 };
 
+export type LogoutActionPayloadType = {};
+
 export type LoginResponseType = {
 	avatar_url: string;
 	id: string;
@@ -15,9 +34,7 @@ export type LoginResponseType = {
 	success: boolean;
 };
 
-export type FetchUserActionPayloadType = {
-	username: string;
-};
+export type FetchUserActionPayloadType = LoginResponseType;
 
 export type FetchUserCancelActionPayloadType = {};
 

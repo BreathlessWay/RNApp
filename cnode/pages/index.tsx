@@ -10,17 +10,12 @@ import { RootStateType } from 'cnode/stores/rootType';
 
 const mapStateToProps = (state: RootStateType) => {
 	return {
-		app: state.user,
+		user: state.user,
 	};
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
-	bindActionCreators(
-		{
-			fetchUser: (username: string) => rootActions.fetchUser({ username }),
-		},
-		dispatch,
-	);
+	bindActionCreators({}, dispatch);
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
@@ -33,14 +28,14 @@ class Index extends Component<IndexReduxPropType> {
 
 	render(): React.ReactNode {
 		const {
-			app: { username, avatar_url },
+			user: { userInfo },
 		} = this.props;
 		return (
 			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 				<View>
-					<Text>{username}</Text>
+					<Text>{userInfo?.loginname}</Text>
 					<Image
-						source={{ uri: avatar_url }}
+						source={{ uri: userInfo?.avatar_url }}
 						style={{ width: 80, height: 80 }}
 					/>
 				</View>

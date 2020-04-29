@@ -37,8 +37,9 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 
 	render(): React.ReactNode {
 		const {
-			user: { isLogin },
+			user: { isLogin, userInfo },
 		} = this.props;
+		console.log(userInfo);
 		return isLogin ? (
 			<View></View>
 		) : (

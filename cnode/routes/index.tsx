@@ -18,6 +18,10 @@ export default class RootRouter extends Component {
 					initialRouteName={EScreenName.Home}
 					screenOptions={{
 						headerBackTitleVisible: false,
+						headerTintColor: '#fff',
+						headerStyle: {
+							backgroundColor: '#80bd01',
+						},
 					}}>
 					<Screen
 						name={EScreenName.Home}
