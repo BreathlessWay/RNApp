@@ -15,6 +15,9 @@
 │   │   └── package.json
 │   ├── package.json
 │   ├── pages/
+│   │   ├── ScanPage/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
 │   │   ├── index.tsx
 │   │   └── package.json
 │   ├── routes/
@@ -263,5 +266,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-81 directories, 181 files
+82 directories, 183 files
 ```

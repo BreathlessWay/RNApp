@@ -28,7 +28,7 @@ export type IndexReduxPropType = ConnectedProps<typeof connector>;
 
 class Index extends Component<IndexReduxPropType> {
 	componentDidMount(): void {
-		this.props.fetchUser('BreathlessWay');
+		// this.props.fetchUser('BreathlessWay');
 	}
 
 	render(): React.ReactNode {

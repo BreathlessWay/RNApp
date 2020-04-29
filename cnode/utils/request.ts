@@ -43,7 +43,7 @@ export const request = <T extends { success: boolean; error_msg?: string }>({
 		},
 	};
 	if (body) {
-		options.body = Qs.stringify(body);
+		options.body = body;
 	}
 	return ajax(options).pipe(
 		pluck<AjaxResponse, T>('response'),

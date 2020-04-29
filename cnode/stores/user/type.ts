@@ -2,19 +2,17 @@ export type LoginActionPayloadType = {
 	accesstoken: string;
 };
 
-export type LoginSuccessActionPayloadType = LoginResponseType['data'];
+export type LoginSuccessActionPayloadType = LoginResponseType;
 
 export type LoginFailedActionPayloadType = {
 	error: string;
 };
 
 export type LoginResponseType = {
+	avatar_url: string;
+	id: string;
+	loginname: string;
 	success: boolean;
-	data: {
-		loginname: string;
-		id: string;
-		avatar_url: string;
-	};
 };
 
 export type FetchUserActionPayloadType = {

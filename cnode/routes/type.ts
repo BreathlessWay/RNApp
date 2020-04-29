@@ -6,11 +6,14 @@ export enum EScreenName {
 	Detail = 'Detail',
 
 	WebView = 'WebView',
+
+	Scan = 'Scan',
 }
 
 export type RootStackParamList = {
 	[EScreenName.Home]: undefined;
 	[EScreenName.Me]: undefined;
+	[EScreenName.Scan]: undefined;
 	[EScreenName.Detail]: {
 		item: any;
 	};

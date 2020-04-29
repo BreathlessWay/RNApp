@@ -35,7 +35,7 @@ export const loginEpic: Epic<UserActionType, UserActionType> = (action$) =>
 			}).pipe(
 				map((result) => {
 					console.log({ result });
-					return loginSuccess(result.data);
+					return fetchUser({ username: result.loginname });
 				}),
 				catchError((error: Error) => {
 					return of(loginFailed({ error: error.message }));
@@ -58,7 +58,7 @@ export const fetchUserEpic: Epic<
 			}).pipe(
 				// 如果return一个observable对象，则需要用concatAll平铺
 				// map((response) => {
-				// 	console.log(state$.value.app.username);
+				// 	console.log(state$.value.user.username);
 				// 	console.log(response);
 				// 	// 所以这里直接返回action
 				// 	return of(fetchUserFulfilled({ avatar_url: response.data.avatar_url }));

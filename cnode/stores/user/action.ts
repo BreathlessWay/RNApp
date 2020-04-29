@@ -57,7 +57,7 @@ export const fetchUserRejected = createAction<
 
 export type FetchUserRejectedActionType = ReturnType<typeof fetchUserRejected>;
 
-// AppActionType
+// UserActionType
 export type UserActionType =
 	| LoginActionType
 	| LoginSuccessActionType

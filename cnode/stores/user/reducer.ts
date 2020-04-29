@@ -16,6 +16,7 @@ import {
 } from './action';
 
 export const initialUserState = {
+	isLogin: false,
 	loading: false,
 	accesstoken: '',
 	username: '',
@@ -43,6 +44,7 @@ export const userReducer = createReducer<UserStateType>(initialUserState, {
 		return {
 			...state,
 			loading: false,
+			isLogin: true,
 			...action.payload,
 		};
 	},
@@ -50,6 +52,7 @@ export const userReducer = createReducer<UserStateType>(initialUserState, {
 		return {
 			...state,
 			loading: false,
+			isLogin: false,
 			accesstoken: '',
 			...action.payload,
 		};
