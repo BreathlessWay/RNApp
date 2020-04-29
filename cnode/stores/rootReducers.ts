@@ -1,11 +1,11 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import { appReducer, initialAppState } from './app/reducer';
+import { userReducer, initialUserState } from './user/reducer';
 
 export const preloadedState = {
-	app: initialAppState,
+	user: initialUserState,
 };
 
 export const rootReducers = combineReducers({
-	app: appReducer,
+	user: userReducer,
 });

@@ -6,6 +6,9 @@
 ├── cnode/
 │   ├── App.tsx
 │   ├── components/
+│   │   ├── DrawerComponent/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
 │   │   └── package.json
 │   ├── config/
 │   │   ├── constant.ts
@@ -15,7 +18,10 @@
 │   │   ├── index.tsx
 │   │   └── package.json
 │   ├── routes/
-│   │   └── package.json
+│   │   ├── drawer.tsx
+│   │   ├── index.tsx
+│   │   ├── package.json
+│   │   └── type.ts
 │   ├── services/
 │   │   └── package.json
 │   ├── stores/
@@ -29,7 +35,12 @@
 │   │   ├── rootEpics.ts
 │   │   ├── rootReducers.ts
 │   │   ├── rootStore.ts
-│   │   └── rootType.ts
+│   │   ├── rootType.ts
+│   │   └── user/
+│   │       ├── action.ts
+│   │       ├── epic.ts
+│   │       ├── reducer.ts
+│   │       └── type.ts
 │   ├── styles/
 │   │   ├── common.ts
 │   │   └── package.json
@@ -252,5 +263,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-79 directories, 172 files
+81 directories, 181 files
 ```

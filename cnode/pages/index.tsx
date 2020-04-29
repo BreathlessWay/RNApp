@@ -10,7 +10,7 @@ import { RootStateType } from 'cnode/stores/rootType';
 
 const mapStateToProps = (state: RootStateType) => {
 	return {
-		app: state.app,
+		app: state.user,
 	};
 };
 

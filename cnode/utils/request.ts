@@ -1,6 +1,5 @@
-import { of } from 'rxjs';
 import { ajax, AjaxResponse, AjaxRequest } from 'rxjs/ajax';
-import { catchError, filter, pluck } from 'rxjs/operators';
+import { catchError, map, pluck } from 'rxjs/operators';
 
 import { Alert } from 'react-native';
 
@@ -15,7 +14,7 @@ export enum EMethod {
 	'PUT' = 'PUT',
 }
 
-export const request = <T>({
+export const request = <T extends { success: boolean; error_msg?: string }>({
 	url,
 	method,
 	body,
@@ -48,14 +47,18 @@ export const request = <T>({
 	}
 	return ajax(options).pipe(
 		pluck<AjaxResponse, T>('response'),
-		catchError((err: Error) => {
-			if (customError) {
-				throw err;
+		map((result) => {
+			if (result.success) {
+				return result;
 			} else {
-				Alert.alert(err.name, err.message);
-				return of((null as unknown) as T);
+				throw new Error(result.error_msg);
 			}
 		}),
-		filter<T>((result) => Boolean(result)),
+		catchError((err: Error) => {
+			if (!customError) {
+				Alert.alert(err.name, err.message);
+			}
+			throw err;
+		}),
 	);
 };

@@ -3,7 +3,7 @@ import React, { Component, createRef } from 'react';
 import { Provider } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import Toast from 'react-native-easy-toast';
-import Index from 'cnode/pages';
+import RootRouter from 'cnode/routes';
 
 import rootStore from 'cnode/stores/rootStore';
 
@@ -17,6 +17,7 @@ export default class App extends Component {
 		super(props);
 		global.ref = createRef<Toast>();
 	}
+
 	componentDidMount(): void {
 		SplashScreen.hide();
 	}
@@ -24,7 +25,7 @@ export default class App extends Component {
 	render() {
 		return (
 			<Provider store={rootStore}>
-				<Index />
+				<RootRouter />
 				<Toast ref={global.ref as any} position="center" />
 			</Provider>
 		);

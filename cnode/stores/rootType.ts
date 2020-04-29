@@ -1,7 +1,7 @@
 import { rootReducers } from './rootReducers';
 
-import { AppActionType } from './app/action';
+import { UserActionType } from './user/action';
 
-export type AllActionType = AppActionType;
+export type AllActionType = UserActionType;
 
 export type RootStateType = ReturnType<typeof rootReducers>;
