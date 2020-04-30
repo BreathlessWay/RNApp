@@ -9,12 +9,13 @@ import {
 	FetchUserFulfilledActionType,
 	FetchUserRejectedActionType,
 	login,
-	loginSuccess,
 	LoginActionType,
-	LoginSuccessActionType,
-	loginFailed,
-	LoginFailedActionType,
 	logout,
+	getMessageCount,
+	getMessageCountSuccess,
+	getMessageCountFailed,
+	GetMessageCountFailedActionType,
+	GetMessageCountSuccessActionType,
 } from './action';
 
 import { UserStateType } from './type';
@@ -25,6 +26,7 @@ export const initialUserState: UserStateType = {
 	error: '',
 	accesstoken: '',
 	id: '',
+	count: 0,
 	userInfo: null,
 };
 
@@ -36,24 +38,6 @@ export const userReducer = createReducer<UserStateType>(initialUserState, {
 			accesstoken: action.payload.accesstoken,
 		};
 	},
-	[loginSuccess.type]: (state, action: LoginSuccessActionType) => {
-		return {
-			...state,
-			loading: false,
-			isLogin: true,
-			...action.payload,
-		};
-	},
-	[loginFailed.type]: (state, action: LoginFailedActionType) => {
-		return {
-			...state,
-			loading: false,
-			isLogin: false,
-			accesstoken: '',
-			...action.payload,
-			userInfo: null,
-		};
-	},
 	[logout.type]: () => {
 		return {
 			isLogin: false,
@@ -61,7 +45,31 @@ export const userReducer = createReducer<UserStateType>(initialUserState, {
 			error: '',
 			accesstoken: '',
 			id: '',
+			count: 0,
 			userInfo: null,
+		};
+	},
+	[getMessageCount.type]: (state) => {
+		return {
+			...state,
+		};
+	},
+	[getMessageCountSuccess.type]: (
+		state,
+		action: GetMessageCountSuccessActionType,
+	) => {
+		return {
+			...state,
+			count: action.payload.data,
+		};
+	},
+	[getMessageCountFailed.type]: (
+		state,
+		action: GetMessageCountFailedActionType,
+	) => {
+		return {
+			...state,
+			error: action.payload.error,
 		};
 	},
 	[fetchUser.type]: (state, action: FetchUserActionType) => {

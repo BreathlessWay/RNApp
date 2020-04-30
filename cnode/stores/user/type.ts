@@ -4,6 +4,7 @@ export type UserStateType = {
 	error: string;
 	accesstoken: string;
 	id: string;
+	count: number;
 	userInfo: {
 		avatar_url: string;
 		loginname: string;
@@ -19,12 +20,6 @@ export type LoginActionPayloadType = {
 	accesstoken: string;
 };
 
-export type LoginSuccessActionPayloadType = LoginResponseType;
-
-export type LoginFailedActionPayloadType = {
-	error: string;
-};
-
 export type LogoutActionPayloadType = {};
 
 export type LoginResponseType = {
@@ -32,6 +27,21 @@ export type LoginResponseType = {
 	id: string;
 	loginname: string;
 	success: boolean;
+};
+
+export type GetMessageCountActionPayloadType = {
+	accesstoken: string;
+};
+
+export type GetMessageCountSuccessActionPayloadType = GetMessageCountResponseType;
+
+export type GetMessageCountFailedActionPayloadType = {
+	error: string;
+};
+
+export type GetMessageCountResponseType = {
+	success: boolean;
+	data: number;
 };
 
 export type FetchUserActionPayloadType = LoginResponseType;

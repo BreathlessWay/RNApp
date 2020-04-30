@@ -5,9 +5,10 @@ import {
 	FetchUserCancelActionPayloadType,
 	FetchUserFulfilledActionPayloadType,
 	FetchUserRejectedActionPayloadType,
+	GetMessageCountActionPayloadType,
+	GetMessageCountFailedActionPayloadType,
+	GetMessageCountSuccessActionPayloadType,
 	LoginActionPayloadType,
-	LoginFailedActionPayloadType,
-	LoginSuccessActionPayloadType,
 	LogoutActionPayloadType,
 } from './type';
 
@@ -16,24 +17,35 @@ export const login = createAction<LoginActionPayloadType>('LOGIN');
 
 export type LoginActionType = ReturnType<typeof login>;
 
-// loginSuccess
-export const loginSuccess = createAction<LoginSuccessActionPayloadType>(
-	'LOGIN_SUCCESS',
-);
-
-export type LoginSuccessActionType = ReturnType<typeof loginSuccess>;
-
-// loginFailed
-export const loginFailed = createAction<LoginFailedActionPayloadType>(
-	'LOGIN_FAILED',
-);
-
-export type LoginFailedActionType = ReturnType<typeof loginFailed>;
-
 // logout
 export const logout = createAction<LogoutActionPayloadType>('LOGOUT');
 
 export type LogoutActionType = ReturnType<typeof logout>;
+
+// getMessageCount
+export const getMessageCount = createAction<GetMessageCountActionPayloadType>(
+	'GET_MESSAGE_COUNT',
+);
+
+export type GetMessageCountActionType = ReturnType<typeof getMessageCount>;
+
+// getMessageCountSuccess
+export const getMessageCountSuccess = createAction<
+	GetMessageCountSuccessActionPayloadType
+>('GET_MESSAGE_COUNT_SUCCESS');
+
+export type GetMessageCountSuccessActionType = ReturnType<
+	typeof getMessageCountSuccess
+>;
+
+// getMessageCountFailed
+export const getMessageCountFailed = createAction<
+	GetMessageCountFailedActionPayloadType
+>('GET_MESSAGE_COUNT_FAILED');
+
+export type GetMessageCountFailedActionType = ReturnType<
+	typeof getMessageCountFailed
+>;
 
 // fetchUser
 export const fetchUser = createAction<FetchUserActionPayloadType>('FETCH_USER');
@@ -66,9 +78,10 @@ export type FetchUserRejectedActionType = ReturnType<typeof fetchUserRejected>;
 // UserActionType
 export type UserActionType =
 	| LoginActionType
-	| LoginSuccessActionType
-	| LoginFailedActionType
 	| LogoutActionType
+	| GetMessageCountActionType
+	| GetMessageCountSuccessActionType
+	| GetMessageCountFailedActionType
 	| FetchUserActionType
 	| FetchUserFulfilledActionType
 	| FetchUserRejectedActionType

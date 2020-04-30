@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import { loginEpic, fetchUserEpic } from './user/epic';
+import { loginEpic, fetchUserEpic, messageCountEpic } from './user/epic';
 
-const rootEpics = combineEpics(fetchUserEpic, loginEpic);
+const rootEpics = combineEpics(fetchUserEpic, loginEpic, messageCountEpic);
 
 export default rootEpics;

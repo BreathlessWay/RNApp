@@ -1,19 +1,32 @@
-import { catchError, filter, map, switchMap, takeUntil } from 'rxjs/operators';
-import { of } from 'rxjs';
+import {
+	catchError,
+	concatAll,
+	filter,
+	map,
+	mergeMap,
+	switchMap,
+	takeUntil,
+} from 'rxjs/operators';
+import { merge, of } from 'rxjs';
 
 import {
 	fetchUser,
 	fetchUserCancel,
 	fetchUserFulfilled,
 	fetchUserRejected,
+	getMessageCount,
+	getMessageCountFailed,
+	getMessageCountSuccess,
 	login,
-	loginFailed,
-	loginSuccess,
 	UserActionType,
 } from './action';
 
 import { Epic } from 'redux-observable';
-import { LoginResponseType, UserResponseType } from './type';
+import {
+	GetMessageCountResponseType,
+	LoginResponseType,
+	UserResponseType,
+} from './type';
 import { RootStateType } from 'cnode/stores/rootType';
 
 import { EMethod, request } from 'cnode/utils/request';
@@ -33,11 +46,34 @@ export const loginEpic: Epic<UserActionType, UserActionType> = (action$) =>
 					accesstoken: action.payload.accesstoken,
 				},
 			}).pipe(
+				map((result) =>
+					of(
+						fetchUser(result),
+						getMessageCount({ accesstoken: action.payload.accesstoken }),
+					),
+				),
+				concatAll(),
+				catchError((error: Error) => {
+					return of(fetchUserRejected({ error: error.message }));
+				}),
+			),
+		),
+	);
+
+export const messageCountEpic: Epic<UserActionType, UserActionType> = (
+	action$,
+) =>
+	action$.pipe(
+		filter(getMessageCount.match),
+		switchMap((action) =>
+			request<GetMessageCountResponseType>({
+				url: `/message/count?accesstoken=${action.payload.accesstoken}`,
+			}).pipe(
 				map((result) => {
-					return fetchUser(result);
+					return getMessageCountSuccess(result);
 				}),
 				catchError((error: Error) => {
-					return of(loginFailed({ error: error.message }));
+					return of(getMessageCountFailed({ error: error.message }));
 				}),
 			),
 		),
