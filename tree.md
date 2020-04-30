@@ -15,10 +15,10 @@
 │   │   └── package.json
 │   ├── package.json
 │   ├── pages/
-│   │   ├── ListPage/
+│   │   ├── ScanPage/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
-│   │   ├── ScanPage/
+│   │   ├── TopicsPage/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
 │   │   ├── index.tsx
@@ -43,6 +43,11 @@
 │   │   ├── rootReducers.ts
 │   │   ├── rootStore.ts
 │   │   ├── rootType.ts
+│   │   ├── topics/
+│   │   │   ├── action.ts
+│   │   │   ├── epic.ts
+│   │   │   ├── reducer.ts
+│   │   │   └── type.ts
 │   │   └── user/
 │   │       ├── action.ts
 │   │       ├── epic.ts
@@ -270,5 +275,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-83 directories, 186 files
+84 directories, 190 files
 ```

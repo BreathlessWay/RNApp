@@ -6,11 +6,11 @@ import {
 } from '@react-navigation/drawer';
 import DrawerComponent from 'cnode/components/DrawerComponent';
 import Index from 'cnode/pages';
+import { View } from 'react-native';
 
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { EScreenName, RootStackParamList } from 'cnode/routes/type';
-import { View } from 'react-native';
 
 const { Navigator, Screen } = createDrawerNavigator<RootStackParamList>();
 

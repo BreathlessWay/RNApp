@@ -1,4 +1,4 @@
-import React, { Component, ComponentClass } from 'react';
+import React, { Component } from 'react';
 
 import { connect, ConnectedProps } from 'react-redux';
 import { View, Text, FlatList } from 'react-native';
@@ -13,7 +13,7 @@ import Style from './style';
 
 const mapStateToProps = (state: RootStateType) => {
 	return {
-		user: state.user,
+		topics: state.topics,
 	};
 };
 
@@ -22,17 +22,16 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-export type ListPageReduxPropType = ConnectedProps<typeof connector>;
+export type TopicsPageReduxPropType = ConnectedProps<typeof connector>;
 
-export type ListPagePropType = {
-	navigation: MaterialTopTabNavigationProp<
-		RootStackParamList,
-		EScreenName.Home
-	>;
+export type TopicsPagePropType = {
+	navigation: MaterialTopTabNavigationProp<RootStackParamList>;
 	route: RouteProp<RootStackParamList, EScreenName.Home>;
 };
 
-class ListPage extends Component<ListPagePropType & ListPageReduxPropType> {
+class TopicsPage extends Component<
+	TopicsPagePropType & TopicsPageReduxPropType
+> {
 	componentDidMount(): void {
 		console.log(this.props.route.params.tab);
 	}
@@ -46,4 +45,4 @@ class ListPage extends Component<ListPagePropType & ListPageReduxPropType> {
 	}
 }
 
-export default connector(ListPage) as ComponentClass<ListPagePropType>;
+export default connector(TopicsPage);

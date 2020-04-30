@@ -16,3 +16,12 @@ export const PAGE_SIZE = 10;
 
 // 主题色
 export const THEME_COLOR = '#80bd01';
+
+// 列表tag
+export enum ETopicsTag {
+	All = '',
+	Ask = 'ask',
+	Share = 'share',
+	Job = 'job',
+	Good = 'good',
+}

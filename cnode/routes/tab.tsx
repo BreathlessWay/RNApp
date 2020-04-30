@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 import { connect, ConnectedProps } from 'react-redux';
-import { View, Image, TouchableOpacity } from 'react-native';
-import ListPage from 'cnode/pages/ListPage';
+import { Image, TouchableOpacity } from 'react-native';
+import ListPage from 'cnode/pages/TopicsPage';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
@@ -11,8 +12,7 @@ import { bindActionCreators, Dispatch } from '@reduxjs/toolkit';
 import { RootStateType } from 'cnode/stores/rootType';
 import { EScreenName, RootStackParamList } from 'cnode/routes/type';
 
-import { THEME_COLOR } from 'cnode/config/constant';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { ETopicsTag, THEME_COLOR } from 'cnode/config/constant';
 
 const { Navigator, Screen } = createMaterialTopTabNavigator();
 
@@ -90,7 +90,7 @@ class TabRouter extends Component<TabRouterPropType & TabRouterReduxPropType> {
 					options={{ title: '全部' }}
 					component={ListPage}
 					initialParams={{
-						tab: '',
+						tab: ETopicsTag.All,
 					}}
 				/>
 				<Screen
@@ -98,7 +98,7 @@ class TabRouter extends Component<TabRouterPropType & TabRouterReduxPropType> {
 					component={ListPage}
 					options={{ title: '问答' }}
 					initialParams={{
-						tab: 'ask',
+						tab: ETopicsTag.Ask,
 					}}
 				/>
 				<Screen
@@ -106,7 +106,7 @@ class TabRouter extends Component<TabRouterPropType & TabRouterReduxPropType> {
 					component={ListPage}
 					options={{ title: '分享' }}
 					initialParams={{
-						tab: 'share',
+						tab: ETopicsTag.Share,
 					}}
 				/>
 				<Screen
@@ -114,7 +114,7 @@ class TabRouter extends Component<TabRouterPropType & TabRouterReduxPropType> {
 					component={ListPage}
 					options={{ title: '工作机会' }}
 					initialParams={{
-						tab: 'job',
+						tab: ETopicsTag.Job,
 					}}
 				/>
 				<Screen
@@ -122,7 +122,7 @@ class TabRouter extends Component<TabRouterPropType & TabRouterReduxPropType> {
 					component={ListPage}
 					options={{ title: '精华' }}
 					initialParams={{
-						tab: 'good',
+						tab: ETopicsTag.Good,
 					}}
 				/>
 			</Navigator>
