@@ -49,6 +49,7 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 	render(): React.ReactNode {
 		const {
 			user: { isLogin, userInfo, count },
+			navigation,
 		} = this.props;
 
 		return isLogin && userInfo ? (
@@ -71,7 +72,10 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 							{count ? <Text style={Style.count}>{count}</Text> : null}
 						</View>
 					)}
-					onPress={() => {}}
+					onPress={() => {
+						navigation.closeDrawer();
+						navigation.navigate(EScreenName.Message);
+					}}
 				/>
 				<DrawerItem
 					label={() => (
@@ -83,10 +87,13 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 									color={'#666'}
 								/>
 							</View>
-							<Text style={Style.label}>我的发布</Text>
+							<Text style={Style.label}>我的发帖</Text>
 						</View>
 					)}
-					onPress={() => {}}
+					onPress={() => {
+						navigation.toggleDrawer();
+						navigation.navigate(EScreenName.Posts);
+					}}
 				/>
 				<DrawerItem
 					label={() => (
@@ -97,7 +104,10 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 							<Text style={Style.label}>我的回复</Text>
 						</View>
 					)}
-					onPress={() => {}}
+					onPress={() => {
+						navigation.toggleDrawer();
+						navigation.navigate(EScreenName.Reply);
+					}}
 				/>
 				<DrawerItem
 					label={() => (
@@ -108,7 +118,10 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 							<Text style={Style.label}>我的收藏</Text>
 						</View>
 					)}
-					onPress={() => {}}
+					onPress={() => {
+						navigation.toggleDrawer();
+						navigation.navigate(EScreenName.Collection);
+					}}
 				/>
 			</View>
 		) : (
