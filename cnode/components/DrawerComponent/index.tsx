@@ -6,6 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import { DrawerItem, DrawerNavigationProp } from '@react-navigation/drawer';
 import { EScreenName, RootStackParamList } from 'cnode/routes/type';
@@ -15,6 +16,7 @@ import { RootStateType } from 'cnode/stores/rootType';
 import dayjs from 'dayjs';
 
 import Style from './style';
+import rootActions from 'cnode/stores/rootActions';
 
 const mapStateToProps = (state: RootStateType) => {
 	return {
@@ -23,7 +25,12 @@ const mapStateToProps = (state: RootStateType) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
-	bindActionCreators({}, dispatch);
+	bindActionCreators(
+		{
+			logout: () => rootActions.logout(),
+		},
+		dispatch,
+	);
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
@@ -121,6 +128,20 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 					onPress={() => {
 						navigation.toggleDrawer();
 						navigation.navigate(EScreenName.Collection);
+					}}
+				/>
+				<DrawerItem
+					label={() => (
+						<View style={Style.item}>
+							<View style={Style.icon}>
+								<AntDesign name={'logout'} size={14} color={'#666'} />
+							</View>
+							<Text style={Style.label}>退出</Text>
+						</View>
+					)}
+					onPress={() => {
+						navigation.toggleDrawer();
+						this.props.logout();
 					}}
 				/>
 			</View>

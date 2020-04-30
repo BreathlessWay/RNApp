@@ -9,7 +9,6 @@ import {
 	GetMessageCountFailedActionPayloadType,
 	GetMessageCountSuccessActionPayloadType,
 	LoginActionPayloadType,
-	LogoutActionPayloadType,
 } from './type';
 
 // login
@@ -18,7 +17,7 @@ export const login = createAction<LoginActionPayloadType>('LOGIN');
 export type LoginActionType = ReturnType<typeof login>;
 
 // logout
-export const logout = createAction<LogoutActionPayloadType>('LOGOUT');
+export const logout = createAction('LOGOUT');
 
 export type LogoutActionType = ReturnType<typeof logout>;
 

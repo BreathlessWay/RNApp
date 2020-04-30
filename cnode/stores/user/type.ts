@@ -20,8 +20,6 @@ export type LoginActionPayloadType = {
 	accesstoken: string;
 };
 
-export type LogoutActionPayloadType = {};
-
 export type LoginResponseType = {
 	avatar_url: string;
 	id: string;

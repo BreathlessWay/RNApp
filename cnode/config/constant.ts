@@ -13,3 +13,6 @@ export const BORDER_WIDTH = 1 / PixelRatio.get();
 
 // page_size
 export const PAGE_SIZE = 10;
+
+// 主题色
+export const THEME_COLOR = '#80bd01';
