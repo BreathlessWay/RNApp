@@ -14,19 +14,6 @@ const Style = StyleSheet.create({
 		...FlexDirectionStyle,
 		marginBottom: 20,
 	},
-	tab: {
-		padding: 3,
-		backgroundColor: '#e5e5e5',
-		color: '#666',
-		borderRadius: 4,
-		overflow: 'hidden',
-		marginRight: 5,
-		fontSize: 12,
-	},
-	good: {
-		color: '#fff',
-		backgroundColor: THEME_COLOR,
-	},
 	title: {
 		flex: 1,
 		fontSize: 18,

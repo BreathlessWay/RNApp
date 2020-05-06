@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
 import { View, Text, TouchableOpacity, Image } from 'react-native';
+import TopicTabItem from 'cnode/components/TopicTabItem';
 
 import { TopicsItemType } from 'cnode/stores/topics/type';
-
-import { ETopicsTab } from 'cnode/config/constant';
 
 import Style from './style';
 
@@ -14,47 +13,20 @@ export type TopicItemPropType = {
 };
 
 export default class TopicItem extends Component<TopicItemPropType> {
-	get tab() {
-		const { good, top, tab } = this.props.item;
-		if (top) {
-			return '置顶';
-		}
-		if (good) {
-			return '精华';
-		}
-		switch (tab) {
-			case ETopicsTab.Ask:
-				return '问答';
-			case ETopicsTab.Job:
-				return '工作';
-			case ETopicsTab.Share:
-				return '分享';
-		}
-	}
-
-	get isGoodOrTop() {
-		const { good, top } = this.props.item;
-		return good || top;
-	}
-
 	handlePress = () => {
 		this.props.onPress(this.props.item);
 	};
 
 	render() {
 		const {
-			tab,
-			isGoodOrTop,
 			props: { item },
 		} = this;
-
-		const tabGoodStyle = isGoodOrTop ? Style.good : {};
 
 		return (
 			<TouchableOpacity onPress={this.handlePress} style={Style.item}>
 				<View>
 					<View style={Style.top}>
-						<Text style={{ ...Style.tab, ...tabGoodStyle }}>{tab}</Text>
+						<TopicTabItem tab={item.tab} good={item.good} top={item.top} />
 						<Text numberOfLines={1} style={Style.title}>
 							{item.title}
 						</Text>

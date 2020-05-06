@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
 import { connect, ConnectedProps } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, Image, Alert } from 'react-native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import HTMLView from 'react-native-htmlview';
+import TopicTabItem from 'cnode/components/TopicTabItem';
 
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -12,6 +15,7 @@ import { TopicDetailType } from 'cnode/stores/topics/type';
 
 import { request } from 'cnode/utils/request';
 import { Subscription } from 'rxjs';
+import dayjs from 'dayjs';
 
 import Style from './style';
 
@@ -48,6 +52,7 @@ export type TopicDetailPagePropType = {
 
 export type TopicDetailPageStateType = {
 	stateDetail: TopicDetailType | null;
+	is_collect: boolean;
 };
 
 class TopicDetailPage extends Component<
@@ -58,27 +63,51 @@ class TopicDetailPage extends Component<
 
 	readonly state = {
 		stateDetail: null,
+		is_collect: false,
 	};
 
 	get id() {
 		return this.props.route.params.id;
 	}
 
-	get detail() {
-		return this.state.stateDetail || this.props.propDetail;
+	get detail(): TopicDetailType {
+		return this.state.stateDetail || (this.props.propDetail as TopicDetailType);
 	}
 
 	componentDidMount() {
+		this.getDetail();
+		this.props.navigation.setOptions({
+			headerTitle: () => (
+				<Text numberOfLines={1} style={Style.headerTitle}>
+					{this.detail?.title ?? ''}
+				</Text>
+			),
+		});
+	}
+
+	componentDidUpdate(
+		prevProps: Readonly<TopicDetailPageReduxPropType & TopicDetailPagePropType>,
+	) {
+		if (prevProps.accesstoken !== this.props.accesstoken) {
+			this.subscription?.unsubscribe();
+			this.getDetail();
+		}
+	}
+
+	getDetail = () => {
 		const { accesstoken } = this.props,
 			query = accesstoken && `?accesstoken=${accesstoken}`;
 
 		this.subscription = request<{ success: boolean; data: TopicDetailType }>({
 			url: `/topic/${this.id}${query}`,
 		}).subscribe({
-			next: (value) =>
+			next: (value) => {
 				this.setState({
 					stateDetail: value.data,
-				}),
+					is_collect: value.data.is_collect,
+				});
+				this.setCollection(value.data.is_collect);
+			},
 			error: (err) => {
 				console.log(err);
 			},
@@ -86,17 +115,85 @@ class TopicDetailPage extends Component<
 				console.log('complete');
 			},
 		});
-	}
+	};
+
+	handlePressFavorite = () => {
+		const { accesstoken, navigation } = this.props;
+		if (!accesstoken) {
+			Alert.alert('尚未登录', '', [
+				{
+					text: '取消',
+				},
+				{
+					text: '去登录',
+					onPress: () => navigation.navigate(EScreenName.Scan),
+				},
+			]);
+			return;
+		}
+		const { is_collect } = this.state;
+		this.setState({
+			is_collect: !is_collect,
+		});
+		this.setCollection(!is_collect);
+	};
+
+	setCollection = (is_collect: boolean) => {
+		this.props.navigation.setOptions({
+			headerRight: () => (
+				<AntDesign
+					name={is_collect ? 'star' : 'staro'}
+					size={22}
+					color={'#fff'}
+					style={{ marginHorizontal: 5 }}
+					onPress={this.handlePressFavorite}
+				/>
+			),
+		});
+	};
 
 	componentWillUnmount() {
 		this.subscription?.unsubscribe();
 	}
 
 	render() {
+		const { detail } = this;
 		return (
-			<View>
-				<Text>{this.id}</Text>
-			</View>
+			detail && (
+				<ScrollView>
+					<View style={Style.header}>
+						<Text style={Style.title}>{detail.title}</Text>
+						<TopicTabItem
+							top={detail.top}
+							good={detail.good}
+							tab={detail.tab}
+							single={false}
+						/>
+						<View style={Style.info}>
+							<Text style={Style.name}>{detail.author.loginname}</Text>
+							<Text>|</Text>
+							<Text style={Style.time}>
+								{dayjs(detail.create_at).format('YYYY-MM-DD')}
+							</Text>
+						</View>
+					</View>
+					<View style={Style.content}>
+						<HTMLView
+							value={detail.content}
+							renderNode={(node) => {
+								if (node.name === 'img') {
+									return (
+										<Image
+											source={{ uri: `https:${node.attribs.src}` }}
+											style={Style.image}
+										/>
+									);
+								}
+							}}
+						/>
+					</View>
+				</ScrollView>
+			)
 		);
 	}
 }

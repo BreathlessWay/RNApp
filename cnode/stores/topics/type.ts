@@ -3,7 +3,7 @@ import { ETopicsTab } from 'cnode/config/constant';
 export type TopicsItemType = {
 	id: string;
 	author_id: string;
-	tab: string;
+	tab: ETopicsTab;
 	content: string;
 	title: string;
 	last_reply_at: string;

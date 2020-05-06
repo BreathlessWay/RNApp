@@ -12,6 +12,9 @@
 │   │   ├── TopicItem/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
+│   │   ├── TopicTabItem/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
 │   │   └── package.json
 │   ├── config/
 │   │   ├── constant.ts
@@ -281,5 +284,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-86 directories, 194 files
+87 directories, 196 files
 ```
