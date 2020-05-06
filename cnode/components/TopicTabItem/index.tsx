@@ -51,7 +51,7 @@ export default class TopicTabItem extends Component<TopicItemPropType> {
 
 		const tabGoodStyle = isGoodOrTop ? Style.good : {};
 
-		return single ? (
+		return tabs.length && single ? (
 			<Text style={{ ...Style.tab, ...tabGoodStyle }}>{tabs[0]}</Text>
 		) : (
 			<View style={Style.tabs}>

@@ -1,4 +1,4 @@
-import { ETopicsTab } from 'cnode/config/constant';
+import { EMyTopicType, ETopicsTab } from 'cnode/config/constant';
 
 export enum EScreenName {
 	Home = 'Home',
@@ -10,14 +10,13 @@ export enum EScreenName {
 	Good = 'Good',
 
 	Me = 'Me',
+
 	Message = 'Message',
 	Posts = 'Posts',
 	Reply = 'Replay',
 	Collection = 'Collection',
 
 	Detail = 'Detail',
-
-	WebView = 'WebView',
 
 	Scan = 'Scan',
 }
@@ -42,18 +41,22 @@ export type RootStackParamList = {
 		tab: ETopicsTab.Good;
 	};
 
-	[EScreenName.Me]: undefined;
+	[EScreenName.Me]: {
+		type: string;
+	};
 	[EScreenName.Message]: undefined;
-	[EScreenName.Posts]: undefined;
-	[EScreenName.Reply]: undefined;
-	[EScreenName.Collection]: undefined;
+	[EScreenName.Posts]: {
+		type: EMyTopicType.Posts;
+	};
+	[EScreenName.Reply]: {
+		type: EMyTopicType.Reply;
+	};
+	[EScreenName.Collection]: {
+		type: EMyTopicType.Collection;
+	};
 	[EScreenName.Scan]: undefined;
 	[EScreenName.Detail]: {
 		id: string;
 		tab: ETopicsTab;
-	};
-	[EScreenName.WebView]: {
-		url: string;
-		title: string;
 	};
 };

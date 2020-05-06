@@ -25,3 +25,10 @@ export enum ETopicsTab {
 	Job = 'job',
 	Good = 'good',
 }
+
+// 用户页面主题页面类型
+export enum EMyTopicType {
+	Posts = 'posts',
+	Reply = 'replay',
+	Collection = 'collection',
+}

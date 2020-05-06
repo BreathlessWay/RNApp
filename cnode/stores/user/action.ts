@@ -5,6 +5,8 @@ import {
 	FetchUserCancelActionPayloadType,
 	FetchUserFulfilledActionPayloadType,
 	FetchUserRejectedActionPayloadType,
+	GetCollectionsFailedActionPayloadType,
+	GetCollectionsSuccessActionPayloadType,
 	GetMessageCountActionPayloadType,
 	GetMessageCountFailedActionPayloadType,
 	GetMessageCountSuccessActionPayloadType,
@@ -104,6 +106,26 @@ export type MakeOutCollectionSuccessActionType = ReturnType<
 	typeof makeOutCollectionSuccess
 >;
 
+export const getCollections = createAction('GET_COLLECTIONS');
+
+export type GetCollectionsActionType = ReturnType<typeof getCollections>;
+
+export const getCollectionsSuccess = createAction<
+	GetCollectionsSuccessActionPayloadType
+>('GET_COLLECTIONS_SUCCESS');
+
+export type GetCollectionsSuccessActionType = ReturnType<
+	typeof getCollectionsSuccess
+>;
+
+export const getCollectionsFailed = createAction<
+	GetCollectionsFailedActionPayloadType
+>('GET_COLLECTIONS_FAILED');
+
+export type GetCollectionsFailedActionType = ReturnType<
+	typeof getCollectionsFailed
+>;
+
 // UserActionType
 export type UserActionType =
 	| LoginActionType
@@ -118,4 +140,7 @@ export type UserActionType =
 	| MakeCollectionActionType
 	| MakeCollectionSuccessActionType
 	| MakeOutCollectionActionType
-	| MakeOutCollectionSuccessActionType;
+	| MakeOutCollectionSuccessActionType
+	| GetCollectionsActionType
+	| GetCollectionsSuccessActionType
+	| GetCollectionsFailedActionType;

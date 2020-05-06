@@ -6,6 +6,7 @@ import {
 	messageCountEpic,
 	makeCollectionEpic,
 	makeOutCollectionEpic,
+	getCollectionsEpic,
 } from './user/epic';
 import { getTopicsEpic } from './topics/epic';
 
@@ -15,6 +16,7 @@ const rootEpics = combineEpics(
 	messageCountEpic,
 	makeCollectionEpic,
 	makeOutCollectionEpic,
+	getCollectionsEpic,
 	getTopicsEpic,
 );
 

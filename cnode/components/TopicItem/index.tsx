@@ -39,9 +39,11 @@ export default class TopicItem extends Component<TopicItemPropType> {
 							/>
 							<Text style={Style.name}>{item.author.loginname}</Text>
 						</View>
-						<Text style={Style.count}>
-							{item.reply_count + '/' + item.visit_count}
-						</Text>
+						{item.reply_count ? (
+							<Text style={Style.count}>
+								{item.reply_count + '/' + item.visit_count}
+							</Text>
+						) : null}
 					</View>
 				</View>
 			</TouchableOpacity>

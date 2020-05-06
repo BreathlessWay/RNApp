@@ -14,6 +14,9 @@ import {
 	fetchUserCancel,
 	fetchUserFulfilled,
 	fetchUserRejected,
+	getCollections,
+	getCollectionsFailed,
+	getCollectionsSuccess,
 	getMessageCount,
 	getMessageCountFailed,
 	getMessageCountSuccess,
@@ -27,6 +30,7 @@ import {
 
 import { Epic } from 'redux-observable';
 import {
+	GetCollectionsResultType,
 	GetMessageCountResponseType,
 	LoginResponseType,
 	UserResponseType,
@@ -164,6 +168,25 @@ export const makeOutCollectionEpic: Epic<
 				map(() => makeOutCollectionSuccess({ id: action.payload.id })),
 				catchError((err, obs) => obs.pipe(delay(500))), // 当请求失败时重试
 				takeUntil(action$.pipe(filter(makeCollection.match))),
+			),
+		),
+	);
+
+export const getCollectionsEpic: Epic<
+	UserActionType,
+	UserActionType,
+	RootStateType
+> = (action$, state$) =>
+	action$.pipe(
+		filter(getCollections.match),
+		switchMap((action) =>
+			request<GetCollectionsResultType>({
+				url: `/topic_collect/${state$.value.user.userInfo?.loginname}`,
+			}).pipe(
+				map((result) => getCollectionsSuccess({ list: result.data })),
+				catchError((err: Error) =>
+					of(getCollectionsFailed({ error: err.message })),
+				),
 			),
 		),
 	);

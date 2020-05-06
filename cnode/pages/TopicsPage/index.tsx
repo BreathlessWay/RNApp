@@ -9,13 +9,13 @@ import { bindActionCreators, createSelector, Dispatch } from '@reduxjs/toolkit';
 import { MaterialTopTabNavigationProp } from '@react-navigation/material-top-tabs';
 import { EScreenName, RootStackParamList } from 'cnode/routes/type';
 import { RootStateType } from 'cnode/stores/rootType';
+import { TopicsItemType } from 'cnode/stores/topics/type';
 
 import { ETopicsTab } from 'cnode/config/constant';
 
 import rootActions from 'cnode/stores/rootActions';
 
 import Style from './style';
-import { TopicsItemType } from 'cnode/stores/topics/type';
 
 const mapStateToProps = (state: RootStateType, props: TopicsPagePropType) => {
 	return {

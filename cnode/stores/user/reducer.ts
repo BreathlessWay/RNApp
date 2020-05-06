@@ -21,6 +21,12 @@ import {
 	makeCollectionSuccess,
 	makeOutCollection,
 	MakeOutCollectionActionType,
+	getCollections,
+	GetCollectionsActionType,
+	getCollectionsSuccess,
+	GetCollectionsSuccessActionType,
+	GetCollectionsFailedActionType,
+	getCollectionsFailed,
 } from './action';
 
 import { UserStateType } from './type';
@@ -142,6 +148,33 @@ export const userReducer = createReducer<UserStateType>(initialUserState, {
 			...state,
 			loading: false,
 			collection: _collection,
+		};
+	},
+	[getCollections.type]: (state, action: GetCollectionsActionType) => {
+		return {
+			...state,
+			error: '',
+			loading: true,
+		};
+	},
+	[getCollectionsSuccess.type]: (
+		state,
+		action: GetCollectionsSuccessActionType,
+	) => {
+		return {
+			...state,
+			loading: false,
+			collection: action.payload.list,
+		};
+	},
+	[getCollectionsFailed.type]: (
+		state,
+		action: GetCollectionsFailedActionType,
+	) => {
+		return {
+			...state,
+			loading: false,
+			error: action.payload.error,
 		};
 	},
 });

@@ -83,3 +83,16 @@ export type MakeCollectionActionPayloadType = {
 export type MakeOutCollectionActionPayloadType = {
 	id: string;
 };
+
+export type GetCollectionsSuccessActionPayloadType = {
+	list: Array<TopicsItemType>;
+};
+
+export type GetCollectionsFailedActionPayloadType = {
+	error: string;
+};
+
+export type GetCollectionsResultType = {
+	success: boolean;
+	data: Array<TopicsItemType>;
+};

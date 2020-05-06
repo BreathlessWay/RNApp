@@ -4,7 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import DrawerRouter from 'cnode/routes/drawer';
 import TabRouter from 'cnode/routes/tab';
-import Index from 'cnode/pages';
 import ScanPage from 'cnode/pages/ScanPage';
 import TopicDetailPage from 'cnode/pages/TopicDetailPage';
 
@@ -32,14 +31,17 @@ export default class RootRouter extends Component {
 						component={TabRouter}
 						options={{ title: 'CNode' }}
 					/>
-					<Screen name={EScreenName.Me} component={DrawerRouter} />
+					<Screen
+						name={EScreenName.Me}
+						component={DrawerRouter}
+						options={{ title: '个人中心' }}
+					/>
 					<Screen
 						name={EScreenName.Scan}
 						component={ScanPage}
 						options={{ title: '扫描二维码' }}
 					/>
 					<Screen name={EScreenName.Detail} component={TopicDetailPage} />
-					<Screen name={EScreenName.WebView} component={Index} />
 				</Navigator>
 			</NavigationContainer>
 		);
