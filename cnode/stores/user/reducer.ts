@@ -16,6 +16,11 @@ import {
 	getMessageCountFailed,
 	GetMessageCountFailedActionType,
 	GetMessageCountSuccessActionType,
+	makeCollection,
+	MakeCollectionActionType,
+	makeCollectionSuccess,
+	makeOutCollection,
+	MakeOutCollectionActionType,
 } from './action';
 
 import { UserStateType } from './type';
@@ -28,6 +33,7 @@ export const initialUserState: UserStateType = {
 	id: '',
 	count: 0,
 	userInfo: null,
+	collection: [],
 };
 
 export const userReducer = createReducer<UserStateType>(initialUserState, {
@@ -47,6 +53,7 @@ export const userReducer = createReducer<UserStateType>(initialUserState, {
 			id: '',
 			count: 0,
 			userInfo: null,
+			collection: [],
 		};
 	},
 	[getMessageCount.type]: (state) => {
@@ -102,6 +109,39 @@ export const userReducer = createReducer<UserStateType>(initialUserState, {
 			accesstoken: '',
 			error: action.payload.error,
 			userInfo: null,
+		};
+	},
+	[makeCollection.type]: (state, action: MakeCollectionActionType) => {
+		return {
+			...state,
+			loading: true,
+		};
+	},
+	[makeCollectionSuccess.type]: (state, action: MakeCollectionActionType) => {
+		const _collection = state.collection.concat([action.payload.item]);
+		return {
+			...state,
+			loading: false,
+			collection: _collection,
+		};
+	},
+	[makeOutCollection.type]: (state, action: MakeOutCollectionActionType) => {
+		return {
+			...state,
+			loading: true,
+		};
+	},
+	[makeCollectionSuccess.type]: (
+		state,
+		action: MakeOutCollectionActionType,
+	) => {
+		const _collection = state.collection.filter(
+			(item) => item.id !== action.payload.id,
+		);
+		return {
+			...state,
+			loading: false,
+			collection: _collection,
 		};
 	},
 });

@@ -1,3 +1,5 @@
+import { TopicsItemType } from 'cnode/stores/topics/type';
+
 export type UserStateType = {
 	isLogin: boolean;
 	loading: boolean;
@@ -14,6 +16,7 @@ export type UserStateType = {
 		recent_topics: Array<any>;
 		recent_replies: Array<any>;
 	} | null;
+	collection: Array<TopicsItemType>;
 };
 
 export type LoginActionPayloadType = {
@@ -71,4 +74,12 @@ export type UserResponseType = {
 			last_reply_at: string;
 		}>;
 	};
+};
+
+export type MakeCollectionActionPayloadType = {
+	item: TopicsItemType;
+};
+
+export type MakeOutCollectionActionPayloadType = {
+	id: string;
 };

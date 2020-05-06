@@ -13,6 +13,8 @@ import { RootStateType } from 'cnode/stores/rootType';
 import { EScreenName, RootStackParamList } from 'cnode/routes/type';
 import { TopicDetailType } from 'cnode/stores/topics/type';
 
+import rootActions from 'cnode/stores/rootActions';
+
 import { request } from 'cnode/utils/request';
 import { Subscription } from 'rxjs';
 import dayjs from 'dayjs';
@@ -39,7 +41,13 @@ const mapStateToProps = (
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
-	bindActionCreators({}, dispatch);
+	bindActionCreators(
+		{
+			makeCollection: (item) => rootActions.makeCollection({ item }),
+			makeOutCollection: (id) => rootActions.makeOutCollection({ id }),
+		},
+		dispatch,
+	);
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
@@ -132,6 +140,9 @@ class TopicDetailPage extends Component<
 			return;
 		}
 		const { is_collect } = this.state;
+		is_collect
+			? this.props.makeOutCollection(this.detail.id)
+			: this.props.makeCollection(this.detail);
 		this.setState({
 			is_collect: !is_collect,
 		});

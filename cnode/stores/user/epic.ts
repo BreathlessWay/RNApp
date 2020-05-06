@@ -1,6 +1,7 @@
 import {
 	catchError,
 	concatAll,
+	delay,
 	filter,
 	map,
 	switchMap,
@@ -17,6 +18,10 @@ import {
 	getMessageCountFailed,
 	getMessageCountSuccess,
 	login,
+	makeCollection,
+	makeCollectionSuccess,
+	makeOutCollection,
+	makeOutCollectionSuccess,
 	UserActionType,
 } from './action';
 
@@ -113,6 +118,52 @@ export const fetchUserEpic: Epic<
 				// takeUntil: 当接收到cancel的action时停止ajax请求
 				// 这个takeUntil需要在ajax的pipe中，因为是针对ajax的中断
 				takeUntil(action$.pipe(filter(fetchUserCancel.match))),
+			),
+		),
+	);
+
+export const makeCollectionEpic: Epic<
+	UserActionType,
+	UserActionType,
+	RootStateType
+> = (action$, state$) =>
+	action$.pipe(
+		filter(makeCollection.match),
+		switchMap((action) =>
+			request({
+				url: '/topic_collect/collect',
+				method: EMethod.POST,
+				body: {
+					accesstoken: state$.value.user.accesstoken,
+					topic_id: action.payload.item.id,
+				},
+			}).pipe(
+				map(() => makeCollectionSuccess({ item: action.payload.item })),
+				catchError((err, obs) => obs.pipe(delay(500))), // 当请求失败时重试
+				takeUntil(action$.pipe(filter(makeOutCollection.match))),
+			),
+		),
+	);
+
+export const makeOutCollectionEpic: Epic<
+	UserActionType,
+	UserActionType,
+	RootStateType
+> = (action$, state$) =>
+	action$.pipe(
+		filter(makeOutCollection.match),
+		switchMap((action) =>
+			request({
+				url: '/topic_collect/de_collect',
+				method: EMethod.POST,
+				body: {
+					accesstoken: state$.value.user.accesstoken,
+					topic_id: action.payload.id,
+				},
+			}).pipe(
+				map(() => makeOutCollectionSuccess({ id: action.payload.id })),
+				catchError((err, obs) => obs.pipe(delay(500))), // 当请求失败时重试
+				takeUntil(action$.pipe(filter(makeCollection.match))),
 			),
 		),
 	);
