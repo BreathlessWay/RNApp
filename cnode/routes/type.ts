@@ -57,6 +57,6 @@ export type RootStackParamList = {
 	[EScreenName.Scan]: undefined;
 	[EScreenName.Detail]: {
 		id: string;
-		tab: ETopicsTab;
+		tab?: ETopicsTab;
 	};
 };

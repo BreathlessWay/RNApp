@@ -65,7 +65,6 @@ class MyTopicPage extends Component<
 	handlePress = (item: TopicsItemType) => {
 		this.props.navigation.navigate(EScreenName.Detail, {
 			id: item.id,
-			tab: item.tab,
 		});
 	};
 

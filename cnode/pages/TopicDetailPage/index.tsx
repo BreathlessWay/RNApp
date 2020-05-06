@@ -23,8 +23,9 @@ import Style from './style';
 
 const getTopicDetail = createSelector(
 	(state: RootStateType, props: TopicDetailPagePropType) => {
-		const { tab, id } = props.route.params,
-			list = state.topics[tab].list;
+		const { tab, id } = props.route.params;
+		if (tab === void 0) return null;
+		const list = state.topics[tab].list;
 		return list.find((item) => item.id === id);
 	},
 	(detail) => detail,
