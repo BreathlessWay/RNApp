@@ -3,8 +3,6 @@ import { catchError, map, pluck } from 'rxjs/operators';
 
 import { Alert } from 'react-native';
 
-import * as Qs from 'qs';
-
 import { BASIC_URL } from 'cnode/config/constant';
 
 export enum EMethod {

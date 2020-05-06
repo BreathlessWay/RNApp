@@ -3,11 +3,10 @@ import {
 	concatAll,
 	filter,
 	map,
-	mergeMap,
 	switchMap,
 	takeUntil,
 } from 'rxjs/operators';
-import { merge, of } from 'rxjs';
+import { of } from 'rxjs';
 
 import {
 	fetchUser,

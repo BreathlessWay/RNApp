@@ -9,6 +9,9 @@
 │   │   ├── DrawerComponent/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
+│   │   ├── TopicItem/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
 │   │   └── package.json
 │   ├── config/
 │   │   ├── constant.ts
@@ -275,5 +278,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-84 directories, 190 files
+85 directories, 192 files
 ```

@@ -13,49 +13,54 @@ import {
 
 import { TopicsStateType } from './type';
 
-import { ETopicsTag, PAGE_SIZE } from 'cnode/config/constant';
+import { ETopicsTab, PAGE_SIZE } from 'cnode/config/constant';
 
 export const initialTopicsState: TopicsStateType = {
-	[ETopicsTag.All]: {
+	[ETopicsTab.All]: {
 		loading: false,
 		hasMore: true,
 		refreshing: false,
+		empty: true,
 		page: 1,
 		limit: PAGE_SIZE,
 		error: '',
 		list: [],
 	},
-	[ETopicsTag.Ask]: {
+	[ETopicsTab.Ask]: {
 		loading: false,
 		hasMore: true,
 		refreshing: false,
+		empty: true,
 		page: 1,
 		limit: PAGE_SIZE,
 		error: '',
 		list: [],
 	},
-	[ETopicsTag.Share]: {
+	[ETopicsTab.Share]: {
 		loading: false,
 		hasMore: true,
 		refreshing: false,
+		empty: true,
 		page: 1,
 		limit: PAGE_SIZE,
 		error: '',
 		list: [],
 	},
-	[ETopicsTag.Job]: {
+	[ETopicsTab.Job]: {
 		loading: false,
 		hasMore: true,
 		refreshing: false,
+		empty: true,
 		page: 1,
 		limit: PAGE_SIZE,
 		error: '',
 		list: [],
 	},
-	[ETopicsTag.Good]: {
+	[ETopicsTab.Good]: {
 		loading: false,
 		hasMore: true,
 		refreshing: false,
+		empty: true,
 		page: 1,
 		limit: PAGE_SIZE,
 		error: '',
@@ -63,29 +68,38 @@ export const initialTopicsState: TopicsStateType = {
 	},
 };
 
-export const topicsReducer = createReducer<any>(initialTopicsState, {
-	[getTopics.type]: (state, action: GetTopicsActionType) => {
-		return {
-			...state,
-			loading: true,
-		};
+export const topicsReducer = createReducer<TopicsStateType>(
+	initialTopicsState,
+	{
+		[getTopics.type]: (state, action: GetTopicsActionType) => {
+			const item = state[action.payload.tab],
+				_refreshing = Boolean(action.payload.refreshing);
+			return {
+				...state,
+				[action.payload.tab]: {
+					...item,
+					refreshing: _refreshing,
+					loading: !_refreshing,
+				},
+			};
+		},
+		[getTopicsSuccess.type]: (state, action: GetTopicsSuccessActionType) => {
+			return {
+				...state,
+				...action.payload,
+			};
+		},
+		[getTopicsFailed.type]: (state, action: GetTopicsFailedActionType) => {
+			return {
+				...state,
+				...action.payload,
+			};
+		},
+		[getTopicsCanceled.type]: (state, action: GetTopicsCanceledActionType) => {
+			return {
+				...state,
+				...action.payload,
+			};
+		},
 	},
-	[getTopicsSuccess.type]: (state, action: GetTopicsSuccessActionType) => {
-		return {
-			...state,
-			loading: true,
-		};
-	},
-	[getTopicsFailed.type]: (state, action: GetTopicsFailedActionType) => {
-		return {
-			...state,
-			loading: true,
-		};
-	},
-	[getTopicsCanceled.type]: (state, action: GetTopicsCanceledActionType) => {
-		return {
-			...state,
-			loading: true,
-		};
-	},
-});
+);

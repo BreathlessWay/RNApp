@@ -1,4 +1,4 @@
-import { ETopicsTag } from 'cnode/config/constant';
+import { ETopicsTab } from 'cnode/config/constant';
 
 export enum EScreenName {
 	Home = 'Home',
@@ -24,22 +24,22 @@ export enum EScreenName {
 
 export type RootStackParamList = {
 	[EScreenName.Home]: {
-		tab: ETopicsTag;
+		tab: ETopicsTab;
 	};
 	[EScreenName.All]: {
-		tab: ETopicsTag.All;
+		tab: ETopicsTab.All;
 	};
 	[EScreenName.Ask]: {
-		tab: ETopicsTag.Ask;
+		tab: ETopicsTab.Ask;
 	};
 	[EScreenName.Share]: {
-		tab: ETopicsTag.Share;
+		tab: ETopicsTab.Share;
 	};
 	[EScreenName.Job]: {
-		tab: ETopicsTag.Job;
+		tab: ETopicsTab.Job;
 	};
 	[EScreenName.Good]: {
-		tab: ETopicsTag.Good;
+		tab: ETopicsTab.Good;
 	};
 
 	[EScreenName.Me]: undefined;
@@ -49,7 +49,7 @@ export type RootStackParamList = {
 	[EScreenName.Collection]: undefined;
 	[EScreenName.Scan]: undefined;
 	[EScreenName.Detail]: {
-		item: any;
+		id: string;
 	};
 	[EScreenName.WebView]: {
 		url: string;

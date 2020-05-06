@@ -18,7 +18,7 @@ export const PAGE_SIZE = 10;
 export const THEME_COLOR = '#80bd01';
 
 // 列表tag
-export enum ETopicsTag {
+export enum ETopicsTab {
 	All = '',
 	Ask = 'ask',
 	Share = 'share',

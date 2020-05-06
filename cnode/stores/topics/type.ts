@@ -1,4 +1,4 @@
-import { ETopicsTag } from 'cnode/config/constant';
+import { ETopicsTab } from 'cnode/config/constant';
 
 export type TopicsItemType = {
 	id: string;
@@ -18,52 +18,19 @@ export type TopicsItemType = {
 	};
 };
 
+export type TopicListItemType = {
+	limit: number;
+	page: number;
+	loading: boolean;
+	refreshing: boolean;
+	error: string;
+	hasMore: boolean;
+	empty: boolean;
+	list: Array<TopicsItemType>;
+};
+
 export type TopicsStateType = {
-	[ETopicsTag.All]: {
-		loading: boolean;
-		hasMore: boolean;
-		refreshing: boolean;
-		page: number;
-		limit: number;
-		error: string;
-		list: Array<TopicsItemType>;
-	};
-	[ETopicsTag.Ask]: {
-		loading: boolean;
-		hasMore: boolean;
-		refreshing: boolean;
-		page: number;
-		limit: number;
-		error: string;
-		list: Array<TopicsItemType>;
-	};
-	[ETopicsTag.Share]: {
-		loading: boolean;
-		hasMore: boolean;
-		refreshing: boolean;
-		page: number;
-		limit: number;
-		error: string;
-		list: Array<TopicsItemType>;
-	};
-	[ETopicsTag.Job]: {
-		loading: boolean;
-		hasMore: boolean;
-		refreshing: boolean;
-		page: number;
-		limit: number;
-		error: string;
-		list: Array<TopicsItemType>;
-	};
-	[ETopicsTag.Good]: {
-		loading: boolean;
-		hasMore: boolean;
-		refreshing: boolean;
-		page: number;
-		limit: number;
-		error: string;
-		list: Array<TopicsItemType>;
-	};
+	[key in ETopicsTab]: TopicListItemType;
 };
 
 export type GetTopicsResponseType = {
@@ -72,20 +39,18 @@ export type GetTopicsResponseType = {
 };
 
 export type GetTopicsActionPayloadType = {
-	tag: ETopicsTag;
-	refreshing: boolean;
+	tab: ETopicsTab;
+	refreshing?: boolean;
 };
 
 export type GetTopicsSuccessActionPayloadType = {
-	tag: ETopicsTag;
-	data: GetTopicsResponseType['data'];
+	[key: string]: TopicListItemType;
 };
 
 export type GetTopicsFailedActionPayloadType = {
-	tag: ETopicsTag;
-	error: string;
+	[key: string]: TopicListItemType;
 };
 
 export type GetTopicsCanceledActionPayloadType = {
-	tag: ETopicsTag;
+	[key: string]: TopicListItemType;
 };
