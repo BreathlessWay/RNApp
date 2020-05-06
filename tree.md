@@ -21,6 +21,9 @@
 │   │   ├── ScanPage/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
+│   │   ├── TopicDetailPage/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
 │   │   ├── TopicsPage/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
@@ -278,5 +281,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-85 directories, 192 files
+86 directories, 194 files
 ```

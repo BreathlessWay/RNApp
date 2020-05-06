@@ -46,6 +46,7 @@ export const request = <T extends { success: boolean; error_msg?: string }>({
 	return ajax(options).pipe(
 		pluck<AjaxResponse, T>('response'),
 		map((result) => {
+			console.log({ result });
 			if (result.success) {
 				return result;
 			} else {

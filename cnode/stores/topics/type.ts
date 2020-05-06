@@ -54,3 +54,36 @@ export type GetTopicsFailedActionPayloadType = {
 export type GetTopicsCanceledActionPayloadType = {
 	[key: string]: TopicListItemType;
 };
+
+export type TopicReplyItemType = {
+	id: string;
+	author: {
+		loginname: string;
+		avatar_url: string;
+	};
+	content: string;
+	ups: Array<string>;
+	create_at: string;
+	reply_id: string | null;
+	is_uped: boolean;
+};
+
+export type TopicDetailType = {
+	id: string;
+	author_id: string;
+	tab: ETopicsTab;
+	content: string;
+	title: string;
+	last_reply_at: string;
+	good: boolean;
+	top: boolean;
+	reply_count: number;
+	visit_count: number;
+	create_at: string;
+	author: {
+		loginname: string;
+		avatar_url: string;
+	};
+	replies: Array<TopicReplyItemType>;
+	is_collect: boolean;
+};

@@ -6,6 +6,7 @@ import DrawerRouter from 'cnode/routes/drawer';
 import TabRouter from 'cnode/routes/tab';
 import Index from 'cnode/pages';
 import ScanPage from 'cnode/pages/ScanPage';
+import TopicDetailPage from 'cnode/pages/TopicDetailPage';
 
 import { EScreenName, RootStackParamList } from 'cnode/routes/type';
 
@@ -37,7 +38,7 @@ export default class RootRouter extends Component {
 						component={ScanPage}
 						options={{ title: '扫描二维码' }}
 					/>
-					<Screen name={EScreenName.Detail} component={Index} />
+					<Screen name={EScreenName.Detail} component={TopicDetailPage} />
 					<Screen name={EScreenName.WebView} component={Index} />
 				</Navigator>
 			</NavigationContainer>

@@ -50,6 +50,7 @@ export type RootStackParamList = {
 	[EScreenName.Scan]: undefined;
 	[EScreenName.Detail]: {
 		id: string;
+		tab: ETopicsTab;
 	};
 	[EScreenName.WebView]: {
 		url: string;
