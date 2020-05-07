@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect, ConnectedProps } from 'react-redux';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator } from 'react-native';
 import TopicItem from 'cnode/components/TopicItem';
 
 import { RouteProp } from '@react-navigation/native';
@@ -11,7 +11,7 @@ import { EScreenName, RootStackParamList } from 'cnode/routes/type';
 import { RootStateType } from 'cnode/stores/rootType';
 import { TopicsItemType } from 'cnode/stores/topics/type';
 
-import { EMyTopicType, ETopicsTab } from 'cnode/config/constant';
+import { EMyTopicType } from 'cnode/config/constant';
 
 import rootActions from 'cnode/stores/rootActions';
 
@@ -35,6 +35,7 @@ const getTopicList = createSelector(
 const mapStateToProps = (state: RootStateType, props: MyTopicPagePropType) => {
 	return {
 		list: getTopicList(state, props),
+		loading: state.user.loading,
 	};
 };
 
@@ -59,7 +60,9 @@ class MyTopicPage extends Component<
 	MyTopicPagePropType & MyTopicPageReduxPropType
 > {
 	componentDidMount(): void {
-		this.props.getCollections();
+		if (this.props.route.params.type === EMyTopicType.Collection) {
+			this.props.getCollections();
+		}
 	}
 
 	handlePress = (item: TopicsItemType) => {
@@ -69,8 +72,10 @@ class MyTopicPage extends Component<
 	};
 
 	render(): React.ReactNode {
-		const { list } = this.props;
-		return (
+		const { list, loading } = this.props;
+		return loading ? (
+			<ActivityIndicator size="large" color="#ccc" />
+		) : (
 			<FlatList
 				data={list}
 				keyExtractor={(item) => item.id}

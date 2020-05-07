@@ -198,6 +198,7 @@ class TopicDetailPage extends Component<
 										<Image
 											source={{ uri: `https:${node.attribs.src}` }}
 											style={Style.image}
+											resizeMode="contain"
 										/>
 									);
 								}

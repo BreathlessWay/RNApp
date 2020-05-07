@@ -39,7 +39,7 @@ export default class TopicItem extends Component<TopicItemPropType> {
 							/>
 							<Text style={Style.name}>{item.author.loginname}</Text>
 						</View>
-						{item.reply_count ? (
+						{item.reply_count !== void 0 ? (
 							<Text style={Style.count}>
 								{item.reply_count + '/' + item.visit_count}
 							</Text>
