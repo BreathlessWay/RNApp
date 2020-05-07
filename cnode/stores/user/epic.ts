@@ -5,6 +5,7 @@ import {
 	filter,
 	map,
 	switchMap,
+	take,
 	takeUntil,
 } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -144,7 +145,7 @@ export const makeCollectionEpic: Epic<
 			}).pipe(
 				map(() => makeCollectionSuccess({ item: action.payload.item })),
 				catchError((err, obs) => obs.pipe(delay(500))), // 当请求失败时重试
-				takeUntil(action$.pipe(filter(makeOutCollection.match))),
+				take(3), // 重试3次
 			),
 		),
 	);
@@ -167,7 +168,7 @@ export const makeOutCollectionEpic: Epic<
 			}).pipe(
 				map(() => makeOutCollectionSuccess({ id: action.payload.id })),
 				catchError((err, obs) => obs.pipe(delay(500))), // 当请求失败时重试
-				takeUntil(action$.pipe(filter(makeCollection.match))),
+				take(3), // 重试3次
 			),
 		),
 	);

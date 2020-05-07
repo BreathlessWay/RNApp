@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect, ConnectedProps } from 'react-redux';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, RefreshControl } from 'react-native';
 import TopicItem from 'cnode/components/TopicItem';
 
 import { RouteProp } from '@react-navigation/native';
@@ -35,7 +35,7 @@ const getTopicList = createSelector(
 const mapStateToProps = (state: RootStateType, props: MyTopicPagePropType) => {
 	return {
 		list: getTopicList(state, props),
-		loading: state.user.loading,
+		user: state.user,
 	};
 };
 
@@ -43,6 +43,8 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
 	bindActionCreators(
 		{
 			getCollections: () => rootActions.getCollections(),
+			fetchUser: ({ avatar_url, loginname, id }) =>
+				rootActions.fetchUser({ avatar_url, id, loginname, success: true }),
 		},
 		dispatch,
 	);
@@ -88,12 +90,42 @@ class MyTopicPage extends Component<
 		});
 	};
 
+	handleRefresh = () => {
+		const {
+			route: {
+				params: { type },
+			},
+			getCollections,
+			fetchUser,
+			user: { id, userInfo },
+		} = this.props;
+		switch (type) {
+			case EMyTopicType.Posts:
+			case EMyTopicType.Reply: {
+				fetchUser({
+					avatar_url: userInfo?.avatar_url,
+					loginname: userInfo?.loginname,
+					id,
+				});
+				break;
+			}
+			case EMyTopicType.Collection: {
+				getCollections();
+				break;
+			}
+		}
+	};
+
 	render(): React.ReactNode {
-		const { list, loading } = this.props;
-		return loading ? (
-			<ActivityIndicator size="large" color="#ccc" />
-		) : (
+		const {
+			list,
+			user: { loading },
+		} = this.props;
+		return (
 			<FlatList
+				refreshControl={
+					<RefreshControl onRefresh={this.handleRefresh} refreshing={loading} />
+				}
 				data={list}
 				keyExtractor={(item) => item.id}
 				renderItem={({ item }) => (
