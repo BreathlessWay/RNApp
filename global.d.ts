@@ -61,5 +61,7 @@ declare module 'react-native-easy-toast' {
 namespace NodeJS {
 	interface Global {
 		ref: MutableRefObject<Toast | undefined>;
+		stackNavigation: any;
+		drawerNavigation: any;
 	}
 }

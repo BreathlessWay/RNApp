@@ -2,4 +2,4 @@ import { createAction } from '@reduxjs/toolkit';
 
 import {} from './type';
 
-export type AppActionType = any;
+export type MessageActionType = any;

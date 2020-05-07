@@ -111,3 +111,4 @@
 14. redux 全家桶结合 typescript
     - [redux 官方指南](https://redux.js.org/recipes/usage-with-typescript/#typing-the-usedispatch-hook)
     - [react 和 redux 以及各种中间件结合 typescript](https://github.com/piotrwitek/react-redux-typescript-guide)
+15. redux 只能存序列化数据，对于 navigation 对象不能存入，所以只能挂在 global 上

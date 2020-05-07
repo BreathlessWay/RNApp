@@ -5,10 +5,10 @@ import {
 	createDrawerNavigator,
 	DrawerContentScrollView,
 } from '@react-navigation/drawer';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import DrawerComponent from 'cnode/components/DrawerComponent';
-import Index from 'cnode/pages';
-import { View } from 'react-native';
 import MyTopicPage from 'cnode/pages/MyTopicPage';
+import MePage from 'cnode/pages/MePage';
 
 import { bindActionCreators, Dispatch } from '@reduxjs/toolkit';
 import { RouteProp } from '@react-navigation/native';
@@ -16,6 +16,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { EScreenName, RootStackParamList } from 'cnode/routes/type';
 import { EMyTopicType } from 'cnode/config/constant';
 import { RootStateType } from 'cnode/stores/rootType';
+import MessagePage from 'cnode/pages/MessagePage';
 
 const { Navigator, Screen } = createDrawerNavigator<RootStackParamList>();
 
@@ -38,21 +39,36 @@ export type DrawerRouterPropType = {
 class DrawerRouter extends Component<
 	DrawerRouterPropType & DrawerRouterReduxPropType
 > {
-	componentDidMount(): void {}
+	componentDidMount(): void {
+		const { navigation } = this.props;
+		global.stackNavigation = navigation;
+		navigation.setOptions({
+			headerRight: () => (
+				<FontAwesome
+					name={'bars'}
+					color={'#fff'}
+					style={{ paddingHorizontal: 10 }}
+					size={22}
+					onPress={() => global.drawerNavigation.toggleDrawer()}
+				/>
+			),
+		});
+	}
 
 	render(): React.ReactNode {
 		return (
 			<Navigator
 				drawerPosition="right"
 				drawerContent={(props) => {
+					global.drawerNavigation = props.navigation;
 					return (
 						<DrawerContentScrollView {...props}>
 							<DrawerComponent navigation={props.navigation as any} />
 						</DrawerContentScrollView>
 					);
 				}}>
-				<Screen name={EScreenName.Home} component={Index} />
-				<Screen name={EScreenName.Message} component={View} />
+				<Screen name={EScreenName.Home} component={MePage} />
+				<Screen name={EScreenName.Message} component={MessagePage} />
 				<Screen
 					name={EScreenName.Posts}
 					component={MyTopicPage}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { connect, ConnectedProps } from 'react-redux';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -52,6 +52,23 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 		}
 		return '';
 	}
+
+	handleLogout = () => {
+		const { navigation, logout } = this.props;
+		Alert.alert('确认退出？', '', [
+			{
+				text: '取消',
+				onPress: () => navigation.toggleDrawer(),
+			},
+			{
+				text: '退出',
+				onPress: () => {
+					navigation.toggleDrawer();
+					logout();
+				},
+			},
+		]);
+	};
 
 	render(): React.ReactNode {
 		const {
@@ -139,10 +156,7 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 							<Text style={Style.label}>退出</Text>
 						</View>
 					)}
-					onPress={() => {
-						navigation.toggleDrawer();
-						this.props.logout();
-					}}
+					onPress={this.handleLogout}
 				/>
 			</View>
 		) : (

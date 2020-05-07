@@ -35,6 +35,7 @@ export type TabRouterPropType = {
 
 class TabRouter extends Component<TabRouterPropType & TabRouterReduxPropType> {
 	componentDidMount(): void {
+		global.stackNavigation = this.props.navigation;
 		this.setHeader();
 	}
 

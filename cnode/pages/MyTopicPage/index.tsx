@@ -77,6 +77,9 @@ class MyTopicPage extends Component<
 				break;
 			}
 		}
+		global.stackNavigation.setOptions({
+			title,
+		});
 	}
 
 	handlePress = (item: TopicsItemType) => {

@@ -21,6 +21,12 @@
 │   │   └── package.json
 │   ├── package.json
 │   ├── pages/
+│   │   ├── MePage/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
+│   │   ├── MessagePage/
+│   │   │   ├── index.tsx
+│   │   │   └── style.ts
 │   │   ├── MyTopicPage/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
@@ -33,7 +39,6 @@
 │   │   ├── TopicsPage/
 │   │   │   ├── index.tsx
 │   │   │   └── style.ts
-│   │   ├── index.tsx
 │   │   └── package.json
 │   ├── routes/
 │   │   ├── drawer.tsx
@@ -45,6 +50,11 @@
 │   │   └── package.json
 │   ├── stores/
 │   │   ├── app/
+│   │   │   ├── action.ts
+│   │   │   ├── epic.ts
+│   │   │   ├── reducer.ts
+│   │   │   └── type.ts
+│   │   ├── message/
 │   │   │   ├── action.ts
 │   │   │   ├── epic.ts
 │   │   │   ├── reducer.ts
@@ -287,5 +297,5 @@
 │       └── request.ts
 └── tsconfig.json
 
-88 directories, 198 files
+91 directories, 205 files
 ```
