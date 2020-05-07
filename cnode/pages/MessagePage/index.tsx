@@ -18,7 +18,12 @@ const mapStateToProps = (state: RootStateType) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
-	bindActionCreators({}, dispatch);
+	bindActionCreators(
+		{
+			getMessage: () => rootActions.getMessage(),
+		},
+		dispatch,
+	);
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
@@ -36,6 +41,7 @@ class MessagePage extends Component<
 		global.stackNavigation.setOptions({
 			title: '我的消息',
 		});
+		this.props.getMessage();
 	}
 
 	render() {
