@@ -60,8 +60,22 @@ class MyTopicPage extends Component<
 	MyTopicPagePropType & MyTopicPageReduxPropType
 > {
 	componentDidMount(): void {
-		if (this.props.route.params.type === EMyTopicType.Collection) {
-			this.props.getCollections();
+		const type = this.props.route.params.type;
+		let title = '';
+		switch (type) {
+			case EMyTopicType.Posts: {
+				title = '我的发帖';
+				break;
+			}
+			case EMyTopicType.Reply: {
+				title = '我的回复';
+				break;
+			}
+			case EMyTopicType.Collection: {
+				title = '我的收藏';
+				this.props.getCollections();
+				break;
+			}
 		}
 	}
 

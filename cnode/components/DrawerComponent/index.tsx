@@ -81,7 +81,7 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 					)}
 					onPress={() => {
 						navigation.closeDrawer();
-						navigation.navigate(EScreenName.Message);
+						navigation.jumpTo(EScreenName.Message);
 					}}
 				/>
 				<DrawerItem
@@ -99,7 +99,7 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 					)}
 					onPress={() => {
 						navigation.toggleDrawer();
-						navigation.navigate(EScreenName.Posts);
+						navigation.jumpTo(EScreenName.Posts);
 					}}
 				/>
 				<DrawerItem
@@ -113,7 +113,7 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 					)}
 					onPress={() => {
 						navigation.toggleDrawer();
-						navigation.navigate(EScreenName.Reply);
+						navigation.jumpTo(EScreenName.Reply);
 					}}
 				/>
 				<DrawerItem
@@ -127,7 +127,7 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 					)}
 					onPress={() => {
 						navigation.toggleDrawer();
-						navigation.navigate(EScreenName.Collection);
+						navigation.jumpTo(EScreenName.Collection);
 					}}
 				/>
 				<DrawerItem
