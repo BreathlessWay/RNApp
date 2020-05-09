@@ -4,6 +4,7 @@
 
 - GitHub Trending： `import App from 'trending/App'`
 - 豆瓣：`import App from 'douban/App'`
+- CNode：`import App from 'cnode/App'`
 
 > 项目介绍 ~~因为懒，所以只测试了 iOS~~
 
