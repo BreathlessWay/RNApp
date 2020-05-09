@@ -5,7 +5,6 @@ import {
 	filter,
 	map,
 	switchMap,
-	take,
 	takeUntil,
 } from 'rxjs/operators';
 import { of } from 'rxjs';

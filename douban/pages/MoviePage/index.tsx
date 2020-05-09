@@ -73,12 +73,12 @@ const MoviePage: FC = () => {
 	}) => {
 		let params: { city?: string; start: number; count: number } = {
 				start: queryStart,
-				count,
+				count: tip,
 			},
 			url = '/movie/top250';
 
 		if (queryType === CurrentMovieListType.Hot) {
-			params = { city: queryCity, start: queryStart, count };
+			params = { city: queryCity, start: queryStart, count: tip };
 			url = '/movie/in_theaters';
 		}
 

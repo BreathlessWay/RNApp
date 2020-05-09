@@ -1,14 +1,14 @@
 import { StyleSheet } from 'react-native';
 
-import { FlexDirectionStyle } from 'cnode/styles/common';
-
-import { THEME_COLOR } from 'cnode/config/constant';
+import { FlexDirectionStyle, ShadowStyle } from 'cnode/styles/common';
 
 const Style = StyleSheet.create({
 	item: {
 		marginVertical: 5,
-		padding: 10,
+		paddingHorizontal: 10,
+		paddingVertical: 15,
 		backgroundColor: '#fff',
+		...ShadowStyle,
 	},
 	top: {
 		...FlexDirectionStyle,
@@ -16,7 +16,8 @@ const Style = StyleSheet.create({
 	},
 	title: {
 		flex: 1,
-		fontSize: 18,
+		fontSize: 20,
+		paddingRight: 5,
 	},
 	bottom: {
 		...FlexDirectionStyle,
@@ -26,16 +27,20 @@ const Style = StyleSheet.create({
 		...FlexDirectionStyle,
 	},
 	avatar: {
-		width: 20,
-		height: 20,
+		width: 30,
+		height: 30,
 		borderRadius: 4,
 	},
 	name: {
-		fontSize: 16,
-		marginLeft: 5,
+		fontSize: 18,
+		marginLeft: 10,
 		color: '#666',
 	},
 	count: {
+		fontSize: 14,
+		color: '#999',
+	},
+	tip: {
 		fontSize: 12,
 		color: '#ccc',
 	},

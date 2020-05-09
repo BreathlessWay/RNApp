@@ -7,7 +7,7 @@ export const movieState: MovieStateType = {
 	params: {
 		city: '',
 		start: 0,
-		count: PAGE_SIZE,
+		tip: PAGE_SIZE,
 	},
 
 	list: {

@@ -5,7 +5,7 @@ export const musicState: MusicStateType = {
 	params: {
 		q: '',
 		start: 0,
-		count: PAGE_SIZE,
+		tip: PAGE_SIZE,
 	},
 
 	total: 0,

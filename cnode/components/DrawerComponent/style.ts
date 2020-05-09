@@ -49,7 +49,7 @@ const Style = StyleSheet.create({
 		marginHorizontal: 4,
 		color: '#333',
 	},
-	count: {
+	tip: {
 		backgroundColor: 'red',
 		width: 16,
 		borderRadius: 7,
