@@ -21,7 +21,7 @@
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-douban-movie-hot.png)
    ![image](https://raw.githubusercontent.com/BreathlessWay/RNApp/master/screenshort/rn-doouban-movie-top.png)
 
-3. TODO CNode App，使用 React-Native+Redux+RxJs+Typescript+React-Navigation 开发
+3. CNode App，使用 React-Native+Redux+RxJs+Typescript+React-Navigation 开发
 
 > 所用框架/库/组件
 

@@ -79,14 +79,20 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 
 		return isLogin && userInfo ? (
 			<View>
-				<View style={Style.user}>
+				<TouchableOpacity
+					style={Style.user}
+					activeOpacity={1}
+					onPress={() => {
+						navigation.closeDrawer();
+						navigation.jumpTo(EScreenName.Home);
+					}}>
 					<Image source={{ uri: userInfo.avatar_url }} style={Style.avatar} />
 					<Text style={Style.name}>{userInfo.loginname}</Text>
 					<View style={Style.info}>
 						<Text style={Style.time}>{this.joinTime}</Text>
 						<Text style={Style.score}>积分: {userInfo.score}</Text>
 					</View>
-				</View>
+				</TouchableOpacity>
 				<DrawerItem
 					label={() => (
 						<View style={Style.item}>
@@ -94,7 +100,7 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 								<Feather name={'at-sign'} size={14} color={'#666'} />
 							</View>
 							<Text style={Style.label}>我的消息</Text>
-							{count ? <Text style={Style.count}>{count}</Text> : null}
+							{count ? <Text style={Style.tip}>{count}</Text> : null}
 						</View>
 					)}
 					onPress={() => {
