@@ -17,6 +17,7 @@ import dayjs from 'dayjs';
 
 import Style from './style';
 import rootActions from 'cnode/stores/rootActions';
+import { EMessageTab } from 'cnode/config/constant';
 
 const mapStateToProps = (state: RootStateType) => {
 	return {
@@ -98,7 +99,9 @@ class DrawerComponent extends Component<DrawerComponentPropType> {
 					)}
 					onPress={() => {
 						navigation.closeDrawer();
-						navigation.jumpTo(EScreenName.Message);
+						navigation.jumpTo(EScreenName.Message, {
+							tab: EMessageTab.Unread,
+						});
 					}}
 				/>
 				<DrawerItem

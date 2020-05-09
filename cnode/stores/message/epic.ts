@@ -7,11 +7,17 @@ import {
 	getMessage,
 	getMessageFailed,
 	getMessageSuccess,
+	markAllRead,
+	markAllReadFailed,
+	markAllReadSuccess,
+	markRead,
+	markReadFailed,
+	markReadSuccess,
 	MessageActionType,
 } from './action';
-import { MessageResultType } from './type';
+import { MarkAllReadResultType, MessageResultType } from './type';
 
-import { request } from 'cnode/utils/request';
+import { EMethod, request } from 'cnode/utils/request';
 
 export const getMessageEpic: Epic<
 	MessageActionType,
@@ -32,6 +38,55 @@ export const getMessageEpic: Epic<
 				}),
 				catchError((err: Error) =>
 					of(getMessageFailed({ error: err.message })),
+				),
+			),
+		),
+	);
+
+export const markReadEpic: Epic<
+	MessageActionType,
+	MessageActionType,
+	RootStateType
+> = (action$, state$) =>
+	action$.pipe(
+		filter(markRead.match),
+		switchMap((action) =>
+			request({
+				url: `/message/mark_one/${action.payload.messageId}`,
+				method: EMethod.POST,
+				body: {
+					accesstoken: state$.value.user.accesstoken,
+				},
+			}).pipe(
+				map(() => {
+					return markReadSuccess({ messageId: action.payload.messageId });
+				}),
+				catchError((err: Error) => of(markReadFailed({ error: err.message }))),
+			),
+		),
+	);
+
+export const markAllReadEpic: Epic<
+	MessageActionType,
+	MessageActionType,
+	RootStateType
+> = (action$, state$) =>
+	action$.pipe(
+		filter(markAllRead.match),
+		switchMap((action) =>
+			request<MarkAllReadResultType>({
+				url: `/message/mark_all`,
+				method: EMethod.POST,
+				body: {
+					accesstoken: state$.value.user.accesstoken,
+				},
+			}).pipe(
+				map((result) => {
+					const messageIds = result.marked_msgs.map((item) => item.id);
+					return markAllReadSuccess({ messageIds });
+				}),
+				catchError((err: Error) =>
+					of(markAllReadFailed({ error: err.message })),
 				),
 			),
 		),

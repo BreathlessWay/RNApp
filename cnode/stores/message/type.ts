@@ -63,3 +63,8 @@ export type MessageResultType = {
 		hasnot_read_messages: Array<MessageItemType>;
 	};
 };
+
+export type MarkAllReadResultType = {
+	success: boolean;
+	marked_msgs: Array<{ id: string }>;
+};

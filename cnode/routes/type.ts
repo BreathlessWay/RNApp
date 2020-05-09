@@ -1,4 +1,4 @@
-import { EMyTopicType, ETopicsTab } from 'cnode/config/constant';
+import { EMessageTab, EMyTopicType, ETopicsTab } from 'cnode/config/constant';
 
 export enum EScreenName {
 	Home = 'Home',
@@ -12,6 +12,9 @@ export enum EScreenName {
 	Me = 'Me',
 
 	Message = 'Message',
+	MessageUnread = 'MessageUnread',
+	MessageRead = 'MessageRead',
+
 	Posts = 'Posts',
 	Reply = 'Replay',
 	Collection = 'Collection',
@@ -44,7 +47,17 @@ export type RootStackParamList = {
 	[EScreenName.Me]: {
 		type: string;
 	};
-	[EScreenName.Message]: undefined;
+
+	[EScreenName.Message]: {
+		tab: EMessageTab;
+	};
+	[EScreenName.MessageRead]: {
+		tab: EMessageTab.Read;
+	};
+	[EScreenName.MessageUnread]: {
+		tab: EMessageTab.Unread;
+	};
+
 	[EScreenName.Posts]: {
 		type: EMyTopicType.Posts;
 	};

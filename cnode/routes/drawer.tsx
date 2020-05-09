@@ -9,6 +9,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import DrawerComponent from 'cnode/components/DrawerComponent';
 import MyTopicPage from 'cnode/pages/MyTopicPage';
 import MePage from 'cnode/pages/MePage';
+import MessageTabRouter from 'cnode/routes/messageTab';
 
 import { bindActionCreators, Dispatch } from '@reduxjs/toolkit';
 import { RouteProp } from '@react-navigation/native';
@@ -16,7 +17,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { EScreenName, RootStackParamList } from 'cnode/routes/type';
 import { EMyTopicType } from 'cnode/config/constant';
 import { RootStateType } from 'cnode/stores/rootType';
-import MessagePage from 'cnode/pages/MessagePage';
 
 const { Navigator, Screen } = createDrawerNavigator<RootStackParamList>();
 
@@ -58,6 +58,7 @@ class DrawerRouter extends Component<
 	render(): React.ReactNode {
 		return (
 			<Navigator
+				initialRouteName={EScreenName.Home}
 				drawerPosition="right"
 				drawerContent={(props) => {
 					global.drawerNavigation = props.navigation;
@@ -68,7 +69,7 @@ class DrawerRouter extends Component<
 					);
 				}}>
 				<Screen name={EScreenName.Home} component={MePage} />
-				<Screen name={EScreenName.Message} component={MessagePage} />
+				<Screen name={EScreenName.Message} component={MessageTabRouter} />
 				<Screen
 					name={EScreenName.Posts}
 					component={MyTopicPage}

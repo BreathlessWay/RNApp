@@ -9,7 +9,7 @@ import {
 	getCollectionsEpic,
 } from './user/epic';
 import { getTopicsEpic } from './topics/epic';
-import { getMessageEpic } from './message/epic';
+import { getMessageEpic, markAllReadEpic, markReadEpic } from './message/epic';
 
 const rootEpics = combineEpics(
 	fetchUserEpic,
@@ -20,6 +20,8 @@ const rootEpics = combineEpics(
 	getCollectionsEpic,
 	getTopicsEpic,
 	getMessageEpic,
+	markReadEpic,
+	markAllReadEpic,
 );
 
 export default rootEpics;

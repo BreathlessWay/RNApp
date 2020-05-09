@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect, ConnectedProps } from 'react-redux';
 import { Image, TouchableOpacity } from 'react-native';
-import ListPage from 'cnode/pages/TopicsPage';
+import TopicsPage from 'cnode/pages/TopicsPage';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -89,14 +89,14 @@ class TabRouter extends Component<TabRouterPropType & TabRouterReduxPropType> {
 				<Screen
 					name={EScreenName.All}
 					options={{ title: '全部' }}
-					component={ListPage}
+					component={TopicsPage}
 					initialParams={{
 						tab: ETopicsTab.All,
 					}}
 				/>
 				<Screen
 					name={EScreenName.Ask}
-					component={ListPage}
+					component={TopicsPage}
 					options={{ title: '问答' }}
 					initialParams={{
 						tab: ETopicsTab.Ask,
@@ -104,7 +104,7 @@ class TabRouter extends Component<TabRouterPropType & TabRouterReduxPropType> {
 				/>
 				<Screen
 					name={EScreenName.Share}
-					component={ListPage}
+					component={TopicsPage}
 					options={{ title: '分享' }}
 					initialParams={{
 						tab: ETopicsTab.Share,
@@ -112,7 +112,7 @@ class TabRouter extends Component<TabRouterPropType & TabRouterReduxPropType> {
 				/>
 				<Screen
 					name={EScreenName.Job}
-					component={ListPage}
+					component={TopicsPage}
 					options={{ title: '工作机会' }}
 					initialParams={{
 						tab: ETopicsTab.Job,
@@ -120,7 +120,7 @@ class TabRouter extends Component<TabRouterPropType & TabRouterReduxPropType> {
 				/>
 				<Screen
 					name={EScreenName.Good}
-					component={ListPage}
+					component={TopicsPage}
 					options={{ title: '精华' }}
 					initialParams={{
 						tab: ETopicsTab.Good,

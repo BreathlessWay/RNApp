@@ -145,7 +145,7 @@ export const makeCollectionEpic: Epic<
 			}).pipe(
 				map(() => makeCollectionSuccess({ item: action.payload.item })),
 				catchError((err, obs) => obs.pipe(delay(500))), // 当请求失败时重试
-				take(3), // 重试3次
+				takeUntil(action$.pipe(filter(makeOutCollection.match))),
 			),
 		),
 	);
@@ -168,7 +168,7 @@ export const makeOutCollectionEpic: Epic<
 			}).pipe(
 				map(() => makeOutCollectionSuccess({ id: action.payload.id })),
 				catchError((err, obs) => obs.pipe(delay(500))), // 当请求失败时重试
-				take(3), // 重试3次
+				takeUntil(action$.pipe(filter(makeCollection.match))),
 			),
 		),
 	);

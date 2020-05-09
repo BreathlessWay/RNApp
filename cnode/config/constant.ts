@@ -32,3 +32,9 @@ export enum EMyTopicType {
 	Reply = 'replay',
 	Collection = 'collection',
 }
+
+// 消息已读未读
+export enum EMessageTab {
+	Read = 'has_read_messages',
+	Unread = 'hasnot_read_messages',
+}
