@@ -1,5 +1,7 @@
 ### React-Native 的练习项目
 
+> QQ交流群：399719631
+
 修改`/RNApp/index.js`的入口可启动不同的项目
 
 - GitHub Trending： `import App from 'trending/App'`
