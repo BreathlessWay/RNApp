@@ -53,9 +53,6 @@ class ScanPage extends Component<ScanPagePropType, ScanPageStateType> {
 			return;
 		}
 		this.startAnimation();
-		// mock for 模拟器
-		// this.props.login('86e9accb-82f4-42bf-81a2-0210bc07338d');
-		// this.props.navigation.goBack();
 	}
 
 	startAnimation = () => {
